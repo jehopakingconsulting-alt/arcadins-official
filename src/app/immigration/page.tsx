@@ -1,11 +1,18 @@
 "use client";
 
-import { IMMIGRATION_STEPS, COUNTRIES, PROVINCES } from "@/lib/constants";
+import { COUNTRIES, PROVINCES } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
 import Link from "next/link";
 
 export default function ImmigrationPage() {
   const { lang } = useLang();
+
+  const steps = [
+    { num: 1, title: t(UI["imm.s1.title"], lang), desc: t(UI["imm.s1.desc"], lang) },
+    { num: 2, title: t(UI["imm.s2.title"], lang), desc: t(UI["imm.s2.desc"], lang) },
+    { num: 3, title: t(UI["imm.s3.title"], lang), desc: t(UI["imm.s3.desc"], lang) },
+    { num: 4, title: t(UI["imm.s4.title"], lang), desc: t(UI["imm.s4.desc"], lang) },
+  ];
 
   return (
     <div className="bg-off-white min-h-screen pt-32 pb-20">
@@ -20,7 +27,7 @@ export default function ImmigrationPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
           <div>
             <div className="flex flex-col">
-              {IMMIGRATION_STEPS.map((step) => (
+              {steps.map((step) => (
                 <div key={step.num} className="flex gap-4 py-5 border-b border-gold/11 last:border-b-0">
                   <div className="w-11 h-11 rounded-full bg-navy text-gold font-[family-name:var(--font-heading)] text-lg font-bold flex items-center justify-center shrink-0">{step.num}</div>
                   <div><h4 className="font-[family-name:var(--font-heading)] text-base text-navy mb-1">{step.title}</h4><p className="text-[13.5px] text-muted leading-[1.65]">{step.desc}</p></div>

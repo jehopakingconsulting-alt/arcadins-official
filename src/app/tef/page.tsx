@@ -9,6 +9,19 @@ export default function TefPage() {
   const [selected, setSelected] = useState(0);
   const { lang } = useLang();
 
+  const checklist = [
+    t(UI["tef.ck1"], lang), t(UI["tef.ck2"], lang), t(UI["tef.ck3"], lang),
+    t(UI["tef.ck4"], lang), t(UI["tef.ck5"], lang), t(UI["tef.ck6"], lang),
+    t(UI["tef.ck7"], lang),
+  ];
+
+  const steps = [
+    { n: "1", t: t(UI["tef.step1"], lang) },
+    { n: "2", t: t(UI["tef.step2"], lang) },
+    { n: "3", t: t(UI["tef.step3"], lang) },
+    { n: "4", t: t(UI["tef.step4"], lang) },
+  ];
+
   return (
     <div className="bg-navy min-h-screen pt-32 pb-20">
       <div className="max-w-[1200px] mx-auto px-7">
@@ -42,7 +55,7 @@ export default function TefPage() {
             <div className="font-[family-name:var(--font-heading)] text-[22px] text-gold mb-1">{t(UI["tef.panel.title"], lang)}</div>
             <div className="text-[13.5px] text-white/46 mb-6">{t(UI["tef.panel.sub"], lang)}</div>
             <ul className="mb-7">
-              {["Cours en direct avec formateurs certifiés bilingues","Simulations complètes des 4 compétences (CO / CE / PO / PE)","Bibliothèque de 2 000+ exercices niveau A1 à C2","Correction personnalisée des productions écrites sous 48h","Coaching oral individuel — accent, fluidité, vocabulaire","Suivi IA de progression par compétence","Garantie score : objectif non atteint → reprise offerte"].map((item) => (
+              {checklist.map((item) => (
                 <li key={item} className="flex items-start gap-3 py-2.5 border-b border-white/[0.054] text-sm text-white/72">
                   <span className="w-5 h-5 rounded-full bg-gold/17 text-gold flex items-center justify-center shrink-0 text-[11px] font-bold mt-0.5">✓</span>{item}
                 </li>
@@ -50,7 +63,7 @@ export default function TefPage() {
             </ul>
             <p className="text-white/52 text-[13px] font-semibold mb-3">{t(UI["tef.panel.how"], lang)}</p>
             <div className="grid grid-cols-2 gap-2.5 mt-4">
-              {[{n:"1",t:"Connexion sécurisée"},{n:"2",t:"Vérification identité Proctor IA"},{n:"3",t:"Passage des 4 modules"},{n:"4",t:"Résultats & certificat"}].map((s) => (
+              {steps.map((s) => (
                 <div key={s.n} className="bg-gold/8 border border-gold/17 rounded-xl p-4 text-center">
                   <div className="font-[family-name:var(--font-heading)] text-[26px] font-bold text-gold">{s.n}</div>
                   <div className="text-xs text-white/50 mt-1 leading-[1.4]">{s.t}</div>
