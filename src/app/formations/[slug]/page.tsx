@@ -75,7 +75,7 @@ export default function CourseDetailPage() {
                   <span className="font-[family-name:var(--font-heading)] text-[56px] font-bold text-gold leading-none">
                     {course.price.toLocaleString()}
                   </span>
-                  <span className="text-white/40 text-sm">/ formation complète</span>
+                  <span className="text-white/40 text-sm">/ 24 semaines</span>
                 </div>
                 <div className="flex gap-3 flex-wrap sm:ml-auto">
                   <a
