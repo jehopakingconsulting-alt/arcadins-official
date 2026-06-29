@@ -11,6 +11,7 @@ export interface Program {
   certification: string;
   price: number;
   modules: string[];
+  comingSoon?: boolean;
 }
 
 export interface Testimonial {

@@ -29,29 +29,44 @@ export default function FormationsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((p) => (
-            <Link
-              key={p.id}
-              href={`/formations/${p.slug}`}
-              className="bg-white rounded-[20px] overflow-hidden border border-gold/11 transition-all hover:-translate-y-1 hover:shadow-[0_18px_48px_rgba(13,27,46,0.1)] hover:border-gold/38 block"
-            >
-              <div className="p-6 pb-4">
-                <div className="text-[32px] mb-3">{p.icon}</div>
-                <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold mb-1.5">{p.categoryLabel}</div>
-                <div className="font-[family-name:var(--font-heading)] text-lg font-bold text-navy mb-2 leading-[1.3]">{p.name}</div>
-                <div className="text-[13px] text-muted leading-[1.65]">{p.description}</div>
-              </div>
-              <div className="px-6 py-3 border-t border-off-white flex items-center justify-between">
-                <div className="flex gap-3">
-                  <span className="text-xs text-muted">⏱ {p.duration}</span>
-                  <span className="text-xs font-semibold text-gold">{p.price.toLocaleString()} CAD</span>
+          {filtered.map((p) => {
+            const Wrapper = p.comingSoon ? "div" : Link;
+            const wrapperProps = p.comingSoon
+              ? { className: "bg-white rounded-[20px] overflow-hidden border border-gold/11 relative opacity-75 block" }
+              : { href: `/formations/${p.slug}`, className: "bg-white rounded-[20px] overflow-hidden border border-gold/11 transition-all hover:-translate-y-1 hover:shadow-[0_18px_48px_rgba(13,27,46,0.1)] hover:border-gold/38 block" };
+
+            return (
+              // @ts-expect-error dynamic wrapper
+              <Wrapper key={p.id} {...wrapperProps}>
+                {p.comingSoon && (
+                  <div className="absolute top-4 right-4 z-10 bg-navy text-gold text-[10px] font-bold px-3 py-1 rounded-full tracking-[1px] uppercase">
+                    À Venir
+                  </div>
+                )}
+                <div className="p-6 pb-4">
+                  <div className="text-[32px] mb-3">{p.icon}</div>
+                  <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold mb-1.5">{p.categoryLabel}</div>
+                  <div className="font-[family-name:var(--font-heading)] text-lg font-bold text-navy mb-2 leading-[1.3]">{p.name}</div>
+                  <div className="text-[13px] text-muted leading-[1.65]">{p.description}</div>
                 </div>
-                <span className="text-[13px] font-semibold text-navy transition-all hover:text-gold">
-                  {t(UI["form.see"], lang)}
-                </span>
-              </div>
-            </Link>
-          ))}
+                <div className="px-6 py-3 border-t border-off-white flex items-center justify-between">
+                  <div className="flex gap-3">
+                    <span className="text-xs text-muted">⏱ {p.duration}</span>
+                    {p.comingSoon ? (
+                      <span className="text-xs font-semibold text-navy/40">Bientôt disponible</span>
+                    ) : (
+                      <span className="text-xs font-semibold text-gold">{p.price.toLocaleString()} CAD</span>
+                    )}
+                  </div>
+                  {!p.comingSoon && (
+                    <span className="text-[13px] font-semibold text-navy transition-all hover:text-gold">
+                      {t(UI["form.see"], lang)}
+                    </span>
+                  )}
+                </div>
+              </Wrapper>
+            );
+          })}
         </div>
       </div>
     </div>

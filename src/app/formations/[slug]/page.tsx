@@ -53,27 +53,46 @@ export default function CourseDetailPage() {
 
           {/* Price + CTA */}
           <div className="mt-8 flex flex-col sm:flex-row items-center gap-6 pt-8 border-t border-white/10">
-            <div className="flex items-baseline gap-2">
-              <span className="text-white/50 text-lg">CAD</span>
-              <span className="font-[family-name:var(--font-heading)] text-[56px] font-bold text-gold leading-none">
-                {course.price.toLocaleString()}
-              </span>
-              <span className="text-white/40 text-sm">/ formation complète</span>
-            </div>
-            <div className="flex gap-3 flex-wrap sm:ml-auto">
-              <a
-                href={`/api/checkout?course=${course.slug}&price=${course.price}`}
-                className="bg-gold text-navy font-bold text-[15px] px-8 py-4 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-[0_14px_42px_rgba(201,168,76,0.32)]"
-              >
-                💳 S&apos;inscrire maintenant
-              </a>
-              <Link
-                href="/contact"
-                className="bg-transparent text-white font-semibold text-[15px] px-7 py-4 rounded-[10px] border-[1.5px] border-white/28 transition-all inline-flex items-center gap-2 hover:border-gold hover:text-gold"
-              >
-                📞 Nous contacter
-              </Link>
-            </div>
+            {course.comingSoon ? (
+              <>
+                <div className="flex items-center gap-3">
+                  <span className="bg-gold/20 text-gold font-bold text-lg px-5 py-2 rounded-full tracking-[1px] uppercase">
+                    🚀 À Venir
+                  </span>
+                  <span className="text-white/40 text-sm">Programme en cours de développement</span>
+                </div>
+                <Link
+                  href="/contact"
+                  className="bg-gold text-navy font-bold text-[15px] px-8 py-4 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 sm:ml-auto"
+                >
+                  📧 Être notifié du lancement
+                </Link>
+              </>
+            ) : (
+              <>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-white/50 text-lg">CAD</span>
+                  <span className="font-[family-name:var(--font-heading)] text-[56px] font-bold text-gold leading-none">
+                    {course.price.toLocaleString()}
+                  </span>
+                  <span className="text-white/40 text-sm">/ formation complète</span>
+                </div>
+                <div className="flex gap-3 flex-wrap sm:ml-auto">
+                  <a
+                    href={`/api/checkout?course=${course.slug}&price=${course.price}`}
+                    className="bg-gold text-navy font-bold text-[15px] px-8 py-4 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-[0_14px_42px_rgba(201,168,76,0.32)]"
+                  >
+                    💳 S&apos;inscrire maintenant
+                  </a>
+                  <Link
+                    href="/contact"
+                    className="bg-transparent text-white font-semibold text-[15px] px-7 py-4 rounded-[10px] border-[1.5px] border-white/28 transition-all inline-flex items-center gap-2 hover:border-gold hover:text-gold"
+                  >
+                    📞 Nous contacter
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </div>
 
@@ -137,22 +156,42 @@ export default function CourseDetailPage() {
 
             {/* CTA card */}
             <div className="bg-gradient-to-br from-gold/15 to-gold/5 rounded-[28px] p-8 border border-gold/25 text-center">
-              <div className="text-3xl mb-3">🎯</div>
-              <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">
-                Prêt à commencer ?
-              </h3>
-              <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
-                Rejoignez des milliers d&apos;apprenants et commencez votre formation dès aujourd&apos;hui.
-              </p>
-              <a
-                href={`/api/checkout?course=${course.slug}&price=${course.price}`}
-                className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid hover:-translate-y-0.5"
-              >
-                S&apos;inscrire — {course.price.toLocaleString()} CAD →
-              </a>
-              <p className="text-xs text-muted mt-3">
-                Paiement sécurisé par Stripe · Certificat inclus
-              </p>
+              {course.comingSoon ? (
+                <>
+                  <div className="text-3xl mb-3">🚀</div>
+                  <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">
+                    Bientôt disponible
+                  </h3>
+                  <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
+                    Ce programme est en cours de développement. Laissez-nous vos coordonnées pour être notifié du lancement.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid hover:-translate-y-0.5"
+                  >
+                    📧 Être notifié →
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <div className="text-3xl mb-3">🎯</div>
+                  <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">
+                    Prêt à commencer ?
+                  </h3>
+                  <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
+                    Rejoignez des milliers d&apos;apprenants et commencez votre formation dès aujourd&apos;hui.
+                  </p>
+                  <a
+                    href={`/api/checkout?course=${course.slug}&price=${course.price}`}
+                    className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid hover:-translate-y-0.5"
+                  >
+                    S&apos;inscrire — {course.price.toLocaleString()} CAD →
+                  </a>
+                  <p className="text-xs text-muted mt-3">
+                    Paiement sécurisé par Stripe · Certificat inclus
+                  </p>
+                </>
+              )}
             </div>
 
             {/* Guarantee */}
