@@ -30,7 +30,11 @@ export default function FormationsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((p) => (
-            <div key={p.id} className="bg-white rounded-[20px] overflow-hidden border border-gold/11 transition-all hover:-translate-y-1 hover:shadow-[0_18px_48px_rgba(13,27,46,0.1)] hover:border-gold/38">
+            <Link
+              key={p.id}
+              href={`/formations/${p.slug}`}
+              className="bg-white rounded-[20px] overflow-hidden border border-gold/11 transition-all hover:-translate-y-1 hover:shadow-[0_18px_48px_rgba(13,27,46,0.1)] hover:border-gold/38 block"
+            >
               <div className="p-6 pb-4">
                 <div className="text-[32px] mb-3">{p.icon}</div>
                 <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold mb-1.5">{p.categoryLabel}</div>
@@ -38,10 +42,15 @@ export default function FormationsPage() {
                 <div className="text-[13px] text-muted leading-[1.65]">{p.description}</div>
               </div>
               <div className="px-6 py-3 border-t border-off-white flex items-center justify-between">
-                <div className="flex gap-3"><span className="text-xs text-muted">⏱ {p.duration}</span><span className="text-xs text-muted">🎓 {p.certification}</span></div>
-                <Link href={p.link} className="text-[13px] font-semibold text-navy transition-all hover:text-gold">{t(UI["form.see"], lang)}</Link>
+                <div className="flex gap-3">
+                  <span className="text-xs text-muted">⏱ {p.duration}</span>
+                  <span className="text-xs font-semibold text-gold">{p.price.toLocaleString()} CAD</span>
+                </div>
+                <span className="text-[13px] font-semibold text-navy transition-all hover:text-gold">
+                  {t(UI["form.see"], lang)}
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

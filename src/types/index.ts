@@ -6,9 +6,11 @@ export interface Program {
   categoryLabel: string;
   name: string;
   description: string;
+  longDescription: string;
   duration: string;
   certification: string;
-  link: string;
+  price: number;
+  modules: string[];
 }
 
 export interface Testimonial {
