@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy: #0D1B2E;
+  --color-navy-mid: #142238;
+  --color-navy-light: #1E3A5F;
+  --color-gold: #C9A84C;
+  --color-gold-light: #E8C97A;
+  --color-gold-pale: #F5E9C4;
+  --color-off-white: #F8F6F1;
+  --color-muted: #8A9BB5;
+  --color-body: #2C3E5A;
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-mono: "DM Mono", monospace;
+}
+
+:root {
+  --border-gold: rgba(201, 168, 76, 0.25);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-navy-mid); }
+::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 3px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.4s ease both;
+}
+
+.animate-blink {
+  animation: blink 2.2s infinite;
+}

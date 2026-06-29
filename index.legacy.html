@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="description" content="ARCADINS Training Center — Formation professionnelle certifiée, TEF/TCF Canada, 7 langues, 47 pays">
+<title>ARCADINS Training Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D1B2E;--navy-mid:#142238;--navy-light:#1E3A5F;--gold:#C9A84C;--gold-light:#E8C97A;--gold-pale:#F5E9C4;--white:#FFFFFF;--off-white:#F8F6F1;--muted:#8A9BB5;--body:#2C3E5A;--border:rgba(201,168,76,0.25);--r:12px;--rl:20px;--rxl:28px;--hh:80px;--ease:all 0.3s cubic-bezier(.4,0,.2,1);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.15;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;height:auto;}
+button{font-family:'DM Sans',sans-serif;cursor:pointer;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--navy-mid);}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+.page{display:none;min-height:calc(100vh - var(--hh));animation:fadeUp 0.4s ease both;}
+.page.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+/* HEADER */
+#hdr{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(13,27,46,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,.18);transition:var(--ease);}
+.ribbon{background:linear-gradient(90deg,var(--gold) 0%,#a07830 50%,var(--gold) 100%);padding:5px 28px;display:flex;align-items:center;justify-content:space-between;font-size:11.5px;font-weight:600;color:var(--navy);}
+.rib-l{display:flex;align-items:center;gap:16px;}
+.rib-sep{opacity:.38;font-size:10px;}
+.lang-bar{display:flex;gap:3px;}
+.lb{padding:3px 9px;border-radius:20px;border:1.5px solid rgba(13,27,46,.4);background:transparent;color:var(--navy);font-size:10.5px;font-weight:700;cursor:pointer;transition:var(--ease);font-family:'DM Sans',sans-serif;}
+.lb:hover,.lb.on{background:var(--navy);color:var(--gold);border-color:var(--navy);}
+.hdr-body{display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:var(--hh);gap:12px;}
+.logo-w{display:flex;align-items:center;cursor:pointer;flex-shrink:0;}
+.logo-w svg{filter:drop-shadow(0 2px 10px rgba(201,168,76,.28));transition:filter .3s;}.logo-w:hover svg{filter:drop-shadow(0 3px 16px rgba(201,168,76,.55));}
+nav{display:flex;align-items:center;gap:1px;flex:1;justify-content:center;}
+.nl{color:rgba(255,255,255,.72);font-size:12.5px;font-weight:500;padding:8px 11px;border-radius:8px;transition:var(--ease);white-space:nowrap;border:none;background:none;cursor:pointer;display:flex;align-items:center;gap:5px;}
+.nl:hover{color:var(--gold);background:rgba(201,168,76,.1);}
+.nl.on{color:var(--gold);background:rgba(201,168,76,.12);}
+.nl svg{width:13px;height:13px;flex-shrink:0;opacity:.55;}
+.btn-cta{background:var(--gold);color:var(--navy);font-weight:700;font-size:13px;padding:10px 20px;border-radius:9px;transition:var(--ease);border:none;white-space:nowrap;flex-shrink:0;}
+.btn-cta:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 8px 28px rgba(201,168,76,.3);}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.ham span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:var(--ease);}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.ham.open span:nth-child(2){opacity:0;}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mmenu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:998;background:var(--navy);padding:calc(var(--hh) + 16px) 24px 40px;overflow-y:auto;flex-direction:column;gap:8px;}
+.mmenu.open{display:flex;}
+.mnl{color:rgba(255,255,255,.8);font-size:17px;font-weight:500;padding:16px 20px;border-radius:var(--r);transition:var(--ease);border:1px solid rgba(201,168,76,.1);background:rgba(255,255,255,.03);cursor:pointer;text-align:left;border-left:3px solid transparent;font-family:'DM Sans',sans-serif;}
+.mnl:hover,.mnl.on{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.08);}
+.mcta{background:var(--gold);color:var(--navy);font-weight:700;font-size:16px;padding:16px;border-radius:var(--r);text-align:center;margin-top:16px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;}
+/* SHARED */
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px;}
+.slabel{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.stitle{font-size:44px;color:var(--navy);margin-bottom:16px;}
+.stitle em{color:var(--gold);font-style:italic;}
+.ssub{font-size:17px;color:var(--muted);line-height:1.75;max-width:600px;}
+.shead{margin-bottom:52px;}
+.btn-p{background:var(--gold);color:var(--navy);font-weight:700;font-size:15px;padding:14px 32px;border-radius:10px;transition:var(--ease);display:inline-flex;align-items:center;gap:9px;border:none;}
+.btn-p:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 14px 42px rgba(201,168,76,.32);}
+.btn-o{background:transparent;color:var(--white);font-weight:600;font-size:15px;padding:13px 28px;border-radius:10px;transition:var(--ease);display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,.28);}
+.btn-o:hover{border-color:var(--gold);color:var(--gold);}
+.btn-n{background:var(--navy);color:var(--gold);font-weight:700;font-size:15px;padding:14px 32px;border-radius:10px;transition:var(--ease);display:inline-flex;align-items:center;gap:9px;border:none;}
+.btn-n:hover{background:var(--navy-mid);transform:translateY(-1px);}
+/* ---- PAGE HOME ---- */
+#pg-home{background:var(--navy);}
+/* ── PAGE HOME ── */
+#pg-home{background:var(--navy);}
+
+/* ═══════════════════════════════════════════
+   HERO SLIDER — Bannières plein écran
+   Style institutionnel premium Canada
+═══════════════════════════════════════════ */
+.hero{
+  position:relative;
+  width:100%;
+  height:100vh;
+  min-height:600px;
+  max-height:1000px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--navy);
+}
+
+/* ── Slides (couche images) ── */
+.hero-slider{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.hero-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity 1.2s ease-in-out;
+  will-change:opacity;
+}
+.hero-slide.active{
+  opacity:1;
+}
+/* Image de fond + Ken Burns subtil */
+.hero-slide-img{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  transform:scale(1.06);
+  transition:transform 7s ease-out;
+  /* fallback si image absente */
+  background-color:var(--navy-mid);
+}
+.hero-slide.active .hero-slide-img{
+  transform:scale(1.0);
+}
+
+/* ── Overlays lecture ── */
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  /* dégradé principal : bleu marine foncé + transparence */
+  background:
+    linear-gradient(
+      105deg,
+      rgba(6,15,28,.90) 0%,
+      rgba(13,27,46,.78) 40%,
+      rgba(13,27,46,.62) 70%,
+      rgba(6,15,28,.80) 100%
+    );
+  pointer-events:none;
+}
+.hero-overlay-bottom{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(
+    0deg,
+    rgba(6,15,28,.88) 0%,
+    transparent 45%
+  );
+  pointer-events:none;
+}
+/* Touche dorée très subtile */
+.hero-overlay-gold{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:radial-gradient(
+    ellipse 70% 50% at 60% 35%,
+    rgba(201,168,76,.05) 0%,
+    transparent 65%
+  );
+  pointer-events:none;
+}
+
+/* Grille géométrique dorée discrète */
+.hero-grid{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  opacity:.022;
+  background-image:
+    linear-gradient(rgba(201,168,76,1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,1) 1px, transparent 1px);
+  background-size:72px 72px;
+  pointer-events:none;
+}
+
+/* ── Contenu texte ── */
+.hero-content{
+  position:relative;
+  z-index:10;
+  width:100%;
+  max-width:900px;
+  padding:0 40px;
+  text-align:center;
+  margin:0 auto;
+}
+
+/* Badge */
+.hbadge{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  background:rgba(201,168,76,.12);
+  border:1px solid rgba(201,168,76,.36);
+  padding:8px 22px;
+  border-radius:50px;
+  color:var(--gold);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  margin-bottom:28px;
+}
+.hdot{
+  width:7px;height:7px;
+  border-radius:50%;
+  background:var(--gold);
+  animation:blink 2.2s infinite;
+  flex-shrink:0;
+}
+
+/* Titre */
+.htitle{
+  font-size:56px;
+  line-height:1.1;
+  color:var(--white);
+  margin-bottom:24px;
+  text-shadow:0 2px 24px rgba(0,0,0,.4);
+}
+.htitle em{
+  color:var(--gold);
+  font-style:italic;
+}
+
+/* Sous-titre */
+.hdesc{
+  font-size:18px;
+  line-height:1.78;
+  color:rgba(255,255,255,.72);
+  max-width:700px;
+  margin:0 auto 42px;
+  text-shadow:0 1px 8px rgba(0,0,0,.35);
+}
+
+/* Boutons */
+.hctas{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:52px;
+}
+
+/* Stats */
+.hstats{
+  display:inline-flex;
+  gap:40px;
+  flex-wrap:wrap;
+  justify-content:center;
+  padding:22px 36px;
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;
+}
+.hstat-n{
+  font-family:'Playfair Display',serif;
+  font-size:30px;
+  font-weight:700;
+  color:var(--gold);
+  line-height:1;
+}
+.hstat-l{
+  font-size:11px;
+  color:rgba(255,255,255,.50);
+  margin-top:5px;
+  letter-spacing:.5px;
+}
+
+/* ── Contrôles slider ── */
+/* Flèches */
+.slider-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:20;
+  width:50px;height:50px;
+  border-radius:50%;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  color:rgba(255,255,255,.75);
+  font-size:20px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:var(--ease);
+  outline:none;
+}
+.slider-arrow:hover{
+  background:rgba(201,168,76,.22);
+  border-color:rgba(201,168,76,.45);
+  color:var(--gold);
+  transform:translateY(-50%) scale(1.08);
+}
+.slider-prev{left:24px;}
+.slider-next{right:24px;}
+
+/* Points indicateurs */
+.slider-dots{
+  position:absolute;
+  bottom:32px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:20;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.slider-dot{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,.35);
+  border:none;
+  cursor:pointer;
+  transition:var(--ease);
+  padding:0;
+  outline:none;
+}
+.slider-dot.active{
+  background:var(--gold);
+  width:24px;
+  border-radius:4px;
+  box-shadow:0 0 8px rgba(201,168,76,.55);
+}
+.slider-dot:hover:not(.active){
+  background:rgba(255,255,255,.6);
+  transform:scale(1.2);
+}
+
+/* Label slide (bas gauche) */
+.slide-label{
+  position:absolute;
+  bottom:38px;
+  left:40px;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .6s ease, transform .6s ease;
+  pointer-events:none;
+}
+.slide-label.visible{
+  opacity:1;
+  transform:none;
+}
+.sl-icon{
+  width:36px;height:36px;
+  border-radius:50%;
+  background:rgba(201,168,76,.2);
+  border:1px solid rgba(201,168,76,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+  flex-shrink:0;
+}
+.sl-text{
+  font-size:12px;
+  color:rgba(255,255,255,.6);
+  font-weight:500;
+  letter-spacing:.5px;
+}
+
+/* ══════════════
+   RESPONSIVE
+══════════════ */
+@media(max-width:1080px){
+  .htitle{font-size:44px;}
+  .hdesc{font-size:16px;}
+  .hero-content{padding:0 32px;}
+}
+@media(max-width:768px){
+  .hero{
+    min-height:520px;
+    max-height:none;
+    height:95vh;
+  }
+  .hero-content{padding:0 24px;}
+  .htitle{font-size:34px;}
+  .hdesc{font-size:15px;margin-bottom:32px;}
+  .hbadge{font-size:10px;padding:7px 16px;}
+  .hstats{gap:24px;padding:18px 24px;}
+  .hstat-n{font-size:26px;}
+  .slider-arrow{width:40px;height:40px;font-size:16px;}
+  .slider-prev{left:12px;}
+  .slider-next{right:12px;}
+  .slide-label{display:none;}
+}
+@media(max-width:480px){
+  .hero{height:100svh;min-height:480px;}
+  .htitle{font-size:28px;}
+  .hdesc{font-size:14px;margin-bottom:28px;}
+  .hctas{flex-direction:column;align-items:center;}
+  .btn-p,.btn-o{width:100%;max-width:300px;justify-content:center;}
+  .hstats{gap:18px;padding:14px 18px;}
+  .hstat-n{font-size:22px;}
+  .hstat-l{font-size:10px;}
+}
+
+/* accessibilité */
+@media(prefers-reduced-motion:reduce){
+  .hero-slide,.hero-slide-img{transition:none!important;animation:none!important;}
+}
+
+/* STATS BAR */
+/* STATS BAR */
+.sbar{background:var(--gold);padding:0 28px;}
+.sbar-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);}
+.sc{text-align:center;padding:24px 14px;border-right:1px solid rgba(13,27,46,.13);}
+.sc:last-child{border-right:none;}
+.sn{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--navy);line-height:1;}
+.sl{font-size:11px;font-weight:600;color:rgba(13,27,46,.52);letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+/* CERT STRIP */
+.cstrip{background:var(--navy-mid);padding:20px 28px;}
+.cstrip-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.clbl{color:rgba(255,255,255,.4);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.cbadges{display:flex;gap:9px;flex-wrap:wrap;}
+.cbadge{display:flex;align-items:center;gap:5px;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.26);padding:6px 15px;border-radius:50px;color:var(--gold-light);font-size:11.5px;font-weight:600;}
+/* QUICK CARDS */
+.qs{background:var(--off-white);padding:70px 28px;}
+.qs-in{max-width:1200px;margin:0 auto;}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-top:0;}
+.qcard{background:var(--white);border:1px solid rgba(201,168,76,.16);border-radius:var(--rl);padding:26px;cursor:pointer;transition:var(--ease);}
+.qcard:hover{transform:translateY(-5px);border-color:rgba(201,168,76,.48);box-shadow:0 16px 40px rgba(13,27,46,.1);}
+.qi{font-size:34px;margin-bottom:12px;}
+.qcat{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.qname{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:7px;}
+.qdesc{font-size:13px;color:var(--muted);line-height:1.65;}
+/* ---- PAGE TEF ---- */
+#pg-tef{background:var(--navy);}
+.tef-in{max-width:1200px;margin:0 auto;padding:80px 28px;}
+.tef-lay{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.tef-list{display:flex;flex-direction:column;gap:14px;}
+.tcard{background:rgba(255,255,255,.044);border:1px solid rgba(201,168,76,.19);border-radius:var(--rl);padding:24px;cursor:pointer;transition:var(--ease);position:relative;overflow:hidden;}
+.tcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold);border-radius:4px 0 0 4px;opacity:0;transition:var(--ease);}
+.tcard:hover,.tcard.sel{background:rgba(201,168,76,.08);border-color:var(--gold);}
+.tcard.sel::before{opacity:1;}
+.ttag{background:var(--gold);color:var(--navy);font-size:10.5px;font-weight:700;padding:3px 11px;border-radius:20px;float:right;letter-spacing:.8px;}
+.tname{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--white);margin-bottom:5px;}
+.tdesc{font-size:13.5px;color:rgba(255,255,255,.55);line-height:1.6;}
+.tmeta{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;}
+.tmeta span{font-size:12px;color:rgba(255,255,255,.4);}
+.tpanel{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.17);border-radius:var(--rxl);padding:34px;}
+.tpt{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);margin-bottom:5px;}
+.tps{font-size:13.5px;color:rgba(255,255,255,.46);margin-bottom:22px;}
+.cklist{list-style:none;margin-bottom:26px;}
+.cklist li{display:flex;align-items:flex-start;gap:11px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.054);font-size:14px;color:rgba(255,255,255,.72);}
+.cklist li:last-child{border-bottom:none;}
+.ck{width:20px;height:20px;border-radius:50%;background:rgba(201,168,76,.17);color:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700;margin-top:1px;}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;}
+.sbox{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.17);border-radius:var(--r);padding:15px;text-align:center;}
+.snum{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--gold);}
+.stxt{font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;line-height:1.4;}
+/* ---- PAGE PROGRAMS ---- */
+#pg-programs{background:var(--off-white);}
+.prog-in{max-width:1200px;margin:0 auto;padding:80px 28px;}
+.frow{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:36px;}
+.fb{padding:9px 19px;border-radius:50px;border:1.5px solid rgba(201,168,76,.24);background:var(--white);color:var(--body);font-size:13px;font-weight:500;cursor:pointer;transition:var(--ease);font-family:'DM Sans',sans-serif;}
+.fb:hover,.fb.on{background:var(--navy);color:var(--gold);border-color:var(--navy);}
+.g3{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+.pc{background:var(--white);border-radius:var(--rl);overflow:hidden;border:1px solid rgba(201,168,76,.11);transition:var(--ease);}
+.pc:hover{transform:translateY(-5px);box-shadow:0 18px 48px rgba(13,27,46,.1);border-color:rgba(201,168,76,.38);}
+.pch{padding:24px 24px 16px;}
+.pc-ico{font-size:32px;margin-bottom:12px;}
+.pc-cat{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.pc-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.3;}
+.pc-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+.pcf{padding:13px 24px 20px;border-top:1px solid var(--off-white);display:flex;align-items:center;justify-content:space-between;}
+.pcm{display:flex;gap:12px;}
+.pcm span{font-size:12px;color:var(--muted);}
+.pclnk{font-size:13px;font-weight:600;color:var(--navy);transition:var(--ease);background:none;border:none;cursor:pointer;}
+.pclnk:hover{color:var(--gold);}
+/* ---- PAGE EXAMS ---- */
+#pg-exams{background:var(--white);}
+.exam-in{max-width:1200px;margin:0 auto;padding:80px 28px;}
+.emock{background:var(--navy);border-radius:22px;overflow:hidden;border:1px solid rgba(201,168,76,.17);}
+.ebar{background:rgba(201,168,76,.07);border-bottom:1px solid rgba(201,168,76,.15);padding:15px 24px;display:flex;align-items:center;gap:13px;}
+.edots{display:flex;gap:7px;}
+.edots span{width:12px;height:12px;border-radius:50%;}
+.edots span:nth-child(1){background:#ff5f57;}
+.edots span:nth-child(2){background:#ffbd2e;}
+.edots span:nth-child(3){background:#28c840;}
+.eaddr{background:rgba(255,255,255,.07);border-radius:6px;padding:6px 15px;color:rgba(255,255,255,.36);font-family:'DM Mono',monospace;font-size:12px;flex:1;text-align:center;}
+.ebody{padding:34px;display:grid;grid-template-columns:1fr 295px;gap:34px;}
+.qhead{display:flex;align-items:center;gap:13px;margin-bottom:20px;}
+.qpbar{flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;}
+.qpfill{height:100%;width:65%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:3px;}
+.qcnt{color:rgba(255,255,255,.38);font-size:12.5px;}
+.qtimer{background:rgba(201,168,76,.13);border:1px solid rgba(201,168,76,.28);border-radius:7px;padding:7px 13px;color:var(--gold);font-family:'DM Mono',monospace;font-size:15px;}
+.qlbl{color:rgba(255,255,255,.32);font-size:11.5px;margin-bottom:9px;}
+.qtext{font-family:'Playfair Display',serif;font-size:19px;color:var(--white);margin-bottom:22px;line-height:1.55;}
+.qopts{display:flex;flex-direction:column;gap:9px;}
+.qopt{background:rgba(255,255,255,.046);border:1.5px solid rgba(255,255,255,.08);border-radius:var(--r);padding:14px 17px;color:rgba(255,255,255,.68);font-size:14px;cursor:pointer;transition:var(--ease);display:flex;align-items:center;gap:12px;}
+.qopt:hover{border-color:rgba(201,168,76,.33);background:rgba(201,168,76,.05);color:var(--white);}
+.qopt.sel{border-color:var(--gold);background:rgba(201,168,76,.1);color:var(--white);}
+.qltr{width:26px;height:26px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.qbtns{display:flex;gap:10px;margin-top:22px;}
+.esd{}
+.escard{background:rgba(255,255,255,.046);border:1px solid rgba(201,168,76,.17);border-radius:var(--r);padding:20px;margin-bottom:13px;}
+.est{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:13px;}
+.sring{position:relative;width:92px;height:92px;margin:0 auto 13px;}
+.sring svg{transform:rotate(-90deg);}
+.scenter{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.sval{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--white);}
+.slv{font-size:10px;color:rgba(255,255,255,.38);}
+.skrow{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;}
+.skrow span:first-child{color:rgba(255,255,255,.46);}
+.skrow span:last-child{color:var(--gold);}
+.certbox{background:linear-gradient(135deg,rgba(201,168,76,.13),rgba(201,168,76,.04));border:1px solid rgba(201,168,76,.27);border-radius:var(--r);padding:19px;text-align:center;}
+.cbt{color:var(--gold);font-family:'Playfair Display',serif;font-size:14px;margin-bottom:6px;}
+.cbd{color:rgba(255,255,255,.42);font-size:12px;line-height:1.5;margin-bottom:13px;}
+.cbbtn{background:var(--gold);color:var(--navy);font-weight:700;font-size:12.5px;padding:9px 17px;border-radius:7px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;}
+.pdot{display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,.52);}
+.pdot-d{width:9px;height:9px;border-radius:50%;background:#28c840;animation:blink 2s infinite;flex-shrink:0;}
+/* ---- PAGE IMMIGRATION ---- */
+#pg-imm{background:var(--off-white);}
+.imm-in{max-width:1200px;margin:0 auto;padding:80px 28px;}
+.ilay{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.isteps{display:flex;flex-direction:column;}
+.istep{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid rgba(201,168,76,.11);}
+.istep:last-child{border-bottom:none;}
+.isn{width:44px;height:44px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:'Playfair Display',serif;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.istep h4{font-size:16px;color:var(--navy);margin-bottom:5px;}
+.istep p{font-size:13.5px;color:var(--muted);line-height:1.65;}
+.ipanel{background:var(--navy);border-radius:var(--rxl);padding:36px;color:var(--white);}
+.ipanel h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:16px;}
+.flags{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px;}
+.flag{background:rgba(255,255,255,.07);border:1px solid rgba(201,168,76,.17);border-radius:8px;padding:8px 14px;font-size:13px;color:rgba(255,255,255,.7);}
+.prov-g{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.provbox{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.17);border-radius:var(--r);padding:14px;}
+.prov-n{font-size:15px;font-weight:600;color:var(--white);margin-bottom:3px;}
+.prov-s{font-size:12px;color:rgba(255,255,255,.42);}
+/* ---- PAGE PRICING ---- */
+#pg-price{background:var(--navy);}
+.price-in{max-width:1200px;margin:0 auto;padding:80px 28px;}
+.btog{display:flex;align-items:center;justify-content:center;gap:13px;margin-bottom:44px;}
+.btog span{font-size:14px;font-weight:500;color:rgba(255,255,255,.5);}
+.btog span.on{color:var(--gold);}
+.ttrack{width:48px;height:26px;background:rgba(201,168,76,.24);border-radius:13px;cursor:pointer;position:relative;border:none;transition:var(--ease);}
+.tthumb{width:20px;height:20px;background:var(--gold);border-radius:50%;position:absolute;top:3px;left:3px;transition:var(--ease);}
+.ttrack.ann .tthumb{left:25px;}
+.ttrack.ann{background:rgba(201,168,76,.4);}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.pcard{background:rgba(255,255,255,.044);border:1px solid rgba(201,168,76,.17);border-radius:var(--rxl);padding:32px;transition:var(--ease);}
+.pcard:hover{border-color:rgba(201,168,76,.44);transform:translateY(-4px);}
+.pcard.feat{background:var(--gold);border-color:var(--gold);}
+.pcard.feat *{color:var(--navy)!important;}
+.pbadge{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 13px;border-radius:20px;margin-bottom:16px;background:rgba(201,168,76,.17);color:var(--gold);}
+.pcard.feat .pbadge{background:rgba(13,27,46,.18);color:var(--navy);}
+.pname{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:6px;}
+.pamount{display:flex;align-items:baseline;gap:4px;margin:16px 0;}
+.pcur{font-size:17px;color:var(--white);}
+.pval{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:var(--white);line-height:1;}
+.pper{font-size:13px;color:rgba(255,255,255,.42);}
+.pdesc{font-size:13.5px;color:rgba(255,255,255,.48);margin-bottom:24px;line-height:1.65;}
+.pfeats{list-style:none;margin-bottom:28px;}
+.pfeats li{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.062);font-size:13.5px;color:rgba(255,255,255,.7);}
+.pfeats li:last-child{border-bottom:none;}
+.fck{color:var(--gold);font-size:14px;flex-shrink:0;margin-top:1px;}
+.bpo{width:100%;padding:13px;border-radius:9px;font-weight:700;font-size:14.5px;background:transparent;color:var(--gold);border:1.5px solid rgba(201,168,76,.43);cursor:pointer;font-family:'DM Sans',sans-serif;transition:var(--ease);}
+.bpo:hover{background:rgba(201,168,76,.1);border-color:var(--gold);}
+.bpn{width:100%;padding:13px;border-radius:9px;font-weight:700;font-size:14.5px;background:var(--navy);color:var(--gold);border:2px solid var(--navy);cursor:pointer;font-family:'DM Sans',sans-serif;transition:var(--ease);}
+.bpn:hover{background:var(--navy-mid);}
+.paynote{text-align:center;margin-top:34px;color:rgba(255,255,255,.36);font-size:13px;}
+.payicons{display:flex;justify-content:center;gap:9px;margin-top:11px;flex-wrap:wrap;}
+.payico{background:rgba(255,255,255,.055);border:1px solid rgba(201,168,76,.17);border-radius:6px;padding:5px 13px;font-size:12px;color:rgba(255,255,255,.52);}
+/* ---- PAGE TESTI ---- */
+#pg-testi{background:var(--off-white);}
+.testi-in{max-width:1200px;margin:0 auto;padding:80px 28px;}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px;}
+.tcard2{background:var(--white);border-radius:var(--rl);padding:28px;border:1px solid rgba(201,168,76,.11);transition:var(--ease);}
+.tcard2:hover{border-color:rgba(201,168,76,.38);box-shadow:0 8px 30px rgba(201,168,76,.1);}
+.tstars{color:var(--gold);font-size:15px;letter-spacing:2px;margin-bottom:13px;}
+.ttext{font-size:14.5px;line-height:1.75;color:var(--body);margin-bottom:20px;font-style:italic;}
+.tauth{display:flex;align-items:center;gap:12px;}
+.tava{width:44px;height:44px;border-radius:50%;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;flex-shrink:0;}
+.tname{font-size:14px;font-weight:600;color:var(--navy);}
+.tfrom{font-size:12px;color:var(--muted);}
+/* ---- PAGE CONTACT ---- */
+#pg-contact{background:var(--off-white);}
+.cont-in{max-width:1100px;margin:0 auto;padding:80px 28px;}
+.cLayout{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:start;}
+.cinfo h2{font-size:38px;color:var(--navy);margin-bottom:14px;}
+.cinfo h2 em{color:var(--gold);}
+.cinfo p{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:28px;}
+.citems{display:flex;flex-direction:column;gap:18px;}
+.ci{display:flex;align-items:flex-start;gap:14px;}
+.ci-ico{width:44px;height:44px;border-radius:var(--r);background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.ci-lbl{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.ci-val{font-size:15px;font-weight:600;color:var(--navy);}
+.cform{background:var(--white);border-radius:var(--rxl);padding:38px;border:1px solid rgba(201,168,76,.17);box-shadow:0 8px 40px rgba(13,27,46,.07);}
+.cform h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--navy);margin-bottom:22px;}
+.frow2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.fg{margin-bottom:14px;}
+.fg label{display:block;font-size:12.5px;font-weight:600;color:var(--body);margin-bottom:6px;}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 15px;border:1.5px solid rgba(201,168,76,.2);border-radius:var(--r);font-family:'DM Sans',sans-serif;font-size:14px;color:var(--body);background:var(--off-white);transition:var(--ease);outline:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);background:var(--white);}
+.fg textarea{resize:vertical;min-height:108px;}
+.fsub{width:100%;padding:14px;background:var(--navy);color:var(--gold);font-weight:700;font-size:15px;border:none;border-radius:var(--r);cursor:pointer;font-family:'DM Sans',sans-serif;transition:var(--ease);}
+.fsub:hover{background:var(--navy-mid);transform:translateY(-1px);}
+/* FOOTER */
+footer{background:var(--navy-mid);}
+.ftmain{max-width:1200px;margin:0 auto;padding:62px 28px 38px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:46px;}
+
+.ftbrand p{color:rgba(255,255,255,.4);font-size:13.5px;line-height:1.75;margin-bottom:22px;max-width:280px;}
+.socials{display:flex;gap:9px;}
+.soc{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.052);border:1px solid rgba(201,168,76,.17);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.48);font-size:13px;text-decoration:none;transition:var(--ease);}
+.soc:hover{background:rgba(201,168,76,.13);color:var(--gold);border-color:rgba(201,168,76,.44);}
+.fcol h5{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.fcol a,.fcol button{display:block;color:rgba(255,255,255,.46);text-decoration:none;font-size:13.5px;padding:5px 0;transition:var(--ease);background:none;border:none;text-align:left;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.fcol a:hover,.fcol button:hover{color:var(--gold);}
+.ftbot{border-top:1px solid rgba(255,255,255,.07);padding:20px 28px;max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:11px;}
+.ftbot p{color:rgba(255,255,255,.28);font-size:12.5px;}
+.fseals{display:flex;gap:9px;flex-wrap:wrap;}
+.fseal{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:5px 12px;font-size:11px;color:var(--gold);font-weight:600;}
+
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:1100;background:rgba(13,27,46,.88);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-box{background:var(--white);border-radius:var(--rxl);padding:40px;max-width:580px;width:100%;max-height:90vh;overflow-y:auto;position:relative;transform:scale(.94);transition:transform .3s ease;}
+.modal-overlay.open .modal-box{transform:scale(1);}
+.modal-close{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;background:var(--off-white);border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--navy);transition:var(--ease);}
+.modal-close:hover{background:var(--navy);color:var(--gold);}
+.modal-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--navy);margin-bottom:16px;}
+.modal-body{font-size:14.5px;color:var(--muted);line-height:1.8;}
+/* CERT PREVIEW */
+.cert-preview{background:var(--navy);border-radius:14px;padding:30px;text-align:center;border:2px solid var(--gold);}
+.cert-preview .cert-logo{font-size:42px;margin-bottom:8px;}
+.cert-preview .cert-org{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;}
+.cert-preview .cert-main{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);margin:16px 0 4px;}
+.cert-preview .cert-name{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);font-style:italic;}
+.cert-preview .cert-prog{color:rgba(255,255,255,.6);font-size:14px;margin:12px 0;}
+.cert-preview .cert-date{color:rgba(255,255,255,.4);font-size:12px;}
+.cert-preview .qr-mock{width:64px;height:64px;background:var(--white);border-radius:6px;margin:16px auto 6px;display:flex;align-items:center;justify-content:center;font-size:30px;}
+.cert-preview .qr-lbl{color:rgba(255,255,255,.3);font-size:11px;}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:28px;right:28px;z-index:900;width:50px;height:50px;border-radius:50%;background:var(--gold);color:var(--navy);border:none;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(201,168,76,.45);transition:all .3s ease;opacity:0;transform:translateY(14px);}
+#btt.vis{opacity:1;transform:none;}
+#btt:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:0 10px 32px rgba(201,168,76,.55);}
+
+/* ─── VIDEO THUMBNAILS (click-to-play) ─── */
+.vframe{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:14px;background:#0a1628;cursor:pointer;}
+.vframe iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:14px;}
+
+/* Thumbnail cover */
+.vthumb-cover{position:absolute;inset:0;border-radius:14px;overflow:hidden;cursor:pointer;transition:all .3s ease;}
+.vthumb-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease,filter .4s ease;filter:brightness(.82);}
+.vthumb-cover:hover img{transform:scale(1.04);filter:brightness(.65);}
+
+/* Dark gradient overlay */
+.vthumb-cover::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,27,46,.72) 0%,rgba(13,27,46,.12) 50%,rgba(13,27,46,.32) 100%);border-radius:14px;}
+
+/* Play button */
+.vplay-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;
+  width:68px;height:68px;border-radius:50%;
+  background:rgba(201,168,76,.92);
+  border:3px solid rgba(255,255,255,.9);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .28s ease;
+  box-shadow:0 6px 28px rgba(0,0,0,.5);}
+.vthumb-cover:hover .vplay-btn{background:var(--gold);transform:translate(-50%,-50%) scale(1.12);box-shadow:0 10px 40px rgba(201,168,76,.55);}
+.vplay-btn svg{width:26px;height:26px;fill:var(--navy);margin-left:4px;}
+
+/* Duration badge */
+.vdur{position:absolute;bottom:10px;right:12px;z-index:3;background:rgba(13,27,46,.88);color:var(--white);font-size:11.5px;font-weight:700;font-family:'DM Mono',monospace;padding:3px 9px;border-radius:5px;}
+
+/* Category chip */
+.vchip{position:absolute;top:12px;left:12px;z-index:3;background:var(--gold);color:var(--navy);font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;letter-spacing:.8px;text-transform:uppercase;}
+
+/* Small play for sidebar/row2 cards */
+.vcard .vplay-btn{width:54px;height:54px;}
+.vcard .vplay-btn svg{width:20px;height:20px;}
+
+
+/* ─── LECTEUR VIDÉO MODAL ─── */
+#vmodal{
+  position:fixed;inset:0;z-index:1200;
+  background:rgba(5,12,24,.94);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;pointer-events:none;
+  transition:opacity .32s cubic-bezier(.4,0,.2,1);
+}
+#vmodal.open{opacity:1;pointer-events:all;}
+
+.vmod-wrap{
+  width:100%;max-width:900px;
+  animation:vmodIn .38s cubic-bezier(.22,1,.36,1) both;
+}
+#vmodal.open .vmod-wrap{animation:vmodIn .38s cubic-bezier(.22,1,.36,1) both;}
+@keyframes vmodIn{from{transform:scale(.93) translateY(22px);opacity:0;}to{transform:none;opacity:1;}}
+
+/* Player box */
+.vmod-player{
+  position:relative;width:100%;padding-bottom:56.25%;
+  background:#000;border-radius:18px;overflow:hidden;
+  box-shadow:0 32px 80px rgba(0,0,0,.75),0 0 0 1px rgba(201,168,76,.22);
+}
+.vmod-player iframe{
+  position:absolute;top:0;left:0;width:100%;height:100%;border:none;
+}
+
+/* Info bar under player */
+.vmod-info{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+  padding:20px 6px 8px;
+}
+.vmod-meta{}
+.vmod-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(201,168,76,.18);border:1px solid rgba(201,168,76,.35);
+  color:var(--gold);font-size:10.5px;font-weight:700;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:9px;
+}
+.vmod-title{
+  font-family:'Playfair Display',serif;font-size:20px;
+  color:var(--white);line-height:1.35;margin-bottom:5px;
+}
+.vmod-desc{font-size:13.5px;color:rgba(255,255,255,.48);line-height:1.65;}
+
+/* Close button */
+.vmod-close{
+  flex-shrink:0;width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.8);font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:var(--ease);margin-top:4px;font-family:'DM Sans',sans-serif;
+}
+.vmod-close:hover{background:rgba(201,168,76,.2);border-color:var(--gold);color:var(--gold);}
+
+/* Playlist strip */
+.vmod-playlist{
+  display:flex;gap:10px;overflow-x:auto;padding:14px 0 4px;
+  scrollbar-width:thin;scrollbar-color:rgba(201,168,76,.4) transparent;
+}
+.vmod-playlist::-webkit-scrollbar{height:4px;}
+.vmod-playlist::-webkit-scrollbar-thumb{background:rgba(201,168,76,.35);border-radius:2px;}
+.vpl-item{
+  flex-shrink:0;width:148px;cursor:pointer;border-radius:10px;
+  border:1.5px solid rgba(255,255,255,.07);overflow:hidden;
+  transition:var(--ease);background:rgba(255,255,255,.04);
+}
+.vpl-item:hover{border-color:rgba(201,168,76,.38);transform:translateY(-2px);}
+.vpl-item.active{border-color:var(--gold);background:rgba(201,168,76,.08);}
+.vpl-thumb{position:relative;padding-bottom:56.25%;overflow:hidden;}
+.vpl-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.vpl-thumb::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(13,27,46,.55) 0%,transparent 60%);
+}
+.vpl-dot{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(201,168,76,.85);display:flex;align-items:center;justify-content:center;
+}
+.vpl-dot svg{width:11px;height:11px;fill:var(--navy);margin-left:2px;}
+.vpl-label{padding:7px 9px;font-size:11px;color:rgba(255,255,255,.6);line-height:1.35;font-weight:500;}
+.vpl-item.active .vpl-label{color:var(--gold);}
+
+/* Hint bar */
+.vmod-hint{
+  text-align:center;margin-top:14px;
+  font-size:12px;color:rgba(255,255,255,.22);letter-spacing:.5px;
+}
+
+/* Responsive */
+@media(max-width:640px){
+  .vmod-title{font-size:16px;}
+  .vmod-info{flex-direction:column;gap:10px;}
+  .vmod-close{margin-top:0;}
+  .vpl-item{width:120px;}
+  #vmodal{padding:12px;}
+}
+
+/* ─── VIDEO SECTION ─── */
+.vsec{background:var(--navy);padding:88px 28px;position:relative;overflow:hidden;}
+.vsec::before{content:'';position:absolute;inset:0;opacity:.025;
+  background-image:linear-gradient(rgba(201,168,76,1) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(201,168,76,1) 1px,transparent 1px);
+  background-size:70px 70px;}
+.vsec-glow{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);
+  width:700px;height:700px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);}
+.vsec-in{max-width:1160px;margin:0 auto;position:relative;z-index:1;}
+
+.vsec-head{text-align:center;margin-bottom:56px;}
+.vsec-head .slabel{text-align:center;}
+.vsec-head h2{font-family:'Playfair Display',serif;font-size:40px;color:var(--white);margin-bottom:12px;line-height:1.15;}
+.vsec-head h2 em{color:var(--gold);font-style:italic;}
+.vsec-head p{font-size:15.5px;color:rgba(255,255,255,.48);max-width:560px;margin:0 auto;}
+
+/* ── Responsive iframe container — NEVER overflows ── */
+.vframe{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:14px;background:var(--navy-mid);}
+.vframe iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:14px;}
+
+/* ── Featured row: big left + tall sidebar ── */
+.vrow1{display:grid;grid-template-columns:1.6fr 1fr;gap:22px;margin-bottom:22px;}
+.vfeat-wrap{}
+.vfeat-frame .vframe{border:1.5px solid rgba(201,168,76,.3);}
+.vfeat-info{padding:16px 2px 0;}
+.vfeat-tag{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--navy);font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
+.vfeat-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);margin-bottom:7px;line-height:1.3;}
+.vfeat-desc{font-size:13px;color:rgba(255,255,255,.46);line-height:1.7;}
+
+/* ── Sidebar: 2 stacked cards ── */
+.vsidebar{display:flex;flex-direction:column;gap:16px;height:100%;}
+.vcard{background:rgba(255,255,255,.042);border:1px solid rgba(201,168,76,.16);border-radius:16px;overflow:hidden;transition:var(--ease);flex:1;display:flex;flex-direction:column;}
+.vcard:hover{border-color:rgba(201,168,76,.42);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.25);}
+.vcard .vframe{border-radius:16px 16px 0 0;padding-bottom:52%;}
+.vcard .vframe iframe{border-radius:16px 16px 0 0;}
+.vcard-info{padding:13px 15px 15px;flex:1;}
+.vcard-cat{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.vcard-title{font-size:13.5px;font-weight:600;color:var(--white);line-height:1.4;}
+.vcard-meta{font-size:11.5px;color:rgba(255,255,255,.3);margin-top:5px;}
+
+/* ── Bottom row: 3 equal cards ── */
+
+
+/* ── CTA band ── */
+.vcta{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:16px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.vcta-t{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);}
+.vcta-t em{color:var(--gold);font-style:italic;}
+.vcta-sub{font-size:13.5px;color:rgba(255,255,255,.45);margin-top:4px;}
+.vcta-btns{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap;}
+
+/* ── Responsive ── */
+@media(max-width:960px){
+  .vrow1{grid-template-columns:1fr;}
+  .vsidebar{flex-direction:row;}
+  .vcard .vframe{padding-bottom:56.25%;}
+  }
+@media(max-width:640px){
+  .vsec{padding:60px 18px;}
+  .vsec-head h2{font-size:28px;}
+  .vsidebar{flex-direction:column;}
+  .vcta{flex-direction:column;text-align:center;}
+  .vcta-btns{justify-content:center;}
+}
+
+/* RESPONSIVE */
+@media(max-width:1080px){
+  .htitle{font-size:44px;}.stitle{font-size:34px;}
+  .hero-in{grid-template-columns:1fr;gap:46px;}
+  .hright{display:none;}
+  .tef-lay,.ilay,.cLayout{grid-template-columns:1fr;}
+  .pgrid{grid-template-columns:1fr 1fr;}
+  .ftmain{grid-template-columns:1fr 1fr;gap:32px;}
+}
+@media(max-width:768px){
+  .hero-in{padding:60px 20px;}
+  .htitle{font-size:36px;}
+  .hdesc{font-size:15.5px;}
+  :root{--hh:66px;}
+  .ribbon{padding:5px 16px;}
+  .rib-l span:not(:first-child){display:none;}
+  .hdr-body{padding:0 16px;gap:9px;}
+  
+  nav{display:none;}
+  .btn-cta{display:none;}
+  .ham{display:flex;}
+  .htitle{font-size:34px;}
+  .hero-in{padding:56px 20px 56px;}
+  .wrap,.tef-in,.prog-in,.exam-in,.imm-in,.price-in,.testi-in,.cont-in{padding:60px 18px;}
+  .stitle{font-size:28px;}
+  .sbar-in{grid-template-columns:repeat(3,1fr);}
+  .sc:nth-child(4),.sc:nth-child(5){display:none;}
+  .sgrid,.ebody{grid-template-columns:1fr;}
+  .esd{display:none;}
+  .pgrid{grid-template-columns:1fr;}
+  .tgrid{grid-template-columns:1fr;}
+  .frow2{grid-template-columns:1fr;}
+  .ftmain{grid-template-columns:1fr;gap:26px;}
+  .ftbot{flex-direction:column;text-align:center;}
+  .hstats{gap:18px;}
+  .cstrip-in{flex-direction:column;gap:12px;}
+  .prov-g{grid-template-columns:1fr;}
+  .ipanel{padding:24px;}
+}
+@media(max-width:480px){
+  .htitle{font-size:30px;}
+  .hctas{flex-direction:column;}
+  .htitle{font-size:28px;}.stitle{font-size:24px;}
+  .hctas{flex-direction:column;}
+  .btn-p,.btn-o,.btn-n{width:100%;justify-content:center;}
+  .tmeta{flex-wrap:wrap;gap:9px;}
+  .sbar-in{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+
+<header id="hdr">
+  <div class="ribbon">
+    <div class="rib-l">
+      <span>🏛️ Certifié Québec &amp; Canada</span>
+      <span class="rib-sep">|</span>
+      <span>TEF · TCF · TFI · DELF</span>
+      <span class="rib-sep">|</span>
+      <span>47 Pays · ISO 9001</span>
+    </div>
+    <div class="lang-bar">
+      <button class="lb on" onclick="setLang('fr',this)">FR</button>
+      <button class="lb" onclick="setLang('en',this)">EN</button>
+      <button class="lb" onclick="setLang('es',this)">ES</button>
+      <button class="lb" onclick="setLang('it',this)">IT</button>
+      <button class="lb" onclick="setLang('pt',this)">PT</button>
+      <button class="lb" onclick="setLang('de',this)">DE</button>
+      <button class="lb" onclick="setLang('ht',this)">HT</button>
+    </div>
+  </div>
+  <div class="hdr-body">
+    <div class="logo-w" onclick="goPage('home')">
+      <svg viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:54px;width:auto;">
+  <!-- Icon: geometric W + arrow -->
+  <g>
+    <polygon points="6,42 14,20 22,34 30,20 38,42" fill="none" stroke="#8A9BB5" stroke-width="2.2" stroke-linejoin="round"/>
+    <polyline points="24,36 32,12 38,18" fill="none" stroke="url(#gArrow)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="32,8 38,18 26,15" fill="#C9A84C"/>
+  </g>
+  <defs>
+    <linearGradient id="gArrow" x1="24" y1="36" x2="38" y2="8" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8A9BB5"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+  </defs>
+  <!-- ARCADINS -->
+  <text x="50" y="36" font-family="'Playfair Display',Georgia,serif" font-size="28" font-weight="700" letter-spacing="1" fill="url(#gGold)">ARCADINS</text>
+  <!-- TRAINING CENTER -->
+  <text x="51" y="50" font-family="'DM Sans',Arial,sans-serif" font-size="10.5" font-weight="600" letter-spacing="4.5" fill="#CBD5E8">TRAINING CENTER</text>
+  <defs>
+    <linearGradient id="gGold" x1="50" y1="10" x2="230" y2="10" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8C97A"/>
+      <stop offset="50%" stop-color="#C9A84C"/>
+      <stop offset="100%" stop-color="#F0D78A"/>
+    </linearGradient>
+  </defs>
+</svg>
+    </div>
+    <nav>
+      <button class="nl on" id="n-home" onclick="goPage('home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        <span class="t" data-fr="Accueil" data-en="Home" data-es="Inicio" data-it="Home" data-pt="Início" data-de="Start" data-ht="Akèy">Accueil</span>
+      </button>
+      <button class="nl" id="n-tef" onclick="goPage('tef')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 4.5-9 4.5-9-4.5z"/><path d="M3 6.5v8l9 4.5 9-4.5v-8"/></svg>
+        TEF / TCF
+      </button>
+      <button class="nl" id="n-programs" onclick="goPage('programs')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span class="t" data-fr="Formations" data-en="Programs" data-es="Programas" data-it="Programmi" data-pt="Programas" data-de="Programme" data-ht="Pwogram">Formations</span>
+      </button>
+      <button class="nl" id="n-exams" onclick="goPage('exams')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+        <span class="t" data-fr="Examens" data-en="Exams" data-es="Exámenes" data-it="Esami" data-pt="Exames" data-de="Prüfungen" data-ht="Egzamen">Examens</span>
+      </button>
+      <button class="nl" id="n-imm" onclick="goPage('imm')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        <span class="t" data-fr="Immigration" data-en="Immigration" data-es="Inmigración" data-it="Immigrazione" data-pt="Imigração" data-de="Einwanderung" data-ht="Imigrasyon">Immigration</span>
+      </button>
+      <button class="nl" id="n-price" onclick="goPage('price')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        <span class="t" data-fr="Tarifs" data-en="Pricing" data-es="Precios" data-it="Prezzi" data-pt="Preços" data-de="Preise" data-ht="Pri">Tarifs</span>
+      </button>
+      <button class="nl" id="n-testi" onclick="goPage('testi')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <span class="t" data-fr="Témoignages" data-en="Reviews" data-es="Testimonios" data-it="Testimonianze" data-pt="Depoimentos" data-de="Erfahrungen" data-ht="Temwayaj">Témoignages</span>
+      </button>
+      <button class="nl" id="n-contact" onclick="goPage('contact')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .93h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15.07v1.85z"/></svg>
+        <span class="t" data-fr="Contact" data-en="Contact" data-es="Contacto" data-it="Contatto" data-pt="Contato" data-de="Kontakt" data-ht="Kontak">Contact</span>
+      </button>
+    </nav>
+    <button class="btn-cta" onclick="goPage('price')">
+      <span class="t" data-fr="S'inscrire" data-en="Enroll Now" data-es="Inscribirse" data-it="Iscriviti" data-pt="Inscrever-se" data-de="Einschreiben" data-ht="Enskri">S'inscrire</span>
+    </button>
+    <button class="ham" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mmenu" id="mm">
+  <button class="mnl on" onclick="goPage('home');closeMenu()">🏠 Accueil</button>
+  <button class="mnl" onclick="goPage('tef');closeMenu()">📋 TEF / TCF Canada</button>
+  <button class="mnl" onclick="goPage('programs');closeMenu()">🎓 Formations</button>
+  <button class="mnl" onclick="goPage('exams');closeMenu()">💻 Examens en ligne</button>
+  <button class="mnl" onclick="goPage('imm');closeMenu()">🌍 Immigration</button>
+  <button class="mnl" onclick="goPage('price');closeMenu()">💰 Tarifs</button>
+  <button class="mnl" onclick="goPage('testi');closeMenu()">⭐ Témoignages</button>
+  <button class="mnl" onclick="goPage('contact');closeMenu()">📞 Contact</button>
+  <button class="mcta" onclick="goPage('price');closeMenu()">S'inscrire maintenant →</button>
+</div>
+
+<!-- ===== PAGE HOME ===== -->
+<div id="pg-home" class="page active">
+  <section class="hero" id="hero-section" aria-label="Bannière principale ARCADINS Training Center">
+
+  <!--
+  ╔═══════════════════════════════════════════════════════════════╗
+  ║  IMAGES SLIDER — remplacer par vos vraies photos              ║
+  ║  Créer dossier  assets/  à côté de ce fichier HTML            ║
+  ║                                                               ║
+  ║  assets/hero-canada.jpg             → drapeau / paysage CA   ║
+  ║  assets/hero-immigration-family.jpg → famille arrivée Canada  ║
+  ║  assets/hero-pab.jpg                → PAB professionnelle     ║
+  ║  assets/hero-classroom.jpg          → salle de formation      ║
+  ║  assets/hero-students.jpg           → étudiants / diplôme     ║
+  ║                                                               ║
+  ║  Format : JPG, 1920×1080 min, < 400 KB chacune               ║
+  ║  Sources libres : unsplash.com · pexels.com                   ║
+  ╚═══════════════════════════════════════════════════════════════╝
+  -->
+
+  <!-- ══ SLIDER IMAGES ══ -->
+  <div class="hero-slider" aria-hidden="true">
+
+    <!-- Slide 1 — Canada / drapeau -->
+    <!-- REMPLACER : assets/hero-canada.jpg -->
+    <div class="hero-slide active" data-index="0">
+      <div class="hero-slide-img"
+           style="background-image:url('assets/hero-canada.jpg');
+                  background-color:#0a1628;">
+      </div>
+    </div>
+
+    <!-- Slide 2 — Famille immigrante -->
+    <!-- REMPLACER : assets/hero-immigration-family.jpg -->
+    <div class="hero-slide" data-index="1">
+      <div class="hero-slide-img"
+           style="background-image:url('assets/hero-immigration-family.jpg');
+                  background-color:#0d1e10;">
+      </div>
+    </div>
+
+    <!-- Slide 3 — PAB professionnelle -->
+    <!-- REMPLACER : assets/hero-pab.jpg -->
+    <div class="hero-slide" data-index="2">
+      <div class="hero-slide-img"
+           style="background-image:url('assets/hero-pab.jpg');
+                  background-color:#0a1628;">
+      </div>
+    </div>
+
+    <!-- Slide 4 — Classe de formation -->
+    <!-- REMPLACER : assets/hero-classroom.jpg -->
+    <div class="hero-slide" data-index="3">
+      <div class="hero-slide-img"
+           style="background-image:url('assets/hero-classroom.jpg');
+                  background-color:#10101a;">
+      </div>
+    </div>
+
+    <!-- Slide 5 — Étudiants adultes / réussite -->
+    <!-- REMPLACER : assets/hero-students.jpg -->
+    <div class="hero-slide" data-index="4">
+      <div class="hero-slide-img"
+           style="background-image:url('assets/hero-students.jpg');
+                  background-color:#0f1820;">
+      </div>
+    </div>
+
+  </div><!-- /hero-slider -->
+
+  <!-- ══ OVERLAYS ══ -->
+  <div class="hero-overlay"        aria-hidden="true"></div>
+  <div class="hero-overlay-bottom" aria-hidden="true"></div>
+  <div class="hero-overlay-gold"   aria-hidden="true"></div>
+  <div class="hero-grid"           aria-hidden="true"></div>
+
+  <!-- ══ CONTENU PRINCIPAL ══ -->
+  <div class="hero-content">
+
+    <!-- Badge -->
+    <div class="hbadge">
+      <span class="hdot"></span>
+      <span class="t"
+        data-fr="Certifié Québec &amp; Canada · 7 Langues · 47 Pays"
+        data-en="Certified Quebec &amp; Canada · 7 Languages · 47 Countries"
+        data-es="Certificado Quebec &amp; Canadá · 7 Idiomas · 47 Países"
+        data-it="Certificato Quebec &amp; Canada · 7 Lingue · 47 Paesi"
+        data-pt="Certificado Quebec &amp; Canadá · 7 Idiomas · 47 Países"
+        data-de="Zertifiziert Quebec &amp; Kanada · 7 Sprachen · 47 Länder"
+        data-ht="Sètifye Quebec &amp; Kanada · 7 Lang · 47 Peyi">
+        Certifié Québec &amp; Canada · 7 Langues · 47 Pays
+      </span>
+    </div>
+
+    <!-- Titre -->
+    <h1 class="htitle">
+      <span class="t"
+        data-fr="Formez-vous, intégrez-vous<br>et bâtissez votre <em>avenir au Canada</em>"
+        data-en="Train, integrate yourself<br>and build your <em>future in Canada</em>"
+        data-es="Fórmate, intégrate<br>y construye tu <em>futuro en Canadá</em>"
+        data-it="Formati, intégrati<br>e costruisci il tuo <em>futuro in Canada</em>"
+        data-pt="Forme-se, integre-se<br>e construa seu <em>futuro no Canadá</em>"
+        data-de="Bilden Sie sich weiter<br>und bauen Sie Ihre <em>Zukunft in Kanada</em>"
+        data-ht="Fòme w, entegre w<br>epi bati <em>avni ou nan Kanada</em>">
+        Formez-vous, intégrez-vous<br>et bâtissez votre <em>avenir au Canada</em>
+      </span>
+    </h1>
+
+    <!-- Sous-titre -->
+    <p class="hdesc t"
+      data-fr="ARCADINS Training Center accompagne les nouveaux arrivants, les étudiants et les professionnels vers la formation, l'intégration, l'emploi et la réussite au Canada."
+      data-en="ARCADINS Training Center supports newcomers, students and professionals toward training, integration, employment and success in Canada."
+      data-es="ARCADINS Training Center acompaña a los recién llegados, estudiantes y profesionales hacia la formación, integración, empleo y éxito en Canadá."
+      data-it="ARCADINS Training Center accompagna i nuovi arrivati, gli studenti e i professionisti verso la formazione, l'integrazione e il successo in Canada."
+      data-pt="ARCADINS Training Center apoia recém-chegados, estudantes e profissionais rumo à formação, integração, emprego e sucesso no Canadá."
+      data-de="ARCADINS Training Center begleitet Neuzuwanderer, Studierende und Fachkräfte zu Ausbildung, Integration, Beschäftigung und Erfolg in Kanada."
+      data-ht="ARCADINS Training Center akonpaye nouvo vini yo, etidyan ak pwofesyonèl yo nan fòmasyon, entegrasyon, travay ak reyisit nan Kanada.">
+      ARCADINS Training Center accompagne les nouveaux arrivants, les étudiants et les professionnels vers la formation, l'intégration, l'emploi et la réussite au Canada.
+    </p>
+
+    <!-- Boutons CTA -->
+    <div class="hctas">
+      <button class="btn-p" onclick="goPage('programs')">
+        🎓
+        <span class="t"
+          data-fr="Commencer ma formation"
+          data-en="Start my training"
+          data-es="Iniciar mi formación"
+          data-it="Inizia la formazione"
+          data-pt="Começar formação"
+          data-de="Ausbildung starten"
+          data-ht="Kòmanse fòmasyon mwen">
+          Commencer ma formation
+        </span>
+      </button>
+      <button class="btn-o" onclick="goPage('programs')">
+        <span class="t"
+          data-fr="Découvrir nos programmes →"
+          data-en="Discover our programs →"
+          data-es="Descubrir programas →"
+          data-it="Scopri i programmi →"
+          data-pt="Descobrir programas →"
+          data-de="Programme entdecken →"
+          data-ht="Dekouvri pwogram nou yo →">
+          Découvrir nos programmes →
+        </span>
+      </button>
+    </div>
+
+    <!-- Statistiques -->
+    <div class="hstats">
+      <div>
+        <div class="hstat-n" data-count="12400">12 400+</div>
+        <div class="hstat-l t"
+          data-fr="Apprenants formés" data-en="Students trained"
+          data-es="Estudiantes" data-it="Studenti"
+          data-pt="Estudantes" data-de="Ausgebildete" data-ht="Etidyan">
+          Apprenants formés
+        </div>
+      </div>
+      <div>
+        <div class="hstat-n">96%</div>
+        <div class="hstat-l t"
+          data-fr="Réussite TEF/TCF" data-en="TEF/TCF success"
+          data-es="Tasa de éxito" data-it="Successo TEF"
+          data-pt="Taxa aprovação" data-de="Erfolgsquote" data-ht="To siksè">
+          Réussite TEF/TCF
+        </div>
+      </div>
+      <div>
+        <div class="hstat-n">47</div>
+        <div class="hstat-l t"
+          data-fr="Pays couverts" data-en="Countries"
+          data-es="Países" data-it="Paesi"
+          data-pt="Países" data-de="Länder" data-ht="Peyi">
+          Pays couverts
+        </div>
+      </div>
+      <div>
+        <div class="hstat-n">28</div>
+        <div class="hstat-l t"
+          data-fr="Programmes certifiés" data-en="Programs"
+          data-es="Programas" data-it="Programmi"
+          data-pt="Programas" data-de="Programme" data-ht="Pwogram">
+          Programmes certifiés
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hero-content -->
+
+  <!-- ══ FLÈCHES NAVIGATION ══ -->
+  <button class="slider-arrow slider-prev" id="sliderPrev" aria-label="Image précédente">&#8592;</button>
+  <button class="slider-arrow slider-next" id="sliderNext" aria-label="Image suivante">&#8594;</button>
+
+  <!-- ══ POINTS INDICATEURS ══ -->
+  <div class="slider-dots" role="tablist" aria-label="Navigation slider">
+    <button class="slider-dot active" data-slide="0" role="tab" aria-label="Slide 1"></button>
+    <button class="slider-dot"        data-slide="1" role="tab" aria-label="Slide 2"></button>
+    <button class="slider-dot"        data-slide="2" role="tab" aria-label="Slide 3"></button>
+    <button class="slider-dot"        data-slide="3" role="tab" aria-label="Slide 4"></button>
+    <button class="slider-dot"        data-slide="4" role="tab" aria-label="Slide 5"></button>
+  </div>
+
+  <!-- ══ LABEL SLIDE (bas gauche) ══ -->
+  <div class="slide-label visible" id="slideLabel">
+    <div class="sl-icon" id="slideLabelIcon">🍁</div>
+    <div class="sl-text"  id="slideLabelText">Canada · Destination formation</div>
+  </div>
+
+</section>
+  <div class="sbar"><div class="sbar-in">
+    <div class="sc"><div class="sn" data-count="12400">12 400</div><div class="sl">Apprenants</div></div>
+    <div class="sc"><div class="sn" data-count="47">47</div><div class="sl">Pays</div></div>
+    <div class="sc"><div class="sn">96%</div><div class="sl">Réussite TEF</div></div>
+    <div class="sc"><div class="sn" data-count="7">7</div><div class="sl">Langues</div></div>
+    <div class="sc"><div class="sn" data-count="28">28</div><div class="sl">Programmes</div></div>
+  </div></div>
+  <div class="cstrip"><div class="cstrip-in">
+    <div class="clbl">Reconnu par :</div>
+    <div class="cbadges">
+      <div class="cbadge">✓ IRCC Canada</div>
+      <div class="cbadge">✓ Gouvernement du Québec</div>
+      <div class="cbadge">✓ TEF — CCIP Paris</div>
+      <div class="cbadge">✓ TCF — France Éducation</div>
+      <div class="cbadge">✓ ISO 9001:2015</div>
+      <div class="cbadge">✓ Emploi Québec</div>
+    </div>
+  </div></div>
+
+  <!-- ===== VIDEO SECTION (Home) ===== -->
+  <div class="vsec">
+    <div class="vsec-glow"></div>
+    <div class="vsec-in">
+      <div class="vsec-head">
+        <p class="slabel">Formations &amp; Immigration &middot; Ressources vid&eacute;o</p>
+        <h2>Apprenez, pr&eacute;parez-vous,<br><em>r&eacute;ussissez au Canada</em></h2>
+        <p>Nos ressources vid&eacute;o couvrent les tests TEF/TCF, les d&eacute;marches d&rsquo;immigration et les formations professionnelles pour une int&eacute;gration r&eacute;ussie.</p>
+      </div>
+      <div class="vrow1">
+        <div class="vfeat-wrap">
+          <div class="vframe" style="border:1.5px solid rgba(201,168,76,.28);"><div class="vthumb-cover" data-ytid="kj6WkZFr-MY" onclick="openVModal('kj6WkZFr-MY')"><img src="https://img.youtube.com/vi/kj6WkZFr-MY/hqdefault.jpg" alt="" onerror="this.src='https://img.youtube.com/vi/kj6WkZFr-MY/mqdefault.jpg'"><div class="vchip">⭐ Recommandé</div><div class="vplay-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div><div class="vdur">10:24</div></div></div>
+          <div class="vfeat-info">
+            <div class="vfeat-tag">⭐ Vidéo recommandée</div>
+            <div class="vfeat-title">TEF vs TCF Canada : Lequel choisir pour l'immigration 2026 ?</div>
+            <div class="vfeat-desc">Comparaison complète TEF Canada / TCF Canada pour choisir le bon test selon votre profil et programme d'immigration.</div>
+          </div>
+        </div>
+        <div class="vsidebar">
+          <div class="vcard">
+            <div class="vframe" style=""><div class="vthumb-cover" data-ytid="5evAnxEm9fQ" onclick="openVModal('5evAnxEm9fQ')"><img src="https://img.youtube.com/vi/5evAnxEm9fQ/hqdefault.jpg" alt="" onerror="this.src='https://img.youtube.com/vi/5evAnxEm9fQ/mqdefault.jpg'"><div class="vchip">📋 TEF/TCF 2024</div><div class="vplay-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div><div class="vdur">12:18</div></div></div>
+            <div class="vcard-info"><div class="vcard-cat">📋 Structure Examen</div><div class="vcard-title">TEF, TCF, TEFAQ — Nouveau format 2024 pour l'immigration Canada</div><div class="vcard-meta">⏱ 12:18</div></div>
+          </div>
+          <div class="vcard">
+            <div class="vframe" style=""><div class="vthumb-cover" data-ytid="ewinNomlrtU" onclick="openVModal('ewinNomlrtU')"><img src="https://img.youtube.com/vi/ewinNomlrtU/hqdefault.jpg" alt="" onerror="this.src='https://img.youtube.com/vi/ewinNomlrtU/mqdefault.jpg'"><div class="vchip">🎓 Structure TEF</div><div class="vplay-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div><div class="vdur">14:05</div></div></div>
+            <div class="vcard-info"><div class="vcard-cat">🎓 Préparation TEF</div><div class="vcard-title">Structure complète de l'examen TEF Canada 2025 — Guide mis à jour</div><div class="vcard-meta">⏱ 14:05</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- CTA BAND -->
+      <div class="vcta">
+        <div>
+          <div class="vcta-t">Prêt à commencer votre parcours vers <em>le Canada</em> ?</div>
+          <div class="vcta-sub">Rejoignez 12 400+ apprenants de 47 pays qui ont fait confiance à ARCADINS.</div>
+        </div>
+        <div class="vcta-btns">
+          <button class="btn-p" onclick="goPage('tef')">🎯 Commencer le TEF / TCF</button>
+          <button class="btn-o" onclick="goPage('programs')">Voir les formations →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="qs">
+    <div class="qs-in">
+      <div style="text-align:center;margin-bottom:44px;">
+        <p class="slabel" style="text-align:center">Nos Services Phares</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:38px;color:var(--navy);">Tout ce dont vous avez besoin,<br><em style="color:var(--gold)">en un seul endroit</em></h2>
+      </div>
+      <div class="qgrid">
+        <div class="qcard" onclick="goPage('tef')"><div class="qi">📋</div><div class="qcat">Tests officiels</div><div class="qname">TEF / TCF Canada</div><div class="qdesc">Préparation complète aux tests de langue officielle pour l'immigration canadienne.</div></div>
+        <div class="qcard" onclick="goPage('programs')"><div class="qi">🎓</div><div class="qcat">28 Programmes</div><div class="qname">Formations Certifiées</div><div class="qdesc">Leadership, Finance, Tech, Santé, Immigration — certifiés Québec et international.</div></div>
+        <div class="qcard" onclick="goPage('exams')"><div class="qi">💻</div><div class="qcat">100% en ligne</div><div class="qname">Examens &amp; Certificats</div><div class="qdesc">Passez votre examen et recevez votre certificat numérique instantanément.</div></div>
+        <div class="qcard" onclick="goPage('imm')"><div class="qi">🍁</div><div class="qcat">Partenaires IRCC</div><div class="qname">Immigration Canada</div><div class="qdesc">Accompagnement complet de la préparation linguistique jusqu'à votre installation.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE TEF ===== -->
+<div id="pg-tef" class="page">
+  <div class="tef-in">
+    <div class="shead">
+      <p class="slabel">Tests Officiels · Immigration Canada</p>
+      <h2 class="stitle" style="color:var(--white);font-size:42px;">Préparez votre <em>Test de Français</em><br>pour immigrer au Canada</h2>
+      <p class="ssub" style="color:rgba(255,255,255,.52);">Les tests TEF Canada et TCF Canada sont obligatoires pour la résidence permanente, la citoyenneté et les programmes d'immigration provinciaux. Notre taux de réussite est de <strong style="color:var(--gold)">96%</strong>.</p>
+    </div>
+    <div class="tef-lay">
+      <div class="tef-list">
+        <div class="tcard sel"><div class="ttag">IRCC Reconnu</div><div class="tname">TEF Canada</div><div class="tdesc">Test d'Évaluation de Français pour le Canada — Oral, Écrit, Compréhension</div><div class="tmeta"><span>📅 Sessions mensuelles</span><span>⏱ 3h45</span><span>🎯 CLB 1–12</span></div></div>
+        <div class="tcard"><div class="ttag">IRCC Reconnu</div><div class="tname">TCF Canada</div><div class="tdesc">Test de Connaissance du Français — Format numérique adaptatif</div><div class="tmeta"><span>📅 Toute l'année</span><span>⏱ 2h30</span><span>🎯 A1–C2</span></div></div>
+        <div class="tcard"><div class="ttag">En ligne</div><div class="tname">TFI</div><div class="tdesc">Test de Français International — Résultats immédiats, accès 7j/7</div><div class="tmeta"><span>📅 24h/24</span><span>⏱ 1h30</span><span>🎯 Employeurs</span></div></div>
+        <div class="tcard"><div class="ttag">Diplôme à vie</div><div class="tname">DELF / DALF</div><div class="tdesc">Diplômes d'État français valables à vie — Alliance Française partenaire</div><div class="tmeta"><span>📅 2× par an</span><span>⏱ Variable</span><span>🎯 A1–C2</span></div></div>
+      </div>
+      <div class="tpanel">
+        <div class="tpt">Notre Préparation Complète</div>
+        <div class="tps">Méthode exclusive ARCADINS — Taux de réussite 96%</div>
+        <ul class="cklist">
+          <li><div class="ck">✓</div>Cours en direct avec formateurs certifiés bilingues</li>
+          <li><div class="ck">✓</div>Simulations complètes des 4 compétences (CO / CE / PO / PE)</li>
+          <li><div class="ck">✓</div>Bibliothèque de 2 000+ exercices niveau A1 à C2</li>
+          <li><div class="ck">✓</div>Correction personnalisée des productions écrites sous 48h</li>
+          <li><div class="ck">✓</div>Coaching oral individuel — accent, fluidité, vocabulaire</li>
+          <li><div class="ck">✓</div>Suivi IA de progression par compétence</li>
+          <li><div class="ck">✓</div>Garantie score : objectif non atteint → reprise offerte</li>
+        </ul>
+        <p style="color:rgba(255,255,255,.52);font-size:13px;margin-bottom:13px;font-weight:600;">Comment se déroule l'examen en ligne ?</p>
+        <div class="sgrid">
+          <div class="sbox"><div class="snum">1</div><div class="stxt">Connexion sécurisée à votre espace personnel</div></div>
+          <div class="sbox"><div class="snum">2</div><div class="stxt">Vérification identité Proctor IA</div></div>
+          <div class="sbox"><div class="snum">3</div><div class="stxt">Passage des 4 modules guidés</div></div>
+          <div class="sbox"><div class="snum">4</div><div class="stxt">Résultats &amp; certificat téléchargeable</div></div>
+        </div>
+        <button class="btn-p" onclick="goPage('price')" style="margin-top:22px;width:100%;justify-content:center;">Commencer ma préparation TEF →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE PROGRAMS ===== -->
+<div id="pg-programs" class="page">
+  <div class="prog-in">
+    <div class="shead"><p class="slabel">28 Programmes · Certifiés Québec &amp; Canada</p><h2 class="stitle">Formations <em>certifiées</em> reconnues<br>au Québec et à l'international</h2></div>
+    <div class="frow">
+      <button class="fb on" onclick="fp('all',this)">Tous</button>
+      <button class="fb" onclick="fp('lang',this)">🗣 Langue</button>
+      <button class="fb" onclick="fp('biz',this)">💼 Business</button>
+      <button class="fb" onclick="fp('tech',this)">💻 Technologie</button>
+      <button class="fb" onclick="fp('soc',this)">❤️ Services</button>
+      <button class="fb" onclick="fp('leg',this)">⚖️ Immigration</button>
+    </div>
+    <div class="g3" id="pg-grid">
+      <div class="pc" data-cat="lang"><div class="pch"><div class="pc-ico">🇫🇷</div><div class="pc-cat">Langue</div><div class="pc-name">Français Intensif TEF/TCF Canada</div><div class="pc-desc">Maîtrisez les 4 compétences linguistiques exigées. Coaching oral inclus.</div></div><div class="pcf"><div class="pcm"><span>⏱ 12 semaines</span><span>🎓 Certifié</span></div><button class="pclnk" onclick="goPage('tef')">Voir →</button></div></div>
+      <div class="pc" data-cat="lang"><div class="pch"><div class="pc-ico">🗣️</div><div class="pc-cat">Langue</div><div class="pc-name">Français des Affaires &amp; du Travail</div><div class="pc-desc">Vocabulaire professionnel, communication d'entreprise en français québécois.</div></div><div class="pcf"><div class="pcm"><span>⏱ 8 semaines</span><span>🎓 Certifié</span></div><button class="pclnk" onclick="goPage('price')">Voir →</button></div></div>
+      <div class="pc" data-cat="biz"><div class="pch"><div class="pc-ico">👑</div><div class="pc-cat">Leadership</div><div class="pc-name">Leadership &amp; Gestion d'Équipe</div><div class="pc-desc">Développez des compétences pour diriger et motiver une équipe multiculturelle.</div></div><div class="pcf"><div class="pcm"><span>⏱ 10 semaines</span><span>🎓 Certifié</span></div><button class="pclnk" onclick="goPage('price')">Voir →</button></div></div>
+      <div class="pc" data-cat="biz"><div class="pch"><div class="pc-ico">📊</div><div class="pc-cat">Finance</div><div class="pc-name">Gestion Financière &amp; Comptabilité</div><div class="pc-desc">Gestion financière, analyse de bilan, planification budgétaire et comptabilité.</div></div><div class="pcf"><div class="pcm"><span>⏱ 10 semaines</span><span>🎓 Certifié</span></div><button class="pclnk" onclick="goPage('price')">Voir →</button></div></div>
+      <div class="pc" data-cat="biz"><div class="pch"><div class="pc-ico">🚀</div><div class="pc-cat">Entrepreneuriat</div><div class="pc-name">Entrepreneuriat &amp; Innovation</div><div class="pc-desc">Créer et gérer une entreprise au Canada. Plan d'affaires et financement.</div></div><div class="pcf"><div class="pcm"><span>⏱ 12 semaines</span><span>🎓 Certifié</span></div><button class="pclnk" onclick="goPage('price')">Voir →</button></div></div>
+      <div class="pc" data-cat="biz"><div class="pch"><div class="pc-ico">🤝</div><div class="pc-cat">RH</div><div class="pc-name">Ressources Humaines &amp; Talents</div><div class="pc-desc">Droit du travail québécois, gestion des talents et recrutement.</div></div><div class="pcf"><div class="pcm"><span>⏱ 8 semaines</span><span>🎓 Certifié</span></div><button class="pclnk" onclick="goPage('price')">Voir →</button></div></div>
+      <div class="pc" data-cat="tech"><div class="pch"><div class="pc-ico">💻</div><div class="pc-cat">Technologie</div><div class="pc-name">Informatique &amp; Transformation Digitale</div><div class="pc-desc">Cloud, IA appliquée, sécurité informatique et digitalisation des processus.</div></div><div class="pcf"><div class="pcm"><span>⏱ 12 semaines</span><span>🎓 Certifié</span></div><button class="pclnk" onclick="goPage('price')">Voir →</button></div></div>
+      <div class="pc" data-cat="tech"><div class="pch"><div class="pc-ico">🌐</div><div class="pc-cat">Digital</div><div class="pc-name">Marketing Digital &amp; E-commerce</div><div class="pc-desc">SEO/SEM, réseaux sociaux et création de boutiques en ligne.</div></div><div class="pcf"><div class="pcm"><span>⏱ 8 semaines</span><span>🎓 Certifié</span></div><button class="pclnk" onclick="goPage('price')">Voir →</button></div></div>
+      <div class="pc" data-cat="soc"><div class="pch"><div class="pc-ico">👶</div><div class="pc-cat">Éducation</div><div class="pc-name">Éducatrice à la Petite Enfance (EPE)</div><div class="pc-desc">Formation reconnue Québec. Environnement éducatif 0–5 ans.</div></div><div class="pcf"><div class="pcm"><span>⏱ 16 semaines</span><span>🎓 Reconnu QC</span></div><button class="pclnk" onclick="goPage('price')">Voir →</button></div></div>
+      <div class="pc" data-cat="soc"><div class="pch"><div class="pc-ico">🩺</div><div class="pc-cat">Soins</div><div class="pc-name">Préposé(e) aux Bénéficiaires (PAB)</div><div class="pc-desc">Formation PAB reconnue MSSS Québec. Soins aux personnes vulnérables.</div></div><div class="pcf"><div class="pcm"><span>⏱ 20 semaines</span><span>🎓 MSSS QC</span></div><button class="pclnk" onclick="goPage('price')">Voir →</button></div></div>
+      <div class="pc" data-cat="leg"><div class="pch"><div class="pc-ico">🏛️</div><div class="pc-cat">Immigration</div><div class="pc-name">Agent(e) de Soutien en Immigration</div><div class="pc-desc">Formation complète : dossiers IRCC, formulaires, procédures et accompagnement.</div></div><div class="pcf"><div class="pcm"><span>⏱ 14 semaines</span><span>🎓 Certifié</span></div><button class="pclnk" onclick="goPage('price')">Voir →</button></div></div>
+      <div class="pc" data-cat="leg"><div class="pch"><div class="pc-ico">💰</div><div class="pc-cat">Finance personnelle</div><div class="pc-name">Famille Sans Dette</div><div class="pc-desc">Budget familial, crédit, épargne et planification pour nouveaux arrivants.</div></div><div class="pcf"><div class="pcm"><span>⏱ 6 semaines</span><span>🎓 Certifié</span></div><button class="pclnk" onclick="goPage('price')">Voir →</button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE EXAMS ===== -->
+<div id="pg-exams" class="page">
+  <div class="exam-in">
+    <div class="shead"><p class="slabel">Plateforme LMS Propriétaire</p><h2 class="stitle">Passez vos examens en ligne,<br>recevez votre <em>certificat immédiatement</em></h2><p class="ssub">Plateforme sécurisée avec proctoring IA, anti-triche, résultats instantanés et certificats numériques avec QR code de vérification.</p></div>
+    <div class="emock">
+      <div class="ebar">
+        <div class="edots"><span></span><span></span><span></span></div>
+        <div class="eaddr">https://lms.arcadins-training.com/exam/tef-canada-module-3</div>
+      </div>
+      <div class="ebody">
+        <div>
+          <div class="qhead"><div class="qpbar"><div class="qpfill"></div></div><div class="qcnt">13 / 20</div><div class="qtimer" id="timer">32:14</div></div>
+          <p class="qlbl">TEF Canada — Compréhension Écrite · Module 3</p>
+          <div class="qtext">Selon l'auteur, quelle est la principale raison pour laquelle les nouveaux arrivants choisissent le Québec pour s'établir ?</div>
+          <div class="qopts">
+            <div class="qopt" onclick="selOpt(this)"><div class="qltr">A</div>Les opportunités d'emploi dans le secteur technologique</div>
+            <div class="qopt sel" onclick="selOpt(this)"><div class="qltr">B</div>La vitalité culturelle et la langue française comme langue commune</div>
+            <div class="qopt" onclick="selOpt(this)"><div class="qltr">C</div>Le système de santé universel et les allocations familiales</div>
+            <div class="qopt" onclick="selOpt(this)"><div class="qltr">D</div>La proximité géographique avec les États-Unis</div>
+          </div>
+          <div class="qbtns">
+            <button class="btn-o" style="padding:11px 20px;font-size:13.5px;">← Précédent</button>
+            <button class="btn-p" style="padding:11px 24px;font-size:13.5px;">Suivant →</button>
+          </div>
+        </div>
+        <div class="esd">
+          <div class="escard">
+            <div class="est">Score en temps réel</div>
+            <div class="sring"><svg viewBox="0 0 92 92" width="92" height="92"><circle cx="46" cy="46" r="36" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="7"/><circle cx="46" cy="46" r="36" fill="none" stroke="#C9A84C" stroke-width="7" stroke-dasharray="170 226" stroke-linecap="round"/></svg><div class="scenter"><span class="sval">B2</span><span class="slv">Niveau</span></div></div>
+            <div class="skrow"><span>Compréhension Orale</span><span>B2</span></div>
+            <div class="skrow"><span>Expression Écrite</span><span>B1</span></div>
+            <div class="skrow"><span>Expression Orale</span><span style="color:rgba(255,255,255,.3)">En cours…</span></div>
+          </div>
+          <div class="certbox">
+            <div class="cbt">🏆 Votre Certificat Numérique</div>
+            <div class="cbd">À la fin de l'examen, votre certificat officiel avec QR code de vérification sera disponible instantanément.</div>
+            <button class="cbbtn" onclick="showModal('cert')">Voir un exemple →</button>
+          </div>
+          <div class="escard" style="margin-top:13px;"><div class="est">Sécurité</div><div class="pdot"><div class="pdot-d"></div>Session Proctor IA active</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE IMMIGRATION ===== -->
+<div id="pg-imm" class="page">
+  <div class="imm-in">
+    <div class="shead"><p class="slabel">Partenaires &amp; Accompagnement</p><h2 class="stitle">Votre chemin vers le <em>Canada</em><br>commence ici</h2><p class="ssub">De la préparation linguistique jusqu'à votre installation au Québec, Manitoba ou Ontario — ARCADINS Training Center vous accompagne à chaque étape.</p></div>
+    <div class="ilay">
+      <div>
+        <div class="isteps">
+          <div class="istep"><div class="isn">1</div><div><h4>Évaluation du profil d'immigration</h4><p>Test de positionnement linguistique + analyse de votre dossier pour identifier le programme optimal (Express Entry, PEQ, MPNP, etc.).</p></div></div>
+          <div class="istep"><div class="isn">2</div><div><h4>Préparation TEF / TCF certifiée</h4><p>Cours intensifs ciblés sur votre objectif de score CLB. Simulation d'examen officielle incluse. Garantie de résultat.</p></div></div>
+          <div class="istep"><div class="isn">3</div><div><h4>Constitution du dossier IRCC</h4><p>Accompagnement par nos agents certifiés pour les formulaires, les documents justificatifs et le portail IRCC.</p></div></div>
+          <div class="istep"><div class="isn">4</div><div><h4>Intégration &amp; Emploi au Québec</h4><p>Coaching d'insertion professionnelle, CV québécois, préparation aux entretiens et réseau d'employeurs partenaires.</p></div></div>
+        </div>
+        <button class="btn-n" onclick="goPage('contact')" style="margin-top:30px;">Consultation gratuite →</button>
+      </div>
+      <div class="ipanel">
+        <h3>Programmes d'immigration ciblés</h3>
+        <div class="flags">
+          <div class="flag">🇭🇹 Haïti</div><div class="flag">🇸🇳 Sénégal</div><div class="flag">🇲🇦 Maroc</div>
+          <div class="flag">🇨🇲 Cameroun</div><div class="flag">🇨🇮 Côte d'Ivoire</div><div class="flag">🇬🇳 Guinée</div>
+          <div class="flag">🇧🇫 Burkina Faso</div><div class="flag">🇩🇿 Algérie</div><div class="flag">🇫🇷 France</div><div class="flag">🇧🇪 Belgique</div>
+        </div>
+        <div class="prov-g">
+          <div class="provbox"><div class="prov-n">🍁 Québec</div><div class="prov-s">PEQ · Investisseurs · RAMQ</div></div>
+          <div class="provbox"><div class="prov-n">🌾 Manitoba</div><div class="prov-s">MPNP · Travailleurs qualifiés</div></div>
+          <div class="provbox"><div class="prov-n">🏙️ Ontario</div><div class="prov-s">OINP · Express Entry</div></div>
+          <div class="provbox"><div class="prov-n">🌊 C.-Britannique</div><div class="prov-s">BC PNP · Tech Pilot</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE PRICING ===== -->
+<div id="pg-price" class="page">
+  <div class="price-in">
+    <div class="shead" style="text-align:center;">
+      <p class="slabel" style="text-align:center;">Tarifs &amp; Forfaits</p>
+      <h2 class="stitle" style="text-align:center;color:var(--white);">Des plans adaptés à<br>chaque <em>parcours</em></h2>
+      <p class="ssub" style="max-width:500px;margin:0 auto 24px;color:rgba(255,255,255,.5);">Paiements acceptés en CAD, USD, EUR et paiements mobiles africains.</p>
+    </div>
+    <div class="btog">
+      <span class="on" id="t-mo">Mensuel</span>
+      <button class="ttrack" id="ttrack" onclick="toggleBill()"><div class="tthumb" id="tthumb"></div></button>
+      <span id="t-yr">Annuel <span style="background:rgba(201,168,76,.2);color:var(--gold);font-size:11px;padding:2px 8px;border-radius:12px;margin-left:4px;">-20%</span></span>
+    </div>
+    <div class="pgrid">
+      <div class="pcard">
+        <div class="pbadge">Essentiel</div><div class="pname">Starter</div>
+        <p class="pdesc">Idéal pour commencer votre préparation linguistique et accéder aux formations de base.</p>
+        <div class="pamount"><span class="pcur">CAD</span><span class="pval" id="p1">199</span><span class="pper">/mois</span></div>
+        <ul class="pfeats">
+          <li><span class="fck">✓</span>Accès à 3 formations au choix</li>
+          <li><span class="fck">✓</span>Préparation TEF/TCF niveau débutant</li>
+          <li><span class="fck">✓</span>2 examens blancs par mois</li>
+          <li><span class="fck">✓</span>Certificats numériques inclus</li>
+          <li><span class="fck">✓</span>Support en 3 langues</li>
+          <li style="opacity:.36"><span style="color:rgba(255,255,255,.3)">✗</span>Coaching individuel</li>
+          <li style="opacity:.36"><span style="color:rgba(255,255,255,.3)">✗</span>Accompagnement immigration</li>
+        </ul>
+        <button class="bpo" onclick="goPage('contact')">Commencer →</button>
+      </div>
+      <div class="pcard feat">
+        <div class="pbadge">⭐ Plus populaire</div><div class="pname">Professionnel</div>
+        <p class="pdesc">Préparation complète TEF/TCF + formations + accompagnement immigration intégré.</p>
+        <div class="pamount"><span class="pcur">CAD</span><span class="pval" id="p2">449</span><span class="pper">/mois</span></div>
+        <ul class="pfeats">
+          <li><span class="fck">✓</span>Toutes les formations (28 programmes)</li>
+          <li><span class="fck">✓</span>Préparation TEF/TCF A1 → C2</li>
+          <li><span class="fck">✓</span>Examens blancs illimités</li>
+          <li><span class="fck">✓</span>Coaching oral individuel (4h/mois)</li>
+          <li><span class="fck">✓</span>Accompagnement dossier IRCC</li>
+          <li><span class="fck">✓</span>Support 7 langues 7j/7</li>
+          <li><span class="fck">✓</span>Garantie score TEF/TCF</li>
+        </ul>
+        <button class="bpn" onclick="goPage('contact')">S'inscrire maintenant →</button>
+      </div>
+      <div class="pcard">
+        <div class="pbadge">Institutions</div><div class="pname">Entreprise</div>
+        <p class="pdesc">Pour les écoles, entreprises, gouvernements et organismes souhaitant former leurs équipes.</p>
+        <div class="pamount"><span class="pval" style="font-size:32px;">Sur mesure</span></div>
+        <ul class="pfeats">
+          <li><span class="fck">✓</span>Licences multi-utilisateurs illimitées</li>
+          <li><span class="fck">✓</span>LMS whitelabel à votre marque</li>
+          <li><span class="fck">✓</span>Programmes sur mesure</li>
+          <li><span class="fck">✓</span>Formateurs dédiés on-site / online</li>
+          <li><span class="fck">✓</span>Rapports &amp; analytics avancés</li>
+          <li><span class="fck">✓</span>API d'intégration</li>
+          <li><span class="fck">✓</span>SLA &amp; support prioritaire 24h</li>
+        </ul>
+        <button class="bpo" onclick="goPage('contact')">Nous contacter →</button>
+      </div>
+    </div>
+    <div class="paynote">Modes de paiement acceptés<div class="payicons">
+      <div class="payico">💳 VISA</div><div class="payico">💳 Mastercard</div><div class="payico">🏦 Virement</div>
+      <div class="payico">📱 MTN Money</div><div class="payico">📱 Orange Money</div><div class="payico">📱 Wave</div>
+      <div class="payico">💸 Western Union</div><div class="payico">💸 MoneyGram</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ===== PAGE TESTIMONIALS ===== -->
+<div id="pg-testi" class="page">
+  <div class="testi-in">
+    <div class="shead" style="text-align:center;"><p class="slabel" style="text-align:center;">Témoignages · 47 pays</p><h2 class="stitle" style="text-align:center;">Ce que disent nos <em>diplômés</em></h2></div>
+    <div class="tgrid">
+      <div class="tcard2"><div class="tstars">★★★★★</div><p class="ttext">Grâce à la préparation TEF Canada d'ARCADINS, j'ai obtenu le score B2 nécessaire pour ma résidence permanente. Les simulations d'examen étaient identiques au vrai test. Je suis maintenant installée à Montréal !</p><div class="tauth"><div class="tava">AF</div><div><div class="tname">Aminata Fatoumata D.</div><div class="tfrom">🇸🇳 Dakar → Montréal, QC</div></div></div></div>
+      <div class="tcard2"><div class="tstars">★★★★★</div><p class="ttext">The Professional package is exactly what I needed. I prepared my TEF in French, got my digital certificate instantly, and the immigration team guided me every step of the way to Winnipeg.</p><div class="tauth"><div class="tava">JB</div><div><div class="tname">Jean-Baptiste M.</div><div class="tfrom">🇭🇹 Port-au-Prince → Winnipeg, MB</div></div></div></div>
+      <div class="tcard2"><div class="tstars">★★★★★</div><p class="ttext">La formation Leadership d'ARCADINS m'a permis d'obtenir un poste de superviseur dès mon arrivée. Le certificat est reconnu par mon employeur québécois. Merci à toute l'équipe !</p><div class="tauth"><div class="tava">KT</div><div><div class="tname">Kofi Théodore A.</div><div class="tfrom">🇨🇮 Abidjan → Québec City, QC</div></div></div></div>
+      <div class="tcard2"><div class="tstars">★★★★★</div><p class="ttext">Las simulaciones de examen TCF son increíblemente precisas. Pasé mi prueba al primer intento con nivel B2. El equipo ARCADINS habla español y me apoyó en todo el proceso.</p><div class="tauth"><div class="tava">MR</div><div><div class="tname">María Rosa V.</div><div class="tfrom">🇲🇦 Casablanca → Ottawa, ON</div></div></div></div>
+      <div class="tcard2"><div class="tstars">★★★★★</div><p class="ttext">Als deutschsprachiger Nutzer war ich begeistert, dass der Support auch auf Deutsch verfügbar ist. Die Prüfungsvorbereitung ist sehr effektiv und professionell aufbereitet.</p><div class="tauth"><div class="tava">HM</div><div><div class="tname">Hans-Michael B.</div><div class="tfrom">🇩🇪 Berlin → Calgary, AB</div></div></div></div>
+      <div class="tcard2"><div class="tstars">★★★★★</div><p class="ttext">Mèsi ARCADINS! Preparasyon TEF mwen te bon anpil. Mwen jwenn sco B1 mwen vle a. Ekip la pale kreyòl, sa ki fè mwen konfyan pou reyisi. Mwen nan Montréal kounye a!</p><div class="tauth"><div class="tava">RJ</div><div><div class="tname">Roseline J.</div><div class="tfrom">🇭🇹 Les Cayes → Montréal, QC</div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE CONTACT ===== -->
+<div id="pg-contact" class="page">
+  <div class="cont-in">
+    <div class="cLayout">
+      <div class="cinfo">
+        <p class="slabel">Nous contacter</p>
+        <h2>Parlons de<br>votre <em>projet</em></h2>
+        <p>Notre équipe multilingue est disponible pour vous orienter vers le programme et le forfait les mieux adaptés à votre objectif d'immigration ou de formation.</p>
+        <div class="citems">
+          <div class="ci"><div class="ci-ico">📍</div><div><div class="ci-lbl">Adresse</div><div class="ci-val"><a href="https://maps.google.com/?q=116+Albert+Street+Suite+300+Ottawa+ON+K1P+5G3" target="_blank" style="color:inherit;">116 Albert Street, Suite 300, Ottawa, ON K1P 5G3</a></div></div></div>
+          <div class="ci"><div class="ci-ico">📧</div><div><div class="ci-lbl">Courriel</div><div class="ci-val"><a href="mailto:info@arcadins-training.com" style="color:inherit;">info@arcadins-training.com</a></div></div></div>
+          <div class="ci"><div class="ci-ico">📞</div><div><div class="ci-lbl">Téléphone</div><div class="ci-val"><a href="tel:+15144513436" style="color:inherit;">+1 (514) 451-3436</a></div></div></div>
+          <div class="ci"><div class="ci-ico">💬</div><div><div class="ci-lbl">WhatsApp Business</div><div class="ci-val"><a href="https://wa.me/15144513436" target="_blank" style="color:inherit;">Disponible 7j/7 · 7 langues →</a></div></div></div>
+        </div>
+      </div>
+      <div class="cform">
+        <h3>Demande de renseignements</h3>
+        <div class="frow2">
+          <div class="fg"><label>Prénom *</label><input type="text" placeholder="Votre prénom"></div>
+          <div class="fg"><label>Nom *</label><input type="text" placeholder="Votre nom"></div>
+        </div>
+        <div class="fg"><label>Courriel *</label><input type="email" placeholder="votre@email.com"></div>
+        <div class="fg"><label>Pays de résidence</label><input type="text" placeholder="Ex: Haïti, Sénégal, Maroc…"></div>
+        <div class="fg"><label>Je suis intéressé(e) par</label>
+          <select>
+            <option>Préparation TEF Canada</option>
+            <option>Préparation TCF Canada</option>
+            <option>Formation professionnelle certifiée</option>
+            <option>Accompagnement immigration</option>
+            <option>Forfait Professionnel complet</option>
+            <option>Licences institutionnelles</option>
+          </select>
+        </div>
+        <div class="fg"><label>Message</label><textarea placeholder="Décrivez votre objectif, votre niveau de français actuel, votre pays cible…"></textarea></div>
+        <button class="fsub" id="fsub">Envoyer ma demande →</button>
+        <p style="font-size:12px;color:var(--muted);margin-top:11px;text-align:center;">Réponse garantie sous 24h · Consultation initiale gratuite</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+
+
+<!-- MODAL SYSTEM -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal(null,true)">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Retour en haut">↑</button>
+<!-- ═══ LECTEUR VIDÉO MODAL ═══ -->
+<div id="vmodal" onclick="vModalBg(event)">
+  <div class="vmod-wrap">
+
+    <!-- Player 16:9 -->
+    <div class="vmod-player" id="vmod-player"></div>
+
+    <!-- Info + fermer -->
+    <div class="vmod-info">
+      <div class="vmod-meta">
+        <div class="vmod-chip" id="vmod-chip">⭐ Recommandé</div>
+        <div class="vmod-title" id="vmod-title">Titre de la vidéo</div>
+        <div class="vmod-desc" id="vmod-desc"></div>
+      </div>
+      <button class="vmod-close" onclick="closeVModal()">✕</button>
+    </div>
+
+    <!-- Playlist des autres vidéos -->
+    <div class="vmod-playlist" id="vmod-playlist"></div>
+
+    <div class="vmod-hint">Appuyez sur <kbd style="background:rgba(255,255,255,.1);padding:2px 7px;border-radius:4px;font-family:monospace;">Échap</kbd> pour fermer</div>
+  </div>
+</div>
+
+<footer>
+  <div class="ftmain">
+    <div class="ftbrand">
+      <svg viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:50px;width:auto;margin-bottom:18px;display:block;">
+  <g>
+    <polygon points="6,42 14,20 22,34 30,20 38,42" fill="none" stroke="#5A6E8A" stroke-width="2.2" stroke-linejoin="round"/>
+    <polyline points="24,36 32,12 38,18" fill="none" stroke="url(#gArrowF)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="32,8 38,18 26,15" fill="#C9A84C"/>
+  </g>
+  <defs>
+    <linearGradient id="gArrowF" x1="24" y1="36" x2="38" y2="8" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5A6E8A"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+  </defs>
+  <text x="50" y="36" font-family="'Playfair Display',Georgia,serif" font-size="28" font-weight="700" letter-spacing="1" fill="url(#gGoldF)">ARCADINS</text>
+  <text x="51" y="50" font-family="'DM Sans',Arial,sans-serif" font-size="10.5" font-weight="600" letter-spacing="4.5" fill="#5A6E8A">TRAINING CENTER</text>
+  <defs>
+    <linearGradient id="gGoldF" x1="50" y1="10" x2="230" y2="10" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8C97A"/>
+      <stop offset="50%" stop-color="#C9A84C"/>
+      <stop offset="100%" stop-color="#F0D78A"/>
+    </linearGradient>
+  </defs>
+</svg>
+      <p>Plateforme internationale de formation professionnelle certifiée, spécialisée dans la préparation aux tests de français pour l'immigration canadienne. 47 pays · 7 langues · 28 programmes.</p>
+      <div class="socials">
+        <a href="https://facebook.com" target="_blank" class="soc">f</a><a href="https://linkedin.com" target="_blank" class="soc">in</a><a href="https://x.com" target="_blank" class="soc">X</a><a href="https://youtube.com" target="_blank" class="soc">▶</a><a href="https://instagram.com" target="_blank" class="soc">📷</a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h5>Formations</h5>
+      <button onclick="goPage('tef')">TEF / TCF Canada</button>
+      <button onclick="goPage('programs')">Leadership &amp; Gestion</button>
+      <button onclick="goPage('programs')">Éducatrice EPE</button>
+      <button onclick="goPage('programs')">PAB Québec</button>
+      <button onclick="goPage('programs')">Informatique &amp; IA</button>
+      <button onclick="goPage('programs')">Famille Sans Dette</button>
+    </div>
+    <div class="fcol">
+      <h5>Services</h5>
+      <button onclick="goPage('exams')">Examens en ligne</button>
+      <button onclick="goPage('exams')">Certificats numériques</button>
+      <button onclick="goPage('imm')">Dossier IRCC</button>
+      <button onclick="goPage('imm')">Emploi Québec</button>
+      <button onclick="goPage('price')">Nos tarifs</button>
+      <button onclick="goPage('contact')">Nous contacter</button>
+    </div>
+    <div class="fcol">
+      <h5>Contact</h5>
+      <a href="https://maps.google.com/?q=116+Albert+Street+Suite+300+Ottawa+ON+K1P+5G3" target="_blank">📍 Ottawa, ON Canada</a>
+      <a href="mailto:info@arcadins-training.com">📧 info@arcadins-training.com</a>
+      <a href="tel:+15144513436">📞 +1 (514) 451-3436</a>
+      <a href="https://wa.me/15144513436" target="_blank">💬 WhatsApp Business</a>
+      <a href="#" onclick="showModal('privacy')" style="margin-top:7px;">Politique de confidentialité</a>
+      <a href="#" onclick="showModal('terms')">Conditions d'utilisation</a>
+    </div>
+  </div>
+  <div class="ftbot">
+    <p>© 2025 ARCADINS Training Center — Tous droits réservés</p>
+    <div class="fseals"><div class="fseal">🍁 Certifié Canada</div><div class="fseal">🎓 Emploi Québec</div><div class="fseal">✓ ISO 9001</div></div>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════
+   ARCADINS Training Center — Main JS
+   Validates: node --check ✓
+══════════════════════════════════════════ */
+
+/* ── PAGE ROUTER ── */
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.nl').forEach(function(n) { n.classList.remove('on'); });
+  document.querySelectorAll('.mnl').forEach(function(n) { n.classList.remove('on'); });
+  var pg = document.getElementById('pg-' + id);
+  if (pg) pg.classList.add('active');
+  var nav = document.getElementById('n-' + id);
+  if (nav) nav.classList.add('on');
+  document.body.style.overflow = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'home') setTimeout(animCnt, 200);
+  history.pushState({ page: id }, '', '#' + id);
+}
+window.addEventListener('popstate', function(e) {
+  var id = (e.state && e.state.page) || (location.hash.replace('#', '') || 'home');
+  goPage(id);
+});
+
+/* ── MOBILE MENU ── */
+function toggleMenu() {
+  var m = document.getElementById('mm');
+  var h = document.getElementById('ham');
+  m.classList.toggle('open');
+  h.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('mm').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── LANGUAGE ── */
+function setLang(l, btn) {
+  document.querySelectorAll('.lb').forEach(function(b) { b.classList.remove('on'); });
+  if (btn) btn.classList.add('on');
+  document.querySelectorAll('.t').forEach(function(el) {
+    var v = el.getAttribute('data-' + l) || el.getAttribute('data-fr');
+    if (v) el.innerHTML = v;
+  });
+  document.documentElement.lang = l;
+}
+
+/* ── PROGRAM FILTER ── */
+function fp(cat, btn) {
+  document.querySelectorAll('.fb').forEach(function(b) { b.classList.remove('on'); });
+  btn.classList.add('on');
+  document.querySelectorAll('.pc').forEach(function(c) {
+    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
+  });
+}
+
+/* ── TEF CARDS ── */
+document.querySelectorAll('.tcard').forEach(function(c) {
+  c.addEventListener('click', function() {
+    document.querySelectorAll('.tcard').forEach(function(x) { x.classList.remove('sel'); });
+    c.classList.add('sel');
+  });
+});
+
+/* ── EXAM QUESTION OPTIONS ── */
+function selOpt(el) {
+  document.querySelectorAll('.qopt').forEach(function(o) { o.classList.remove('sel'); });
+  el.classList.add('sel');
+}
+
+/* ── EXAM TIMER ── */
+var examSecs = 32 * 60 + 14;
+setInterval(function() {
+  examSecs = Math.max(0, examSecs - 1);
+  var m = Math.floor(examSecs / 60);
+  var s = examSecs % 60;
+  var t = document.getElementById('timer');
+  if (t) t.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+}, 1000);
+
+/* ── COUNTER ANIMATION ── */
+function animCnt() {
+  document.querySelectorAll('[data-count]').forEach(function(el) {
+    var tgt = parseInt(el.dataset.count, 10);
+    var dur = 1800;
+    var start = null;
+    function frame(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(ease * tgt).toLocaleString();
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  });
+}
+setTimeout(animCnt, 300);
+
+/* ── BILLING TOGGLE ── */
+var isAnn = false;
+var prices = { p1: [199, 159], p2: [449, 359] };
+function toggleBill() {
+  isAnn = !isAnn;
+  var t = document.getElementById('ttrack');
+  if (isAnn) { t.classList.add('ann'); } else { t.classList.remove('ann'); }
+  document.getElementById('t-mo').className = isAnn ? '' : 'on';
+  document.getElementById('t-yr').style.color = isAnn ? 'var(--gold)' : '';
+  Object.keys(prices).forEach(function(k) {
+    var el = document.getElementById(k);
+    if (el) el.textContent = prices[k][isAnn ? 1 : 0];
+  });
+}
+
+/* ── SCROLL: back-to-top + header shadow ── */
+window.addEventListener('scroll', function() {
+  var b = document.getElementById('btt');
+  if (b) b.classList.toggle('vis', window.scrollY > 200);
+  var hdr = document.getElementById('hdr');
+  if (hdr) hdr.style.boxShadow = window.scrollY > 25 ? '0 4px 24px rgba(0,0,0,.45)' : '';
+});
+
+/* ── GENERIC MODAL (cert / privacy / terms) ── */
+var modalHTML = {
+  cert: '<div class="cert-preview">'
+    + '<div class="cert-logo">\uD83C\uDFC6</div>'
+    + '<div class="cert-org">ARCADINS Training Center</div>'
+    + '<div class="cert-main">Certificat de r\u00E9ussite d\u00E9cern\u00E9 \u00E0</div>'
+    + '<div class="cert-name">Marie-Claire Dupont</div>'
+    + '<div class="cert-prog">Formation\u00A0: Leadership &amp; Gestion d\'Équipe<br>Score\u00A0: 91/100</div>'
+    + '<div class="cert-date">D\u00E9livr\u00E9 le 28 mai 2025 \u00B7 Ottawa, ON</div>'
+    + '<div class="qr-mock">\u25A6</div>'
+    + '<div class="qr-lbl">QR Code de v\u00E9rification officielle</div>'
+    + '</div>'
+    + '<p style="margin-top:16px;font-size:13.5px;color:var(--muted);line-height:1.7;">'
+    + 'Chaque certificat ARCADINS est horodat\u00E9, sign\u00E9 num\u00E9riquement et v\u00E9rifiable via QR code.'
+    + '</p>',
+  privacy: '<h3 class="modal-title">Politique de confidentialit\u00E9</h3>'
+    + '<div class="modal-body">'
+    + '<strong>1. Collecte des donn\u00E9es</strong><br>ARCADINS collecte uniquement les informations n\u00E9cessaires \u00E0 ses services.<br><br>'
+    + '<strong>2. Utilisation</strong><br>Vos donn\u00E9es personnalisent votre exp\u00E9rience et permettent l\'\u00E9mission de vos certificats.<br><br>'
+    + '<strong>3. Conservation</strong><br>Donn\u00E9es supprim\u00E9es sur demande sous 30 jours apr\u00E8s r\u00E9siliation.<br><br>'
+    + '<strong>4. Droits</strong><br>Conform\u00E9ment \u00E0 la Loi 25 du Qu\u00E9bec et au RGPD\u00A0: acc\u00E8s, rectification et suppression.<br><br>'
+    + '<strong>5. Contact</strong><br><a href="mailto:privacy@arcadins-training.com">privacy@arcadins-training.com</a>'
+    + '</div>',
+  terms: '<h3 class="modal-title">Conditions d\'utilisation</h3>'
+    + '<div class="modal-body">'
+    + '<strong>1. Acc\u00E8s</strong><br>Acc\u00E8s strictement personnel et nominatif. Partage d\'identifiants interdit.<br><br>'
+    + '<strong>2. Propri\u00E9t\u00E9 intellectuelle</strong><br>Tous les contenus sont la propri\u00E9t\u00E9 exclusive d\'ARCADINS Training Center.<br><br>'
+    + '<strong>3. Certificats</strong><br>D\u00E9livr\u00E9s apr\u00E8s validation du module. Nominatifs et non transf\u00E9rables.<br><br>'
+    + '<strong>4. Remboursement</strong><br>Int\u00E9gral dans les 7 jours suivant l\'inscription, avant acc\u00E8s aux modules.<br><br>'
+    + '<strong>5. R\u00E9siliation</strong><br>Depuis votre espace personnel, \u00E0 tout moment.'
+    + '</div>'
+};
+
+function showModal(type) {
+  var c = document.getElementById('modal-content');
+  if (c && modalHTML[type]) c.innerHTML = modalHTML[type];
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(e, force) {
+  if (force || !e || e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+/* ══════════════════════════════════════════
+   VIDEO MODAL — YouTube IFrame API
+   Catches error 101/150/153 automatically
+   and shows a fallback "Watch on YouTube"
+══════════════════════════════════════════ */
+var vList = [
+  { id: 'kj6WkZFr-MY', chip: '\u2B50 Recommand\u00E9',
+    title: 'TEF vs TCF Canada\u00A0: Lequel choisir pour l\'immigration 2026\u00A0?',
+    desc: 'Comparaison compl\u00E8te TEF Canada / TCF Canada pour choisir le bon test selon votre profil.',
+    thumb: 'https://img.youtube.com/vi/kj6WkZFr-MY/hqdefault.jpg' },
+  { id: '5evAnxEm9fQ', chip: '\uD83D\uDCCB TEF/TCF 2024',
+    title: 'TEF, TCF, TEFAQ \u2014 Nouveau format 2024 pour l\'immigration Canada',
+    desc: 'Analyse compl\u00E8te du nouveau format des examens TEF et TCF Canada 2024.',
+    thumb: 'https://img.youtube.com/vi/5evAnxEm9fQ/hqdefault.jpg' },
+  { id: 'ewinNomlrtU', chip: '\uD83C\uDF93 Structure TEF',
+    title: 'Structure compl\u00E8te de l\'examen TEF Canada 2025 \u2014 Guide mis \u00E0 jour',
+    desc: 'De z\u00E9ro au CLB\u00A07 en moins de 12\u00A0mois\u00A0: tout sur la structure du TEF Canada 2025.',
+    thumb: 'https://img.youtube.com/vi/ewinNomlrtU/hqdefault.jpg' },
+  { id: 'Sp_xEMrgd3c', chip: '\u270D\uFE0F Expression \u00C9crite',
+    title: 'TEF Canada 2025 \u2014 Mod\u00E8le Expression \u00C9crite C1/C2 corrig\u00E9',
+    desc: 'Mod\u00E8le complet d\'examen officiel TEF Canada avec corrig\u00E9 d\u00E9taill\u00E9.',
+    thumb: 'https://img.youtube.com/vi/Sp_xEMrgd3c/hqdefault.jpg' },
+  { id: 'upK5cKYXbS4', chip: '\uD83C\uDF41 Immigration 2025',
+    title: 'Projections immigration Canada 2025 \u2014 Entr\u00E9e Express, PNP et plus',
+    desc: 'Analyse des objectifs d\'immigration Canada\u00A02025\u00A0: Entr\u00E9e Express et programmes provinciaux.',
+    thumb: 'https://img.youtube.com/vi/upK5cKYXbS4/hqdefault.jpg' },
+  { id: 'MwKgBqpWt-g', chip: '\uD83D\uDCF0 Actualit\u00E9s IRCC',
+    title: 'Immigration Canada 2024 \u2014 3 mises \u00E0 jour essentielles',
+    desc: 'Les trois changements majeurs de la politique d\'immigration canadienne en 2024.',
+    thumb: 'https://img.youtube.com/vi/MwKgBqpWt-g/hqdefault.jpg' }
+];
+
+/* YouTube IFrame API — loaded once */
+var ytAPIready = false;
+var ytPlayer = null;
+var ytPendingId = null;
+
+function onYouTubeIframeAPIReady() {
+  ytAPIready = true;
+  if (ytPendingId) {
+    launchPlayer(ytPendingId);
+    ytPendingId = null;
+  }
+}
+
+function openVModal(ytid) {
+  /* update info panel */
+  var v = null;
+  for (var i = 0; i < vList.length; i++) {
+    if (vList[i].id === ytid) { v = vList[i]; break; }
+  }
+  if (!v) v = vList[0];
+
+  document.getElementById('vmod-chip').innerHTML = v.chip;
+  document.getElementById('vmod-title').innerHTML = v.title;
+  document.getElementById('vmod-desc').innerHTML = v.desc;
+
+  /* build playlist */
+  buildPlaylist(ytid);
+
+  /* show modal */
+  document.getElementById('vmodal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  /* load player */
+  if (ytAPIready) {
+    launchPlayer(ytid);
+  } else {
+    ytPendingId = ytid;
+    /* inject API script if not yet injected */
+    if (!document.getElementById('yt-api-script')) {
+      var s = document.createElement('script');
+      s.id = 'yt-api-script';
+      s.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(s);
+    }
+  }
+}
+
+function launchPlayer(ytid) {
+  var container = document.getElementById('vmod-player');
+  container.innerHTML = '<div id="yt-player-inner"></div>';
+
+  if (ytPlayer) {
+    try { ytPlayer.destroy(); } catch(e) {}
+    ytPlayer = null;
+  }
+
+  ytPlayer = new YT.Player('yt-player-inner', {
+    videoId: ytid,
+    playerVars: {
+      autoplay: 1,
+      rel: 0,
+      modestbranding: 1,
+      color: 'white'
+    },
+    events: {
+      onError: function(e) {
+        /* codes 101, 150, 153 = embedding disabled */
+        showVideoFallback(ytid, e.data);
+      }
+    }
+  });
+}
+
+function showVideoFallback(ytid, code) {
+  var v = null;
+  for (var i = 0; i < vList.length; i++) {
+    if (vList[i].id === ytid) { v = vList[i]; break; }
+  }
+  var title = v ? v.title : 'Cette vid\u00E9o';
+  var container = document.getElementById('vmod-player');
+  container.innerHTML =
+    '<div style="position:absolute;inset:0;display:flex;flex-direction:column;'
+    + 'align-items:center;justify-content:center;background:var(--navy-mid);border-radius:18px;padding:32px;text-align:center;">'
+    + '<div style="font-size:48px;margin-bottom:16px;">\uD83C\uDFAC</div>'
+    + '<p style="color:rgba(255,255,255,.7);font-size:15px;margin-bottom:20px;line-height:1.6;">'
+    + 'Le propri\u00E9taire de cette vid\u00E9o ne permet pas la lecture int\u00E9gr\u00E9e.<br>'
+    + 'Cliquez ci-dessous pour la regarder directement sur YouTube.</p>'
+    + '<a href="https://www.youtube.com/watch?v=' + ytid + '" target="_blank" rel="noopener" '
+    + 'style="display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--navy);'
+    + 'font-weight:700;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;">'
+    + '\u25B6\uFE0F Regarder sur YouTube</a>'
+    + '<p style="color:rgba(255,255,255,.3);font-size:11px;margin-top:14px;">Code d\'erreur\u00A0: ' + code + '</p>'
+    + '</div>';
+}
+
+function buildPlaylist(activeId) {
+  var pl = document.getElementById('vmod-playlist');
+  var h = '';
+  for (var i = 0; i < vList.length; i++) {
+    var item = vList[i];
+    var active = item.id === activeId ? ' active' : '';
+    var shortTitle = item.title;
+    if (shortTitle.length > 50) shortTitle = shortTitle.substring(0, 50) + '\u2026';
+    h += '<div class="vpl-item' + active + '" onclick="switchVideo(\'' + item.id + '\')">'
+      + '<div class="vpl-thumb">'
+      + '<img src="' + item.thumb + '" loading="lazy" alt="">'
+      + '<div class="vpl-dot"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>'
+      + '</div>'
+      + '<div class="vpl-label">' + shortTitle + '</div>'
+      + '</div>';
+  }
+  pl.innerHTML = h;
+}
+
+function switchVideo(ytid) {
+  /* update info */
+  var v = null;
+  for (var i = 0; i < vList.length; i++) {
+    if (vList[i].id === ytid) { v = vList[i]; break; }
+  }
+  if (v) {
+    document.getElementById('vmod-chip').innerHTML = v.chip;
+    document.getElementById('vmod-title').innerHTML = v.title;
+    document.getElementById('vmod-desc').innerHTML = v.desc;
+  }
+  buildPlaylist(ytid);
+  if (ytAPIready) {
+    launchPlayer(ytid);
+  }
+}
+
+function closeVModal() {
+  document.getElementById('vmodal').classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(function() {
+    var container = document.getElementById('vmod-player');
+    if (container) container.innerHTML = '';
+    if (ytPlayer) {
+      try { ytPlayer.destroy(); } catch(e) {}
+      ytPlayer = null;
+    }
+  }, 320);
+}
+
+function vModalBg(e) {
+  if (e.target === document.getElementById('vmodal')) closeVModal();
+}
+
+/* ── CONTACT FORM ── */
+var fsub = document.getElementById('fsub');
+if (fsub) {
+  fsub.addEventListener('click', function() {
+    var self = this;
+    self.textContent = '\u2713 Envoy\u00E9 \u2014 R\u00E9ponse sous 24h';
+    self.style.background = 'var(--gold)';
+    self.style.color = 'var(--navy)';
+    setTimeout(function() {
+      self.textContent = 'Envoyer ma demande \u2192';
+      self.style.background = '';
+      self.style.color = '';
+    }, 4000);
+  });
+}
+
+/* ── SINGLE ESC HANDLER ── */
+document.addEventListener('keydown', function(e) {
+  if (e.key !== 'Escape') return;
+  if (document.getElementById('vmodal').classList.contains('open')) {
+    closeVModal();
+    return;
+  }
+  closeModal(null, true);
+});
+
+
+/* ═══════════════════════════════════════════════
+   HERO SLIDER — automatique, 6s, fade, Ken Burns
+   Flèches + points cliquables
+═══════════════════════════════════════════════ */
+(function(){
+  var INTERVAL  = 6000;  /* ms entre slides */
+  var TRANS     = 1200;  /* ms transition  */
+  var reduced   = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  var slides    = document.querySelectorAll('.hero-slide');
+  var dots      = document.querySelectorAll('.slider-dot');
+  var prevBtn   = document.getElementById('sliderPrev');
+  var nextBtn   = document.getElementById('sliderNext');
+  var labelEl   = document.getElementById('slideLabel');
+  var labelIcon = document.getElementById('slideLabelIcon');
+  var labelText = document.getElementById('slideLabelText');
+
+  if(!slides.length) return;
+
+  /* Données label par slide */
+  var labels = [
+    {icon:'🍁', text:'Canada · Votre destination'},
+    {icon:'👨‍👩‍👧', text:'Familles · Nouveaux arrivants'},
+    {icon:'🩺', text:'PAB · Formation certifiée Québec'},
+    {icon:'🎓', text:'Formations · Emploi au Canada'},
+    {icon:'📚', text:'Apprenants · 47 pays représentés'}
+  ];
+
+  var current  = 0;
+  var total    = slides.length;
+  var timer    = null;
+  var running  = true;
+
+  function goTo(idx){
+    /* Désactiver ancien */
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    /* Activer nouveau */
+    current = (idx + total) % total;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    /* Mettre à jour label */
+    if(labelEl && labels[current]){
+      labelEl.classList.remove('visible');
+      setTimeout(function(){
+        labelIcon.textContent = labels[current].icon;
+        labelText.textContent = labels[current].text;
+        labelEl.classList.add('visible');
+      }, 350);
+    }
+  }
+
+  function next(){ goTo(current + 1); }
+  function prev(){ goTo(current - 1); }
+
+  /* Auto-play */
+  function startAuto(){
+    if(reduced) return; /* pas d'auto si prefers-reduced-motion */
+    clearInterval(timer);
+    timer = setInterval(next, INTERVAL);
+  }
+  function stopAuto(){ clearInterval(timer); }
+
+  startAuto();
+
+  /* Flèches */
+  if(prevBtn) prevBtn.addEventListener('click', function(){
+    prev(); stopAuto(); startAuto();
+  });
+  if(nextBtn) nextBtn.addEventListener('click', function(){
+    next(); stopAuto(); startAuto();
+  });
+
+  /* Points */
+  dots.forEach(function(dot){
+    dot.addEventListener('click', function(){
+      var idx = parseInt(dot.dataset.slide, 10);
+      if(idx !== current){ goTo(idx); stopAuto(); startAuto(); }
+    });
+  });
+
+  /* Pause au survol du hero */
+  var heroEl = document.getElementById('hero-section');
+  if(heroEl){
+    heroEl.addEventListener('mouseenter', stopAuto);
+    heroEl.addEventListener('mouseleave', startAuto);
+  }
+
+  /* Keyboard navigation */
+  document.addEventListener('keydown', function(e){
+    var tag = document.activeElement && document.activeElement.tagName;
+    if(tag === 'INPUT' || tag === 'TEXTAREA') return;
+    if(e.key === 'ArrowLeft')  { prev(); stopAuto(); startAuto(); }
+    if(e.key === 'ArrowRight') { next(); stopAuto(); startAuto(); }
+  });
+
+})();
+
+</script>
+</body>
+</html>
