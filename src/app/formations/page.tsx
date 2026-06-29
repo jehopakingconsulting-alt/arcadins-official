@@ -30,6 +30,8 @@ export default function FormationsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((p) => {
+            const name = UI[`c.${p.slug}`] ? t(UI[`c.${p.slug}`], lang) : p.name;
+            const desc = UI[`cd.${p.slug}`] ? t(UI[`cd.${p.slug}`], lang) : p.description;
             const Wrapper = p.comingSoon ? "div" : Link;
             const wrapperProps = p.comingSoon
               ? { className: "bg-white rounded-[20px] overflow-hidden border border-gold/11 relative opacity-75 block" }
@@ -40,20 +42,20 @@ export default function FormationsPage() {
               <Wrapper key={p.id} {...wrapperProps}>
                 {p.comingSoon && (
                   <div className="absolute top-4 right-4 z-10 bg-navy text-gold text-[10px] font-bold px-3 py-1 rounded-full tracking-[1px] uppercase">
-                    À Venir
+                    {t(UI["cd.avenir"], lang)}
                   </div>
                 )}
                 <div className="p-6 pb-4">
                   <div className="text-[32px] mb-3">{p.icon}</div>
                   <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold mb-1.5">{p.categoryLabel}</div>
-                  <div className="font-[family-name:var(--font-heading)] text-lg font-bold text-navy mb-2 leading-[1.3]">{p.name}</div>
-                  <div className="text-[13px] text-muted leading-[1.65]">{p.description}</div>
+                  <div className="font-[family-name:var(--font-heading)] text-lg font-bold text-navy mb-2 leading-[1.3]">{name}</div>
+                  <div className="text-[13px] text-muted leading-[1.65]">{desc}</div>
                 </div>
                 <div className="px-6 py-3 border-t border-off-white flex items-center justify-between">
                   <div className="flex gap-3">
                     <span className="text-xs text-muted">⏱ {p.duration}</span>
                     {p.comingSoon ? (
-                      <span className="text-xs font-semibold text-navy/40">Bientôt disponible</span>
+                      <span className="text-xs font-semibold text-navy/40">{t(UI["cd.coming"], lang)}</span>
                     ) : (
                       <span className="text-xs font-semibold text-gold">{p.price.toLocaleString()} CAD</span>
                     )}

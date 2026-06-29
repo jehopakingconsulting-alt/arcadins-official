@@ -21,7 +21,10 @@ export default function TarifsPage() {
 
         {/* Courses pricing grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {activeCourses.map((course) => (
+          {activeCourses.map((course) => {
+            const name = UI[`c.${course.slug}`] ? t(UI[`c.${course.slug}`], lang) : course.name;
+            const desc = UI[`cd.${course.slug}`] ? t(UI[`cd.${course.slug}`], lang) : course.description;
+            return (
             <div
               key={course.id}
               className="bg-white/[0.044] border border-gold/17 rounded-[28px] p-8 transition-all hover:-translate-y-1 hover:border-gold/44 flex flex-col"
@@ -31,10 +34,10 @@ export default function TarifsPage() {
                 {course.categoryLabel} · 24 semaines
               </div>
               <div className="font-[family-name:var(--font-heading)] text-xl text-white mb-2 leading-[1.3]">
-                {course.name}
+                {name}
               </div>
               <p className="text-[13px] text-white/48 leading-[1.65] mb-6 flex-1">
-                {course.description}
+                {desc}
               </p>
 
               <div className="flex items-baseline gap-1 mb-5">
@@ -62,10 +65,11 @@ export default function TarifsPage() {
                 href={`/formations/${course.slug}`}
                 className="block w-full py-3.5 rounded-[9px] font-bold text-[14.5px] text-center transition-all bg-transparent text-gold border-[1.5px] border-gold/43 hover:bg-gold/10 hover:border-gold"
               >
-                Voir le programme →
+                {t(UI["form.see"], lang).replace("→", "programme →")}
               </Link>
             </div>
-          ))}
+          );
+          })}
         </div>
 
         {/* Enterprise card */}

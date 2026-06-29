@@ -9,6 +9,8 @@ export default function CourseDetailPage() {
   const { slug } = useParams();
   const { lang } = useLang();
   const course = PROGRAMS.find((p) => p.slug === slug);
+  const cName = course && UI[`c.${course.slug}`] ? t(UI[`c.${course.slug}`], lang) : course?.name || "";
+  const cDesc = course && UI[`cd.${course.slug}`] ? t(UI[`cd.${course.slug}`], lang) : course?.description || "";
 
   if (!course) {
     return (
@@ -31,7 +33,7 @@ export default function CourseDetailPage() {
           <span>/</span>
           <Link href="/formations" className="hover:text-gold transition-all">{t(UI["nav.formations"], lang)}</Link>
           <span>/</span>
-          <span className="text-navy font-medium">{course.name}</span>
+          <span className="text-navy font-medium">{cName}</span>
         </div>
 
         {/* Header */}
@@ -43,10 +45,10 @@ export default function CourseDetailPage() {
                 {course.categoryLabel} · {course.duration}
               </div>
               <h1 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl text-white mb-3">
-                {course.name}
+                {cName}
               </h1>
               <p className="text-white/60 text-[16px] leading-[1.75] max-w-[600px]">
-                {course.description}
+                {cDesc}
               </p>
             </div>
           </div>
