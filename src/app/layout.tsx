@@ -30,9 +30,27 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ARCADINS Training Center — Formation professionnelle certifiée, TEF/TCF Canada",
+  title: {
+    default: "ARCADINS Training Center — Formation professionnelle certifiée, TEF/TCF Canada",
+    template: "%s | ARCADINS Training Center",
+  },
   description: "Formation professionnelle certifiée, TEF/TCF Canada, 7 langues, 47 pays. Préparez votre avenir au Canada avec ARCADINS Training Center.",
-  keywords: "TEF Canada, TCF Canada, formation professionnelle, immigration Canada, Québec, certification",
+  keywords: "TEF Canada, TCF Canada, formation professionnelle, immigration Canada, Québec, certification, IRCC, résidence permanente",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://arcadins-official.vercel.app"),
+  openGraph: {
+    type: "website",
+    locale: "fr_CA",
+    siteName: "ARCADINS Training Center",
+    title: "ARCADINS Training Center — Formation certifiée, TEF/TCF Canada",
+    description: "Plateforme internationale de formation professionnelle certifiée. Préparation TEF/TCF, immigration Canada, 28 programmes, 47 pays, 7 langues.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ARCADINS Training Center",
+    description: "Formation certifiée TEF/TCF Canada · 47 pays · 7 langues · 28 programmes",
+  },
+  robots: { index: true, follow: true },
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({
