@@ -52,11 +52,6 @@ export default function HeroSlider() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-[900px] px-6 md:px-10 pt-28 sm:pt-20 md:pt-0 text-center mx-auto">
-        <div className="inline-flex items-center gap-2 bg-gold/12 border border-gold/36 px-5 py-2 rounded-full text-gold text-[11px] font-bold tracking-[2.5px] uppercase mb-7">
-          <span className="w-[7px] h-[7px] rounded-full bg-gold animate-blink shrink-0" />
-          {t(UI["hero.badge"], lang)}
-        </div>
-
         <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-[56px] leading-[1.1] text-white mb-6 [text-shadow:0_2px_24px_rgba(0,0,0,0.4)]">
           {t(UI["hero.title1"], lang)}
           <br />
