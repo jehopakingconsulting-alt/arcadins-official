@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { PROGRAMS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
-import { getInstallmentPlan, getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
+import { getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
 import Link from "next/link";
 
 export default function CourseDetailPage() {
@@ -14,10 +14,8 @@ export default function CourseDetailPage() {
   const course = PROGRAMS.find((p) => p.slug === slug);
   const cName = course && UI[`c.${course.slug}`] ? t(UI[`c.${course.slug}`], lang) : course?.name || "";
   const cDesc = course && UI[`cd.${course.slug}`] ? t(UI[`cd.${course.slug}`], lang) : course?.description || "";
-  const [enrolled, setEnrolled] = useState(false);
+  const [enrollmentStatus, setEnrollmentStatus] = useState<string | null>(null);
   const [checking, setChecking] = useState(true);
-  const [paymentChoice, setPaymentChoice] = useState<"full" | "installment">("full");
-  const installmentPlan = course ? getInstallmentPlan(course.price) : null;
   const fullTotal = course ? getFullPaymentTotal(course.price) : 0;
 
   useEffect(() => {
@@ -30,16 +28,21 @@ export default function CourseDetailPage() {
       if (program) {
         const { data: enrollment } = await supabase
           .from("enrollments")
-          .select("id")
+          .select("status")
           .eq("user_id", user.id)
           .eq("program_id", program.id)
-          .eq("status", "active")
+          .order("enrolled_at", { ascending: false })
+          .limit(1)
           .maybeSingle();
-        setEnrolled(!!enrollment);
+        setEnrollmentStatus(enrollment?.status || null);
       }
       setChecking(false);
     })();
   }, [course]);
+
+  const enrolled = enrollmentStatus === "active";
+  const pendingPayment = enrollmentStatus === "pending_payment";
+  const suspended = enrollmentStatus === "suspended";
 
   if (!course) {
     return (
@@ -112,6 +115,36 @@ export default function CourseDetailPage() {
                   className="bg-gold text-navy font-bold text-[15px] px-8 py-4 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 sm:ml-auto"
                 >
                   📚 Accéder au contenu →
+                </Link>
+              </>
+            ) : pendingPayment ? (
+              <>
+                <div className="flex items-center gap-3">
+                  <span className="bg-amber-400/20 text-amber-300 font-bold text-base px-5 py-2 rounded-full">
+                    ⏳ En attente de versement
+                  </span>
+                  <span className="text-white/40 text-sm">Complétez votre premier versement pour débuter</span>
+                </div>
+                <Link
+                  href={`/formations/${course.slug}/inscription`}
+                  className="bg-gold text-navy font-bold text-[15px] px-8 py-4 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 sm:ml-auto"
+                >
+                  Continuer mon inscription →
+                </Link>
+              </>
+            ) : suspended ? (
+              <>
+                <div className="flex items-center gap-3">
+                  <span className="bg-red-400/20 text-red-300 font-bold text-base px-5 py-2 rounded-full">
+                    ⛔ Compte suspendu
+                  </span>
+                  <span className="text-white/40 text-sm">Un versement n&apos;a pas été reçu — régularisez pour reprendre l&apos;accès</span>
+                </div>
+                <Link
+                  href="/contact"
+                  className="bg-gold text-navy font-bold text-[15px] px-8 py-4 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 sm:ml-auto"
+                >
+                  Nous contacter →
                 </Link>
               </>
             ) : (
@@ -211,57 +244,53 @@ export default function CourseDetailPage() {
                     📧 Être notifié →
                   </Link>
                 </>
+              ) : enrolled ? (
+                <>
+                  <div className="text-3xl mb-3">📚</div>
+                  <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">Vous êtes inscrit</h3>
+                  <Link href={`/formations/${course.slug}/learn`} className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid">
+                    Accéder au contenu →
+                  </Link>
+                </>
+              ) : pendingPayment ? (
+                <>
+                  <div className="text-3xl mb-3">⏳</div>
+                  <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">Versement en attente</h3>
+                  <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
+                    Vos frais d&apos;inscription ont été reçus. Complétez votre premier versement avant la date limite.
+                  </p>
+                  <Link href={`/formations/${course.slug}/inscription`} className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid">
+                    Continuer mon inscription →
+                  </Link>
+                </>
+              ) : suspended ? (
+                <>
+                  <div className="text-3xl mb-3">⛔</div>
+                  <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">Compte suspendu</h3>
+                  <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
+                    Un versement mensuel n&apos;a pas été reçu à temps. Contactez-nous pour régulariser votre dossier.
+                  </p>
+                  <Link href="/contact" className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid">
+                    Nous contacter →
+                  </Link>
+                </>
               ) : (
                 <>
                   <div className="text-3xl mb-3">🎯</div>
-                  <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-4">
-                    Choisissez votre mode de paiement
+                  <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">
+                    Réservez votre place
                   </h3>
-
-                  <div className="flex flex-col gap-3 mb-5 text-left">
-                    {/* Full payment option */}
-                    <button
-                      onClick={() => setPaymentChoice("full")}
-                      className={`rounded-xl border-2 p-4 transition-all ${
-                        paymentChoice === "full" ? "border-gold bg-gold/10" : "border-gold/20 bg-white hover:border-gold/40"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-sm font-bold text-navy">Paiement complet</span>
-                        {paymentChoice === "full" && <span className="text-gold text-sm">✓</span>}
-                      </div>
-                      <div className="text-[13px] text-muted">
-                        {fullTotal.toLocaleString()} CAD en un seul versement
-                      </div>
-                    </button>
-
-                    {/* Installment option */}
-                    {installmentPlan && (
-                      <button
-                        onClick={() => setPaymentChoice("installment")}
-                        className={`rounded-xl border-2 p-4 transition-all ${
-                          paymentChoice === "installment" ? "border-gold bg-gold/10" : "border-gold/20 bg-white hover:border-gold/40"
-                        }`}
-                      >
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-bold text-navy">3 versements égaux</span>
-                          {paymentChoice === "installment" && <span className="text-gold text-sm">✓</span>}
-                        </div>
-                        <div className="text-[13px] text-muted">
-                          {installmentPlan.installments[0] + installmentPlan.registrationFee}$ puis {installmentPlan.installments[1]}$ et {installmentPlan.installments[2]}$ / mois
-                        </div>
-                      </button>
-                    )}
-                  </div>
-
+                  <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
+                    Commencez par les frais d&apos;inscription de {REGISTRATION_FEE}$. Vous aurez ensuite 30 jours pour effectuer votre premier versement ({fullTotal.toLocaleString()}$ total) — en un seul paiement ou en 3 versements mensuels.
+                  </p>
                   <a
-                    href={`/api/checkout?course=${course.slug}&price=${course.price}&payment=${paymentChoice}`}
+                    href={`/api/checkout?course=${course.slug}&price=${course.price}&step=fee`}
                     className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid hover:-translate-y-0.5"
                   >
-                    S&apos;inscrire maintenant →
+                    Payer les frais d&apos;inscription — {REGISTRATION_FEE}$ →
                   </a>
                   <p className="text-xs text-muted mt-3">
-                    Paiement sécurisé par Stripe · Frais d&apos;inscription {REGISTRATION_FEE}$ inclus · Certificat inclus
+                    Paiement sécurisé par Stripe · Frais non remboursables
                   </p>
                 </>
               )}
