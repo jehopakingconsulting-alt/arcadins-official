@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import type { Lesson } from "@/types/lesson";
+import { resolveCourse } from "@/lib/lessons/translations";
+import { useLang } from "@/lib/i18n";
 import QuizView from "./QuizView";
 
 interface Props {
@@ -14,13 +16,15 @@ interface Props {
 }
 
 export default function LearnViewer({ courseSlug, courseName, courseIcon, lessons, completedIndexes }: Props) {
+  const { lang } = useLang();
   const [active, setActive] = useState(0);
   const [completed, setCompleted] = useState<Set<number>>(new Set(completedIndexes));
   const [saving, setSaving] = useState(false);
   const [certificateId, setCertificateId] = useState<string | null>(null);
   const [issuingCert, setIssuingCert] = useState(false);
 
-  const lesson = lessons[active];
+  const resolvedLessons = resolveCourse(lessons, lang, courseSlug);
+  const lesson = resolvedLessons[active];
   const progressPct = lessons.length > 0 ? Math.round((completed.size / lessons.length) * 100) : 0;
   const isFullyComplete = lessons.length > 0 && completed.size === lessons.length;
 
@@ -138,7 +142,7 @@ export default function LearnViewer({ courseSlug, courseName, courseIcon, lesson
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
           {/* Sidebar module list */}
           <div className="bg-white rounded-2xl border border-gold/15 p-3 h-fit lg:sticky lg:top-32">
-            {lessons.map((l, i) => (
+            {resolvedLessons.map((l, i) => (
               <button
                 key={i}
                 onClick={() => setActive(i)}
