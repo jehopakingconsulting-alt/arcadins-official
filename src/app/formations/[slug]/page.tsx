@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { PROGRAMS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
+import { getInstallmentPlan, getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
 import Link from "next/link";
 
 export default function CourseDetailPage() {
@@ -15,6 +16,9 @@ export default function CourseDetailPage() {
   const cDesc = course && UI[`cd.${course.slug}`] ? t(UI[`cd.${course.slug}`], lang) : course?.description || "";
   const [enrolled, setEnrolled] = useState(false);
   const [checking, setChecking] = useState(true);
+  const [paymentChoice, setPaymentChoice] = useState<"full" | "installment">("full");
+  const installmentPlan = course ? getInstallmentPlan(course.price) : null;
+  const fullTotal = course ? getFullPaymentTotal(course.price) : 0;
 
   useEffect(() => {
     if (!course) return;
@@ -117,22 +121,14 @@ export default function CourseDetailPage() {
                   <span className="font-[family-name:var(--font-heading)] text-[56px] font-bold text-gold leading-none">
                     {course.price.toLocaleString()}
                   </span>
-                  <span className="text-white/40 text-sm">/ 24 semaines</span>
+                  <span className="text-white/40 text-sm">/ 24 semaines + {REGISTRATION_FEE}$ inscription</span>
                 </div>
-                <div className="flex gap-3 flex-wrap sm:ml-auto">
-                  <a
-                    href={`/api/checkout?course=${course.slug}&price=${course.price}`}
-                    className="bg-gold text-navy font-bold text-[15px] px-8 py-4 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-[0_14px_42px_rgba(201,168,76,0.32)]"
-                  >
-                    💳 S&apos;inscrire maintenant
-                  </a>
-                  <Link
-                    href="/contact"
-                    className="bg-transparent text-white font-semibold text-[15px] px-7 py-4 rounded-[10px] border-[1.5px] border-white/28 transition-all inline-flex items-center gap-2 hover:border-gold hover:text-gold"
-                  >
-                    📞 Nous contacter
-                  </Link>
-                </div>
+                <Link
+                  href="/contact"
+                  className="bg-transparent text-white font-semibold text-[15px] px-7 py-4 rounded-[10px] border-[1.5px] border-white/28 transition-all inline-flex items-center gap-2 hover:border-gold hover:text-gold sm:ml-auto"
+                >
+                  📞 Nous contacter
+                </Link>
               </>
             )}
           </div>
@@ -179,7 +175,8 @@ export default function CourseDetailPage() {
                 {[
                   { icon: "⏱", label: "Durée", value: course.duration },
                   { icon: "🎓", label: "Certification", value: course.certification },
-                  { icon: "💰", label: "Prix", value: `${course.price.toLocaleString()} CAD` },
+                  { icon: "💰", label: "Prix", value: `${course.price.toLocaleString()} CAD + ${REGISTRATION_FEE}$ inscription` },
+                  { icon: "📅", label: "Paiement", value: "Complet ou 3 versements" },
                   { icon: "📋", label: "Modules", value: `${course.modules.length} modules` },
                   { icon: "🌐", label: "Format", value: "100% en ligne" },
                   { icon: "🗣", label: "Langues", value: "Français · Anglais" },
@@ -217,20 +214,54 @@ export default function CourseDetailPage() {
               ) : (
                 <>
                   <div className="text-3xl mb-3">🎯</div>
-                  <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">
-                    Prêt à commencer ?
+                  <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-4">
+                    Choisissez votre mode de paiement
                   </h3>
-                  <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
-                    Rejoignez des milliers d&apos;apprenants et commencez votre formation dès aujourd&apos;hui.
-                  </p>
+
+                  <div className="flex flex-col gap-3 mb-5 text-left">
+                    {/* Full payment option */}
+                    <button
+                      onClick={() => setPaymentChoice("full")}
+                      className={`rounded-xl border-2 p-4 transition-all ${
+                        paymentChoice === "full" ? "border-gold bg-gold/10" : "border-gold/20 bg-white hover:border-gold/40"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-sm font-bold text-navy">Paiement complet</span>
+                        {paymentChoice === "full" && <span className="text-gold text-sm">✓</span>}
+                      </div>
+                      <div className="text-[13px] text-muted">
+                        {fullTotal.toLocaleString()} CAD en un seul versement
+                      </div>
+                    </button>
+
+                    {/* Installment option */}
+                    {installmentPlan && (
+                      <button
+                        onClick={() => setPaymentChoice("installment")}
+                        className={`rounded-xl border-2 p-4 transition-all ${
+                          paymentChoice === "installment" ? "border-gold bg-gold/10" : "border-gold/20 bg-white hover:border-gold/40"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-sm font-bold text-navy">3 versements égaux</span>
+                          {paymentChoice === "installment" && <span className="text-gold text-sm">✓</span>}
+                        </div>
+                        <div className="text-[13px] text-muted">
+                          {installmentPlan.installments[0] + installmentPlan.registrationFee}$ puis {installmentPlan.installments[1]}$ et {installmentPlan.installments[2]}$ / mois
+                        </div>
+                      </button>
+                    )}
+                  </div>
+
                   <a
-                    href={`/api/checkout?course=${course.slug}&price=${course.price}`}
+                    href={`/api/checkout?course=${course.slug}&price=${course.price}&payment=${paymentChoice}`}
                     className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid hover:-translate-y-0.5"
                   >
-                    S&apos;inscrire — {course.price.toLocaleString()} CAD →
+                    S&apos;inscrire maintenant →
                   </a>
                   <p className="text-xs text-muted mt-3">
-                    Paiement sécurisé par Stripe · Certificat inclus
+                    Paiement sécurisé par Stripe · Frais d&apos;inscription {REGISTRATION_FEE}$ inclus · Certificat inclus
                   </p>
                 </>
               )}

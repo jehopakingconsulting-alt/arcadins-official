@@ -2,6 +2,7 @@
 
 import { PROGRAMS, PAYMENT_METHODS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
+import { getInstallmentPlan, REGISTRATION_FEE } from "@/lib/pricing";
 import Link from "next/link";
 
 export default function TarifsPage() {
@@ -40,11 +41,14 @@ export default function TarifsPage() {
                 {desc}
               </p>
 
-              <div className="flex items-baseline gap-1 mb-5">
+              <div className="flex items-baseline gap-1 mb-1">
                 <span className="text-[15px] text-white/50">CAD</span>
                 <span className="font-[family-name:var(--font-heading)] text-[40px] font-bold text-gold leading-none">
                   {course.price.toLocaleString()}
                 </span>
+              </div>
+              <div className="text-[11.5px] text-white/40 mb-5">
+                + {REGISTRATION_FEE}$ inscription · ou 3× ({getInstallmentPlan(course.price).installments[0] + REGISTRATION_FEE}$, 1000$, 1000$)
               </div>
 
               <ul className="mb-6 space-y-0">
