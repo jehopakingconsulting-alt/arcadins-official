@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useLang, t, UI, LANGS, type Lang } from "@/lib/i18n";
+import { useLang, t, UI } from "@/lib/i18n";
+import LanguageSelector from "./LanguageSelector";
 
 const NAV_KEYS = [
   { href: "/", key: "nav.home", icon: "🏠" },
@@ -20,7 +21,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const { lang, setLang } = useLang();
+  const { lang } = useLang();
 
   useEffect(() => {
     function onScroll() {
@@ -42,21 +43,7 @@ export default function Header() {
             <span className="opacity-40 text-[10px] hidden sm:inline">|</span>
             <span className="hidden sm:inline">47 Pays · ISO 9001</span>
           </div>
-          <div className="flex gap-1">
-            {LANGS.map((l) => (
-              <button
-                key={l}
-                onClick={() => setLang(l)}
-                className={`px-2 py-0.5 rounded-full border-[1.5px] text-[10.5px] font-bold transition-all font-[family-name:var(--font-body)] ${
-                  lang === l
-                    ? "bg-navy text-gold border-navy"
-                    : "bg-transparent text-navy border-navy/40 hover:bg-navy hover:text-gold hover:border-navy"
-                }`}
-              >
-                {l.toUpperCase()}
-              </button>
-            ))}
-          </div>
+          <LanguageSelector />
         </div>
 
         {/* Nav bar */}
