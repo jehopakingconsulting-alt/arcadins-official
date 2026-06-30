@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useLang, t, UI } from "@/lib/i18n";
+import { createClient } from "@/lib/supabase/client";
 import LanguageSelector from "./LanguageSelector";
 
 const NAV_KEYS = [
@@ -20,7 +21,11 @@ const NAV_KEYS = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [accountOpen, setAccountOpen] = useState(false);
+  const accountRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const router = useRouter();
   const { lang } = useLang();
 
   useEffect(() => {
@@ -30,6 +35,36 @@ export default function Header() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUserEmail(user?.email || null);
+    });
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUserEmail(session?.user?.email || null);
+    });
+    return () => listener.subscription.unsubscribe();
+  }, [pathname]);
+
+  useEffect(() => {
+    function onClickOutside(e: MouseEvent) {
+      if (accountRef.current && !accountRef.current.contains(e.target as Node)) {
+        setAccountOpen(false);
+      }
+    }
+    document.addEventListener("click", onClickOutside);
+    return () => document.removeEventListener("click", onClickOutside);
+  }, []);
+
+  async function handleLogout() {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    setUserEmail(null);
+    setAccountOpen(false);
+    router.push("/");
+    router.refresh();
+  }
 
   return (
     <>
@@ -90,13 +125,47 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA */}
-          <Link
-            href="/tarifs"
-            className="hidden lg:block bg-gold text-navy font-bold text-[13px] px-5 py-2.5 rounded-[9px] transition-all hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(201,168,76,0.3)] shrink-0"
-          >
-            {t(UI["nav.cta"], lang)}
-          </Link>
+          {/* CTA / Account */}
+          {userEmail ? (
+            <div className="hidden lg:block relative" ref={accountRef}>
+              <button
+                onClick={() => setAccountOpen(!accountOpen)}
+                className="flex items-center gap-2 bg-white/8 border border-gold/25 text-gold font-semibold text-[13px] px-4 py-2.5 rounded-[9px] transition-all hover:bg-white/12 shrink-0"
+              >
+                <span className="w-6 h-6 rounded-full bg-gold text-navy flex items-center justify-center text-[11px] font-bold">
+                  {userEmail[0].toUpperCase()}
+                </span>
+                <span className="max-w-[120px] truncate">{userEmail}</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className={`w-2.5 h-2.5 transition-transform ${accountOpen ? "rotate-180" : ""}`}>
+                  <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              {accountOpen && (
+                <div className="absolute top-full right-0 mt-2 bg-navy border border-gold/25 rounded-xl shadow-[0_12px_32px_rgba(0,0,0,0.4)] overflow-hidden min-w-[200px]">
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setAccountOpen(false)}
+                    className="block px-4 py-3 text-[13.5px] font-medium text-white/80 hover:bg-gold/10 hover:text-gold transition-all"
+                  >
+                    📊 {t(UI["nav.dashboard"], lang)}
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-3 text-[13.5px] font-medium text-white/80 hover:bg-gold/10 hover:text-gold transition-all border-t border-white/5"
+                  >
+                    🚪 {t(UI["nav.logout"], lang)}
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              href="/tarifs"
+              className="hidden lg:block bg-gold text-navy font-bold text-[13px] px-5 py-2.5 rounded-[9px] transition-all hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(201,168,76,0.3)] shrink-0"
+            >
+              {t(UI["nav.cta"], lang)}
+            </Link>
+          )}
 
           {/* Hamburger */}
           <button
@@ -127,13 +196,31 @@ export default function Header() {
               {item.icon} {t(UI[item.key], lang)}
             </Link>
           ))}
-          <Link
-            href="/tarifs"
-            onClick={() => setMenuOpen(false)}
-            className="bg-gold text-navy font-bold text-base py-4 rounded-xl text-center mt-4"
-          >
-            {t(UI["nav.cta"], lang)} →
-          </Link>
+          {userEmail ? (
+            <>
+              <Link
+                href="/dashboard"
+                onClick={() => setMenuOpen(false)}
+                className="bg-gold text-navy font-bold text-base py-4 rounded-xl text-center mt-4"
+              >
+                📊 {t(UI["nav.dashboard"], lang)}
+              </Link>
+              <button
+                onClick={() => { handleLogout(); setMenuOpen(false); }}
+                className="bg-white/8 border border-gold/25 text-gold font-semibold text-base py-4 rounded-xl text-center"
+              >
+                🚪 {t(UI["nav.logout"], lang)}
+              </button>
+            </>
+          ) : (
+            <Link
+              href="/tarifs"
+              onClick={() => setMenuOpen(false)}
+              className="bg-gold text-navy font-bold text-base py-4 rounded-xl text-center mt-4"
+            >
+              {t(UI["nav.cta"], lang)} →
+            </Link>
+          )}
         </div>
       )}
     </>

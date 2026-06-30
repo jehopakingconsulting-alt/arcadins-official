@@ -31,6 +31,8 @@ export const UI: Translations = {
   "nav.temoignages": { fr: "Témoignages", en: "Reviews", es: "Testimonios", it: "Testimonianze", pt: "Depoimentos", de: "Erfahrungen", ht: "Temwayaj" },
   "nav.contact": { fr: "Contact", en: "Contact", es: "Contacto", it: "Contatto", pt: "Contato", de: "Kontakt", ht: "Kontak" },
   "nav.cta": { fr: "S'inscrire", en: "Enroll Now", es: "Inscribirse", it: "Iscriviti", pt: "Inscrever-se", de: "Einschreiben", ht: "Enskri" },
+  "nav.dashboard": { fr: "Mon tableau de bord", en: "My Dashboard", es: "Mi panel", it: "La mia dashboard", pt: "Meu painel", de: "Mein Dashboard", ht: "Tablo bò mwen" },
+  "nav.logout": { fr: "Déconnexion", en: "Log out", es: "Cerrar sesión", it: "Disconnetti", pt: "Sair", de: "Abmelden", ht: "Dekonekte" },
 
   // Hero
   "hero.badge": { fr: "Certifié Québec & Canada · 7 Langues · 47 Pays", en: "Certified Quebec & Canada · 7 Languages · 47 Countries", es: "Certificado Quebec & Canadá · 7 Idiomas · 47 Países", it: "Certificato Quebec & Canada · 7 Lingue · 47 Paesi", pt: "Certificado Quebec & Canadá · 7 Idiomas · 47 Países", de: "Zertifiziert Quebec & Kanada · 7 Sprachen · 47 Länder", ht: "Sètifye Quebec & Kanada · 7 Lang · 47 Peyi" },
