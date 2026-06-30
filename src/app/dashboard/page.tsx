@@ -25,7 +25,16 @@ export default async function DashboardPage() {
         .order("enrolled_at", { ascending: false })
     : { data: [] };
 
+  const { data: certificates } = user
+    ? await supabase
+        .from("certificates")
+        .select("id, certificate_number, course_slug, issued_at, programs(name_fr)")
+        .eq("user_id", user.id)
+        .order("issued_at", { ascending: false })
+    : { data: [] };
+
   const activeCount = (enrollments || []).filter((e) => e.status === "active").length;
+  const certCount = (certificates || []).length;
 
   return (
     <div className="bg-off-white min-h-screen pt-32 pb-20 px-7">
@@ -48,7 +57,7 @@ export default async function DashboardPage() {
           {[
             { icon: "📚", label: "Formations actives", value: String(activeCount) },
             { icon: "📋", label: "Examens passés", value: "0" },
-            { icon: "🏆", label: "Certificats obtenus", value: "0" },
+            { icon: "🏆", label: "Certificats obtenus", value: String(certCount) },
             { icon: "📊", label: "Score moyen", value: "—" },
           ].map((s) => (
             <div
@@ -133,6 +142,32 @@ export default async function DashboardPage() {
               >
                 Voir les tarifs
               </Link>
+            </div>
+          </div>
+        )}
+
+        {/* Certificates */}
+        {certificates && certificates.length > 0 && (
+          <div className="bg-white border border-gold/16 rounded-[28px] p-8 mb-8">
+            <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-4">
+              🏆 Mes certificats
+            </h3>
+            <div className="space-y-3">
+              {certificates.map((c) => {
+                const program = c.programs as unknown as { name_fr: string } | null;
+                const courseInfo = PROGRAMS.find((p) => p.slug === c.course_slug);
+                return (
+                  <div key={c.id} className="flex items-center justify-between gap-4 p-4 bg-gold/5 border border-gold/15 rounded-xl flex-wrap">
+                    <div>
+                      <div className="font-semibold text-navy text-sm">{program?.name_fr || courseInfo?.name}</div>
+                      <div className="text-xs text-muted font-[family-name:var(--font-mono)]">{c.certificate_number} · {new Date(c.issued_at).toLocaleDateString("fr-CA")}</div>
+                    </div>
+                    <Link href={`/certificate/${c.id}`} className="bg-navy text-gold font-bold text-sm px-5 py-2 rounded-lg shrink-0">
+                      Voir →
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

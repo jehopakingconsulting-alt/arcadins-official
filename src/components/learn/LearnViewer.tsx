@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import type { Lesson } from "@/types/lesson";
 
@@ -16,9 +16,36 @@ export default function LearnViewer({ courseSlug, courseName, courseIcon, lesson
   const [active, setActive] = useState(0);
   const [completed, setCompleted] = useState<Set<number>>(new Set(completedIndexes));
   const [saving, setSaving] = useState(false);
+  const [certificateId, setCertificateId] = useState<string | null>(null);
+  const [issuingCert, setIssuingCert] = useState(false);
 
   const lesson = lessons[active];
   const progressPct = lessons.length > 0 ? Math.round((completed.size / lessons.length) * 100) : 0;
+  const isFullyComplete = lessons.length > 0 && completed.size === lessons.length;
+
+  const issueCertificate = useCallback(async () => {
+    setIssuingCert(true);
+    try {
+      const res = await fetch("/api/certificates", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ courseSlug }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setCertificateId(data.id);
+      }
+    } finally {
+      setIssuingCert(false);
+    }
+  }, [courseSlug]);
+
+  useEffect(() => {
+    if (isFullyComplete && !certificateId && !issuingCert) {
+      issueCertificate();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFullyComplete]);
 
   async function toggleComplete() {
     setSaving(true);
@@ -68,6 +95,29 @@ export default function LearnViewer({ courseSlug, courseName, courseIcon, lesson
             ← Mon tableau de bord
           </Link>
         </div>
+
+        {/* Certificate banner */}
+        {isFullyComplete && (
+          <div className="bg-gradient-to-r from-gold to-gold-light rounded-2xl p-6 mb-6 flex items-center gap-4 flex-wrap">
+            <div className="text-3xl">🏆</div>
+            <div className="flex-1 min-w-[200px]">
+              <div className="font-[family-name:var(--font-heading)] text-lg text-navy font-bold">
+                Félicitations ! Formation complétée à 100%
+              </div>
+              <div className="text-navy/70 text-[13.5px]">
+                {issuingCert ? "Émission de votre certificat en cours..." : "Votre certificat officiel est prêt."}
+              </div>
+            </div>
+            {certificateId && (
+              <Link
+                href={`/certificate/${certificateId}`}
+                className="bg-navy text-gold font-bold text-sm px-6 py-3 rounded-xl shrink-0"
+              >
+                🎓 Voir mon certificat →
+              </Link>
+            )}
+          </div>
+        )}
 
         {/* Progress bar */}
         <div className="bg-white rounded-2xl border border-gold/15 p-4 mb-6 flex items-center gap-4">
