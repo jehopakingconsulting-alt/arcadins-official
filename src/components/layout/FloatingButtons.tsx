@@ -2,7 +2,7 @@
 
 export default function FloatingButtons() {
   return (
-    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-[900] flex flex-col gap-3">
+    <div className="fixed left-3 sm:left-4 bottom-24 sm:bottom-28 z-[900] flex flex-col gap-2.5 sm:gap-3">
       {/* Messenger */}
       <a
         href="https://m.me/arcadinstraining"
