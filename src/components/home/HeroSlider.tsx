@@ -102,10 +102,6 @@ export default function HeroSlider() {
         </div>
       </div>
 
-      {/* Arrows */}
-      <button onClick={() => goTo(current - 1)} className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] rounded-full bg-white/9 border border-white/18 backdrop-blur-[8px] text-white/75 text-xl flex items-center justify-center cursor-pointer transition-all hover:bg-gold/22 hover:border-gold/45 hover:text-gold hover:scale-[1.08]">←</button>
-      <button onClick={() => goTo(current + 1)} className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-[50px] h-[50px] rounded-full bg-white/9 border border-white/18 backdrop-blur-[8px] text-white/75 text-xl flex items-center justify-center cursor-pointer transition-all hover:bg-gold/22 hover:border-gold/45 hover:text-gold hover:scale-[1.08]">→</button>
-
       {/* Dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2.5 items-center">
         {SLIDES.map((_, i) => (
