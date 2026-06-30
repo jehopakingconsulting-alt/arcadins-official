@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
+import { createAdminClient } from "@/lib/supabase/admin";
 import Stripe from "stripe";
 
 export async function POST(request: Request) {
@@ -22,17 +23,54 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
+  const supabase = createAdminClient();
+
   switch (event.type) {
     case "checkout.session.completed": {
       const session = event.data.object as Stripe.Checkout.Session;
-      console.log("Checkout completed:", session.id, session.metadata);
-      // TODO: Create enrollment in Supabase
+      const metadata = session.metadata;
+
+      if (!metadata?.userId) {
+        console.error("Checkout completed without userId in metadata:", session.id);
+        break;
+      }
+
+      if (metadata.type === "course" && metadata.course) {
+        const { data: program } = await supabase
+          .from("programs")
+          .select("id")
+          .eq("slug", metadata.course)
+          .single();
+
+        if (program) {
+          await supabase.from("enrollments").insert({
+            user_id: metadata.userId,
+            program_id: program.id,
+            plan: "course",
+            status: "active",
+            stripe_subscription_id: session.id,
+          });
+        } else {
+          console.error("Program not found for slug:", metadata.course);
+        }
+      } else if (metadata.type === "subscription" && metadata.plan) {
+        await supabase.from("enrollments").insert({
+          user_id: metadata.userId,
+          program_id: null,
+          plan: metadata.plan,
+          billing: metadata.billing || "monthly",
+          status: "active",
+          stripe_subscription_id: session.subscription as string || session.id,
+        });
+      }
       break;
     }
     case "customer.subscription.deleted": {
       const sub = event.data.object as Stripe.Subscription;
-      console.log("Subscription cancelled:", sub.id);
-      // TODO: Update enrollment status in Supabase
+      await supabase
+        .from("enrollments")
+        .update({ status: "cancelled" })
+        .eq("stripe_subscription_id", sub.id);
       break;
     }
   }

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
+import { createClient } from "@/lib/supabase/server";
 
 const PLANS: Record<string, { monthly: number; annual: number; name: string }> = {
   starter: { monthly: 19900, annual: 15900, name: "ARCADINS Starter" },
@@ -13,6 +14,17 @@ export async function GET(request: Request) {
   const course = searchParams.get("course");
   const coursePrice = searchParams.get("price");
 
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    const redirectPath = course ? `/formations/${course}` : "/tarifs";
+    const loginUrl = new URL("/auth/login", siteUrl);
+    loginUrl.searchParams.set("redirect", redirectPath);
+    loginUrl.searchParams.set("checkout", searchParams.toString());
+    return NextResponse.redirect(loginUrl);
+  }
+
   if (course && coursePrice) {
     const priceInCents = parseInt(coursePrice) * 100;
     const courseName = course.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
@@ -20,11 +32,12 @@ export async function GET(request: Request) {
     try {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
+        customer_email: user.email,
         line_items: [
           {
             price_data: {
               currency: "cad",
-              product_data: { name: `ARCADINS — ${courseName}`, description: "Formation complète de 6 mois · Certificat inclus" },
+              product_data: { name: `ARCADINS — ${courseName}`, description: "Formation complète de 24 semaines · Certificat inclus" },
               unit_amount: priceInCents,
             },
             quantity: 1,
@@ -33,7 +46,7 @@ export async function GET(request: Request) {
         mode: "payment",
         success_url: `${siteUrl}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${siteUrl}/formations/${course}`,
-        metadata: { type: "course", course, price: coursePrice },
+        metadata: { type: "course", course, price: coursePrice, userId: user.id },
       });
 
       return NextResponse.redirect(session.url!, 303);
@@ -54,6 +67,7 @@ export async function GET(request: Request) {
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
+      customer_email: user.email,
       line_items: [
         {
           price_data: {
@@ -68,7 +82,7 @@ export async function GET(request: Request) {
       mode: "subscription",
       success_url: `${siteUrl}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/tarifs`,
-      metadata: { type: "subscription", plan, billing },
+      metadata: { type: "subscription", plan, billing, userId: user.id },
     });
 
     return NextResponse.redirect(session.url!, 303);

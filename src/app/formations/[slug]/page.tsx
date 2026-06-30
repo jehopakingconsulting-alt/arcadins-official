@@ -1,8 +1,10 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { PROGRAMS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
+import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 
 export default function CourseDetailPage() {
@@ -11,6 +13,29 @@ export default function CourseDetailPage() {
   const course = PROGRAMS.find((p) => p.slug === slug);
   const cName = course && UI[`c.${course.slug}`] ? t(UI[`c.${course.slug}`], lang) : course?.name || "";
   const cDesc = course && UI[`cd.${course.slug}`] ? t(UI[`cd.${course.slug}`], lang) : course?.description || "";
+  const [enrolled, setEnrolled] = useState(false);
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    if (!course) return;
+    const supabase = createClient();
+    (async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) { setChecking(false); return; }
+      const { data: program } = await supabase.from("programs").select("id").eq("slug", course.slug).single();
+      if (program) {
+        const { data: enrollment } = await supabase
+          .from("enrollments")
+          .select("id")
+          .eq("user_id", user.id)
+          .eq("program_id", program.id)
+          .eq("status", "active")
+          .maybeSingle();
+        setEnrolled(!!enrollment);
+      }
+      setChecking(false);
+    })();
+  }, [course]);
 
   if (!course) {
     return (
@@ -68,6 +93,21 @@ export default function CourseDetailPage() {
                   className="bg-gold text-navy font-bold text-[15px] px-8 py-4 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 sm:ml-auto"
                 >
                   📧 Être notifié du lancement
+                </Link>
+              </>
+            ) : enrolled ? (
+              <>
+                <div className="flex items-center gap-3">
+                  <span className="bg-gold/20 text-gold font-bold text-base px-5 py-2 rounded-full">
+                    ✓ Déjà inscrit
+                  </span>
+                  <span className="text-white/40 text-sm">Vous avez accès au contenu complet</span>
+                </div>
+                <Link
+                  href={`/formations/${course.slug}/learn`}
+                  className="bg-gold text-navy font-bold text-[15px] px-8 py-4 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 sm:ml-auto"
+                >
+                  📚 Accéder au contenu →
                 </Link>
               </>
             ) : (
