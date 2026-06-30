@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import type { Lesson } from "@/types/lesson";
+import QuizView from "./QuizView";
 
 interface Props {
   courseSlug: string;
@@ -47,24 +48,31 @@ export default function LearnViewer({ courseSlug, courseName, courseIcon, lesson
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFullyComplete]);
 
-  async function toggleComplete() {
+  async function setLessonCompleted(lessonIndex: number, value: boolean) {
     setSaving(true);
-    const isCompleted = completed.has(active);
     try {
       await fetch("/api/progress", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ courseSlug, lessonIndex: active, completed: !isCompleted }),
+        body: JSON.stringify({ courseSlug, lessonIndex, completed: value }),
       });
       setCompleted((prev) => {
         const next = new Set(prev);
-        if (isCompleted) next.delete(active);
-        else next.add(active);
+        if (value) next.add(lessonIndex);
+        else next.delete(lessonIndex);
         return next;
       });
     } finally {
       setSaving(false);
     }
+  }
+
+  function uncompleteActive() {
+    setLessonCompleted(active, false);
+  }
+
+  function passQuiz() {
+    setLessonCompleted(active, true);
   }
 
   if (!lesson) {
@@ -198,7 +206,7 @@ export default function LearnViewer({ courseSlug, courseName, courseIcon, lesson
               </div>
             )}
 
-            {/* Navigation + complete */}
+            {/* Navigation */}
             <div className="flex items-center justify-between gap-3 pt-6 border-t border-off-white flex-wrap">
               <button
                 onClick={() => setActive(Math.max(0, active - 1))}
@@ -208,15 +216,17 @@ export default function LearnViewer({ courseSlug, courseName, courseIcon, lesson
                 ← Module précédent
               </button>
 
-              <button
-                onClick={toggleComplete}
-                disabled={saving}
-                className={`px-6 py-3 rounded-[10px] font-bold text-sm transition-all ${
-                  completed.has(active) ? "bg-off-white text-navy border border-gold/30" : "bg-gold text-navy hover:bg-gold-light"
-                }`}
-              >
-                {completed.has(active) ? "✓ Module complété" : "Marquer comme complété"}
-              </button>
+              {completed.has(active) ? (
+                <button
+                  onClick={uncompleteActive}
+                  disabled={saving}
+                  className="px-6 py-3 rounded-[10px] font-bold text-sm bg-off-white text-navy border border-gold/30 transition-all"
+                >
+                  ✓ Module complété
+                </button>
+              ) : (
+                <div className="text-sm font-semibold text-muted">↓ Réussissez le test ci-dessous pour valider ce module</div>
+              )}
 
               <button
                 onClick={() => setActive(Math.min(lessons.length - 1, active + 1))}
@@ -226,6 +236,10 @@ export default function LearnViewer({ courseSlug, courseName, courseIcon, lesson
                 Module suivant →
               </button>
             </div>
+
+            {!completed.has(active) && lesson.quiz.length > 0 && (
+              <QuizView key={active} quiz={lesson.quiz} onPass={passQuiz} saving={saving} />
+            )}
           </div>
         </div>
       </div>
