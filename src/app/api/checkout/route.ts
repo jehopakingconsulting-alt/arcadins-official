@@ -8,7 +8,7 @@ const PLANS: Record<string, { monthly: number; annual: number; name: string }> =
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://arcadins-official.vercel.app";
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "").trim() || "https://arcadins-official.vercel.app";
 
   const course = searchParams.get("course");
   const coursePrice = searchParams.get("price");

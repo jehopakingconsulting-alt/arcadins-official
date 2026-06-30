@@ -36,7 +36,13 @@ export const metadata: Metadata = {
   },
   description: "Formation professionnelle certifiée, TEF/TCF Canada, 7 langues, 47 pays. Préparez votre avenir au Canada avec ARCADINS Training Center.",
   keywords: "TEF Canada, TCF Canada, formation professionnelle, immigration Canada, Québec, certification, IRCC, résidence permanente",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://arcadins-official.vercel.app"),
+  metadataBase: (() => {
+    try {
+      return new URL((process.env.NEXT_PUBLIC_SITE_URL || "").trim() || "https://arcadins-official.vercel.app");
+    } catch {
+      return new URL("https://arcadins-official.vercel.app");
+    }
+  })(),
   openGraph: {
     type: "website",
     locale: "fr_CA",
