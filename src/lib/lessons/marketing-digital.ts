@@ -7,16 +7,44 @@ export const marketingDigitalLessons: Lesson[] = [
       "Comprendre les piliers du marketing numérique (acquisition, conversion, fidélisation)",
       "Identifier les canaux digitaux pertinents selon le public cible",
       "Construire un entonnoir marketing simple (funnel AARRR)",
+      "Distinguer marketing digital et marketing traditionnel par la mesure et l'agilité",
     ],
     content: [
       "Le marketing digital regroupe l'ensemble des actions marketing menées sur des canaux numériques : moteurs de recherche, réseaux sociaux, email, sites web et applications mobiles. Contrairement au marketing traditionnel, il permet de mesurer précisément chaque interaction et d'ajuster les campagnes en temps réel.",
+      "Cette mesurabilité change tout. Là où une affiche ou une annonce radio ne livrent qu'une estimation approximative de leur audience, une campagne numérique enregistre chaque impression, chaque clic, chaque achat. On sait exactement combien coûte l'acquisition d'un client, quel canal la génère, et à quel moment du parcours un prospect abandonne. Le marketing cesse d'être un pari pour devenir une discipline pilotée par la donnée.",
       "Le modèle AARRR (Acquisition, Activation, Rétention, Recommandation, Revenu) sert de cadre pour structurer une stratégie digitale cohérente. Chaque étape correspond à un objectif précis : attirer du trafic qualifié, convertir les visiteurs en clients, les fidéliser, puis les transformer en ambassadeurs de la marque.",
+      "Ce funnel se lit comme un entonnoir : beaucoup de visiteurs entrent en haut (Acquisition), un sous-ensemble passe à l'action (Activation), une fraction revient (Rétention), certains recommandent la marque (Recommandation), et l'ensemble génère du chiffre d'affaires (Revenu). Le rôle du marketeur est d'identifier à quelle étape le funnel « fuit » le plus, car c'est là qu'une amélioration a le plus d'impact — inutile d'attirer plus de trafic si le site ne convertit pas.",
       "Au Canada, le marché digital est dominé par Google (recherche), Meta (Facebook/Instagram) et de plus en plus TikTok pour les audiences plus jeunes. Le choix des canaux dépend du persona cible, du budget disponible et du cycle de vente du produit ou service.",
+      "Le persona est la représentation semi-fictive du client idéal : son âge, ses habitudes, ses freins, les plateformes qu'il fréquente. Un produit B2B à cycle de vente long (plusieurs mois, plusieurs décideurs) ne se promeut pas comme un achat impulsif à 20 $. Choisir un canal parce qu'il est « à la mode » plutôt que parce que le public cible s'y trouve est l'erreur la plus fréquente et la plus coûteuse du marketing digital débutant.",
     ],
+    caseStudy: {
+      title: "Savonnerie Boréale : arrêter de « faire du Facebook » sans stratégie",
+      body: [
+        "La Savonnerie Boréale, une petite entreprise de Rimouski qui vend des savons artisanaux, dépensait 600 $ par mois en publicités Facebook sans savoir si cela rapportait quoi que ce soit. La propriétaire, Julie, « faisait du Facebook parce que tout le monde en fait ». Les ventes stagnaient et le budget publicitaire semblait perdu.",
+        "En appliquant le modèle AARRR, une analyse révèle que le problème n'est pas l'Acquisition — les publicités amènent bien des visiteurs sur le site — mais l'Activation : 92 % des visiteurs quittent la page produit sans rien ajouter au panier. Le funnel fuit à l'étape de conversion, pas de trafic. Dépenser plus en publicité n'aurait fait qu'amener plus de gens vers une page qui ne convertit pas.",
+        "Julie réoriente ses efforts : elle refait ses photos produits, ajoute des avis clients et clarifie les frais de livraison sur la fiche. Le taux d'ajout au panier double, et le même budget publicitaire génère désormais deux fois plus de ventes. La leçon : mesurer le funnel étape par étape révèle où agir, et le bon canal ne sert à rien tant que l'étape suivante n'est pas réparée.",
+      ],
+    },
+    exercise: {
+      title: "Cartographier un funnel AARRR et choisir ses canaux",
+      prompt: [
+        "Choisissez une entreprise réelle ou fictive (un produit ou un service précis) et décrivez son persona client idéal en quelques phrases : qui est-il, quels sont ses freins à l'achat, quelles plateformes fréquente-t-il ?",
+        "Construisez ensuite son funnel AARRR : pour chacune des cinq étapes (Acquisition, Activation, Rétention, Recommandation, Revenu), décrivez une action marketing concrète adaptée à ce persona et indiquez un indicateur mesurable permettant de suivre cette étape.",
+        "Identifiez enfin l'étape du funnel qui vous semble la plus fragile pour cette entreprise, et justifiez pourquoi vous y concentreriez vos efforts en priorité plutôt que d'augmenter simplement le budget d'acquisition.",
+      ],
+      deliverables: [
+        "Une description du persona client (profil, freins, plateformes fréquentées)",
+        "Un funnel AARRR complet : une action concrète et un indicateur mesurable par étape",
+        "Le choix justifié du canal principal en fonction du persona (pas de la tendance)",
+        "L'identification de l'étape la plus fragile et la justification d'y agir en priorité",
+      ],
+    },
     keyTakeaways: [
-      "Le marketing digital se mesure : chaque euro investi doit être traçable",
+      "Le marketing digital se mesure : chaque dollar investi doit être traçable",
       "Un funnel marketing bien défini guide toutes les décisions de canal et de contenu",
+      "Améliorer l'étape la plus fragile du funnel a plus d'impact qu'augmenter le trafic",
       "Le bon canal dépend du public, pas des tendances du moment",
+      "Le persona et le cycle de vente dictent la stratégie, pas l'inverse",
     ],
     resources: [
       { label: "Google Skillshop — Fondamentaux du marketing digital", url: "https://skillshop.withgoogle.com" },
@@ -35,17 +63,45 @@ export const marketingDigitalLessons: Lesson[] = [
     title: "SEO & référencement naturel",
     objectives: [
       "Maîtriser les 3 piliers du SEO : technique, contenu, popularité",
+      "Distinguer intention de recherche et volume de mots-clés",
       "Réaliser une recherche de mots-clés pertinente",
       "Optimiser une page web pour les moteurs de recherche",
     ],
     content: [
       "Le SEO (Search Engine Optimization) vise à améliorer la visibilité d'un site dans les résultats organiques de Google. Il repose sur trois piliers : le SEO technique (vitesse, structure, indexation), le contenu (pertinence, qualité, mots-clés) et la popularité (backlinks, autorité du domaine).",
+      "Ces trois piliers fonctionnent ensemble comme les pieds d'un trépied : un contenu remarquable sur un site techniquement défaillant (lent, non indexable) restera invisible, tout comme un site rapide et populaire mais sans contenu pertinent. Le SEO échoue quand on néglige l'un des trois au profit des autres. C'est un travail d'équilibriste, pas une recette à cocher une fois.",
       "La recherche de mots-clés est la première étape de toute stratégie SEO. Des outils comme Google Keyword Planner, Ubersuggest ou Ahrefs permettent d'identifier le volume de recherche et la difficulté de positionnement pour chaque terme, afin de prioriser les contenus à produire.",
+      "Mais le volume ne fait pas tout : l'intention de recherche est décisive. Derrière une requête se cache un besoin — informationnel (« comment nettoyer du cuir »), commercial (« meilleur nettoyant cuir »), ou transactionnel (« acheter nettoyant cuir Montréal »). Une PME locale a souvent tout intérêt à viser des mots-clés de longue traîne, moins recherchés mais plus précis et bien moins concurrentiels, plutôt que des termes génériques trustés par les géants.",
       "L'optimisation on-page consiste à structurer le contenu avec des balises de titre (H1, H2), une meta description engageante, des URLs propres et un maillage interne cohérent. Google valorise également l'expérience utilisateur : temps de chargement, compatibilité mobile et contenu original.",
+      "Le SEO se distingue radicalement de la publicité par son horizon temporel : c'est un actif qui se construit. Une page bien positionnée continue d'attirer du trafic gratuit des mois, voire des années après sa publication, alors qu'une annonce payante cesse d'exister dès qu'on coupe le budget. Cette patience est le prix à payer : les résultats significatifs apparaissent généralement en 3 à 6 mois, ce qui décourage ceux qui cherchent un gain immédiat mais récompense la constance.",
     ],
+    caseStudy: {
+      title: "Clinique dentaire Sourire : gagner sur la longue traîne locale",
+      body: [
+        "La Clinique dentaire Sourire, à Sherbrooke, voulait « être première sur Google pour dentiste ». Après des mois d'efforts, elle restait invisible : le mot-clé « dentiste » est férocement concurrentiel et dominé par de gros annuaires et cliniques établies au budget publicitaire imposant.",
+        "Un audit SEO réoriente la stratégie vers l'intention et la longue traîne. Plutôt que de viser le terme générique impossible, la clinique crée des pages répondant à des requêtes précises que ses vrais patients tapent : « urgence dentaire samedi Sherbrooke », « blanchiment dents prix Sherbrooke », « dentiste sans douleur enfant Estrie ». Volume plus faible par requête, mais intention d'achat forte et concurrence quasi nulle.",
+        "En trois mois, ces pages se positionnent en première page, et le total du trafic qualifié dépasse largement ce qu'aurait rapporté une bataille perdue sur « dentiste ». Mieux : ces visiteurs, arrivés sur une page qui répond exactement à leur besoin, prennent rendez-vous bien plus souvent. La leçon : en SEO local, dix mots-clés précis valent mieux qu'un mot-clé générique inaccessible.",
+      ],
+    },
+    exercise: {
+      title: "Bâtir une stratégie de mots-clés par intention",
+      prompt: [
+        "Choisissez une entreprise locale (réelle ou fictive) et son offre principale. Identifiez au moins six mots-clés qu'un client potentiel pourrait taper, puis classez chacun selon son intention : informationnelle, commerciale ou transactionnelle.",
+        "Pour chaque mot-clé, estimez qualitativement sa concurrence (faible / moyenne / forte) et indiquez s'il relève plutôt de la longue traîne ou d'un terme générique. Sélectionnez ensuite les trois mots-clés que vous prioriseriez et justifiez ce choix par le rapport intention/concurrence.",
+        "Rédigez enfin la structure on-page d'une page optimisée pour l'un de ces mots-clés : proposez un titre H1, deux sous-titres H2, une meta description engageante et l'URL propre correspondante.",
+      ],
+      deliverables: [
+        "Une liste d'au moins six mots-clés classés par intention de recherche",
+        "Une évaluation de la concurrence et du caractère longue traîne de chacun",
+        "Le choix justifié de trois mots-clés prioritaires (rapport intention/concurrence)",
+        "La structure on-page complète d'une page (H1, deux H2, meta description, URL)",
+      ],
+    },
     keyTakeaways: [
-      "Le SEO est un investissement long terme, les résultats apparaissent en 3 à 6 mois",
-      "Le contenu de qualité reste le facteur de classement le plus durable",
+      "Les trois piliers du SEO (technique, contenu, popularité) doivent progresser ensemble",
+      "L'intention de recherche prime sur le seul volume de mots-clés",
+      "La longue traîne locale bat souvent les termes génériques inaccessibles",
+      "Le SEO est un actif qui se construit : résultats en 3 à 6 mois, mais durables",
       "La recherche de mots-clés doit précéder toute création de contenu",
     ],
     resources: [
@@ -67,16 +123,45 @@ export const marketingDigitalLessons: Lesson[] = [
       "Configurer une campagne Google Ads orientée recherche",
       "Créer une campagne Facebook/Instagram Ads ciblée",
       "Comprendre les mécanismes d'enchères et le coût par clic",
+      "Distinguer publicité d'intention (Google) et publicité d'interruption (Meta)",
     ],
     content: [
+      "La publicité en ligne se répartit en deux grandes familles aux logiques opposées, qu'il faut comprendre avant de dépenser un seul dollar. La publicité d'intention (Google Ads) répond à une demande déjà exprimée : quelqu'un qui tape « plombier urgence Laval » cherche activement à acheter. La publicité d'interruption (Meta) s'invite dans un fil d'actualité où l'utilisateur ne cherchait rien : elle doit créer le désir plutôt que le capter.",
       "Google Ads fonctionne sur un système d'enchères en temps réel où les annonceurs paient pour apparaître sur des mots-clés spécifiques. Le Quality Score, calculé à partir de la pertinence de l'annonce et du taux de clic, influence directement le coût par clic et la position de l'annonce.",
+      "Ce Quality Score est le grand égalisateur : Google ne vend pas simplement la première place au plus offrant. Une petite entreprise avec une annonce très pertinente et une page de destination de qualité peut payer moins cher son clic qu'un gros concurrent à l'annonce médiocre. Optimiser la pertinence n'est donc pas seulement une bonne pratique — c'est un levier direct de réduction des coûts.",
       "Facebook Ads (Meta Ads Manager) permet un ciblage très précis basé sur les centres d'intérêt, les comportements et les données démographiques. Les campagnes les plus performantes utilisent des audiences personnalisées (clients existants) et des audiences similaires (lookalike) pour étendre la portée.",
-      "Le suivi des conversions via le pixel Meta ou Google Tag Manager est indispensable pour mesurer le retour sur investissement publicitaire (ROAS). Sans suivi, impossible de savoir quelles campagnes génèrent réellement des ventes.",
+      "L'audience lookalike illustre bien la puissance de Meta : à partir de la liste de vos meilleurs clients, l'algorithme identifie des millions de personnes qui leur ressemblent par le comportement, sans que vous ayez à deviner les critères. C'est souvent le levier le plus rentable pour une entreprise disposant déjà d'une base de clients, car il cible des inconnus statistiquement proches de ceux qui achètent déjà.",
+      "Le suivi des conversions via le pixel Meta ou Google Tag Manager est indispensable pour mesurer le retour sur investissement publicitaire (ROAS). Sans suivi, impossible de savoir quelles campagnes génèrent réellement des ventes. Le ROAS (revenu généré ÷ dépense publicitaire) est l'indicateur roi : un ROAS de 4 signifie que chaque dollar dépensé en rapporte quatre. Lancer une campagne sans avoir installé le suivi au préalable, c'est piloter les yeux fermés — on dépense sans jamais savoir ce qui fonctionne.",
     ],
+    caseStudy: {
+      title: "Écolo-Jardin : le même budget, deux plateformes, deux rôles",
+      body: [
+        "Écolo-Jardin vend des composteurs domestiques haut de gamme. L'entreprise dispose de 1 500 $ par mois et hésite : tout mettre sur Google, ou tout sur Facebook ? Elle avait d'abord tout investi sur Google et obtenait des ventes, mais à un coût par acquisition élevé, car peu de gens tapent spontanément « composteur domestique ».",
+        "L'analyse des deux logiques change la répartition. Google (intention) capte la petite minorité qui cherche déjà un composteur : volume faible mais taux de conversion élevé — on le conserve pour récolter cette demande existante. Meta (interruption) sert à créer la demande : une vidéo montrant à quel point composter est simple, ciblée sur des personnes intéressées par le jardinage et l'écologie qui ne pensaient pas encore à acheter.",
+        "Le pixel Meta et le suivi Google permettent de mesurer le ROAS de chaque plateforme séparément. Résultat : Meta génère un flux de nouveaux prospects à moindre coût qui, quelques jours plus tard, reviennent chercher la marque sur Google pour acheter. Les deux plateformes ne sont pas concurrentes mais complémentaires — l'une allume le désir, l'autre le concrétise. Sans suivi des conversions, cette synergie serait restée invisible.",
+      ],
+    },
+    exercise: {
+      title: "Concevoir un plan média Google + Meta mesurable",
+      prompt: [
+        "Pour un produit ou service de votre choix, définissez d'abord un objectif de campagne clair et unique (notoriété, trafic, ou conversion) et expliquez pourquoi il est prioritaire à ce stade de l'entreprise.",
+        "Répartissez un budget mensuel fictif entre Google Ads et Meta Ads en justifiant chaque part par la logique d'intention (Google) ou d'interruption (Meta). Pour Google, proposez trois mots-clés ; pour Meta, décrivez une audience de ciblage et l'idée d'une audience lookalike.",
+        "Décrivez enfin le dispositif de mesure que vous mettriez en place avant le lancement (pixel/suivi des conversions, indicateur ROAS visé) et expliquez comment vous décideriez de réallouer le budget après deux semaines de données.",
+      ],
+      deliverables: [
+        "Un objectif de campagne unique et justifié",
+        "Une répartition budgétaire Google/Meta argumentée par la logique de chaque plateforme",
+        "Trois mots-clés Google + une audience de ciblage Meta (dont une idée de lookalike)",
+        "Un dispositif de mesure (suivi des conversions, ROAS visé) défini AVANT le lancement",
+        "Une règle de réallocation du budget fondée sur les données recueillies",
+      ],
+    },
     keyTakeaways: [
       "Toujours définir un objectif de campagne clair avant de lancer une publicité",
-      "Le ciblage précis vaut mieux qu'un large budget mal orienté",
-      "Le suivi des conversions doit être en place avant le lancement de toute campagne",
+      "Google capte une intention existante ; Meta crée le désir — les deux sont complémentaires",
+      "Le Quality Score permet à une annonce pertinente de payer moins cher son clic",
+      "L'audience lookalike est souvent le levier le plus rentable quand on a déjà des clients",
+      "Le suivi des conversions et le ROAS doivent être en place avant tout lancement",
     ],
     resources: [
       { label: "Google Ads — Centre d'aide officiel", url: "https://support.google.com/google-ads" },
@@ -95,18 +180,46 @@ export const marketingDigitalLessons: Lesson[] = [
     title: "Réseaux sociaux & community management",
     objectives: [
       "Élaborer une ligne éditoriale adaptée à chaque plateforme",
-      "Planifier un calendrier de publication cohérent",
+      "Planifier un calendrier de publication cohérent et tenable",
       "Gérer la relation client et la réputation en ligne",
+      "Transformer une critique publique en opportunité de fidélisation",
     ],
     content: [
       "Chaque réseau social a son propre langage et ses propres attentes : LinkedIn pour le B2B et l'expertise, Instagram pour le visuel et l'inspiration, TikTok pour le divertissement rapide, Facebook pour les communautés locales. Une ligne éditoriale efficace adapte le ton et le format à chaque plateforme.",
+      "L'erreur la plus répandue est de publier le même contenu identique partout. Un communiqué corporatif formel qui fonctionne sur LinkedIn tombera à plat sur TikTok, où l'authenticité et le rythme priment. Adapter ne veut pas dire tout recréer : un même message peut être décliné — une étude approfondie sur le blog, résumée en carrousel sur Instagram, condensée en vidéo de 20 secondes sur TikTok. On parle une seule idée, en plusieurs langues de plateforme.",
       "La planification éditoriale via des outils comme Meta Business Suite, Hootsuite ou Buffer permet d'assurer une présence régulière sans surcharge quotidienne. La règle des 80/20 recommande 80% de contenu de valeur (éducatif, divertissant) et 20% de contenu promotionnel.",
+      "La régularité tenable est plus importante que l'intensité éphémère. Beaucoup d'entreprises publient frénétiquement pendant deux semaines, s'épuisent, puis disparaissent un mois. Or l'algorithme comme l'audience récompensent la constance : mieux vaut trois publications de qualité par semaine tenues toute l'année qu'une avalanche insoutenable. Un calendrier éditorial planifié à l'avance transforme la création de contenu, source de stress quotidien, en processus maîtrisé.",
       "Le community management implique de répondre rapidement aux commentaires et messages, de gérer les avis négatifs avec professionnalisme et de surveiller la réputation de la marque. Une réponse rapide et empathique transforme souvent une critique en opportunité de fidélisation.",
+      "Face à un avis négatif, la tentation de supprimer, d'ignorer ou de se défendre agressivement est forte — et presque toujours contre-productive, car la réponse est publique et lue par des centaines de clients potentiels. La bonne pratique tient en trois temps : reconnaître le problème sans se justifier, s'excuser sincèrement, puis proposer de poursuivre en privé pour régler la situation. Un client mécontent bien traité devient souvent plus fidèle qu'un client jamais insatisfait, et les spectateurs retiennent surtout la manière dont l'entreprise gère l'imprévu.",
     ],
+    caseStudy: {
+      title: "Resto Le Quai : l'avis à une étoile qui a fait gagner des clients",
+      body: [
+        "Le restaurant Le Quai reçoit un avis Google cinglant à une étoile : un client raconte un service lent et un plat froid un soir de forte affluence. Le premier réflexe du propriétaire est de contester publiquement, persuadé que le client exagère. Sa responsable des réseaux l'en dissuade.",
+        "Elle publie plutôt une réponse publique posée : elle remercie le client d'avoir signalé le problème, reconnaît sans détour que le service a flanché ce soir-là à cause d'un pic imprévu, présente des excuses sincères, et invite le client à revenir en le contactant directement pour se faire pardonner. Aucune justification, aucune défensive.",
+        "Le client revient, est traité avec soin, et modifie son avis en cinq étoiles en saluant la réaction du restaurant. Mais l'effet le plus fort est ailleurs : des dizaines de futurs clients, en lisant l'échange, retiennent une entreprise qui écoute et se soucie de ses clients. La réponse publique à une critique est devenue une vitrine de la culture du restaurant. Bien gérer un avis négatif communique davantage que dix avis positifs.",
+      ],
+    },
+    exercise: {
+      title: "Bâtir une ligne éditoriale et gérer une crise d'avis",
+      prompt: [
+        "Pour une marque de votre choix, choisissez deux réseaux sociaux pertinents et définissez, pour chacun, la ligne éditoriale : ton, formats privilégiés et type de contenu. Justifiez pourquoi ces deux plateformes conviennent à cette marque et à son public.",
+        "Construisez un calendrier éditorial d'une semaine (réaliste et tenable) respectant la règle des 80/20 : indiquez pour chaque publication la plateforme, le format et si elle relève du contenu de valeur ou promotionnel.",
+        "Rédigez enfin la réponse publique à un avis négatif fictif mais plausible visant cette marque, en appliquant la démarche en trois temps (reconnaître, s'excuser, proposer un suivi privé).",
+      ],
+      deliverables: [
+        "Une ligne éditoriale définie pour deux plateformes (ton, formats, contenu), avec justification",
+        "Un calendrier éditorial d'une semaine respectant la règle des 80/20",
+        "Une réponse publique modèle à un avis négatif, structurée en trois temps",
+        "Une phrase expliquant pourquoi la régularité tenable prime sur l'intensité éphémère",
+      ],
+    },
     keyTakeaways: [
-      "La régularité de publication compte plus que la fréquence brute",
-      "Chaque plateforme exige un format et un ton spécifiques",
-      "La gestion des avis négatifs est aussi importante que la création de contenu",
+      "Une même idée se décline selon le langage de chaque plateforme, sans copier-coller identique",
+      "La régularité tenable compte plus que la fréquence brute ou les pics éphémères",
+      "La règle des 80/20 équilibre contenu de valeur et promotion",
+      "Un avis négatif se gère en public : reconnaître, s'excuser, poursuivre en privé",
+      "Bien gérer une critique communique plus positivement que plusieurs avis élogieux",
     ],
     resources: [
       { label: "Meta Business Suite", url: "https://business.facebook.com" },
@@ -127,16 +240,44 @@ export const marketingDigitalLessons: Lesson[] = [
       "Choisir la bonne plateforme e-commerce selon son besoin",
       "Structurer une fiche produit qui convertit",
       "Mettre en place un parcours d'achat fluide",
+      "Identifier et réduire les principales causes d'abandon de panier",
     ],
     content: [
       "Les plateformes e-commerce les plus utilisées au Canada sont Shopify (simplicité, écosystème d'applications), WooCommerce (flexibilité via WordPress) et Wix (pour les petites boutiques). Le choix dépend du volume de produits, du budget technique et des besoins d'intégration avec d'autres outils.",
+      "Le piège classique est de sur-dimensionner ou sous-dimensionner sa plateforme. Une entreprise qui débute avec dix produits n'a pas besoin d'une solution d'entreprise complexe et coûteuse ; à l'inverse, une boutique qui vise une forte croissance et des intégrations multiples se piégera avec un outil trop rigide. La bonne plateforme est celle qui correspond au catalogue et aux ambitions réalistes des douze prochains mois, pas au rêve ou à la peur.",
       "Une fiche produit performante combine des photos de qualité professionnelle, une description orientée bénéfices (pas seulement caractéristiques), des avis clients visibles et un appel à l'action clair. Le taux de conversion moyen en e-commerce tourne autour de 2 à 3% — chaque détail compte.",
+      "Ce chiffre de 2 à 3 % est vertigineux quand on y réfléchit : sur cent visiteurs, quatre-vingt-dix-sept repartent sans acheter. C'est précisément pourquoi chaque élément de la fiche compte. Le client en ligne ne peut ni toucher, ni essayer, ni poser de question à un vendeur : la fiche produit doit répondre d'avance à toutes ses objections. Les photos remplacent le toucher, les avis remplacent la confiance du bouche-à-oreille, et une description orientée bénéfices répond à la seule question qui compte : « qu'est-ce que ça change pour moi ? ».",
       "Le parcours d'achat doit minimiser les frictions : processus de paiement en 3 étapes maximum, options de paiement multiples (carte, PayPal, Apple Pay), affichage transparent des frais de livraison et politique de retour claire. L'abandon de panier moyen dépasse 70% — souvent dû à des frais cachés découverts trop tard.",
+      "Comprendre pourquoi 70 % des paniers sont abandonnés est plus utile que de le déplorer. Les causes récurrentes sont bien documentées : frais de livraison surprises découverts à la dernière étape, obligation de créer un compte, processus trop long, manque d'options de paiement, ou simples doutes sur la sécurité. La bonne nouvelle, c'est que la plupart sont corrigibles à faible coût. Afficher les frais de livraison dès la fiche produit, proposer un paiement invité, réduire le nombre de champs à remplir : chacune de ces corrections récupère une part des ventes qui s'évaporaient silencieusement.",
     ],
+    caseStudy: {
+      title: "Atelier Céramique : la case à cocher qui coûtait des ventes",
+      body: [
+        "Atelier Céramique vend des tasses et bols faits main en ligne. Le trafic est bon, les produits plaisent, mais le taux de conversion plafonne sous 1 %, bien en dessous de la moyenne. La propriétaire soupçonne un problème de prix et envisage des rabais qui rogneraient sa marge déjà mince.",
+        "Avant de brader, elle analyse le tunnel d'achat étape par étape à l'aide des statistiques de sa plateforme. La fuite est spectaculaire à l'avant-dernière étape : la création de compte obligatoire. De plus, les frais de livraison n'apparaissaient qu'à cette étape finale, provoquant un choc. Deux frictions cumulées faisaient fuir les acheteurs presque décidés.",
+        "Elle active le paiement invité (achat sans création de compte) et affiche les frais de livraison dès la fiche produit, avec un seuil de livraison gratuite clairement indiqué. Sans toucher aux prix, le taux de conversion passe à près de 3 %, triplant les ventes à trafic constant. La leçon : avant de baisser les prix, il faut réparer les frictions — un panier abandonné n'est pas un client qui trouve trop cher, c'est souvent un client qu'on a découragé.",
+      ],
+    },
+    exercise: {
+      title: "Auditer un tunnel d'achat et concevoir une fiche produit",
+      prompt: [
+        "Choisissez un produit et rédigez sa fiche produit complète orientée conversion : un titre clair, une description centrée sur les bénéfices (et non la seule liste de caractéristiques), les éléments de réassurance (avis, garantie, retour) et un appel à l'action explicite.",
+        "Listez ensuite les étapes d'un parcours d'achat type pour ce produit, de la fiche jusqu'au paiement, et identifiez au moins trois points de friction potentiels parmi les causes connues d'abandon de panier.",
+        "Pour chacun de ces trois points de friction, proposez une correction concrète et à faible coût, et expliquez comment vous mesureriez son effet sur le taux de conversion.",
+      ],
+      deliverables: [
+        "Une fiche produit complète orientée bénéfices, avec réassurance et appel à l'action",
+        "La liste des étapes du parcours d'achat, de la fiche au paiement",
+        "L'identification d'au moins trois points de friction parmi les causes connues d'abandon",
+        "Une correction concrète et mesurable proposée pour chaque friction",
+      ],
+    },
     keyTakeaways: [
-      "La plateforme doit correspondre à la taille et à la complexité du catalogue",
+      "La plateforme doit correspondre au catalogue et aux ambitions réalistes des 12 prochains mois",
+      "La fiche produit doit répondre d'avance à toutes les objections que ne lèvera aucun vendeur",
       "Les photos et avis clients influencent davantage la conversion que le prix",
-      "Réduire les étapes du tunnel d'achat diminue directement l'abandon de panier",
+      "70 % d'abandon de panier vient surtout de frictions corrigibles, pas d'un prix trop élevé",
+      "Réparer les frictions avant de baisser les prix protège la marge et récupère des ventes",
     ],
     resources: [
       { label: "Shopify Compass — Cours e-commerce gratuits", url: "https://www.shopify.com/compass" },
@@ -155,18 +296,46 @@ export const marketingDigitalLessons: Lesson[] = [
     title: "Analytics & mesure de performance",
     objectives: [
       "Configurer Google Analytics 4 pour suivre les conversions",
-      "Identifier les indicateurs clés de performance (KPI) pertinents",
+      "Distinguer les KPI stratégiques des métriques de vanité",
       "Interpréter un rapport pour ajuster une stratégie",
+      "Concevoir et lire un test A/B pour valider une hypothèse",
     ],
     content: [
       "Google Analytics 4 (GA4) remplace Universal Analytics avec un modèle basé sur les événements plutôt que les sessions. Il permet de suivre le parcours complet d'un utilisateur, des réseaux sociaux jusqu'à l'achat, en passant par plusieurs appareils.",
+      "Ce passage aux événements n'est pas qu'un détail technique : il reflète la réalité du parcours client moderne, fait de fragments. Un même prospect découvre une marque sur Instagram depuis son téléphone, la recherche plus tard sur Google depuis son ordinateur portable, et achète encore plus tard via un lien dans un courriel. GA4 tente de recoller ces fragments pour attribuer correctement la vente au véritable point de départ, évitant de créditer à tort le dernier canal touché.",
       "Les KPI essentiels varient selon l'objectif business : taux de conversion et panier moyen pour l'e-commerce, taux de génération de leads pour le B2B, taux d'engagement pour les médias. Il faut éviter de se noyer dans des métriques de vanité (vues, likes) qui n'ont pas d'impact direct sur le revenu.",
+      "La distinction entre KPI stratégique et métrique de vanité est l'une des plus importantes du métier. Une publication qui récolte 10 000 « j'aime » mais ne génère aucune vente flatte l'ego sans nourrir l'entreprise ; une campagne discrète qui amène cinquante clients payants vaut infiniment plus. La question à se poser devant chaque chiffre est brutale mais salutaire : « si cette métrique double, mon chiffre d'affaires change-t-il ? ». Si la réponse est non, c'est probablement une métrique de vanité.",
       "L'analyse de données doit déboucher sur des actions concrètes : si le taux de rebond est élevé sur une landing page, tester un nouveau titre ou une nouvelle image. Le marketing digital est un cycle continu de mesure, hypothèse et test (A/B testing).",
+      "Le test A/B est ce qui sépare l'optimisation rigoureuse de l'opinion. Plutôt que de débattre pour savoir quel titre est « meilleur », on montre la version A à la moitié des visiteurs et la version B à l'autre moitié, puis on laisse les chiffres trancher. La règle d'or : ne tester qu'un seul élément à la fois, sur un échantillon suffisant, sinon on ne saura pas ce qui a causé la différence. Cette culture du test transforme le marketing d'un art d'intuition en une démarche d'amélioration continue et mesurable.",
     ],
+    caseStudy: {
+      title: "Boutique Verdure : la vidéo virale qui ne vendait rien",
+      body: [
+        "Boutique Verdure, qui vend des plantes d'intérieur, publie une vidéo TikTok qui explose : 400 000 vues, des milliers de partages. L'équipe jubile et convainc la direction d'investir massivement dans ce type de contenu viral, persuadée d'avoir trouvé la recette du succès.",
+        "Trois mois plus tard, GA4 raconte une tout autre histoire. Malgré l'énorme audience, le trafic vers la boutique et les ventes n'ont quasiment pas bougé. Les vues et partages — des métriques de vanité — n'ont pas d'impact sur le revenu, car l'audience touchée aimait la vidéo pour son côté divertissant sans aucune intention d'acheter des plantes.",
+        "En recentrant l'analyse sur les vrais KPI (trafic qualifié, taux de conversion, coût d'acquisition), l'équipe découvre qu'une modeste série de courriels aux clients existants génère, elle, un chiffre d'affaires bien réel. Elle réoriente ses ressources en conséquence et lance un test A/B sur l'objet de ses courriels, augmentant le taux d'ouverture. La leçon : le succès apparent (les vues) peut masquer l'échec commercial, et seuls les KPI reliés au revenu disent la vérité.",
+      ],
+    },
+    exercise: {
+      title: "Trier ses métriques et concevoir un test A/B",
+      prompt: [
+        "Pour une entreprise et un objectif business précis (par exemple e-commerce ou génération de leads), dressez une liste de six indicateurs que l'on pourrait suivre, puis classez chacun en KPI stratégique ou métrique de vanité en appliquant le test « si ce chiffre double, mon revenu change-t-il ? ».",
+        "Choisissez un problème concret et mesurable (par exemple un taux de rebond élevé sur une page ou un faible taux d'ouverture de courriels) et formulez une hypothèse d'amélioration claire.",
+        "Concevez un test A/B pour valider cette hypothèse : décrivez la version A (actuelle) et la version B (modifiée), l'unique élément que vous changez, l'indicateur de succès mesuré, et la façon dont vous décideriez laquelle l'emporte.",
+      ],
+      deliverables: [
+        "Six indicateurs classés en KPI stratégiques vs métriques de vanité, avec justification",
+        "Un problème mesurable et une hypothèse d'amélioration explicite",
+        "La description d'un test A/B ne modifiant qu'un seul élément à la fois",
+        "L'indicateur de succès du test et la règle de décision entre A et B",
+      ],
+    },
     keyTakeaways: [
+      "GA4 suit un parcours client fragmenté entre plateformes et appareils via les événements",
+      "Un KPI stratégique change le revenu ; une métrique de vanité flatte l'ego",
       "Mesurer sans agir n'a aucune valeur — chaque rapport doit mener à une décision",
-      "Les KPI doivent être alignés sur les objectifs business réels, pas sur la vanité",
-      "Le A/B testing est la méthode la plus fiable pour valider une hypothèse marketing",
+      "Un test A/B ne modifie qu'un seul élément à la fois, sur un échantillon suffisant",
+      "Le A/B testing remplace le débat d'opinion par une décision fondée sur les données",
     ],
     resources: [
       { label: "Google Analytics Academy", url: "https://analytics.google.com/analytics/academy" },
@@ -185,18 +354,46 @@ export const marketingDigitalLessons: Lesson[] = [
     title: "Stratégie de contenu & copywriting",
     objectives: [
       "Définir une stratégie de contenu alignée sur le parcours client",
-      "Appliquer les bases du copywriting persuasif",
-      "Produire des contenus adaptés à chaque étape du funnel",
+      "Appliquer les structures de copywriting persuasif (AIDA, PAS)",
+      "Traduire une caractéristique en bénéfice client",
+      "Garantir la cohérence de marque avec un guide de style éditorial",
     ],
     content: [
       "Une stratégie de contenu efficace répond aux questions du client à chaque étape de son parcours : contenu éducatif en haut de funnel (articles de blog, vidéos explicatives), contenu de comparaison au milieu (études de cas, démonstrations) et contenu de conversion en bas (témoignages, offres limitées).",
+      "L'erreur fréquente est de ne produire que du contenu de vente. Or un prospect qui découvre à peine son problème n'est pas prêt à acheter : le bombarder d'offres le fait fuir. Chaque contenu doit rencontrer le client là où il en est. En haut du funnel, on aide et on éduque sans rien vendre, pour gagner la confiance ; au milieu, on démontre et on compare ; en bas seulement, on lève les dernières hésitations et on invite à l'action. Vendre trop tôt, c'est demander la main au premier rendez-vous.",
       "Le copywriting repose sur des structures éprouvées comme AIDA (Attention, Intérêt, Désir, Action) ou PAS (Problème, Agitation, Solution). L'objectif est toujours de parler des bénéfices pour le client plutôt que des caractéristiques du produit.",
+      "La différence entre caractéristique et bénéfice est le cœur du métier. Une caractéristique décrit le produit (« cette perceuse a un moteur de 800 watts ») ; le bénéfice décrit ce que le client y gagne (« perce le béton sans forcer, même après une longue journée »). Le client n'achète jamais une caractéristique : il achète la version améliorée de sa propre vie. Un exercice simple et redoutablement efficace consiste, après chaque caractéristique, à ajouter « …ce qui veut dire que pour vous… » et à compléter la phrase.",
       "La cohérence de ton et de message à travers tous les supports (site web, réseaux sociaux, emails) renforce la confiance de la marque. Un guide de style éditorial simple — vocabulaire à utiliser, ton, valeurs à transmettre — aide toute une équipe à produire du contenu aligné.",
+      "Sans guide de style, une marque parle avec autant de voix qu'elle a de personnes qui écrivent : sérieuse sur le site, familière sur Instagram, hésitante dans les courriels. Cette dissonance érode la confiance sans que le client sache pourquoi. Un guide de style — même d'une seule page — fixe le tutoiement ou le vouvoiement, les mots à privilégier et à bannir, le niveau d'humour permis, et les valeurs à transmettre. Il permet à cinq personnes de produire un contenu qui sonne comme une seule voix reconnaissable.",
     ],
+    caseStudy: {
+      title: "Logiciel Gesto : du jargon technique au bénéfice humain",
+      body: [
+        "Gesto, une jeune entreprise qui vend un logiciel de gestion pour petites cliniques, n'arrivait pas à convertir malgré un bon trafic. Sa page d'accueil listait fièrement ses caractéristiques : « architecture infonuagique, chiffrement AES-256, synchronisation multi-appareils en temps réel, API ouverte ». Techniquement impressionnant, commercialement muet.",
+        "Le problème : les clients visés — des propriétaires de cliniques, pas des informaticiens — ne comprenaient pas ce que ces termes changeaient pour eux. En appliquant la traduction caractéristique → bénéfice, l'équipe réécrit chaque ligne. « Synchronisation multi-appareils en temps réel » devient « consultez le dossier d'un patient depuis la salle d'examen comme depuis la réception, toujours à jour ». « Chiffrement AES-256 » devient « les données de vos patients sont protégées selon les normes les plus strictes — dormez tranquille ».",
+        "La page, restructurée selon AIDA (accrocher l'attention sur le temps perdu en paperasse, susciter l'intérêt, créer le désir d'une clinique sans chaos administratif, appeler à un essai gratuit), triple son taux de conversion. Aucune fonctionnalité n'a changé : seule la manière d'en parler a été traduite du langage de l'ingénieur vers celui du client. La leçon : les gens n'achètent pas ce que fait le produit, mais ce qu'il change pour eux.",
+      ],
+    },
+    exercise: {
+      title: "Réécrire une page selon AIDA et le bénéfice client",
+      prompt: [
+        "Choisissez un produit ou service et dressez d'abord la liste de cinq de ses caractéristiques techniques. Pour chacune, appliquez la formule « …ce qui veut dire que pour vous… » afin de la traduire en bénéfice concret pour le client.",
+        "Rédigez ensuite un court texte de vente (page ou publicité) structuré explicitement selon AIDA : identifiez dans votre texte où se trouvent l'Attention, l'Intérêt, le Désir et l'Action.",
+        "Élaborez enfin un mini guide de style éditorial (une demi-page) pour cette marque : tutoiement ou vouvoiement, trois mots à privilégier, trois mots à bannir, ton général et une valeur clé à transmettre.",
+      ],
+      deliverables: [
+        "Cinq caractéristiques traduites en bénéfices via la formule « …pour vous… »",
+        "Un texte de vente structuré selon AIDA, avec les quatre étapes identifiées",
+        "Un mini guide de style éditorial (registre, mots à privilégier/bannir, ton, valeur)",
+        "Une phrase expliquant pourquoi le contenu doit varier selon l'étape du funnel",
+      ],
+    },
     keyTakeaways: [
       "Chaque contenu doit correspondre à une étape précise du parcours client",
+      "Vendre trop tôt fait fuir : on éduque en haut de funnel, on convertit en bas",
       "Parler des bénéfices convertit mieux que lister des caractéristiques",
-      "La cohérence de ton sur tous les canaux construit la confiance dans la marque",
+      "AIDA et PAS structurent un message persuasif de l'attention à l'action",
+      "Un guide de style fait parler toute une équipe d'une seule voix reconnaissable",
     ],
     resources: [
       { label: "Copyblogger — Ressources copywriting", url: "https://copyblogger.com" },
@@ -216,16 +413,44 @@ export const marketingDigitalLessons: Lesson[] = [
     objectives: [
       "Concevoir une stratégie marketing digitale de bout en bout",
       "Présenter un plan de campagne avec budget et KPI",
-      "Défendre ses choix stratégiques devant un jury",
+      "Assurer la cohérence entre objectifs, canaux et budget",
+      "Défendre ses choix stratégiques devant un jury de décideurs",
     ],
     content: [
       "Le projet final consiste à concevoir une campagne marketing complète pour une entreprise fictive ou réelle : définition de la cible, choix des canaux, création de contenus, plan média et budget, ainsi que les indicateurs de succès à suivre.",
+      "C'est ici que se rejoignent tous les modules du programme : le persona et le funnel (module 1), le SEO et la publicité (modules 2 et 3), les réseaux sociaux (module 4), l'e-commerce (module 5), la mesure (module 6) et le copywriting (module 7). Une campagne réussie n'empile pas ces éléments côte à côte : elle les orchestre. Le persona dicte les canaux, les canaux dictent les formats de contenu, et les KPI choisis découlent de l'objectif. Chaque pièce doit servir la même intention.",
       "Chaque étudiant doit justifier ses choix : pourquoi ce canal plutôt qu'un autre, comment le budget est réparti entre acquisition et fidélisation, et quels résultats sont attendus à 30, 60 et 90 jours. La cohérence entre objectifs, budget et canaux est évaluée en priorité.",
+      "Cette exigence de cohérence est le vrai test de maturité. Un jury repère immédiatement une stratégie qui vise une cible jeune mais mise tout son budget sur le publipostage, ou qui affiche un objectif de notoriété tout en ne mesurant que les ventes immédiates. La complexité n'impressionne personne : une campagne simple, dont chaque décision découle logiquement de la précédente, vaut mieux qu'un plan touffu qui se contredit. Projeter des résultats à 30, 60 et 90 jours force par ailleurs à passer de l'intention à des chiffres vérifiables.",
       "La présentation orale devant un jury de formateurs reproduit les conditions réelles d'une soutenance de stratégie en entreprise. Elle évalue à la fois la solidité de la stratégie et la capacité à la communiquer clairement à des décideurs non-experts.",
+      "En entreprise, la meilleure stratégie du monde ne sert à rien si l'on ne parvient pas à obtenir le budget pour l'exécuter. Or les décideurs qui accordent ce budget — un patron, un client, un investisseur — ne sont pas des spécialistes du marketing. Savoir traduire un plan technique en enjeux compréhensibles (« voici combien ça coûte, voici ce que ça rapporte, voici quand »), anticiper les objections et défendre ses choix avec assurance sans arrogance est une compétence aussi décisive que la stratégie elle-même. Le projet final évalue les deux, comme le fera le monde professionnel.",
     ],
+    caseStudy: {
+      title: "La soutenance de Camille : simplicité cohérente contre complexité brillante",
+      body: [
+        "Deux étudiants présentent le même jour. Maxime déroule un plan ambitieux : douze canaux, des tactiques sophistiquées, un vocabulaire technique dense, quarante diapositives. Camille propose une campagne épurée pour une microbrasserie locale : deux canaux seulement, un budget modeste, un objectif unique et clair.",
+        "Le jury interroge Maxime : « pourquoi TikTok ET LinkedIn pour une brasserie de quartier ? ». Il hésite, car ces canaux figuraient surtout pour paraître exhaustif. Sa cible n'était pas clairement définie, et plusieurs tactiques se contredisaient. La brillance apparente masquait un manque de cohérence — chaque canal semblait ajouté pour impressionner, pas pour servir un client précis.",
+        "Camille, elle, justifie chaque choix par son persona (les amateurs de bière artisanale du quartier), relie chaque canal à une étape du funnel, et projette des résultats chiffrés à 30, 60 et 90 jours. Face aux questions, elle reste posée et vulgarise sans jargon. Le jury retient sa présentation, non parce qu'elle en faisait plus, mais parce que tout se tenait. La leçon, valable bien au-delà de l'examen : en stratégie, la cohérence bat la complexité, et savoir défendre simplement ses choix fait la différence.",
+      ],
+    },
+    exercise: {
+      title: "Concevoir et défendre un plan de campagne complet",
+      prompt: [
+        "Choisissez une entreprise (réelle ou fictive) et concevez un plan de campagne marketing digitale de bout en bout : cible/persona, objectif unique et mesurable, choix de deux à trois canaux justifiés, idées de contenu par canal, et répartition d'un budget entre acquisition et fidélisation.",
+        "Définissez les KPI que vous suivrez et projetez des résultats attendus à 30, 60 et 90 jours. Vérifiez explicitement la cohérence de l'ensemble : chaque canal sert-il le persona et l'objectif ? Les KPI mesurent-ils bien l'objectif visé ?",
+        "Préparez enfin l'argumentaire de défense : anticipez trois questions critiques qu'un jury de décideurs non-experts pourrait poser, et rédigez pour chacune une réponse claire et vulgarisée.",
+      ],
+      deliverables: [
+        "Un plan de campagne complet (persona, objectif, canaux, contenus, budget)",
+        "Des KPI alignés sur l'objectif et une projection de résultats à 30/60/90 jours",
+        "Une vérification explicite de la cohérence entre cible, canaux, budget et KPI",
+        "Trois questions critiques anticipées avec leurs réponses vulgarisées",
+      ],
+    },
     keyTakeaways: [
+      "Le projet final orchestre tous les modules, il ne les empile pas",
       "Une bonne stratégie se mesure à sa cohérence interne, pas à sa complexité",
-      "Savoir défendre ses choix devant un public non-expert est une compétence clé",
+      "Projeter des résultats à 30, 60 et 90 jours transforme l'intention en chiffres vérifiables",
+      "Savoir défendre ses choix devant un public non-expert conditionne l'obtention du budget",
       "Le projet final valide la capacité à appliquer la théorie à un cas concret",
     ],
     resources: [
