@@ -6,17 +6,45 @@ export const informatiqueLessons: Lesson[] = [
     objectives: [
       "Comprendre l'architecture matérielle et logicielle d'un système",
       "Distinguer les systèmes d'exploitation principaux (Windows, Linux, macOS)",
-      "Maîtriser les bases du réseau informatique",
+      "Maîtriser les bases du modèle réseau TCP/IP",
+      "Diagnostiquer méthodiquement un problème matériel, logiciel ou réseau",
     ],
     content: [
       "Un système informatique combine du matériel (processeur, mémoire, stockage) et des logiciels (système d'exploitation, applications). Comprendre cette architecture de base est essentiel avant d'aborder des sujets plus avancés comme le cloud ou la cybersécurité.",
+      "Le matériel et le logiciel entretiennent une relation hiérarchique qu'il faut visualiser clairement. Au plus bas se trouve le matériel physique ; au-dessus, le système d'exploitation (OS) agit comme un chef d'orchestre qui répartit les ressources — temps du processeur, mémoire vive, accès au disque — entre les applications qui, elles, en haut de la pile, réalisent le travail visible de l'utilisateur. Presque tout diagnostic informatique consiste à déterminer à quelle couche se situe le problème : le matériel, l'OS, ou l'application.",
       "Linux domine les serveurs et le cloud computing grâce à sa stabilité et son coût, tandis que Windows reste dominant sur les postes de travail en entreprise. macOS est privilégié dans les domaines créatifs et le développement mobile (iOS).",
+      "Cette répartition n'est pas un hasard mais le fruit de forces économiques et techniques. Linux est gratuit, ouvert et extraordinairement stable pour faire tourner des serveurs des mois sans redémarrage — d'où sa domination dans les centres de données du monde entier. Windows règne sur les bureaux d'entreprise par la force de son écosystème logiciel et de sa compatibilité. macOS s'impose là où comptent l'intégration matériel-logiciel et les outils créatifs. Choisir un système, c'est arbitrer entre coût, compatibilité et usage, jamais suivre une simple préférence.",
       "Les réseaux informatiques reposent sur le modèle TCP/IP : chaque appareil possède une adresse IP, les données circulent par paquets, et des protocoles comme HTTP, DNS et DHCP structurent la communication entre machines.",
+      "Comprendre ce qui se passe quand on tape une adresse dans un navigateur démystifie une grande partie de l'informatique. Le DNS traduit d'abord le nom lisible (exemple.com) en adresse IP numérique, comme un annuaire téléphonique. Les données demandées sont ensuite découpées en petits paquets, chacun voyageant potentiellement par un chemin différent avant d'être réassemblés à l'arrivée grâce à TCP. Cette architecture par paquets, inventée pour résister aux pannes, explique la robustesse d'Internet : si une route tombe, les paquets en empruntent une autre. Maîtriser ces bases est ce qui distingue celui qui subit un problème réseau de celui qui sait le diagnostiquer.",
     ],
+    caseStudy: {
+      title: "PME Comptaplus : « Internet ne marche pas » — vraiment ?",
+      body: [
+        "Chez Comptaplus, un cabinet comptable de quinze personnes, une employée signale un matin que « le logiciel de comptabilité ne fonctionne plus ». La réaction instinctive du bureau est de conclure qu'Internet est en panne et d'attendre que « ça revienne ». Personne ne travaille pendant deux heures.",
+        "Un stagiaire ayant suivi une formation IT applique une démarche par couches plutôt que de deviner. Le matériel ? L'ordinateur s'allume, les voyants du routeur sont normaux. Le réseau ? Il ouvre un site web quelconque : Internet fonctionne parfaitement — l'hypothèse de départ était fausse. L'application ? Le logiciel comptable, hébergé sur un serveur distant, affiche une erreur de connexion à sa base de données.",
+        "En quelques minutes, le diagnostic est posé : ce n'est ni le matériel, ni Internet, mais le serveur du fournisseur du logiciel qui est temporairement indisponible. L'équipe cesse d'attendre inutilement, bascule sur d'autres tâches, et signale l'incident au bon interlocuteur. La leçon : sans méthode par couches, on immobilise une équipe entière sur une fausse cause ; avec elle, on isole le vrai problème en minutes.",
+      ],
+    },
+    exercise: {
+      title: "Diagnostiquer un incident par couches",
+      prompt: [
+        "Choisissez trois pannes informatiques courantes (par exemple : un site web ne s'ouvre pas, une application se fige, une imprimante réseau ne répond pas). Pour chacune, classez les causes possibles selon la couche concernée : matériel, système d'exploitation, application, ou réseau.",
+        "Pour l'un de ces incidents, rédigez une procédure de diagnostic étape par étape, en partant de la vérification la plus simple vers la plus complexe, de façon à isoler la couche fautive sans deviner.",
+        "Décrivez enfin, en vos propres mots et de manière vulgarisée, le trajet complet d'une requête web depuis la saisie de l'adresse jusqu'à l'affichage de la page, en mentionnant le rôle du DNS, des adresses IP et des paquets.",
+      ],
+      deliverables: [
+        "Trois pannes avec leurs causes possibles classées par couche (matériel/OS/application/réseau)",
+        "Une procédure de diagnostic ordonnée du plus simple au plus complexe pour un incident",
+        "Une explication vulgarisée du trajet d'une requête web (DNS, IP, paquets)",
+        "L'identification, pour chaque panne, de la question qui permet d'écarter le réseau",
+      ],
+    },
     keyTakeaways: [
-      "Toute compétence avancée en IT repose sur une compréhension solide du matériel et de l'OS",
+      "Un système s'organise en couches : matériel, système d'exploitation, applications",
+      "Diagnostiquer, c'est d'abord déterminer à quelle couche se situe le problème",
+      "Le choix d'un OS arbitre entre coût, compatibilité et usage, pas une préférence",
       "Linux est la base de la majorité de l'infrastructure cloud mondiale",
-      "Comprendre TCP/IP est indispensable pour diagnostiquer des problèmes réseau",
+      "Comprendre TCP/IP (DNS, adresses IP, paquets) est indispensable au diagnostic réseau",
     ],
     resources: [
       { label: "Microsoft Learn — Fondamentaux IT", url: "https://learn.microsoft.com" },
@@ -34,19 +62,47 @@ export const informatiqueLessons: Lesson[] = [
   {
     title: "Cloud computing (AWS, Azure, GCP)",
     objectives: [
-      "Différencier les modèles IaaS, PaaS et SaaS",
+      "Différencier les modèles IaaS, PaaS et SaaS et savoir lequel choisir",
       "Comparer les trois principaux fournisseurs cloud",
-      "Déployer une ressource simple sur un cloud public",
+      "Comprendre et maîtriser la facturation à l'usage",
+      "Évaluer les enjeux de souveraineté des données au Canada",
     ],
     content: [
       "Le cloud computing permet d'accéder à des ressources informatiques (serveurs, stockage, bases de données) à la demande, sans posséder l'infrastructure physique. Les trois modèles principaux sont l'IaaS (infrastructure brute), le PaaS (plateforme de développement) et le SaaS (logiciel prêt à l'emploi).",
+      "Une analogie éclaire ces trois modèles : se déplacer d'un point A à un point B. L'IaaS, c'est louer une voiture — on vous fournit le véhicule, mais vous conduisez, faites le plein et gérez tout. Le PaaS, c'est le taxi — vous indiquez la destination, un chauffeur s'occupe du reste, mais vous ne choisissez pas la voiture. Le SaaS, c'est le transport en commun — tout est prêt, vous montez et utilisez, sans aucune gestion. Plus on monte vers le SaaS, moins on contrôle, mais moins on a à gérer. Le bon modèle dépend du niveau de contrôle réellement nécessaire.",
       "AWS (Amazon Web Services) domine le marché mondial avec la gamme de services la plus large. Microsoft Azure s'intègre naturellement aux entreprises déjà sous écosystème Microsoft. Google Cloud Platform (GCP) se distingue par ses outils de données et d'intelligence artificielle.",
+      "Le principal changement de paradigme du cloud est économique autant que technique. Avant, monter un serveur signifiait acheter une machine coûteuse (dépense en capital) utilisée qu'on l'exploite ou non. Le cloud transforme cette dépense en coût variable : on paie à l'usage, à la seconde ou au gigaoctet consommé. C'est une liberté formidable — une start-up peut démarrer sans investissement — mais aussi un piège : une ressource oubliée continue de facturer, et une facture cloud peut exploser silencieusement. La surveillance des coûts n'est pas optionnelle.",
       "Au Canada, plusieurs fournisseurs proposent désormais des centres de données locaux (Canada Central pour Azure, ca-central-1 pour AWS), un enjeu important pour les organisations soumises à des exigences de souveraineté des données.",
+      "La souveraineté des données n'est pas un détail juridique abstrait. Certaines lois — notamment dans le secteur public, la santé ou avec la Loi 25 au Québec — exigent que les renseignements personnels demeurent hébergés physiquement au Canada, à l'abri de législations étrangères qui pourraient y donner accès. Choisir la région d'hébergement de ses données devient alors une décision de conformité, pas seulement de performance. Ignorer cet aspect peut invalider tout un projet, aussi bien conçu soit-il techniquement.",
     ],
+    caseStudy: {
+      title: "Start-up Métrik : la facture cloud qui a triplé en un mois",
+      body: [
+        "Métrik, une jeune entreprise d'analytique, migre son infrastructure vers AWS, séduite par la promesse « ne payez que ce que vous utilisez ». Le premier mois, la facture est modeste et l'équipe se félicite d'avoir évité l'achat de serveurs coûteux. Le troisième mois, la facture a triplé sans que le nombre de clients ait augmenté, mettant en péril la trésorerie.",
+        "L'enquête révèle plusieurs pièges classiques de la facturation à l'usage. Un développeur avait lancé de puissants serveurs pour un test ponctuel et oublié de les éteindre — ils facturaient 24 h sur 24 depuis des semaines. Des sauvegardes automatiques s'accumulaient sans jamais être purgées. Et une base de données surdimensionnée tournait en permanence pour une charge minime.",
+        "En mettant en place des alertes de budget, un étiquetage des ressources par projet et l'arrêt automatique des environnements de test la nuit, Métrik ramène sa facture sous son niveau initial. La leçon : le cloud ne coûte pas cher par nature, mais son modèle à l'usage punit sans pitié le manque de surveillance. La compétence clé n'est pas de déployer, mais de gouverner ses coûts.",
+      ],
+    },
+    exercise: {
+      title: "Choisir un modèle cloud et gouverner ses coûts",
+      prompt: [
+        "Pour trois besoins distincts (par exemple : héberger un site vitrine, développer une application sur mesure, utiliser une messagerie d'entreprise), déterminez le modèle cloud le plus approprié — IaaS, PaaS ou SaaS — et justifiez chaque choix par le niveau de contrôle réellement nécessaire.",
+        "Proposez ensuite trois mesures concrètes de gouvernance des coûts qu'une petite entreprise devrait mettre en place dès son arrivée sur le cloud pour éviter les mauvaises surprises de facturation.",
+        "Enfin, pour une organisation manipulant des renseignements personnels de citoyens québécois, expliquez en quelques phrases pourquoi et comment le choix de la région d'hébergement des données devient une question de conformité.",
+      ],
+      deliverables: [
+        "Trois besoins associés au bon modèle cloud (IaaS/PaaS/SaaS), chacun justifié",
+        "Trois mesures concrètes de gouvernance des coûts cloud",
+        "Une explication de l'enjeu de souveraineté des données et du choix de région",
+        "L'identification d'au moins un piège de facturation à l'usage et sa parade",
+      ],
+    },
     keyTakeaways: [
+      "IaaS/PaaS/SaaS se distinguent par le niveau de contrôle contre le niveau de gestion",
+      "Le cloud transforme un investissement en capital en coût variable à l'usage",
+      "La facturation à l'usage punit le manque de surveillance : la gouvernance des coûts est essentielle",
       "Le choix du fournisseur cloud dépend de l'écosystème existant et des compétences de l'équipe",
-      "La facturation à l'usage exige une surveillance constante des coûts",
-      "La résidence des données est un enjeu réglementaire important au Canada",
+      "La résidence des données est un enjeu de conformité (Loi 25) important au Canada",
     ],
     resources: [
       { label: "AWS Skill Builder — Formation gratuite", url: "https://skillbuilder.aws" },
@@ -65,18 +121,46 @@ export const informatiqueLessons: Lesson[] = [
     title: "Intelligence artificielle & machine learning",
     objectives: [
       "Comprendre la différence entre IA, machine learning et deep learning",
-      "Identifier des cas d'usage concrets de l'IA en entreprise",
-      "Utiliser des outils d'IA générative dans un contexte professionnel",
+      "Identifier des cas d'usage concrets et rentables de l'IA en entreprise",
+      "Utiliser des outils d'IA générative de manière productive et responsable",
+      "Reconnaître les limites de l'IA : biais, hallucinations, confidentialité",
     ],
     content: [
       "L'intelligence artificielle est le domaine général visant à reproduire des comportements intelligents par une machine. Le machine learning est une sous-catégorie où le système apprend à partir de données plutôt que d'être programmé explicitement. Le deep learning utilise des réseaux de neurones pour traiter des données complexes comme les images ou le langage.",
+      "La rupture du machine learning par rapport à la programmation classique est fondamentale. Dans un programme traditionnel, un humain écrit des règles explicites : « si le montant dépasse X et le pays est Y, bloquer la transaction ». En machine learning, on ne dicte pas les règles : on montre au système des milliers d'exemples de transactions frauduleuses et légitimes, et il déduit lui-même les motifs. Cela lui permet de repérer des schémas trop subtils pour être formulés à la main — mais aussi de reproduire les biais cachés dans les exemples qu'on lui a montrés.",
       "En entreprise, l'IA est utilisée pour l'automatisation du service client (chatbots), la prévision de la demande, la détection de fraude et la personnalisation marketing. Les outils d'IA générative comme ChatGPT ou Copilot transforment la productivité dans la rédaction, le code et l'analyse.",
+      "Tous les cas d'usage ne se valent pas. Les plus rentables partagent trois traits : la tâche est répétitive (elle revient souvent), à fort volume (le gain se multiplie) et à faible risque en cas d'erreur (une suggestion qu'un humain peut valider). Rédiger un premier jet de courriel, résumer un long document ou classer des demandes entrantes sont des cas idéaux. À l'inverse, confier à l'IA une décision unique, lourde de conséquences et sans supervision humaine — un diagnostic médical, un refus de prêt — expose à des erreurs graves. La règle : l'IA propose à grande échelle, l'humain dispose sur ce qui compte.",
       "L'adoption responsable de l'IA nécessite de comprendre ses limites : biais dans les données d'entraînement, hallucinations dans les modèles génératifs, et enjeux éthiques liés à la prise de décision automatisée.",
+      "L'hallucination est le piège le plus insidieux de l'IA générative : le modèle produit une information fausse avec le même aplomb qu'une information vraie, sans le moindre signal d'alerte. Il n'a pas conscience de « savoir » ou « ignorer » — il génère le texte le plus plausible statistiquement, qui n'est pas toujours le texte vrai. S'ajoute un enjeu de confidentialité souvent négligé : coller des données clients ou des secrets d'entreprise dans un outil d'IA public revient parfois à les divulguer. Utiliser l'IA de façon responsable, c'est toujours vérifier ses affirmations factuelles et ne jamais y déverser d'informations sensibles sans en connaître le traitement.",
     ],
+    caseStudy: {
+      title: "Cabinet juridique Tanguay : l'assistant IA qui a inventé une jurisprudence",
+      body: [
+        "Un jeune avocat du cabinet Tanguay, pressé par une échéance, demande à un outil d'IA générative de lui trouver des précédents jurisprudentiels appuyant l'argument de son client. L'outil répond en quelques secondes avec trois décisions parfaitement formatées, citations et numéros de dossier à l'appui. Impressionné par la précision apparente, l'avocat les intègre à son mémoire.",
+        "Avant le dépôt, une associée expérimentée vérifie les références par acquit de conscience. Aucune des trois décisions n'existe : l'IA les a purement inventées — c'est une hallucination classique. Le modèle, entraîné à produire un texte plausible, avait fabriqué des jurisprudences crédibles dans la forme mais totalement fictives, sans jamais signaler qu'il s'agissait d'inventions.",
+        "Le cabinet transforme l'incident en règle interne : l'IA peut servir à dégrossir une recherche, structurer un argument ou reformuler, mais toute affirmation factuelle — surtout une citation — doit être vérifiée à la source avant usage. Par ailleurs, aucune information confidentielle de client n'est saisie dans un outil public. La leçon : l'IA est un assistant puissant mais non fiable sur les faits ; la vérification humaine n'est pas une précaution, c'est une obligation.",
+      ],
+    },
+    exercise: {
+      title: "Évaluer des cas d'usage IA et rédiger une politique d'utilisation",
+      prompt: [
+        "Dressez une liste de cinq tâches d'une entreprise de votre choix et évaluez, pour chacune, sa pertinence pour l'automatisation par IA selon trois critères : caractère répétitif, volume, et risque en cas d'erreur. Concluez pour chaque tâche : bon candidat ou non.",
+        "Choisissez un bon candidat et décrivez concrètement comment l'IA y interviendrait, en précisant où reste indispensable la validation humaine.",
+        "Rédigez enfin une courte politique d'utilisation responsable de l'IA (5 à 7 règles) pour cette entreprise, couvrant au minimum la vérification des faits (hallucinations) et la confidentialité des données.",
+      ],
+      deliverables: [
+        "Cinq tâches évaluées sur les critères répétitivité / volume / risque",
+        "La description d'un cas d'usage retenu, avec le point de validation humaine",
+        "Une politique d'utilisation responsable de l'IA (5 à 7 règles)",
+        "Une règle explicite sur les hallucinations et une sur la confidentialité des données",
+      ],
+    },
     keyTakeaways: [
+      "Le machine learning déduit ses règles des données au lieu de les recevoir explicitement",
       "L'IA générative est un outil de productivité, pas un remplacement du jugement humain",
-      "Comprendre les limites de l'IA est aussi important que connaître ses capacités",
-      "Les cas d'usage les plus rentables sont souvent les tâches répétitives à faible risque",
+      "Les cas rentables sont répétitifs, à fort volume et à faible risque d'erreur",
+      "Une hallucination est une information fausse énoncée avec aplomb : toujours vérifier les faits",
+      "Ne jamais déverser d'informations confidentielles dans un outil d'IA public sans précaution",
     ],
     resources: [
       { label: "Google AI — Cours d'introduction au machine learning", url: "https://developers.google.com/machine-learning/crash-course" },
@@ -95,18 +179,47 @@ export const informatiqueLessons: Lesson[] = [
     title: "Cybersécurité & protection des données",
     objectives: [
       "Identifier les principales menaces informatiques (phishing, ransomware)",
-      "Appliquer les bonnes pratiques de sécurité de base",
-      "Comprendre les obligations légales canadiennes en matière de données",
+      "Appliquer les bonnes pratiques de sécurité de base (2FA, mots de passe, sauvegardes)",
+      "Comprendre que la sécurité est d'abord un enjeu humain, pas seulement technique",
+      "Connaître les obligations légales canadiennes (LPRPDE, Loi 25)",
     ],
     content: [
+      "La cybersécurité souffre d'un malentendu tenace : on l'imagine comme une affaire de pare-feux et de logiciels sophistiqués, alors que la grande majorité des incidents commencent par une erreur humaine. Le maillon le plus faible n'est presque jamais la technique — c'est la personne qui clique sur le mauvais lien. Comprendre cela réoriente toute la défense : former les gens compte autant qu'installer des outils.",
       "Le phishing reste le vecteur d'attaque le plus courant, exploitant l'erreur humaine plutôt qu'une faille technique. Les ransomwares chiffrent les données d'une organisation et exigent une rançon — leur impact peut être catastrophique sans sauvegardes récentes et testées.",
+      "Le phishing repose sur la manipulation psychologique plus que sur la technologie. Un courriel imite un fournisseur connu, crée un sentiment d'urgence (« votre compte sera suspendu dans 24 h ») et pousse à agir avant de réfléchir. Les versions ciblées, dites « harponnage », se renseignent sur la victime pour paraître crédibles — un faux courriel du « PDG » demandant un virement urgent au comptable. La parade n'est pas seulement un filtre anti-spam, c'est le réflexe de vérifier par un autre canal avant d'agir sous pression.",
       "Les bonnes pratiques de base incluent l'authentification à deux facteurs (2FA), des mots de passe uniques et complexes gérés via un gestionnaire de mots de passe, des mises à jour régulières des systèmes et une sauvegarde régulière selon la règle 3-2-1 (3 copies, 2 supports différents, 1 hors site).",
+      "Ces mesures ne coûtent presque rien et bloquent l'écrasante majorité des attaques. Le 2FA à lui seul neutralise la plupart des vols de mots de passe, car connaître le mot de passe ne suffit plus. La règle 3-2-1 est la seule vraie protection contre les ransomwares : si vos données sont chiffrées par un pirate mais que vous détenez une sauvegarde récente, testée et hors ligne, vous restaurez sans payer. Le point crucial est le mot « testée » : une sauvegarde jamais vérifiée est une fausse assurance qui ne se révèle inutilisable qu'au pire moment.",
       "Au Canada, la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE) et la Loi 25 au Québec imposent des obligations strictes sur la collecte, le stockage et la notification en cas de fuite de données personnelles.",
+      "La Loi 25 a considérablement relevé les exigences au Québec : consentement clair, minimisation des données collectées, désignation d'un responsable de la protection des renseignements, et surtout obligation de notifier promptement l'autorité et les personnes touchées en cas d'incident de confidentialité présentant un risque sérieux. Les sanctions peuvent être lourdes. Pour une entreprise, la conformité n'est donc plus un supplément d'âme mais une obligation légale dont le manquement expose à des pénalités financières et à une perte de confiance durable.",
     ],
+    caseStudy: {
+      title: "Transport Belair : le faux courriel du président",
+      body: [
+        "Chez Transport Belair, une PME familiale, la comptable reçoit un vendredi après-midi un courriel apparemment signé du président : il est en déplacement, une acquisition confidentielle est en cours, et il faut virer 47 000 $ à un nouveau fournisseur avant la fermeture des banques. Le ton est pressant et flatteur — « je te fais confiance pour régler ça discrètement ».",
+        "Tous les ingrédients du harponnage sont réunis : usurpation d'une autorité, urgence artificielle, confidentialité imposée pour décourager la vérification, et cible unique bien choisie. L'adresse d'expéditeur, à un caractère près, imitait celle du président. Aucune faille technique n'a été exploitée : l'attaque visait uniquement le jugement humain sous pression.",
+        "La comptable, formée à ce type de fraude, applique le réflexe enseigné : avant tout virement inhabituel, vérifier par un second canal. Elle appelle directement le président sur son téléphone personnel. Celui-ci tombe des nues — il n'a rien envoyé. Le virement est bloqué, l'incident signalé. La leçon : contre l'ingénierie sociale, la meilleure défense n'est pas un logiciel mais un protocole humain simple et non négociable — vérifier avant d'agir sous pression.",
+      ],
+    },
+    exercise: {
+      title: "Bâtir un plan de cybersécurité de base pour une PME",
+      prompt: [
+        "Pour une PME fictive de votre choix, rédigez une liste de mesures de sécurité de base à mettre en place immédiatement, en couvrant au minimum : gestion des mots de passe, authentification à deux facteurs, mises à jour et sauvegardes selon la règle 3-2-1.",
+        "Concevez ensuite un court protocole anti-fraude (ingénierie sociale) : décrivez la règle de vérification à appliquer avant toute demande inhabituelle de virement ou de données sensibles, et comment sensibiliser l'équipe.",
+        "Enfin, listez trois obligations concrètes découlant de la Loi 25 qu'une entreprise québécoise manipulant des renseignements personnels doit respecter, dont la conduite à tenir en cas de fuite de données.",
+      ],
+      deliverables: [
+        "Une liste de mesures techniques de base (mots de passe, 2FA, mises à jour, sauvegardes 3-2-1)",
+        "Un protocole humain anti-ingénierie sociale (règle de vérification par second canal)",
+        "Trois obligations concrètes découlant de la Loi 25, dont la notification de fuite",
+        "Une justification de l'importance de tester régulièrement les sauvegardes",
+      ],
+    },
     keyTakeaways: [
       "L'erreur humaine reste la cause numéro un des incidents de sécurité",
+      "Le phishing manipule la psychologie (urgence, autorité) plus que la technique",
+      "Le 2FA et la règle 3-2-1 bloquent la majorité des attaques pour un coût minime",
       "Une sauvegarde non testée n'est pas une vraie protection",
-      "La conformité à la Loi 25 et à la LPRPDE est obligatoire, pas optionnelle, pour toute organisation canadienne",
+      "La conformité à la Loi 25 et à la LPRPDE est une obligation légale, pas une option",
     ],
     resources: [
       { label: "Centre canadien pour la cybersécurité", url: "https://www.cyber.gc.ca" },
@@ -124,18 +237,47 @@ export const informatiqueLessons: Lesson[] = [
   {
     title: "Gestion de bases de données",
     objectives: [
-      "Différencier bases de données relationnelles et NoSQL",
-      "Écrire des requêtes SQL de base",
-      "Comprendre les principes de normalisation des données",
+      "Différencier bases de données relationnelles et NoSQL et savoir laquelle choisir",
+      "Écrire des requêtes SQL de base (SELECT, INSERT, UPDATE, DELETE, JOIN)",
+      "Comprendre le rôle des clés et de l'intégrité référentielle",
+      "Appliquer les principes de normalisation pour éviter la redondance",
     ],
     content: [
+      "Une base de données est le cœur silencieux de presque toute application : dès qu'un logiciel doit se souvenir de quelque chose entre deux utilisations — un client, une commande, un solde — il lui faut une base de données. Bien la concevoir conditionne la fiabilité de tout ce qui repose dessus ; mal la concevoir crée des problèmes qui s'aggravent silencieusement avec la croissance.",
       "Les bases de données relationnelles (MySQL, PostgreSQL, SQL Server) organisent les données en tables liées par des clés, garantissant la cohérence via des contraintes strictes. Les bases NoSQL (MongoDB, Firebase) offrent plus de flexibilité pour des données non structurées ou à très grande échelle.",
+      "Le choix entre les deux n'est pas une question de mode mais de nature des données. Le relationnel excelle quand les données sont structurées et fortement interconnectées — un système comptable, une gestion de commandes — car ses contraintes garantissent qu'un client ne peut pas avoir de commande fantôme. Le NoSQL brille pour des données hétérogènes, évolutives ou à échelle massive — journaux d'événements, profils flexibles, contenus variés. Beaucoup de projets débutent très bien en relationnel, et n'adoptent le NoSQL que pour des besoins spécifiques identifiés.",
       "Le langage SQL (Structured Query Language) permet d'interroger, insérer, modifier et supprimer des données. Les commandes de base — SELECT, INSERT, UPDATE, DELETE, JOIN — couvrent la majorité des besoins quotidiens d'un analyste ou développeur.",
+      "SQL est remarquablement durable : conçu dans les années 1970, il reste la compétence la plus transférable de toute l'informatique, présente dans presque tous les emplois techniques touchant à la donnée. Sa puissance tient à la commande JOIN, qui permet de recombiner à la volée des données réparties dans plusieurs tables — associer chaque commande au nom de son client, par exemple. Maîtriser une poignée de commandes suffit à répondre à l'immense majorité des questions qu'une entreprise pose à ses données.",
       "La normalisation des données vise à éliminer la redondance et à garantir l'intégrité référentielle. Une base bien conçue facilite la maintenance, améliore les performances et réduit les risques d'incohérence entre les données.",
+      "Le principe fondateur de la normalisation tient en une phrase : chaque information ne doit être stockée qu'à un seul endroit. Si l'adresse d'un client est recopiée dans chacune de ses commandes plutôt que rangée une seule fois dans une table « clients », alors le jour où il déménage, il faut la corriger partout — et l'on oublie inévitablement des occurrences, créant des données contradictoires. Une base normalisée range l'adresse une fois et la relie par une clé : la modifier à un endroit la met à jour partout. La redondance n'est pas qu'un gaspillage d'espace, c'est une source garantie d'incohérences futures.",
     ],
+    caseStudy: {
+      title: "Boutique Ficelle : l'adresse client en triple exemplaire",
+      body: [
+        "La Boutique Ficelle avait conçu, à ses débuts, une base de données artisanale dans un tableur devenu ingérable, puis une petite application où, par simplicité, l'adresse de chaque client était recopiée directement dans chacune de ses commandes. Tant qu'il y avait peu de clients, personne n'y voyait de problème.",
+        "Les incohérences ont surgi avec la croissance. Un client fidèle déménage et signale sa nouvelle adresse ; l'employé la met à jour sur sa commande en cours, mais ses trois commandes précédentes conservent l'ancienne. Un colis part à la mauvaise adresse. Pire, un rapport marketing basé sur les adresses affiche le client à deux villes différentes, faussant les statistiques régionales.",
+        "La refonte applique la normalisation : l'adresse est rangée une seule fois dans une table « clients », et chaque commande y renvoie par une clé (l'identifiant du client). Désormais, mettre à jour l'adresse à un seul endroit corrige instantanément l'information partout. La leçon : la redondance semble anodine au départ, mais elle programme des incohérences inévitables. Une base bien normalisée dès le départ épargne des mois de corrections.",
+      ],
+    },
+    exercise: {
+      title: "Concevoir un schéma normalisé et écrire des requêtes",
+      prompt: [
+        "Pour un petit domaine de votre choix (par exemple une boutique : clients, produits, commandes), concevez un schéma de base de données relationnelle : listez les tables, leurs principaux champs, et les clés qui les relient. Assurez-vous qu'aucune information n'est stockée en double.",
+        "Écrivez ensuite, en langage SQL, au moins trois requêtes de base sur ce schéma : une pour récupérer des données (SELECT), une pour insérer une nouvelle ligne (INSERT), et une requête qui combine deux tables (JOIN), par exemple lister chaque commande avec le nom de son client.",
+        "Expliquez enfin, avec l'exemple d'une adresse client qui change, pourquoi votre schéma normalisé évite les incohérences qu'aurait produites un stockage redondant.",
+      ],
+      deliverables: [
+        "Un schéma relationnel (tables, champs, clés) sans information stockée en double",
+        "Trois requêtes SQL de base, dont un SELECT, un INSERT et un JOIN",
+        "Une explication de la façon dont la normalisation évite les incohérences",
+        "L'identification d'un cas où le NoSQL serait plus adapté que le relationnel",
+      ],
+    },
     keyTakeaways: [
       "Le choix relationnel vs NoSQL dépend de la structure des données et de l'échelle du projet",
       "SQL reste la compétence la plus transférable entre tous les emplois techniques",
+      "La commande JOIN permet de recombiner des données réparties dans plusieurs tables",
+      "Le principe de normalisation : chaque information n'est stockée qu'à un seul endroit",
       "Une base mal normalisée crée des problèmes de cohérence qui s'aggravent avec le temps",
     ],
     resources: [
@@ -154,19 +296,47 @@ export const informatiqueLessons: Lesson[] = [
   {
     title: "Développement web & applications",
     objectives: [
-      "Comprendre la différence entre front-end et back-end",
-      "Identifier les langages et frameworks courants",
-      "Suivre le cycle de vie d'une application web simple",
+      "Comprendre la différence et la complémentarité entre front-end et back-end",
+      "Identifier les langages et frameworks courants et leur rôle",
+      "Comprendre l'architecture client-serveur et le rôle d'une API",
+      "Suivre le cycle de vie d'une application web, du codage au déploiement",
     ],
     content: [
       "Le front-end concerne tout ce que l'utilisateur voit et manipule directement : HTML pour la structure, CSS pour le style, JavaScript pour l'interactivité, avec des frameworks comme React ou Vue.js. Le back-end gère la logique serveur, les bases de données et les API, avec des langages comme Node.js, Python ou Java.",
+      "Une métaphore aide à saisir cette division du travail : celle du restaurant. Le front-end est la salle — la décoration, le menu, le serveur avec qui le client interagit. Le back-end est la cuisine — invisible du client, mais c'est là que tout se prépare vraiment. Le client passe commande en salle (front-end), la commande file en cuisine (back-end) qui prépare le plat à partir des ingrédients (la base de données) et le renvoie. Les deux sont indispensables et complémentaires : une salle magnifique sans cuisine ne sert rien, une cuisine excellente sans salle reste inaccessible.",
       "Une application web moderne suit généralement une architecture client-serveur : le navigateur (client) envoie des requêtes à un serveur qui traite la logique métier et renvoie des données, souvent au format JSON via une API REST.",
+      "L'API est le point de contact standardisé entre les deux mondes — le passe-plat entre la salle et la cuisine. Elle définit un contrat clair : le front-end demande « donne-moi les informations du client 42 », l'API répond avec des données JSON structurées, sans que le front-end ait à savoir comment le back-end les a obtenues. Cette séparation nette est ce qui rend une application maintenable : on peut refaire entièrement la salle sans toucher à la cuisine, tant que le passe-plat — le contrat de l'API — reste stable. Une API bien conçue est l'un des plus sûrs indicateurs d'une architecture saine.",
       "Le cycle de développement inclut la conception, le codage, les tests, le déploiement et la maintenance. Les méthodologies agiles permettent de livrer des fonctionnalités par petites itérations plutôt qu'en un seul bloc final.",
+      "Le déploiement — mettre le code en production, accessible aux vrais utilisateurs — est l'étape la plus risquée, car une erreur y devient immédiatement visible de tous. Les pratiques modernes de déploiement continu réduisent ce risque en automatisant les tests et en livrant de petits changements fréquents plutôt qu'une énorme mise à jour rare : plus la modification est petite, plus il est facile d'en identifier la cause si quelque chose casse. Livrer souvent et par petites touches est paradoxalement plus sûr que d'accumuler des mois de changements avant un lancement massif et anxiogène.",
     ],
+    caseStudy: {
+      title: "AppRéno : le grand lancement raté contre les petites livraisons",
+      body: [
+        "AppRéno, une start-up développant une application de mise en relation avec des artisans, avait choisi la stratégie du « grand lancement » : six mois de développement en secret, puis une mise en production massive le jour J. Le matin du lancement, l'application s'effondre sous le premier afflux d'utilisateurs, et l'équipe passe la journée à chercher, parmi des milliers de lignes ajoutées en six mois, laquelle a causé la panne.",
+        "L'analyse post-mortem pointe deux erreurs. D'abord, une API mal conçue mélangeait logique de la salle et de la cuisine, rendant chaque correction hasardeuse. Ensuite, la stratégie du bloc unique : impossible d'isoler le problème dans une montagne de changements livrés d'un coup, sans tests automatisés progressifs.",
+        "L'équipe adopte alors une approche agile et un déploiement continu. Elle refait l'API avec un contrat clair entre front-end et back-end, puis livre désormais de petites améliorations plusieurs fois par semaine, chacune testée automatiquement. Les incidents deviennent rares et, quand ils surviennent, la cause se trouve en minutes. La leçon : une architecture aux frontières nettes et des livraisons petites et fréquentes battent presque toujours le mythe du grand lancement parfait.",
+      ],
+    },
+    exercise: {
+      title: "Décrire l'architecture d'une application web simple",
+      prompt: [
+        "Choisissez une application web simple (par exemple une liste de tâches, une billetterie, un carnet de contacts) et décrivez, à l'aide de la métaphore du restaurant, ce que gère le front-end et ce que gère le back-end pour cette application.",
+        "Décrivez le parcours complet d'une action utilisateur (par exemple « l'utilisateur ajoute une tâche ») depuis le clic dans le navigateur jusqu'à l'enregistrement en base de données, en indiquant où intervient l'API et sous quel format circulent les données.",
+        "Expliquez enfin pourquoi livrer de petites améliorations fréquentes est généralement moins risqué qu'un grand lancement unique, en vous appuyant sur la notion de facilité à identifier la cause d'un problème.",
+      ],
+      deliverables: [
+        "La répartition front-end / back-end pour l'application choisie (métaphore du restaurant)",
+        "Le parcours complet d'une action utilisateur, du clic à la base de données, via l'API",
+        "L'indication du format d'échange (JSON) et du rôle du contrat d'API",
+        "Une justification des livraisons petites et fréquentes contre le grand lancement unique",
+      ],
+    },
     keyTakeaways: [
-      "Front-end et back-end sont complémentaires, pas interchangeables",
+      "Front-end (la salle) et back-end (la cuisine) sont complémentaires, pas interchangeables",
+      "L'API est le contrat standardisé qui découple le front-end du back-end",
       "Une API bien conçue est la clé d'une architecture web maintenable",
-      "Le déploiement continu réduit les risques liés aux mises en production",
+      "L'architecture client-serveur échange des données structurées, souvent en JSON",
+      "Livrer petit et souvent (déploiement continu) est plus sûr qu'un grand lancement rare",
     ],
     resources: [
       { label: "MDN Web Docs — Référence développement web", url: "https://developer.mozilla.org/fr" },
@@ -184,18 +354,46 @@ export const informatiqueLessons: Lesson[] = [
   {
     title: "Gestion de projets IT (Agile/Scrum)",
     objectives: [
-      "Comprendre les principes du manifeste agile",
-      "Maîtriser les rôles et rituels Scrum",
-      "Utiliser un outil de gestion de projet agile (Jira, Trello)",
+      "Comprendre les principes et l'état d'esprit du manifeste agile",
+      "Maîtriser les rôles et rituels Scrum et leur raison d'être",
+      "Utiliser un tableau Kanban pour visualiser le travail",
+      "Reconnaître les dérives qui vident l'agilité de son sens",
     ],
     content: [
       "Le manifeste agile privilégie la collaboration, l'adaptabilité et la livraison itérative plutôt que la planification rigide et la documentation exhaustive. Cette approche répond mieux aux besoins changeants des projets technologiques modernes.",
+      "L'agilité est née d'un constat d'échec : les grands projets planifiés dans les moindres détails des mois à l'avance livraient souvent, au bout d'un an, un produit qui ne correspondait plus aux besoins entretemps devenus obsolètes. Plutôt que de tout prévoir puis d'espérer que rien ne change, l'agilité accepte que le changement est inévitable et s'organise pour s'y adapter. C'est un renversement de philosophie : on livre tôt, on recueille des retours réels, et on ajuste — au lieu de parier des mois de travail sur des hypothèses non vérifiées.",
       "Scrum structure le travail en sprints (généralement 2 semaines) avec des rôles définis : le Product Owner priorise les besoins, le Scrum Master facilite le processus, et l'équipe de développement livre les fonctionnalités. Les rituels clés sont le sprint planning, le daily standup, la sprint review et la rétrospective.",
+      "Chaque rituel a une raison d'être précise qu'il faut comprendre pour ne pas le vider de son sens. Le sprint planning décide quoi faire dans les deux prochaines semaines ; le daily standup (15 minutes debout) synchronise l'équipe et fait remonter les blocages ; la sprint review montre le travail réalisé aux parties prenantes pour recueillir leurs retours ; la rétrospective, enfin, sert à l'équipe à s'améliorer elle-même. La dérive la plus fréquente est de transformer ces rituels en réunions bureaucratiques subies : un daily standup qui dure une heure et devient un rapport au chef trahit exactement l'esprit qu'il devait servir.",
       "Des outils comme Jira, Trello ou Azure DevOps permettent de visualiser le backlog, suivre l'avancement via des tableaux Kanban et mesurer la vélocité de l'équipe à travers les sprints.",
+      "Le tableau Kanban — colonnes « À faire », « En cours », « Terminé » — rend le travail visible, et cette visibilité change tout. On voit d'un coup d'œil ce qui est en cours, ce qui est bloqué, et si trop de tâches sont commencées sans être finies. La rétrospective mérite une attention particulière : c'est le rituel le plus souvent sacrifié « par manque de temps », alors qu'il est le seul dont l'objet est l'amélioration continue de l'équipe elle-même. Une équipe qui ne prend jamais le temps de réfléchir à sa façon de travailler répète indéfiniment les mêmes erreurs.",
     ],
+    caseStudy: {
+      title: "Équipe Novadev : le Scrum de façade",
+      body: [
+        "L'équipe Novadev « fait du Scrum » depuis un an, mais l'ambiance se dégrade et les livraisons prennent du retard. En apparence, tous les rituels sont là : il y a des sprints, un daily standup, un tableau Jira. Pourtant l'agilité ne produit aucun de ses bénéfices attendus.",
+        "En observant de près, un coach repère les dérives. Le daily standup dure quarante-cinq minutes et s'est mué en séance où chacun justifie son temps devant le gestionnaire — de la surveillance déguisée, pas de la synchronisation. Le backlog n'est jamais priorisé, si bien que l'équipe travaille au hasard. Et la rétrospective a été supprimée « pour gagner du temps », donc aucun de ces problèmes n'est jamais discuté ni corrigé. Scrum était devenu une coquille vide, un théâtre de rituels sans leur esprit.",
+        "Le redressement ne passe pas par plus d'outils mais par un retour au sens. Le standup revient à 15 minutes centrées sur les blocages, le Product Owner reprend la priorisation du backlog, et surtout la rétrospective est rétablie comme rituel sacré. En trois sprints, l'équipe identifie et corrige elle-même ses irritants. La leçon : l'agilité est un état d'esprit de collaboration et d'amélioration, pas une liste de réunions à cocher — appliquer les rituels sans en comprendre le but produit l'inverse de l'effet recherché.",
+      ],
+    },
+    exercise: {
+      title: "Organiser un sprint et animer une rétrospective",
+      prompt: [
+        "Pour un projet fictif de votre choix, constituez un petit backlog de six à huit tâches et priorisez-les. Sélectionnez ensuite celles que vous placeriez dans un premier sprint de deux semaines, en justifiant votre sélection.",
+        "Dessinez un tableau Kanban (À faire / En cours / Terminé) avec la répartition initiale de ces tâches, et expliquez le rôle de chacun des trois rôles Scrum (Product Owner, Scrum Master, équipe) dans le déroulement du sprint.",
+        "Rédigez enfin le déroulé d'une rétrospective de fin de sprint : quelles questions poseriez-vous à l'équipe pour identifier ce qui a bien fonctionné, ce qui a moins bien fonctionné, et une amélioration concrète à tester au sprint suivant ?",
+      ],
+      deliverables: [
+        "Un backlog priorisé et la sélection justifiée des tâches d'un premier sprint",
+        "Un tableau Kanban initial et le rôle des trois rôles Scrum",
+        "Le déroulé d'une rétrospective avec des questions concrètes",
+        "L'identification d'une dérive bureaucratique fréquente et comment l'éviter",
+      ],
+    },
     keyTakeaways: [
+      "L'agilité accepte le changement et s'y adapte au lieu de tout prévoir d'avance",
       "L'agilité est une philosophie de collaboration, pas seulement un ensemble d'outils",
-      "Les rituels Scrum servent à maintenir la transparence, pas à créer de la bureaucratie",
+      "Chaque rituel Scrum a un but précis ; le dénaturer produit l'effet inverse",
+      "Le tableau Kanban rend le travail visible, ses blocages compris",
       "La rétrospective est le rituel le plus souvent négligé mais le plus précieux pour s'améliorer",
     ],
     resources: [
@@ -214,19 +412,47 @@ export const informatiqueLessons: Lesson[] = [
   {
     title: "Projet final : transformation digitale d'entreprise",
     objectives: [
-      "Auditer les besoins technologiques d'une organisation",
-      "Proposer un plan de transformation digitale réaliste",
+      "Auditer les besoins technologiques réels d'une organisation",
+      "Proposer un plan de transformation digitale réaliste et priorisé",
       "Présenter une feuille de route technique et budgétaire",
+      "Intégrer la gestion du changement humain au plan technologique",
     ],
     content: [
       "Le projet final demande d'analyser une organisation (réelle ou fictive) et d'identifier les opportunités de digitalisation : automatisation de processus manuels, migration vers le cloud, adoption d'outils collaboratifs ou intégration d'IA pour gagner en efficacité.",
+      "C'est ici que tous les modules convergent : les systèmes et le réseau (module 1), le cloud (module 2), l'IA (module 3), la cybersécurité (module 4), les données (module 5), les applications (module 6) et la gestion de projet agile (module 7). Mais la leçon la plus importante de tout le programme est contre-intuitive : une transformation digitale réussie ne commence jamais par la technologie. Elle commence par une question métier — quel problème concret ralentit l'entreprise, coûte cher ou frustre les clients ? La technologie n'est qu'un moyen ; la confondre avec la fin est la première cause d'échec des projets de digitalisation.",
       "La feuille de route doit hiérarchiser les initiatives par impact et complexité, avec un calendrier réaliste et un budget estimé. Les transformations les plus réussies commencent par des gains rapides (quick wins) avant d'aborder des changements structurels plus profonds.",
+      "Cette logique des quick wins est stratégique autant que psychologique. Une transformation qui débute par un chantier lourd de dix-huit mois épuise la patience et la confiance avant d'avoir rien montré. À l'inverse, commencer par une petite automatisation qui fait gagner deux heures par semaine à une équipe crée un succès visible, tangible, qui rallie les sceptiques et justifie d'aller plus loin. On matrice les initiatives selon leur impact et leur complexité : les gains rapides (fort impact, faible complexité) d'abord, les grands chantiers structurants ensuite, une fois la confiance acquise.",
       "La gestion du changement est aussi importante que la technologie elle-même : impliquer les équipes concernées, former les utilisateurs et communiquer les bénéfices concrets déterminent souvent le succès ou l'échec d'une transformation digitale.",
+      "Le plus grand obstacle n'est presque jamais technique : c'est humain. Un outil parfait que personne n'utilise ne vaut rien. Les gens résistent au changement quand il leur est imposé sans explication, quand ils craignent pour leur poste, ou quand le nouvel outil complique leur quotidien avant de le simplifier. Impliquer les équipes concernées dès la conception, former réellement les utilisateurs, et communiquer les bénéfices en termes concrets pour eux — pas pour la direction — fait souvent la différence entre une transformation adoptée et un logiciel coûteux qui prend la poussière. La meilleure technologie du monde échoue si l'on néglige les personnes qui doivent la faire vivre.",
     ],
+    caseStudy: {
+      title: "Quincaillerie Métivier : commencer petit pour transformer grand",
+      body: [
+        "La Quincaillerie Métivier, commerce familial de trois succursales, croulait sous les processus manuels : inventaire noté sur papier, commandes fournisseurs par téléphone, aucune visibilité entre succursales. Le fils, fraîchement formé, voulait tout révolutionner d'un coup avec un grand système intégré coûteux. Son père, méfiant, freinait des quatre fers.",
+        "Plutôt que d'imposer le grand chantier, le fils applique la logique des quick wins. Il identifie l'irritant le plus concret — les ruptures de stock invisibles entre succursales — et déploie d'abord un simple partage d'inventaire numérique. En deux semaines, les employés cessent d'appeler les autres succursales pour vérifier la disponibilité : un gain de temps immédiat et visible que tout le monde ressent.",
+        "Ce premier succès change tout : les employés, d'abord sceptiques, réclament d'eux-mêmes la suite, et le père accorde son feu vert pour les chantiers plus lourds. La transformation se déroule ensuite par étapes priorisées, chacune formée et expliquée aux équipes. La leçon : partir du besoin métier réel, commencer par un gain rapide qui rallie les gens, et traiter la résistance humaine par l'implication plutôt que par l'imposition — c'est ce qui distingue une transformation réussie d'un échec coûteux.",
+      ],
+    },
+    exercise: {
+      title: "Concevoir une feuille de route de transformation digitale",
+      prompt: [
+        "Choisissez une organisation (réelle ou fictive) et identifiez, en partant de ses besoins métier concrets (et non de la technologie), trois à quatre opportunités de digitalisation. Pour chacune, formulez d'abord le problème métier qu'elle résout.",
+        "Positionnez ces initiatives sur une matrice impact / complexité et bâtissez une feuille de route priorisée : quel quick win lancer en premier, quels chantiers structurants ensuite, avec un calendrier réaliste et un ordre de grandeur de budget.",
+        "Élaborez enfin un volet de gestion du changement : comment impliqueriez-vous les équipes, formeriez-vous les utilisateurs et communiqueriez-vous les bénéfices pour surmonter la résistance humaine ?",
+      ],
+      deliverables: [
+        "Trois à quatre opportunités formulées à partir d'un besoin métier, pas d'une technologie",
+        "Une matrice impact/complexité et une feuille de route priorisée (quick win d'abord)",
+        "Un calendrier réaliste et un ordre de grandeur de budget",
+        "Un volet de gestion du changement (implication, formation, communication)",
+      ],
+    },
     keyTakeaways: [
+      "Le projet final fait converger tous les modules autour d'un cas réel",
       "Une transformation digitale réussie commence par les besoins métier, pas par la technologie",
       "Prioriser les gains rapides construit la confiance pour les changements plus ambitieux",
       "La résistance au changement humain est souvent le plus grand obstacle, pas la technique",
+      "Un outil que personne n'utilise ne vaut rien : impliquer et former fait la différence",
     ],
     resources: [
       { label: "MIT Sloan — Recherche sur la transformation digitale", url: "https://sloanreview.mit.edu" },
