@@ -4,22 +4,51 @@ export const financeLessons: Lesson[] = [
   {
     title: "Principes comptables canadiens (NCECF/IFRS)",
     objectives: [
-      "Distinguer les normes NCECF et IFRS",
-      "Comprendre les principes comptables fondamentaux",
-      "Identifier quel référentiel s'applique selon le type d'entreprise",
+      "Distinguer les normes NCECF et IFRS et leurs champs d'application respectifs",
+      "Comprendre les principes comptables fondamentaux qui sous-tendent toute information financière fiable",
+      "Identifier quel référentiel s'applique selon le type et le stade de développement de l'entreprise",
+      "Anticiper les conséquences d'un changement de référentiel sur les états financiers",
     ],
     content: [
-      "Au Canada, les entreprises privées utilisent généralement les Normes comptables pour les entreprises à capital fermé (NCECF), plus simples et moins coûteuses à appliquer. Les sociétés publiques doivent suivre les normes IFRS (International Financial Reporting Standards), harmonisées à l'échelle internationale.",
-      "Les principes comptables fondamentaux incluent la comptabilité d'exercice (les revenus et dépenses sont enregistrés quand ils surviennent, pas quand l'argent change de mains), la continuité d'exploitation, la prudence et la cohérence dans l'application des méthodes d'une période à l'autre.",
-      "Le choix du référentiel comptable a des implications sur la présentation des états financiers, la valorisation des actifs et les obligations de divulgation. Une entreprise en croissance visant un financement externe doit anticiper ces exigences dès le départ.",
+      "La comptabilité est le langage des affaires : elle traduit l'activité économique d'une entreprise en information structurée, comparable et vérifiable. Au Canada, cette information ne se produit pas librement — elle obéit à des référentiels normatifs qui garantissent que les états financiers d'une entreprise signifient la même chose pour un banquier, un investisseur ou l'administration fiscale.",
+      "Les entreprises privées utilisent généralement les Normes comptables pour les entreprises à capital fermé (NCECF), publiées par CPA Canada. Elles sont volontairement plus simples et moins coûteuses à appliquer que les normes internationales, car elles s'adressent à des entreprises dont les états financiers ont un cercle restreint d'utilisateurs (propriétaires, banque, fisc) plutôt qu'un marché boursier public.",
+      "Les sociétés ouvertes, cotées en bourse, doivent au contraire appliquer les IFRS (International Financial Reporting Standards), un référentiel harmonisé à l'échelle mondiale. L'objectif est qu'un investisseur de Toronto, Paris ou Tokyo puisse comparer deux entreprises sur une base commune. Les IFRS sont plus détaillées, imposent davantage de divulgations et recourent plus largement à la juste valeur.",
+      "Quel que soit le référentiel, quelques principes fondamentaux structurent toute la discipline. La comptabilité d'exercice enregistre les revenus et les dépenses au moment où ils surviennent économiquement, et non quand l'argent change de mains : une vente à crédit est un revenu dès la livraison, même si le client paiera dans 60 jours. C'est une rupture majeure avec la simple gestion de caisse.",
+      "Le principe de continuité d'exploitation suppose que l'entreprise poursuivra ses activités dans un avenir prévisible, ce qui justifie d'étaler le coût d'un équipement sur sa durée de vie plutôt que de le passer entièrement en charge à l'achat. Le principe de prudence impose de ne pas surévaluer les actifs ni sous-évaluer les dettes. Le principe de cohérence exige d'appliquer les mêmes méthodes d'une période à l'autre, pour que les comparaisons restent valides.",
+      "Le choix du référentiel n'est pas anodin : il influence la présentation des états financiers, la valorisation des actifs et l'étendue des obligations de divulgation. Une PME en croissance qui vise une levée de fonds, un prêt bancaire important ou une éventuelle entrée en bourse doit anticiper ces exigences très tôt, car migrer des NCECF vers les IFRS a posteriori est coûteux et chronophage.",
     ],
+    caseStudy: {
+      title: "Boulangerie Lévesque inc. : le piège de la comptabilité de caisse",
+      body: [
+        "Marie Lévesque dirige une boulangerie artisanale à Trois-Rivières, constituée en société par actions. Pendant trois ans, elle a tenu ses comptes « à la caisse » : elle enregistrait un revenu uniquement quand l'argent entrait, et une dépense quand elle payait. Ses états financiers montraient une entreprise très rentable en décembre — mois où elle encaissait les grosses commandes du temps des fêtes — mais quasi déficitaire en janvier.",
+        "Lorsqu'elle a voulu obtenir un prêt de 80 000 $ pour un second four, la banque a exigé des états financiers conformes aux NCECF, donc en comptabilité d'exercice. Le comptable a alors réparti correctement les revenus des commandes des fêtes sur la période où le pain était réellement livré, et étalé le coût du premier four sur ses dix ans de vie utile via l'amortissement.",
+        "Le portrait a radicalement changé : la rentabilité, jusque-là gonflée artificiellement en décembre, est apparue stable et saine sur l'ensemble de l'année. La banque a accordé le prêt, précisément parce que les états conformes aux NCECF donnaient une image fidèle et comparable de la performance réelle. Ce cas illustre pourquoi le référentiel comptable n'est pas une formalité, mais un outil de crédibilité et de financement.",
+      ],
+    },
+    exercise: {
+      title: "Choisir et justifier un référentiel comptable",
+      prompt: [
+        "Vous conseillez trois entreprises fictives : (1) un salon de coiffure individuel qui génère 90 000 $ de revenus annuels ; (2) une start-up techno qui prévoit une levée de fonds auprès d'investisseurs internationaux dans deux ans ; (3) une entreprise manufacturière familiale de 40 employés, non cotée, qui emprunte régulièrement auprès de sa caisse populaire.",
+        "Pour chacune, déterminez le référentiel comptable le plus approprié (NCECF ou IFRS) et rédigez un court paragraphe de justification en vous appuyant sur les utilisateurs des états financiers et les besoins futurs de financement.",
+        "Rédigez ensuite, en vos propres mots, une explication d'une demi-page destinée à un client non-comptable, illustrant la différence entre comptabilité de caisse et comptabilité d'exercice à l'aide d'un exemple chiffré simple de votre invention.",
+      ],
+      deliverables: [
+        "Un tableau associant chaque entreprise à son référentiel (NCECF ou IFRS)",
+        "Une justification écrite (3 à 5 phrases) par entreprise, référant aux utilisateurs et au financement",
+        "Une explication vulgarisée d'une demi-page opposant caisse et exercice, avec un exemple chiffré",
+        "L'identification d'au moins un risque concret lié à un mauvais choix de référentiel",
+      ],
+    },
     keyTakeaways: [
       "Le NCECF convient à la majorité des PME canadiennes non cotées en bourse",
+      "Les IFRS s'imposent aux sociétés ouvertes pour garantir la comparabilité internationale",
       "La comptabilité d'exercice diffère fondamentalement de la simple gestion de trésorerie",
-      "Le choix de référentiel doit anticiper les besoins futurs de financement",
+      "Continuité, prudence et cohérence sont les piliers de toute information financière fiable",
+      "Le choix de référentiel doit anticiper les besoins futurs de financement, car en changer coûte cher",
     ],
     resources: [
       { label: "CPA Canada — Normes comptables", url: "https://www.cpacanada.ca" },
+      { label: "IFRS Foundation — Normes internationales", url: "https://www.ifrs.org" },
     ],
     quiz: [
       { question: "Quelles normes comptables utilisent généralement les sociétés publiques au Canada ?", options: ["NCECF", "IFRS", "Aucune norme n'est requise", "Les normes américaines uniquement"], correctIndex: 1, explanation: "Les sociétés publiques canadiennes doivent suivre les normes IFRS, harmonisées internationalement." },
@@ -33,22 +62,52 @@ export const financeLessons: Lesson[] = [
   {
     title: "Tenue de livres et états financiers",
     objectives: [
-      "Maîtriser le cycle comptable de base",
-      "Produire un bilan et un état des résultats simples",
-      "Comprendre le lien entre les trois états financiers principaux",
+      "Maîtriser les étapes du cycle comptable, du journal aux états financiers",
+      "Appliquer le principe de la partie double à des transactions courantes",
+      "Produire un bilan et un état des résultats simples et cohérents",
+      "Comprendre l'articulation entre les trois états financiers principaux",
     ],
     content: [
-      "Le cycle comptable comprend l'enregistrement des transactions (journal), leur classification (grand livre), la balance de vérification, les ajustements de fin de période et la production des états financiers finaux. Chaque transaction respecte le principe de la partie double : tout débit a un crédit correspondant.",
-      "Le bilan présente la situation financière à un instant donné : actifs (ce que possède l'entreprise), passifs (ce qu'elle doit) et capitaux propres (la différence). L'état des résultats montre la performance sur une période : revenus moins dépenses égale le bénéfice net.",
-      "Les trois états financiers principaux — bilan, état des résultats et tableau des flux de trésorerie — sont interconnectés : le bénéfice net de l'état des résultats affecte les capitaux propres du bilan, et les flux de trésorerie expliquent les variations de liquidités non visibles dans les deux autres états.",
+      "La tenue de livres est le socle opérationnel de toute la finance d'entreprise : sans données saisies correctement et régulièrement, aucun ratio, aucun budget, aucune déclaration fiscale ne peut être fiable. C'est un travail rigoureux et répétitif, mais dont la qualité conditionne tout ce qui suit.",
+      "Le cycle comptable suit une séquence précise. Chaque opération est d'abord consignée dans le journal (l'ordre chronologique des transactions), puis reportée dans le grand livre (le regroupement par compte). On dresse ensuite une balance de vérification pour s'assurer que la somme des débits égale celle des crédits, on passe les écritures d'ajustement de fin de période (amortissements, charges courues, produits différés), et enfin on produit les états financiers.",
+      "Au cœur de ce mécanisme se trouve le principe de la partie double : toute transaction affecte au moins deux comptes, de sorte que le total des débits égale toujours le total des crédits. Si une entreprise achète pour 1 000 $ de matériel payé comptant, l'actif « équipement » augmente de 1 000 $ (débit) tandis que l'actif « encaisse » diminue de 1 000 $ (crédit). L'équation comptable reste équilibrée.",
+      "Le bilan présente la situation financière à un instant donné, comme une photographie. Il repose sur l'équation fondamentale : Actif = Passif + Capitaux propres. Les actifs sont ce que l'entreprise possède (encaisse, stocks, équipements, comptes clients), les passifs sont ce qu'elle doit (fournisseurs, emprunts), et les capitaux propres représentent la richesse nette appartenant aux propriétaires.",
+      "L'état des résultats, lui, ressemble davantage à un film : il retrace la performance sur une période complète. On y soustrait des revenus l'ensemble des charges (coût des ventes, salaires, loyer, amortissement) pour obtenir le bénéfice net. Ce bénéfice mesure si l'activité a créé ou détruit de la valeur pendant la période.",
+      "Les trois états financiers — bilan, état des résultats et tableau des flux de trésorerie — ne se lisent jamais isolément. Le bénéfice net de l'état des résultats vient augmenter les capitaux propres au bilan. Le tableau des flux de trésorerie, quant à lui, explique pourquoi l'encaisse a varié, révélant des réalités invisibles ailleurs : une entreprise peut afficher un bénéfice comptable tout en manquant de liquidités, parce que ses clients tardent à payer.",
     ],
+    caseStudy: {
+      title: "Café Signature : rentable sur papier, à sec dans les faits",
+      body: [
+        "Le Café Signature, un petit torréfacteur qui vend en gros à des restaurants, affiche à la fin de son premier semestre un bénéfice net de 18 000 $ à l'état des résultats. Son propriétaire, Karim, est satisfait — jusqu'à ce que sa carte de crédit d'entreprise soit refusée pour un achat de sacs d'emballage de 400 $.",
+        "L'analyse du bilan et du tableau des flux de trésorerie révèle le paradoxe. Les ventes ont bien été enregistrées comme revenus dès la livraison du café (comptabilité d'exercice), gonflant le bénéfice. Mais la moitié de ces ventes correspond à des comptes clients : des restaurants qui paient à 60 jours. L'argent n'est tout simplement pas encore entré dans les comptes.",
+        "En parallèle, Karim avait acheté comptant un nouveau torréfacteur de 25 000 $. Cette sortie de trésorerie n'apparaît pas comme une charge à l'état des résultats (elle est capitalisée et amortie), mais elle a bel et bien vidé l'encaisse. Conclusion : le bénéfice mesure la création de valeur, pas la liquidité disponible. Les trois états, lus ensemble, racontent l'histoire complète que chacun pris isolément déforme.",
+      ],
+    },
+    exercise: {
+      title: "Passer des écritures et bâtir des états simples",
+      prompt: [
+        "Une jeune entreprise réalise, durant son premier mois, les opérations suivantes : apport initial de 10 000 $ par le propriétaire ; achat comptant d'équipement pour 3 000 $ ; prestation de services facturée 4 000 $ (payable à 30 jours) ; paiement du loyer de 800 $ ; encaissement de 1 500 $ d'un client.",
+        "Enregistrez chacune de ces cinq opérations selon le principe de la partie double, en indiquant clairement le compte débité et le compte crédité, puis vérifiez que l'équilibre débit-crédit est respecté.",
+        "À partir de ces écritures, dressez un état des résultats simplifié du mois et un bilan de clôture. Rédigez enfin deux ou trois phrases expliquant pourquoi le bénéfice du mois diffère de la variation d'encaisse.",
+      ],
+      deliverables: [
+        "Le journal des cinq écritures avec débits et crédits identifiés",
+        "Une balance de vérification montrant l'égalité débits = crédits",
+        "Un état des résultats simplifié du premier mois",
+        "Un bilan de clôture respectant l'équation Actif = Passif + Capitaux propres",
+        "Une explication de l'écart entre bénéfice net et variation de trésorerie",
+      ],
+    },
     keyTakeaways: [
       "Chaque transaction comptable respecte toujours l'équilibre débit-crédit",
+      "Le cycle comptable va du journal au grand livre, puis aux états financiers",
       "Le bilan est une photographie, l'état des résultats est un film sur une période",
       "Les trois états financiers doivent être lus ensemble pour une vision complète",
+      "Un bénéfice comptable ne garantit jamais à lui seul la présence de liquidités",
     ],
     resources: [
       { label: "QuickBooks — Guide de la comptabilité pour PME", url: "https://quickbooks.intuit.com/ca/resources" },
+      { label: "CPA Canada — Ressources sur la tenue de livres", url: "https://www.cpacanada.ca" },
     ],
     quiz: [
       { question: "Que présente le bilan d'une entreprise ?", options: ["Sa performance sur une année complète uniquement", "Sa situation financière à un instant donné (actifs, passifs, capitaux propres)", "Uniquement ses dépenses publicitaires", "Le nombre d'employés"], correctIndex: 1, explanation: "Le bilan est une photographie de la situation financière d'une entreprise à une date précise." },
@@ -62,19 +121,47 @@ export const financeLessons: Lesson[] = [
   {
     title: "Fiscalité canadienne (particuliers & entreprises)",
     objectives: [
-      "Comprendre les paliers d'imposition au Canada (fédéral, provincial)",
-      "Connaître les principales obligations fiscales des entreprises",
-      "Identifier les crédits et déductions courants",
+      "Comprendre l'architecture à deux paliers du système fiscal canadien",
+      "Connaître les principales obligations fiscales des entreprises (TPS/TVQ, déclarations, retenues)",
+      "Distinguer taux marginal et taux effectif d'imposition",
+      "Identifier les crédits et déductions courants qui réduisent légalement la charge fiscale",
     ],
     content: [
-      "Le système fiscal canadien fonctionne sur deux paliers : l'impôt fédéral, géré par l'Agence du revenu du Canada (ARC), et l'impôt provincial, géré par Revenu Québec dans le cas du Québec. Les taux d'imposition sont progressifs : plus le revenu est élevé, plus le taux marginal augmente.",
-      "Les entreprises doivent percevoir et remettre la TPS (5%) et la TVQ (9,975% au Québec) au-delà d'un seuil de revenus de 30 000$, produire des déclarations de revenus annuelles et effectuer des retenues à la source si elles ont des employés (impôt, RRQ, assurance-emploi).",
-      "Plusieurs crédits et déductions réduisent la charge fiscale : le crédit d'impôt à la recherche scientifique et développement expérimental (RS&DE), les déductions pour amortissement d'actifs, et divers crédits provinciaux selon le secteur d'activité.",
+      "La fiscalité n'est pas qu'une contrainte administrative : bien comprise, elle devient un paramètre de décision d'affaires. Le moment où l'on facture, la façon dont on rémunère un dirigeant, le choix d'acheter ou de louer un actif — tout cela a des conséquences fiscales qui, cumulées, pèsent lourd sur la rentabilité réelle.",
+      "Le système fiscal canadien fonctionne sur deux paliers. L'impôt fédéral est administré par l'Agence du revenu du Canada (ARC). L'impôt provincial est administré, au Québec, par Revenu Québec — le Québec étant la seule province à percevoir elle-même son impôt des particuliers. Une entreprise québécoise a donc deux interlocuteurs fiscaux distincts.",
+      "Les taux d'imposition des particuliers sont progressifs : le revenu est découpé en tranches, chacune imposée à un taux croissant. Il est essentiel de distinguer le taux marginal (le taux appliqué au dernier dollar gagné) du taux effectif (l'impôt total divisé par le revenu total). Gagner davantage ne fait jamais « perdre de l'argent » : seule la tranche supérieure est imposée au taux le plus élevé, pas la totalité du revenu.",
+      "Côté taxes de vente, dès qu'une entreprise dépasse 30 000 $ de revenus taxables sur quatre trimestres consécutifs, elle doit s'inscrire, percevoir la TPS (5 %) et la TVQ (9,975 % au Québec), puis les remettre aux autorités. En contrepartie, elle récupère les taxes payées sur ses propres achats via les crédits de taxe sur les intrants : au net, l'entreprise n'est qu'un percepteur pour l'État.",
+      "Si l'entreprise a des employés, elle doit effectuer des retenues à la source sur chaque paie (impôt, RRQ/RPC, assurance-emploi, RQAP au Québec) et les remettre selon un calendrier strict. Tout retard entraîne des pénalités et des intérêts immédiats : c'est l'une des obligations les plus surveillées, car ces sommes sont considérées comme détenues en fiducie pour l'État.",
+      "Enfin, plusieurs mécanismes réduisent légalement la charge fiscale. Le crédit d'impôt à la recherche scientifique et développement expérimental (RS&DE) rembourse une partie des dépenses d'innovation. La déduction pour amortissement permet d'étaler fiscalement le coût des immobilisations. La déduction pour petite entreprise abaisse le taux d'impôt des sociétés sur les premiers 500 000 $ de bénéfices actifs. Ces leviers sont souvent sous-utilisés par les PME faute de connaissance.",
     ],
+    caseStudy: {
+      title: "Atelier Nord-Sud : la RS&DE oubliée",
+      body: [
+        "Atelier Nord-Sud est une PME de dix employés qui conçoit des systèmes de ventilation sur mesure. Depuis deux ans, une partie de l'équipe passe environ 30 % de son temps à mettre au point un nouveau procédé de récupération de chaleur, avec de nombreux essais infructueux avant d'aboutir. Le dirigeant considérait cela comme du simple « développement de produit » et ne l'avait jamais signalé au fisc.",
+        "En rencontrant un fiscaliste, il découvre que ces travaux — incertitude technologique, expérimentation systématique, essais et erreurs documentés — répondent précisément aux critères du crédit RS&DE. Les salaires affectés à ces activités, une portion des matériaux consommés dans les essais et certains frais généraux deviennent admissibles à un crédit d'impôt combiné fédéral-provincial substantiel.",
+        "Après reconstitution de la documentation, l'entreprise récupère plusieurs dizaines de milliers de dollars pour les exercices encore admissibles. La leçon est double : d'une part, la fiscalité recèle des leviers puissants mais qui exigent d'être identifiés et documentés à temps ; d'autre part, une PME innovante qui ignore ces mécanismes finance son innovation bien plus cher que nécessaire.",
+      ],
+    },
+    exercise: {
+      title: "Diagnostic fiscal d'une PME",
+      prompt: [
+        "Une entreprise de services conseils a réalisé 220 000 $ de revenus taxables cette année, emploie deux salariés et a investi dans un logiciel spécialisé ainsi que dans des travaux d'amélioration d'un procédé interne. Elle n'est pas certaine de ses obligations ni de ses opportunités fiscales.",
+        "Dressez la liste des obligations fiscales auxquelles cette entreprise est soumise (inscription et perception TPS/TVQ, déclarations, retenues à la source), en précisant ce qui déclenche chacune.",
+        "Identifiez ensuite au moins deux mécanismes de réduction fiscale potentiellement applicables et expliquez, pour chacun, la condition principale d'admissibilité. Rédigez enfin une note d'une demi-page distinguant, à l'aide d'un exemple chiffré, le taux marginal du taux effectif.",
+      ],
+      deliverables: [
+        "Une liste structurée des obligations fiscales avec leur élément déclencheur",
+        "L'identification d'au moins deux crédits ou déductions applicables, avec condition d'admissibilité",
+        "Une note vulgarisée opposant taux marginal et taux effectif, exemple chiffré à l'appui",
+        "Une recommandation concrète pour éviter des pénalités sur les retenues à la source",
+      ],
+    },
     keyTakeaways: [
-      "Le seuil de 30 000$ de revenus déclenche l'obligation de percevoir TPS/TVQ",
-      "Les retenues à la source sont une obligation légale stricte avec pénalités en cas de manquement",
-      "Les crédits RS&DE représentent une opportunité souvent sous-utilisée par les PME innovantes",
+      "Le système fiscal canadien combine un palier fédéral (ARC) et un palier provincial (Revenu Québec au Québec)",
+      "Le seuil de 30 000 $ de revenus déclenche l'obligation de percevoir TPS/TVQ",
+      "Gagner plus n'appauvrit jamais : seul le dernier dollar est imposé au taux marginal",
+      "Les retenues à la source sont détenues en fiducie pour l'État — tout retard est immédiatement pénalisé",
+      "Les crédits RS&DE et déductions courantes sont des opportunités souvent sous-utilisées par les PME",
     ],
     resources: [
       { label: "Agence du revenu du Canada", url: "https://www.canada.ca/fr/agence-revenu.html" },
@@ -92,22 +179,52 @@ export const financeLessons: Lesson[] = [
   {
     title: "Analyse financière et ratios",
     objectives: [
-      "Calculer et interpréter les principaux ratios financiers",
-      "Évaluer la rentabilité, la liquidité et la solvabilité d'une entreprise",
-      "Utiliser l'analyse financière pour la prise de décision",
+      "Calculer et interpréter les principaux ratios de rentabilité, de liquidité et de solvabilité",
+      "Contextualiser un ratio par comparaison historique, sectorielle et budgétaire",
+      "Relier les ratios à des décisions de gestion concrètes",
+      "Reconnaître les limites et les pièges d'interprétation des ratios",
     ],
     content: [
-      "Les ratios de rentabilité (marge bénéficiaire nette, rendement de l'actif) mesurent la capacité de l'entreprise à générer des profits. Les ratios de liquidité (ratio de fonds de roulement, ratio rapide) évaluent la capacité à honorer les obligations à court terme.",
-      "Les ratios de solvabilité (ratio d'endettement, couverture des intérêts) mesurent la capacité à long terme de l'entreprise à rembourser ses dettes. Un ratio d'endettement élevé n'est pas nécessairement négatif s'il finance une croissance rentable.",
-      "L'analyse financière prend tout son sens en comparaison : avec les périodes précédentes (tendance), avec des entreprises similaires du secteur (benchmark), ou avec les objectifs budgétés. Un ratio isolé sans contexte de comparaison a une valeur limitée.",
+      "L'analyse financière transforme des états financiers bruts en compréhension. Les chiffres absolus (« 2 M$ de dettes ») ne disent presque rien tant qu'on ne les met pas en relation : 2 M$ de dettes pour une entreprise qui possède 10 M$ d'actifs et dégage de solides bénéfices n'ont rien à voir avec 2 M$ de dettes pour une entreprise fragile. Les ratios sont l'outil qui établit ces relations.",
+      "Les ratios de rentabilité mesurent la capacité à générer du profit. La marge bénéficiaire nette (bénéfice net ÷ revenus) indique combien de cents de profit chaque dollar de vente laisse réellement. Le rendement de l'actif (bénéfice net ÷ actif total) mesure l'efficacité avec laquelle l'entreprise utilise ses ressources pour produire des gains.",
+      "Les ratios de liquidité évaluent la capacité à honorer les obligations à court terme. Le ratio de fonds de roulement (actif à court terme ÷ passif à court terme) vérifie si l'entreprise peut couvrir ses dettes de l'année à venir. Le ratio rapide affine la mesure en excluant les stocks, moins facilement convertibles en argent, pour ne garder que les actifs réellement liquides.",
+      "Les ratios de solvabilité concernent le long terme. Le ratio d'endettement (dettes totales ÷ actif total, ou ÷ capitaux propres) mesure la part de l'entreprise financée par emprunt. Le ratio de couverture des intérêts vérifie que les bénéfices d'exploitation suffisent à payer les intérêts de la dette. Un endettement élevé n'est pas mauvais en soi : s'il finance une croissance dont le rendement dépasse le coût de la dette, il crée de la valeur ; il ne devient dangereux que lorsqu'il excède la capacité de remboursement.",
+      "La règle d'or de l'analyse est qu'un ratio isolé ne signifie rien. Il prend son sens dans trois comparaisons : la tendance (le ratio s'améliore-t-il ou se détériore-t-il d'une période à l'autre ?), le benchmark sectoriel (comment se situe-t-il par rapport aux entreprises comparables ?) et l'objectif budgété (atteint-on ce qu'on s'était fixé ?). Une marge de 8 % peut être excellente dans l'épicerie et médiocre dans le logiciel.",
+      "L'analyste avisé se méfie aussi des pièges : des données comptables manipulées ou non normalisées faussent les ratios ; un ratio peut être « bon » pour une mauvaise raison (une liquidité élevée peut cacher des stocks invendables) ; et aucun ratio ne remplace le jugement qualitatif sur le marché, l'équipe et la stratégie. Les ratios posent les bonnes questions ; ils ne donnent pas toutes les réponses.",
     ],
+    caseStudy: {
+      title: "Deux détaillants, un même ratio, deux histoires opposées",
+      body: [
+        "Deux boutiques de vêtements, Mode A et Mode B, présentent exactement le même ratio de fonds de roulement de 2,5 — leurs actifs à court terme valent 2,5 fois leurs dettes à court terme. Sur ce seul chiffre, un prêteur pressé les jugerait équivalentes et également saines.",
+        "L'examen détaillé raconte pourtant deux histoires opposées. Chez Mode A, les actifs à court terme sont surtout de l'encaisse et des comptes clients récents : la liquidité est réelle. Chez Mode B, le même ratio repose massivement sur un stock de collections des saisons passées, difficile à écouler et probablement surévalué au bilan. Le ratio rapide, qui exclut les stocks, tombe à 0,6 pour Mode B contre 2,2 pour Mode A.",
+        "Conclusion : Mode B est en réalité en tension de liquidité, malgré un ratio de fonds de roulement flatteur. Cet exemple illustre pourquoi il faut croiser plusieurs ratios, comprendre la composition des postes, et ne jamais tirer de conclusion d'un chiffre unique. Le même 2,5 cache la santé dans un cas et le danger dans l'autre.",
+      ],
+    },
+    exercise: {
+      title: "Analyser la santé financière d'une entreprise",
+      prompt: [
+        "On vous remet les données simplifiées d'une PME : revenus 500 000 $, bénéfice net 40 000 $, actif total 600 000 $, actif à court terme 180 000 $ (dont 90 000 $ de stocks), passif à court terme 90 000 $, dettes totales 350 000 $.",
+        "Calculez au moins un ratio de chaque famille : rentabilité (marge nette), liquidité (fonds de roulement et ratio rapide) et solvabilité (endettement). Présentez vos calculs de façon claire.",
+        "Rédigez ensuite un court diagnostic (une demi-page) interprétant ces ratios ensemble : quelles forces, quelles faiblesses, et surtout quelle information supplémentaire (tendance, secteur) vous manque pour conclure avec confiance. Terminez par une recommandation de gestion.",
+      ],
+      deliverables: [
+        "Le calcul détaillé d'au moins un ratio de rentabilité, un de liquidité et un de solvabilité",
+        "Le calcul distinct du ratio de fonds de roulement et du ratio rapide, avec commentaire sur l'écart",
+        "Un diagnostic écrit interprétant les ratios de façon croisée, pas isolée",
+        "L'indication des données de comparaison manquantes pour une conclusion fiable",
+        "Une recommandation de gestion concrète découlant de l'analyse",
+      ],
+    },
     keyTakeaways: [
       "Chaque ratio doit être interprété en contexte, jamais isolément",
+      "Rentabilité, liquidité et solvabilité répondent à trois questions distinctes et complémentaires",
       "La comparaison historique révèle les tendances plus utiles que les chiffres ponctuels",
       "Un niveau d'endettement élevé n'est problématique que s'il dépasse la capacité de remboursement",
+      "Croiser plusieurs ratios évite les conclusions trompeuses tirées d'un chiffre unique",
     ],
     resources: [
       { label: "Investopedia — Ratios financiers (en anglais)", url: "https://www.investopedia.com/financial-ratios-4689817" },
+      { label: "BDC — Analyser sa performance financière", url: "https://www.bdc.ca/fr/articles-outils" },
     ],
     quiz: [
       { question: "Que mesurent les ratios de liquidité ?", options: ["La capacité à honorer les obligations à court terme", "La popularité de l'entreprise", "Le nombre d'employés", "La couleur du logo"], correctIndex: 0, explanation: "Les ratios de liquidité évaluent si l'entreprise peut couvrir ses dettes et obligations à court terme avec ses actifs liquides." },
@@ -121,22 +238,52 @@ export const financeLessons: Lesson[] = [
   {
     title: "Planification budgétaire",
     objectives: [
-      "Construire un budget d'exploitation annuel",
-      "Suivre les écarts entre budget et résultats réels",
-      "Ajuster les prévisions en cours d'exercice",
+      "Construire un budget d'exploitation annuel segmenté par période",
+      "Analyser les écarts entre budget et résultats réels et en comprendre les causes",
+      "Distinguer budget rigide et budget glissant",
+      "Utiliser le budget comme outil de pilotage plutôt que comme prédiction figée",
     ],
     content: [
-      "Un budget d'exploitation projette les revenus et dépenses attendus sur une période, généralement annuelle, divisée par mois ou trimestre. Il sert de référence pour mesurer la performance réelle et orienter les décisions de gestion en cours d'année.",
-      "Le suivi des écarts compare régulièrement les résultats réels au budget prévu, identifiant les écarts favorables (revenus supérieurs ou dépenses inférieures aux prévisions) et défavorables. Comprendre la cause de chaque écart guide les actions correctives.",
-      "La planification budgétaire ne doit pas être figée : un budget glissant, révisé trimestriellement selon les nouvelles informations disponibles, reste plus pertinent qu'un budget rigide établi une fois par an et jamais révisé.",
+      "Un budget n'est pas une prophétie : c'est un plan chiffré qui traduit la stratégie en objectifs financiers mesurables. Sa vraie valeur ne réside pas dans l'exactitude de ses prévisions, mais dans la discipline qu'il impose et dans les écarts qu'il révèle, lesquels déclenchent des décisions.",
+      "Le budget d'exploitation projette les revenus et les dépenses attendus sur une période — le plus souvent l'année, découpée en mois ou en trimestres. Cette segmentation est essentielle : un budget uniquement annuel ne permet aucun suivi en cours de route, alors qu'un découpage mensuel autorise des ajustements rapides dès qu'une tendance se dessine.",
+      "Construire un budget réaliste commence par les revenus, poste le plus incertain. On s'appuie sur l'historique, le carnet de commandes, la saisonnalité et des hypothèses explicites de croissance. Viennent ensuite les charges variables (qui évoluent avec l'activité, comme les matières premières) et les charges fixes (loyer, salaires de base, assurances), plus prévisibles.",
+      "Le cœur du pilotage budgétaire est l'analyse des écarts : la comparaison régulière entre le réel et le prévu. Un écart favorable correspond à des revenus supérieurs ou à des dépenses inférieures aux prévisions ; un écart défavorable, à l'inverse. Mais le signe de l'écart importe moins que sa cause : un dépassement de coût dû à une hausse ponctuelle du prix d'une matière n'appelle pas la même réaction qu'un dépassement structurel de la masse salariale.",
+      "C'est pourquoi comprendre la cause d'un écart prime sur l'écart lui-même. Un écart favorable peut même être un mauvais signe : des dépenses de marketing très inférieures au budget peuvent expliquer, quelques mois plus tard, des ventes elles aussi inférieures aux prévisions. L'analyse relie les écarts entre eux pour reconstituer une histoire de gestion, pas une simple liste de dérives.",
+      "Enfin, un budget doit vivre. Le budget rigide, établi une fois par an et jamais révisé, perd rapidement sa pertinence face à un environnement changeant. Le budget glissant, réactualisé chaque trimestre à la lumière des résultats réels et des nouvelles informations, reste un outil de décision utile toute l'année. Le budget est un instrument de pilotage — un tableau de bord — et non un document d'archive figé.",
     ],
+    caseStudy: {
+      title: "Studio Lumen : quand un écart favorable cache un problème",
+      body: [
+        "Studio Lumen, une agence de design de six personnes, boucle son deuxième trimestre avec un écart favorable notable : ses dépenses de sous-traitance et de publicité sont bien inférieures au budget. Sur le tableau de bord, tout semble vert, et la direction se félicite d'avoir « maîtrisé les coûts ».",
+        "L'analyse des causes, menée par la responsable des finances, raconte une autre histoire. Si la sous-traitance a chuté, c'est parce que l'agence a décroché moins de contrats que prévu — elle n'a donc pas eu besoin de renfort. Et si le budget publicité n'a pas été dépensé, c'est qu'une campagne planifiée a été repoussée faute de temps. L'écart « favorable » sur les dépenses est en réalité le symptôme d'un ralentissement commercial.",
+        "En croisant l'écart de dépenses avec l'écart de revenus (défavorable, lui), la responsable anticipe une pression sur la trésorerie au trimestre suivant et recommande de relancer immédiatement la campagne reportée. Le cas montre qu'un écart n'a de sens qu'en relation avec les autres, et qu'un chiffre vert peut masquer un vrai problème de fond.",
+      ],
+    },
+    exercise: {
+      title: "Bâtir un budget et analyser ses écarts",
+      prompt: [
+        "Construisez un budget d'exploitation trimestriel simplifié pour une petite entreprise de services de votre choix : estimez les revenus, séparez clairement les charges variables des charges fixes, et calculez le bénéfice budgété du trimestre. Explicitez au moins deux hypothèses derrière vos prévisions de revenus.",
+        "On vous communique ensuite les résultats réels : les revenus ont été inférieurs de 15 % au budget, tandis que les charges variables ont, elles aussi, diminué proportionnellement, et une charge fixe imprévue de maintenance est apparue.",
+        "Calculez les écarts pour chaque poste, qualifiez-les de favorables ou défavorables, puis rédigez une analyse d'une demi-page reliant les écarts entre eux pour en dégager une lecture de gestion et une recommandation.",
+      ],
+      deliverables: [
+        "Un budget trimestriel distinguant revenus, charges variables et charges fixes",
+        "L'explicitation d'au moins deux hypothèses de prévision de revenus",
+        "Le calcul des écarts par poste, qualifiés (favorable / défavorable)",
+        "Une analyse reliant les écarts entre eux plutôt que poste par poste",
+        "Une recommandation de gestion et une proposition de révision du budget suivant",
+      ],
+    },
     keyTakeaways: [
       "Le budget est un outil de pilotage, pas une prédiction figée",
+      "Un découpage mensuel ou trimestriel permet le suivi que le budget annuel seul interdit",
       "Comprendre la cause d'un écart importe plus que l'écart lui-même",
-      "Réviser le budget régulièrement le maintient pertinent face aux réalités changeantes",
+      "Un écart favorable peut cacher un problème : les écarts se lisent les uns par rapport aux autres",
+      "Réviser le budget régulièrement (budget glissant) le maintient pertinent face aux réalités changeantes",
     ],
     resources: [
       { label: "BDC — Modèles de budget pour PME", url: "https://www.bdc.ca/fr/articles-outils" },
+      { label: "CPA Canada — Planification et budgétisation", url: "https://www.cpacanada.ca" },
     ],
     quiz: [
       { question: "Qu'est-ce qu'un écart favorable dans le suivi budgétaire ?", options: ["Des revenus supérieurs ou des dépenses inférieures aux prévisions", "Toujours une perte financière", "Une erreur de calcul", "Un budget jamais respecté"], correctIndex: 0, explanation: "Un écart favorable signifie une performance meilleure que prévu, que ce soit en revenus ou en maîtrise des dépenses." },
@@ -150,22 +297,51 @@ export const financeLessons: Lesson[] = [
   {
     title: "Paie et avantages sociaux",
     objectives: [
-      "Comprendre les obligations légales de la paie au Canada",
-      "Calculer les retenues obligatoires sur le salaire",
-      "Connaître les principaux avantages sociaux offerts au Québec",
+      "Comprendre les obligations légales de la paie au Canada et au Québec",
+      "Calculer les retenues obligatoires et distinguer coûts employé et coûts employeur",
+      "Appliquer les règles d'heures supplémentaires et de congés des normes du travail",
+      "Évaluer le rôle stratégique des avantages sociaux dans l'attraction et la rétention",
     ],
     content: [
-      "Tout employeur canadien doit effectuer des retenues obligatoires sur chaque paie : impôt fédéral et provincial, cotisations au Régime de rentes du Québec (RRQ) ou Régime de pensions du Canada (RPC), assurance-emploi (AE) et, au Québec, le Régime québécois d'assurance parentale (RQAP).",
-      "Le calcul de la paie doit aussi tenir compte des heures supplémentaires (généralement payées à 150% au-delà de 40 heures/semaine au Québec), des congés payés (vacances, jours fériés) et des normes minimales du travail provinciales.",
-      "Les avantages sociaux courants au Québec incluent l'assurance collective (santé, dentaire, invalidité), les régimes de retraite (REER collectif), et de plus en plus, des avantages flexibles comme le télétravail ou les congés de santé mentale, devenus des facteurs clés d'attraction de talents.",
+      "La paie est l'une des zones où une erreur se paie cher, au sens propre : les autorités fiscales et les normes du travail encadrent strictement la rémunération, et les manquements entraînent pénalités, intérêts et parfois recours des employés. Maîtriser la paie, c'est protéger à la fois l'entreprise et ses salariés.",
+      "Tout employeur canadien doit effectuer des retenues obligatoires sur chaque paie. Au Québec, cela comprend l'impôt fédéral et l'impôt provincial, les cotisations au Régime de rentes du Québec (RRQ) — ou au Régime de pensions du Canada (RPC) ailleurs —, l'assurance-emploi (AE) et le Régime québécois d'assurance parentale (RQAP). Ces montants sont prélevés sur le salaire brut de l'employé et remis aux gouvernements.",
+      "Il est crucial de distinguer les retenues salariales des cotisations patronales. Certaines sommes sont retenues sur le salaire de l'employé, d'autres s'ajoutent en tant que charges de l'employeur : le RRQ et l'AE, par exemple, comportent une part employé et une part employeur. Le « coût total » d'un employé dépasse donc toujours son salaire brut affiché.",
+      "Le calcul de la paie doit aussi intégrer les règles des normes du travail. Au Québec, les heures supplémentaires sont généralement majorées à 150 % au-delà de 40 heures par semaine. S'y ajoutent les congés payés (les vacances s'accumulent en pourcentage du salaire), les jours fériés, et divers congés prévus par la loi. Ignorer ces règles expose à des réclamations rétroactives.",
+      "Le salaire n'est toutefois qu'une partie de la rémunération globale. Les avantages sociaux — assurance collective (santé, dentaire, invalidité), régimes de retraite comme le REER collectif, contribution de l'employeur — représentent une valeur réelle pour l'employé et un coût réel pour l'entreprise. Ils doivent être budgétés avec la même rigueur que les salaires.",
+      "Depuis quelques années, les avantages évoluent au-delà du monétaire : télétravail, horaires flexibles, journées de santé mentale, aide à la formation. Dans un marché de l'emploi tendu, ces éléments sont devenus des facteurs décisifs d'attraction et de rétention des talents. La rémunération globale se pense désormais comme un ensemble cohérent, pas comme un simple chiffre de salaire.",
     ],
+    caseStudy: {
+      title: "Distributions Beaupré : le vrai coût d'une embauche",
+      body: [
+        "Antoine, propriétaire de Distributions Beaupré, veut embaucher un magasinier et a budgété « 45 000 $ », soit le salaire annuel qu'il compte offrir. Il présume que c'est là son coût. Sa comptable l'arrête avant qu'il ne signe : le salaire brut n'est que la pointe visible de la dépense.",
+        "À ce salaire s'ajoutent les cotisations patronales obligatoires — part employeur du RRQ, de l'assurance-emploi, du RQAP, ainsi que la cotisation à la CNESST pour la santé et la sécurité. S'y greffent l'indemnité de vacances accumulée (un pourcentage du salaire), les jours fériés payés, et la contribution de l'employeur à l'assurance collective qu'offre l'entreprise.",
+        "Une fois tout additionné, le coût réel de l'embauche approche 54 000 à 56 000 $, soit environ 20 à 25 % de plus que le salaire affiché. Antoine révise son budget en conséquence et comprend une règle essentielle : raisonner sur le seul salaire brut conduit à sous-estimer systématiquement le coût de la main-d'œuvre et à fragiliser la trésorerie.",
+      ],
+    },
+    exercise: {
+      title: "Estimer le coût total d'un employé et sa rémunération globale",
+      prompt: [
+        "Un employeur québécois souhaite embaucher un employé à un salaire brut annuel de 50 000 $. Sans viser une exactitude à la cent près, expliquez les grandes catégories de charges qui s'ajoutent au salaire pour former le coût total employeur, et estimez un ordre de grandeur réaliste de ce coût total.",
+        "Distinguez clairement, dans un tableau, ce qui est retenu sur le salaire de l'employé (et réduit son net) de ce qui constitue une charge additionnelle de l'employeur.",
+        "Proposez enfin un ensemble d'avantages sociaux (au moins trois, monétaires et non monétaires) que cette entreprise pourrait offrir pour se démarquer, en expliquant en quoi chacun soutient l'attraction ou la rétention des talents.",
+      ],
+      deliverables: [
+        "Une liste des grandes catégories de charges patronales s'ajoutant au salaire brut",
+        "Une estimation d'ordre de grandeur du coût total employeur, avec le raisonnement",
+        "Un tableau séparant retenues salariales et charges employeur",
+        "Une proposition d'au moins trois avantages sociaux, chacun justifié par son effet sur l'attraction/rétention",
+      ],
+    },
     keyTakeaways: [
       "Les retenues à la source sont une obligation légale stricte, jamais optionnelle",
-      "Les normes minimales du travail varient par province et doivent être respectées scrupuleusement",
+      "Le coût réel d'un employé dépasse toujours son salaire brut à cause des charges patronales",
+      "Les normes du travail (heures supplémentaires à 150 %, congés) varient par province et s'imposent",
+      "La rémunération globale combine salaire, avantages sociaux et éléments non monétaires",
       "Les avantages sociaux sont devenus un facteur compétitif majeur dans l'attraction de talents",
     ],
     resources: [
       { label: "CNESST — Normes du travail au Québec", url: "https://www.cnesst.gouv.qc.ca" },
+      { label: "Revenu Québec — Retenues et cotisations", url: "https://www.revenuquebec.ca" },
     ],
     quiz: [
       { question: "Quel régime québécois s'ajoute aux retenues fédérales sur la paie ?", options: ["Le RQAP (Régime québécois d'assurance parentale)", "L'assurance auto", "L'assurance habitation", "Le permis de conduire"], correctIndex: 0, explanation: "Le RQAP est une retenue spécifique au Québec en plus des cotisations fédérales habituelles." },
@@ -179,19 +355,47 @@ export const financeLessons: Lesson[] = [
   {
     title: "Logiciels comptables (QuickBooks, Sage)",
     objectives: [
-      "Configurer un dossier comptable dans QuickBooks ou Sage",
-      "Automatiser la facturation et le suivi des comptes clients",
-      "Générer des rapports financiers à partir d'un logiciel comptable",
+      "Configurer un dossier comptable structuré dans QuickBooks ou Sage",
+      "Automatiser la facturation et le suivi des comptes clients et fournisseurs",
+      "Générer et exporter des rapports financiers fiables",
+      "Situer le rôle du logiciel par rapport à celui du comptable professionnel",
     ],
     content: [
-      "QuickBooks et Sage sont les deux logiciels comptables les plus utilisés par les PME canadiennes. Leur configuration initiale inclut la création du plan comptable, la liaison aux comptes bancaires et la configuration des taxes applicables (TPS/TVQ).",
-      "L'automatisation de la facturation permet de générer des factures récurrentes, suivre les comptes clients en souffrance et envoyer des rappels automatiques. Le suivi des comptes à payer fonctionne de manière similaire pour les obligations envers les fournisseurs.",
-      "Ces logiciels génèrent automatiquement les états financiers de base (bilan, état des résultats) et permettent l'export direct vers un comptable ou pour la production des déclarations fiscales, réduisant considérablement le temps de gestion administrative.",
+      "Les logiciels comptables ont transformé la gestion financière des PME : ce qui exigeait autrefois des heures de saisie manuelle et de rapprochements se fait aujourd'hui en grande partie automatiquement. Mais un logiciel n'est qu'un outil : mal configuré ou mal utilisé, il produit des données erronées avec une belle apparence de fiabilité.",
+      "QuickBooks et Sage dominent le marché des PME canadiennes. Leur configuration initiale est l'étape la plus déterminante. Elle comprend la création du plan comptable (la liste structurée de tous les comptes de l'entreprise), la liaison sécurisée aux comptes bancaires pour l'importation automatique des transactions, et le paramétrage correct des taxes applicables — TPS et TVQ au Québec — pour que chaque facture soit conforme.",
+      "Un plan comptable bien pensé dès le départ facilite tout le travail futur : il permet des rapports clairs, une catégorisation cohérente des dépenses et une préparation fluide des déclarations fiscales. À l'inverse, un plan comptable bâclé se traduit par des mois de corrections et des rapports inexploitables.",
+      "L'automatisation de la facturation est l'un des gains les plus tangibles. Le logiciel génère des factures récurrentes, envoie automatiquement des rappels aux clients en retard et suit l'âge des comptes clients (le fameux « âge des créances »). Le suivi des comptes fournisseurs fonctionne symétriquement, aidant à ne manquer aucune échéance de paiement et à préserver la trésorerie.",
+      "La réconciliation bancaire — la vérification que les transactions du logiciel correspondent à celles du relevé bancaire — reste une opération de contrôle essentielle, largement facilitée par l'importation automatique. C'est elle qui garantit qu'aucune transaction n'a été oubliée, dupliquée ou mal classée. Un logiciel bien tenu se réconcilie sans écart.",
+      "Enfin, ces outils génèrent automatiquement les états financiers de base (bilan, état des résultats) et permettent l'export direct vers le comptable pour l'analyse et la production des déclarations. Mais ils ne remplacent pas ce dernier : ils réduisent son temps de saisie pour lui laisser l'essentiel — l'interprétation, la planification fiscale et le conseil stratégique. Le logiciel automatise la tenue ; le comptable apporte le jugement.",
     ],
+    caseStudy: {
+      title: "Rénovations Picard : la facturation qui dormait",
+      body: [
+        "Rénovations Picard, une entreprise de six employés, tenait sa comptabilité dans un tableur et facturait ses clients « quand le patron trouvait le temps », souvent plusieurs semaines après la fin des travaux. Résultat : des factures oubliées, des délais de paiement très longs, et une trésorerie constamment sous tension malgré un carnet de commandes plein.",
+        "En migrant vers un logiciel comptable, l'entreprise configure d'abord soigneusement son plan comptable et ses taxes, puis relie son compte bancaire. Surtout, elle active la facturation automatique dès la clôture d'un chantier et les rappels automatiques aux clients à 15 et 30 jours de retard. L'âge des créances devient visible d'un coup d'œil sur un tableau de bord.",
+        "En trois mois, le délai moyen de paiement passe de 52 à 34 jours, sans un seul appel de relance manuel. La trésorerie se détend, l'entreprise cesse de recourir à sa marge de crédit, et le patron récupère plusieurs heures par semaine. Le cas montre que la valeur d'un logiciel comptable ne tient pas au logiciel lui-même, mais à la discipline de processus qu'il permet d'automatiser.",
+      ],
+    },
+    exercise: {
+      title: "Planifier la mise en place d'un logiciel comptable",
+      prompt: [
+        "Vous accompagnez une PME de services qui passe d'un tableur à un logiciel comptable (QuickBooks ou Sage). Décrivez, étape par étape, la configuration initiale que vous mettriez en place : plan comptable, liaison bancaire, paramétrage des taxes, modèles de factures.",
+        "Proposez ensuite un processus d'automatisation de la facturation et de suivi des comptes clients : à quel moment émettre la facture, quels rappels programmer, quel indicateur surveiller.",
+        "Rédigez enfin une courte note (quelques phrases) à l'intention du dirigeant expliquant ce que le logiciel prend en charge et ce pour quoi le recours à un comptable professionnel demeure nécessaire.",
+      ],
+      deliverables: [
+        "Une procédure de configuration initiale en étapes ordonnées (dont plan comptable et taxes TPS/TVQ)",
+        "Un processus d'automatisation de la facturation avec calendrier de rappels",
+        "L'identification de l'indicateur clé à suivre (ex. âge des créances) et de sa cible",
+        "Une note distinguant clairement le rôle du logiciel de celui du comptable",
+      ],
+    },
     keyTakeaways: [
       "Une configuration initiale soignée du plan comptable facilite tout le travail futur",
-      "L'automatisation de la facturation réduit les délais de paiement clients",
-      "Ces outils ne remplacent pas un comptable mais réduisent considérablement son temps de travail",
+      "Le bon paramétrage des taxes (TPS/TVQ) conditionne la conformité de chaque facture",
+      "L'automatisation de la facturation et des rappels réduit directement les délais de paiement",
+      "La réconciliation bancaire régulière garantit la fiabilité des données",
+      "Ces outils ne remplacent pas un comptable : ils libèrent son temps pour l'analyse et le conseil",
     ],
     resources: [
       { label: "QuickBooks Canada", url: "https://quickbooks.intuit.com/ca" },
@@ -209,21 +413,51 @@ export const financeLessons: Lesson[] = [
   {
     title: "Examen final & certification",
     objectives: [
-      "Démontrer la maîtrise des compétences comptables et financières acquises",
-      "Résoudre un cas pratique complet de gestion financière",
+      "Démontrer la maîtrise intégrée des compétences comptables et financières du programme",
+      "Résoudre un cas pratique complet de gestion financière d'une PME",
+      "Interpréter des résultats financiers et formuler des recommandations",
       "Obtenir le certificat ARCADINS en gestion financière et comptabilité",
     ],
     content: [
-      "L'examen final présente un cas d'entreprise complet nécessitant l'application de l'ensemble des compétences du programme : production d'états financiers, calcul de ratios, préparation d'un budget et identification des obligations fiscales applicables.",
-      "Les candidats doivent démontrer non seulement la capacité technique de calcul, mais aussi la capacité d'interprétation : que signifient ces chiffres pour la santé financière de l'entreprise, et quelles recommandations en découlent.",
-      "À la réussite de l'examen, le certificat ARCADINS en gestion financière et comptabilité est délivré, reconnu par les employeurs partenaires comme preuve de compétence pratique applicable immédiatement en milieu de travail.",
+      "L'examen final ne teste pas des connaissances en silos : il vérifie la capacité à mobiliser ensemble, sur une même situation, tout ce que le programme a couvert. C'est la différence entre savoir réciter les principes comptables et savoir les appliquer pour éclairer une décision d'affaires réelle.",
+      "L'épreuve prend la forme d'un cas d'entreprise complet. À partir d'informations brutes — transactions, données de paie, contexte fiscal, objectifs budgétaires — le candidat doit produire ou corriger des états financiers, calculer et interpréter des ratios, préparer ou analyser un budget, et identifier les obligations fiscales applicables à la situation.",
+      "Au-delà de la mécanique de calcul, l'examen évalue la capacité d'interprétation. Un chiffre juste ne suffit pas : il faut expliquer ce qu'il signifie pour la santé financière de l'entreprise. Une marge en baisse, une liquidité tendue, un écart budgétaire défavorable appellent une lecture et des recommandations, pas seulement un résultat exact.",
+      "Les correcteurs valorisent la cohérence du raisonnement autant que l'exactitude. Un candidat qui commet une petite erreur de calcul mais mène une analyse structurée et tire des conclusions pertinentes démontre une compétence professionnelle plus solide que celui qui aligne des chiffres justes sans les comprendre. La finance en entreprise sert à décider, pas à faire des mathématiques pour elles-mêmes.",
+      "La préparation optimale consiste à revisiter chaque module non comme un chapitre isolé, mais en cherchant les liens : comment le choix du référentiel comptable influence les états, comment les états nourrissent les ratios, comment les ratios et le budget guident les décisions, comment la fiscalité et la paie pèsent sur la trésorerie. C'est cette vision d'ensemble que l'examen cherche à révéler.",
+      "À la réussite, le certificat ARCADINS en gestion financière et comptabilité est délivré. Reconnu par les employeurs partenaires du réseau, il atteste d'une compétence pratique immédiatement applicable en milieu de travail — la capacité de tenir, comprendre et interpréter la finance d'une PME canadienne.",
     ],
+    caseStudy: {
+      title: "Cas de synthèse : le diagnostic financier de Meubles Rivière",
+      body: [
+        "Meubles Rivière est une PME manufacturière de douze employés. On remet au candidat ses états financiers de l'année, un extrait de son budget, ses données de paie et son contexte fiscal. En apparence, l'entreprise va bien : ses ventes ont crû de 18 % et son bénéfice net est positif.",
+        "L'analyse intégrée révèle pourtant des tensions. Les ratios de liquidité se sont détériorés malgré la croissance, car les stocks et les comptes clients ont gonflé plus vite que les ventes. Le budget montre un écart défavorable sur la masse salariale, dû à des heures supplémentaires non anticipées. Et l'entreprise n'a jamais réclamé le crédit RS&DE auquel ses travaux de conception pourraient donner droit.",
+        "Le candidat compétent ne se contente pas de constater : il relie ces éléments en un diagnostic — une croissance rentable mais mal financée, qui aspire la trésorerie — et formule des recommandations concrètes : resserrer le recouvrement des créances, réviser le budget de main-d'œuvre, et documenter les activités admissibles à la RS&DE. C'est exactement le type de raisonnement intégré que l'examen final récompense.",
+      ],
+    },
+    exercise: {
+      title: "Préparer sa synthèse de fin de programme",
+      prompt: [
+        "En vue de l'examen, construisez votre propre fiche de synthèse reliant les sept modules du programme. Pour chaque module, notez la compétence clé qu'il apporte et un exemple de situation où elle intervient dans un diagnostic financier global.",
+        "Rédigez ensuite, à partir d'une PME fictive de votre choix, un mini-diagnostic d'une page mobilisant au moins quatre compétences différentes du programme (par exemple : lecture des états, un ratio, un écart budgétaire, une obligation fiscale).",
+        "Terminez par trois recommandations de gestion découlant de votre diagnostic, chacune reliée explicitement à l'analyse qui la justifie.",
+      ],
+      deliverables: [
+        "Une fiche de synthèse reliant les sept modules et leur compétence clé",
+        "Un mini-diagnostic d'une page mobilisant au moins quatre compétences du programme",
+        "Une interprétation (pas seulement des calculs) de la santé financière de la PME",
+        "Trois recommandations de gestion, chacune justifiée par l'analyse correspondante",
+      ],
+    },
     keyTakeaways: [
-      "L'examen évalue l'application pratique, pas uniquement la mémorisation théorique",
+      "L'examen évalue l'application pratique intégrée, pas la mémorisation en silos",
       "Savoir interpréter les chiffres est aussi important que savoir les calculer",
+      "La cohérence du raisonnement compte autant que l'exactitude des résultats",
+      "La vision d'ensemble — les liens entre modules — est ce que l'examen cherche à révéler",
       "Le certificat délivré est reconnu par le réseau d'employeurs partenaires d'ARCADINS",
     ],
-    resources: [],
+    resources: [
+      { label: "CPA Canada — Ressources de préparation", url: "https://www.cpacanada.ca" },
+    ],
     quiz: [
       { question: "Que doit démontrer l'étudiant lors de l'examen final, en plus du calcul technique ?", options: ["Rien d'autre n'est requis", "La capacité d'interprétation des chiffres financiers", "Sa connaissance de la météo", "Sa capacité à dessiner"], correctIndex: 1, explanation: "L'examen évalue à la fois la compétence technique et la capacité à interpréter les résultats pour formuler des recommandations." },
       { question: "Quel type de cas est présenté lors de l'examen final ?", options: ["Un cas d'entreprise complet intégrant plusieurs compétences", "Une simple question à choix unique", "Aucun cas pratique", "Un jeu sans rapport avec la finance"], correctIndex: 0, explanation: "L'examen final intègre un cas pratique complet nécessitant l'application combinée de toutes les compétences du programme." },

@@ -186,6 +186,18 @@ export default function LearnViewer({ courseSlug, courseName, courseIcon, lesson
               ))}
             </div>
 
+            {lesson.caseStudy && (
+              <div className="bg-navy rounded-2xl p-6 mb-6">
+                <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold mb-2">📎 Étude de cas</div>
+                <div className="font-[family-name:var(--font-heading)] text-lg text-white mb-3">{lesson.caseStudy.title}</div>
+                <div className="space-y-3">
+                  {lesson.caseStudy.body.map((p, i) => (
+                    <p key={i} className="text-[14px] text-white/85 leading-[1.75]">{p}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="bg-gold/8 border border-gold/20 rounded-xl p-5 mb-6">
               <div className="text-xs font-bold tracking-[1px] uppercase text-gold mb-3">Points clés à retenir</div>
               <ul className="space-y-1.5">
@@ -207,6 +219,26 @@ export default function LearnViewer({ courseSlug, courseName, courseIcon, lesson
                     </a>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {lesson.exercise && (
+              <div className="bg-gold/10 border-2 border-gold/30 rounded-2xl p-6 mb-8">
+                <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold mb-2">✍️ Exercice pratique à soumettre</div>
+                <div className="font-[family-name:var(--font-heading)] text-lg text-navy mb-3">{lesson.exercise.title}</div>
+                <div className="space-y-3 mb-4">
+                  {lesson.exercise.prompt.map((p, i) => (
+                    <p key={i} className="text-[14px] text-body leading-[1.75]">{p}</p>
+                  ))}
+                </div>
+                <div className="text-xs font-bold tracking-[1px] uppercase text-navy mb-2">Livrables attendus</div>
+                <ul className="space-y-1.5">
+                  {lesson.exercise.deliverables.map((d, i) => (
+                    <li key={i} className="text-[14px] text-navy flex items-start gap-2">
+                      <span className="text-gold shrink-0">▸</span>{d}
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
 

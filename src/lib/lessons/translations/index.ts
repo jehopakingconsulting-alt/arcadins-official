@@ -31,6 +31,15 @@ function mergeLesson(fr: Lesson, t?: LessonTranslation): Lesson {
     title: t.title ?? fr.title,
     objectives: fr.objectives.map((o, i) => t.objectives?.[i] ?? o),
     content: fr.content.map((c, i) => t.content?.[i] ?? c),
+    caseStudy: fr.caseStudy && {
+      title: t.caseStudy?.title ?? fr.caseStudy.title,
+      body: fr.caseStudy.body.map((b, i) => t.caseStudy?.body?.[i] ?? b),
+    },
+    exercise: fr.exercise && {
+      title: t.exercise?.title ?? fr.exercise.title,
+      prompt: fr.exercise.prompt.map((p, i) => t.exercise?.prompt?.[i] ?? p),
+      deliverables: fr.exercise.deliverables.map((d, i) => t.exercise?.deliverables?.[i] ?? d),
+    },
     keyTakeaways: fr.keyTakeaways.map((k, i) => t.keyTakeaways?.[i] ?? k),
     resources: fr.resources.map((r, i) => ({ label: t.resourceLabels?.[i] ?? r.label, url: r.url })),
     quiz: fr.quiz.map((q, i) => {

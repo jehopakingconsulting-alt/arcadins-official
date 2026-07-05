@@ -11,10 +11,23 @@ export interface QuizTranslation {
   explanation?: string;
 }
 
+export interface CaseStudyTranslation {
+  title?: string;
+  body?: string[];
+}
+
+export interface ExerciseTranslation {
+  title?: string;
+  prompt?: string[];
+  deliverables?: string[];
+}
+
 export interface LessonTranslation {
   title?: string;
   objectives?: string[];
   content?: string[];
+  caseStudy?: CaseStudyTranslation;
+  exercise?: ExerciseTranslation;
   keyTakeaways?: string[];
   resourceLabels?: string[];
   quiz?: QuizTranslation[];
