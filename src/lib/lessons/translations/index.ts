@@ -2,6 +2,7 @@ import type { Lang } from "@/lib/i18n";
 import type { Lesson } from "@/types/lesson";
 import type { CourseTranslation, LessonTranslation, TranslationStore } from "./types";
 import { marketingDigitalTranslations } from "./marketing-digital";
+import { informatiqueTranslations } from "./informatique";
 
 /**
  * Registry of available translations, keyed by language then course slug.
@@ -18,6 +19,7 @@ function register(slug: string, byLang: Partial<Record<Lang, CourseTranslation>>
 }
 
 register("marketing-digital", marketingDigitalTranslations);
+register("informatique", informatiqueTranslations);
 
 function mergeLesson(fr: Lesson, t?: LessonTranslation): Lesson {
   if (!t) return fr;
