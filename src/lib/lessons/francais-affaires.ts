@@ -6,17 +6,45 @@ export const francaisAffairesLessons: Lesson[] = [
     objectives: [
       "Acquérir le vocabulaire de base du monde du travail québécois",
       "Distinguer le registre formel et informel en contexte professionnel",
-      "Construire des phrases professionnelles simples et claires",
+      "Adapter son registre selon l'interlocuteur et le canal de communication",
+      "Construire des phrases professionnelles simples, claires et concises",
     ],
     content: [
       "Le français professionnel se distingue du français courant par un vocabulaire spécifique : poste, embauche, échéancier, mandat, livrable. Maîtriser ces termes de base est essentiel avant d'aborder des situations de communication plus complexes.",
+      "Pour un nouvel arrivant, ce vocabulaire est parfois le premier obstacle invisible : on peut parler couramment français et pourtant se sentir perdu quand un collègue mentionne un « échéancier serré », demande le « livrable » avant la « rencontre de suivi », ou évoque le « mandat » confié. Ces mots ne sont pas plus difficiles que d'autres, mais leur usage précis en milieu de travail doit devenir automatique. Tant que l'on cherche encore le sens de ces termes de base, on ne peut pas se concentrer sur le fond de l'échange.",
       "Le registre formel s'utilise avec les supérieurs hiérarchiques, les clients et dans les communications écrites officielles. Le registre plus informel, bien que présent dans certaines cultures d'entreprise québécoises, doit être utilisé avec prudence par les nouveaux arrivants jusqu'à bien connaître les codes du milieu.",
+      "La règle d'or pour un nouvel arrivant est simple : dans le doute, rester légèrement plus formel que l'entourage, puis s'ajuster en observant. On peut toujours se détendre après avoir observé que les collègues se tutoient et plaisantent ; il est bien plus délicat de rattraper une familiarité mal placée avec un client ou un supérieur. Le registre ne dépend pas seulement de la personne, mais aussi du canal : un message instantané interne tolère un ton détendu, alors qu'un courriel à un client conserve des marques de politesse même dans une entreprise à la culture décontractée.",
       "La construction de phrases professionnelles privilégie la clarté et la concision. Éviter les phrases trop longues, utiliser des verbes d'action précis (proposer, recommander, analyser) et structurer ses idées avec des connecteurs logiques (d'abord, ensuite, par conséquent).",
+      "Cette clarté est une bonne nouvelle pour le locuteur non natif : en milieu professionnel, personne n'attend de belles phrases littéraires. On attend un message compris du premier coup. Une idée par phrase, un verbe d'action précis plutôt qu'une périphrase vague, et des connecteurs qui guident le lecteur — voilà ce qui distingue une communication professionnelle efficace. Vouloir impressionner par un vocabulaire sophistiqué produit souvent l'inverse : des phrases alambiquées où le message se perd. La simplicité maîtrisée est un signe de compétence, pas de faiblesse.",
     ],
+    caseStudy: {
+      title: "Amadou, ingénieur : quand « bien parler français » ne suffit pas",
+      body: [
+        "Amadou, ingénieur diplômé arrivé de Dakar, parle un français impeccable, riche et soigné. Pourtant, ses premières semaines dans une firme de génie de Québec sont déroutantes. En réunion, son chef d'équipe demande « le livrable pour vendredi » et évoque « le mandat du client » : Amadou saisit le sens général mais hésite, car ces termes recouvrent des réalités précises du milieu de travail qu'il ne connaît pas encore.",
+        "Un autre malaise surgit sur le registre. Habitué à un vouvoiement systématique et à des formules très déférentes envers la hiérarchie, Amadou s'étonne que ses collègues tutoient le directeur et l'appellent par son prénom. Ses courriels, très formels et longs, détonnent : on lui répond en trois lignes, tutoiement inclus. Il craint de paraître distant sans le vouloir.",
+        "Amadou applique alors une stratégie d'observation : il note le vocabulaire récurrent du milieu, calque progressivement le registre de ses collègues tout en restant un cran plus prudent avec les clients, et raccourcit ses courriels. En quelques semaines, la barrière tombe — non parce que son français s'est amélioré, mais parce qu'il en a maîtrisé l'usage professionnel québécois. La leçon : maîtriser une langue et maîtriser ses codes professionnels sont deux compétences distinctes.",
+      ],
+    },
+    exercise: {
+      title: "Adapter vocabulaire et registre au contexte professionnel",
+      prompt: [
+        "Constituez un mini-lexique de dix termes du français professionnel québécois (par exemple : échéancier, livrable, mandat, rencontre de suivi, embauche…) et, pour chacun, rédigez une phrase le mettant en contexte dans une situation de travail réaliste.",
+        "Rédigez ensuite un même message court dans deux registres différents : une version pour un message instantané à un collègue proche, et une version pour un courriel à un client. Faites ressortir explicitement ce qui change entre les deux (formules d'appel, ton, longueur).",
+        "Prenez enfin une phrase professionnelle trop longue et alambiquée (de votre invention) et réécrivez-la de façon claire et concise, en une ou deux phrases avec un verbe d'action précis.",
+      ],
+      deliverables: [
+        "Un lexique de dix termes professionnels, chacun mis en contexte dans une phrase",
+        "Un même message décliné en deux registres (collègue vs client) avec les écarts soulignés",
+        "Une phrase alambiquée réécrite en version claire et concise",
+        "Une règle personnelle sur le choix du registre pour un nouvel arrivant",
+      ],
+    },
     keyTakeaways: [
       "Le vocabulaire professionnel de base doit être automatisé avant les situations complexes",
-      "Le registre formel reste la valeur sûre dans un nouveau milieu de travail",
-      "La clarté prime toujours sur la sophistication du vocabulaire",
+      "Maîtriser une langue et maîtriser ses codes professionnels sont deux compétences distinctes",
+      "Dans le doute, rester légèrement plus formel puis s'ajuster en observant",
+      "Le registre dépend aussi du canal : un message interne diffère d'un courriel client",
+      "La clarté et la concision priment toujours sur la sophistication du vocabulaire",
     ],
     resources: [
       { label: "Office québécois de la langue française — Vocabulaire du travail", url: "https://www.oqlf.gouv.qc.ca" },
@@ -36,16 +64,45 @@ export const francaisAffairesLessons: Lesson[] = [
     objectives: [
       "Participer efficacement à une réunion en français",
       "Présenter une idée ou un projet de manière structurée",
+      "Oser prendre la parole et poser des questions de clarification",
       "Utiliser les formules de politesse appropriées au contexte québécois",
     ],
     content: [
       "Participer à une réunion exige de savoir prendre la parole au bon moment, reformuler pour confirmer sa compréhension, et poser des questions de clarification sans crainte. Les Québécois valorisent une communication directe mais courtoise.",
+      "Pour beaucoup de nouveaux arrivants, le plus grand obstacle en réunion n'est pas la langue mais la peur de mal parler. On se tait par crainte de faire une faute, et ce silence est parfois interprété — à tort — comme un manque d'intérêt ou d'idées. Or dans la culture professionnelle québécoise, poser une question de clarification n'est jamais un aveu de faiblesse : c'est un signe d'engagement. Une phrase simple comme « je veux m'assurer d'avoir bien compris : vous proposez que… » vaut mieux qu'un silence poli qui laisse planer un malentendu.",
+      "La reformulation est l'outil le plus puissant du locuteur non natif. Redire dans ses propres mots ce qu'on vient d'entendre remplit deux fonctions : cela vérifie la compréhension, et cela achète du temps pour formuler sa propre réponse. C'est une technique que même les négociateurs chevronnés utilisent. Loin de ralentir la réunion, elle prévient les malentendus coûteux qui, eux, font perdre des heures — voire compromettent un projet lorsqu'une consigne mal comprise est appliquée à grande échelle.",
       "Une présentation structurée suit généralement le plan : contexte, problème, solution proposée, bénéfices attendus. L'utilisation de transitions claires aide l'auditoire à suivre le raisonnement, même pour un locuteur non natif.",
+      "Cette structure est une bouée de sauvetage pour qui n'est pas encore parfaitement à l'aise en français : une trame claire compense un vocabulaire limité. L'auditoire qui sait où l'on va — « voici le contexte, voici le problème, voici ma solution, voici ce qu'elle apporte » — pardonne aisément une hésitation ou une tournure imparfaite, parce que le fil conducteur reste limpide. À l'inverse, un français impeccable mais désorganisé perd l'auditoire. En communication professionnelle, la clarté de la pensée l'emporte sur la perfection de la langue.",
       "Les formules de politesse varient selon le contexte : un courriel professionnel commence souvent par 'Bonjour' suivi du prénom (culture plus informelle qu'en France), tandis qu'une réunion formelle conserve des marques de respect comme 'Merci de votre attention' en conclusion.",
+      "Ce degré d'informalité surprend souvent les nouveaux arrivants venus de cultures plus hiérarchiques. Au Québec, le tutoiement et l'usage du prénom sont courants au travail, même envers un supérieur, sans que cela dénote le moindre irrespect — au contraire, un vouvoiement excessif peut créer une distance perçue comme froide. Cela ne signifie pas l'absence de codes : la courtoisie, la ponctualité et la franchise mesurée restent essentielles. Il s'agit d'un équilibre particulier — décontracté dans la forme, professionnel dans le fond — que l'on apprend surtout en observant ses collègues.",
     ],
+    caseStudy: {
+      title: "Le silence de Ling en réunion",
+      body: [
+        "Ling, gestionnaire de projet arrivée de Chine, maîtrise bien le français mais reste silencieuse lors de ses premières réunions d'équipe à Montréal. Dans sa culture professionnelle d'origine, intervenir devant des supérieurs sans y être invité serait déplacé, et poser une question pourrait laisser croire qu'on n'a pas compris. Elle attend donc, écoute, et ne dit rien.",
+        "Après quelques semaines, sa gestionnaire la convoque, un peu inquiète : elle craint que Ling se désengage ou peine à suivre. C'est un choc pour Ling, qui suivait attentivement — son silence, marque de respect dans son contexte d'origine, était lu ici comme un retrait. Elle comprend que les codes ont changé : ici, on attend d'elle qu'elle contribue à voix haute et pose des questions.",
+        "Ling adopte une stratégie progressive : elle commence par reformuler (« si je comprends bien, l'échéance est avancée d'une semaine ? »), une intervention à faible risque qui montre son engagement. Puis elle ose des suggestions. En un mois, sa gestionnaire la perçoit tout autrement, et Ling se sent enfin partie prenante. La leçon : en communication professionnelle, le silence n'a pas le même sens d'une culture à l'autre, et s'intégrer suppose d'apprendre les codes locaux de la prise de parole.",
+      ],
+    },
+    exercise: {
+      title: "Préparer et structurer une prise de parole",
+      prompt: [
+        "Préparez une courte présentation orale (à l'écrit, comme trame de prise de parole) d'une idée ou d'un projet de votre choix, en suivant explicitement le plan : contexte, problème, solution proposée, bénéfices attendus. Indiquez les transitions entre chaque partie.",
+        "Rédigez ensuite trois formulations que vous pourriez utiliser en réunion pour poser une question de clarification ou reformuler, de manière à intervenir sans crainte même si votre français n'est pas parfait.",
+        "Réfléchissez enfin à la dimension culturelle : notez deux différences entre les codes de prise de parole de votre culture d'origine (ou d'une culture que vous connaissez) et ceux décrits pour le milieu de travail québécois.",
+      ],
+      deliverables: [
+        "Une trame de présentation suivant le plan contexte / problème / solution / bénéfices",
+        "Trois formulations types pour reformuler ou poser une question de clarification",
+        "Deux différences culturelles identifiées dans les codes de prise de parole",
+        "Une phrase expliquant pourquoi la structure compense un vocabulaire limité",
+      ],
+    },
     keyTakeaways: [
-      "Reformuler pour confirmer sa compréhension évite les malentendus coûteux",
+      "Poser une question de clarification est un signe d'engagement, pas de faiblesse",
+      "Reformuler évite les malentendus coûteux et achète du temps pour répondre",
       "Une structure claire compense un vocabulaire encore limité",
+      "Le silence n'a pas le même sens d'une culture à l'autre : les codes locaux s'apprennent",
       "Le tutoiement et l'usage du prénom sont courants au Québec, même en contexte professionnel",
     ],
     resources: [
@@ -63,19 +120,47 @@ export const francaisAffairesLessons: Lesson[] = [
   {
     title: "Rédaction professionnelle (courriels, rapports)",
     objectives: [
-      "Rédiger un courriel professionnel clair et complet",
-      "Structurer un rapport simple avec introduction, développement, conclusion",
-      "Éviter les anglicismes courants en français des affaires",
+      "Rédiger un courriel professionnel clair, complet et bien structuré",
+      "Structurer un rapport pour une lecture rapide en diagonale",
+      "Éviter les anglicismes courants en français des affaires québécois",
+      "Adopter le réflexe de relecture avant tout envoi",
     ],
     content: [
       "Un courriel professionnel efficace contient un objet précis, une formule d'appel adaptée, un message structuré en paragraphes courts et une formule de salutation finale. Toujours relire avant l'envoi pour éviter les erreurs qui nuisent à la crédibilité.",
+      "L'objet du courriel est l'élément le plus sous-estimé : c'est lui qui décide si le message est lu tout de suite, plus tard, ou jamais. « Question » ou « Suivi » ne disent rien ; « Approbation requise avant vendredi 15h — budget projet Alpha » permet au destinataire de prioriser d'un coup d'œil. À l'ère où chacun reçoit des dizaines de courriels par jour, un objet précis est un service rendu au lecteur — et il augmente nettement le taux de réponse. Le corps du message gagne à annoncer d'emblée son intention : informe-t-on, demande-t-on une action, ou attend-on une décision ?",
       "Un rapport professionnel suit une structure logique : résumé exécutif (si nécessaire), contexte, méthodologie, résultats, recommandations. Les titres et sous-titres facilitent la lecture rapide par des destinataires pressés.",
+      "La réalité à intégrer est que peu de gens lisent un rapport en entier, mot à mot. Un décideur pressé le survole : il lit le résumé exécutif, saute aux titres, s'arrête sur les recommandations. Un bon rapport est donc conçu pour cette lecture en diagonale — chaque titre est informatif, les points clés ressortent, et l'essentiel figure au début, non enfoui à la page sept. Le résumé exécutif, en particulier, doit permettre à quelqu'un qui ne lira rien d'autre de comprendre le message et la décision attendue. Écrire pour être survolé n'est pas un renoncement à la rigueur : c'est du respect pour le temps du lecteur.",
       "Le français québécois des affaires évite certains anglicismes répandus à l'oral : on dit 'courriel' plutôt que 'email', 'clavarder' plutôt que 'chatter', 'pourriel' plutôt que 'spam'. Ces termes sont d'usage officiel dans les communications écrites.",
+      "Cette exigence est plus qu'une question de style : au Québec, la valorisation du français est un enjeu culturel et parfois réglementaire. Employer les termes français officiels dans les communications écrites professionnelles envoie un signal d'intégration et de sérieux. Un « courriel » sans anglicismes déplacés inspire davantage confiance qu'un message truffé de « meeting », « deadline » et « feedback » là où existent des équivalents français reconnus. La Banque de dépannage linguistique de l'OQLF est l'outil de référence pour vérifier un terme en cas de doute — un réflexe qui distingue rapidement le rédacteur soigneux.",
     ],
+    caseStudy: {
+      title: "Le courriel de Rafael que personne ne lisait",
+      body: [
+        "Rafael, chargé de projet arrivé du Brésil, se plaignait de ne jamais obtenir de réponses rapides à ses courriels, ce qui retardait ses dossiers. Il attribuait cela à une culture d'entreprise lente. En réalité, ses courriels partaient avec des objets vagues comme « Question » ou « Suivi projet », noyés parmi des dizaines d'autres, et s'ouvraient sur trois paragraphes de contexte avant qu'apparaisse, tout en bas, la véritable demande.",
+        "Une collègue bienveillante lui montre comment ses destinataires reçoivent ses messages : face à un objet flou, ils remettent la lecture « à plus tard » — un plus tard qui n'arrive jamais. Et quand ils ouvrent enfin, la demande d'action est enterrée sous le contexte. Le problème n'était ni la langue de Rafael, ni la lenteur des autres, mais la structure de ses courriels.",
+        "Rafael réécrit sa façon de faire : un objet précis annonçant l'action et l'échéance (« Validation requise d'ici jeudi — plan de test module 3 »), la demande énoncée dès la première ligne, le contexte ensuite pour ceux qui en ont besoin. Les réponses arrivent désormais en heures plutôt qu'en jours. La leçon : en rédaction professionnelle, ce n'est pas seulement ce qu'on écrit qui compte, mais la façon dont on structure le message pour le lecteur pressé.",
+      ],
+    },
+    exercise: {
+      title: "Rédiger un courriel et structurer un mini-rapport",
+      prompt: [
+        "Rédigez un courriel professionnel complet pour une situation de travail réaliste (par exemple demander une approbation ou transmettre un compte rendu) : soignez l'objet, la formule d'appel, un corps structuré en paragraphes courts annonçant d'emblée son intention, et une salutation finale.",
+        "Rédigez ensuite un résumé exécutif de cinq à six lignes pour un rapport fictif, de façon qu'une personne qui ne lirait que ce résumé comprenne le contexte, les résultats et la décision attendue.",
+        "Repérez enfin, dans une liste de cinq anglicismes courants (meeting, deadline, feedback, email, spam), l'équivalent français officiel de chacun, en vous aidant au besoin de la Banque de dépannage linguistique.",
+      ],
+      deliverables: [
+        "Un courriel professionnel complet, avec objet précis et intention annoncée d'emblée",
+        "Un résumé exécutif autoportant (contexte, résultats, décision attendue)",
+        "Les équivalents français officiels de cinq anglicismes courants",
+        "Une phrase justifiant l'importance de la relecture avant envoi",
+      ],
+    },
     keyTakeaways: [
-      "Un objet de courriel précis augmente le taux de réponse et la clarté",
-      "La structure d'un rapport doit permettre une lecture rapide en diagonale",
-      "Les termes français officiels sont attendus dans les communications écrites professionnelles",
+      "Un objet de courriel précis augmente le taux de réponse et sert le lecteur",
+      "Annoncer d'emblée l'intention du message (informer, demander, décider) accélère les réponses",
+      "Un rapport se conçoit pour la lecture en diagonale : l'essentiel au début",
+      "Les termes français officiels sont attendus et inspirent confiance au Québec",
+      "Relire avant l'envoi protège la crédibilité professionnelle",
     ],
     resources: [
       { label: "Banque de dépannage linguistique — OQLF", url: "https://bdl.oqlf.gouv.qc.ca" },
@@ -92,18 +177,46 @@ export const francaisAffairesLessons: Lesson[] = [
   {
     title: "Français québécois : expressions et culture",
     objectives: [
-      "Reconnaître les expressions québécoises courantes en milieu professionnel",
+      "Reconnaître et comprendre les expressions québécoises courantes en milieu professionnel",
       "Comprendre les nuances culturelles de la communication au travail",
-      "Éviter les malentendus liés aux différences linguistiques régionales",
+      "Interpréter correctement la franchise mesurée et le feedback québécois",
+      "Adopter une stratégie d'observation avant d'imiter",
     ],
     content: [
       "Le français québécois comporte des expressions propres au milieu professionnel : 'faire du pouce' (profiter d'une opportunité), 'capoter' (être enthousiaste ou dépassé selon le contexte), 'c'est correct' (c'est acceptable). Comprendre ces expressions facilite l'intégration sociale au travail.",
+      "Ces expressions sont bien plus que du folklore : elles sont la clé de la vie sociale au bureau. Un collègue qui vous dit « c'est correct, on se reprend » ne minimise pas un problème, il vous rassure ; « je capote » peut signifier l'enthousiasme (« je capote, c'est génial ! ») ou le débordement (« je capote, j'ai trop de dossiers ») selon le ton. Ne pas comprendre ces nuances, c'est rester à la porte de la convivialité de l'équipe. Mais attention : comprendre une expression et l'employer soi-même sont deux choses. Un nouvel arrivant qui plaque maladroitement des expressions mal maîtrisées peut sonner faux ; mieux vaut d'abord les reconnaître, puis les adopter naturellement avec le temps.",
       "La culture professionnelle québécoise valorise l'égalité hiérarchique apparente : les employés tutoient souvent leurs supérieurs et les réunions encouragent la participation de tous, contrairement à des cultures plus hiérarchiques.",
+      "Ce trait déroute particulièrement les personnes venues de cultures où la distance hiérarchique est marquée. Au Québec, un patron qui sollicite l'avis d'un employé junior en réunion n'est pas en train de le tester ou de le piéger : il attend réellement une contribution. Se taire par déférence peut être perçu comme un manque d'engagement. De même, contredire poliment une idée — y compris celle d'un supérieur — est généralement bien vu si c'est fait avec respect et arguments. Cette horizontalité apparente ne supprime pas la hiérarchie réelle des décisions, mais elle change la façon dont on y participe.",
       "Les nouveaux arrivants doivent aussi s'adapter au rythme de communication : les Québécois apprécient généralement la franchise mesurée, évitant les confrontations directes mais valorisant l'honnêteté dans le feedback professionnel.",
+      "Cet équilibre subtil est une source fréquente de malentendus dans les deux sens. Un feedback québécois est souvent enveloppé de formules douces (« ce serait peut-être intéressant de… », « je me demande si… ») qui, pour une oreille habituée à la franchise directe, peuvent masquer la vraie critique — il faut apprendre à entendre le message sous la politesse. À l'inverse, une critique trop frontale, normale ailleurs, peut être ressentie comme agressive au Québec. La meilleure stratégie reste l'observation : regarder comment les collègues formulent un désaccord, donnent un retour, plaisantent, avant de calquer ces codes. Observer avant d'imiter évite bien des faux pas culturels.",
     ],
+    caseStudy: {
+      title: "Sofia et le « ce serait peut-être intéressant de… »",
+      body: [
+        "Sofia, graphiste arrivée d'Espagne, présente ses premières maquettes à sa directrice artistique. Celle-ci les commente ainsi : « C'est un bon début, hein ! Ce serait peut-être intéressant d'explorer une autre direction pour la palette de couleurs, mais c'est correct pour l'instant. » Sofia repart convaincue que son travail est approuvé et poursuit dans la même voie.",
+        "Deux semaines plus tard, la directrice est visiblement contrariée que la palette n'ait pas changé. Sofia tombe des nues : pour elle, « ce serait peut-être intéressant de » sonnait comme une simple suggestion facultative, presque un compliment. Dans les codes de sa culture d'origine, une vraie demande de changement aurait été formulée bien plus directement. Elle avait entendu la politesse sans décoder la critique qu'elle enveloppait.",
+        "En discutant avec une collègue, Sofia apprend à « traduire » le feedback québécois : les formules adoucies (« je me demande si… », « ce serait peut-être… ») contiennent souvent une véritable demande. Elle prend l'habitude, en cas de doute, de reformuler pour vérifier : « donc si je comprends bien, tu aimerais que je retravaille la palette ? ». Le malentendu ne se reproduit plus. La leçon : la franchise mesurée québécoise demande d'écouter le message sous la politesse, et la reformulation est le meilleur filet de sécurité.",
+      ],
+    },
+    exercise: {
+      title: "Décoder les expressions et le feedback québécois",
+      prompt: [
+        "Dressez une liste de six expressions ou tournures québécoises courantes en milieu de travail (par exemple : « c'est correct », « faire du pouce », « je capote », « on se reprend »…) et donnez, pour chacune, son sens réel et un exemple d'emploi en contexte professionnel.",
+        "Prenez trois formulations de feedback « adouci » à la québécoise (du type « ce serait peut-être intéressant de… ») et, pour chacune, explicitez la demande réelle qu'elle contient probablement.",
+        "Rédigez enfin une courte réflexion : deux différences entre les codes de feedback et de hiérarchie de votre culture d'origine (ou d'une culture que vous connaissez) et ceux du milieu de travail québécois, et comment vous comptez vous y adapter.",
+      ],
+      deliverables: [
+        "Six expressions québécoises avec leur sens réel et un exemple en contexte",
+        "Trois formulations de feedback adouci « traduites » en demande réelle",
+        "Deux différences culturelles identifiées (feedback, hiérarchie) et une stratégie d'adaptation",
+        "Une phrase expliquant pourquoi observer avant d'imiter est la meilleure stratégie",
+      ],
+    },
     keyTakeaways: [
-      "Les expressions régionales facilitent l'intégration mais doivent être utilisées avec discernement",
-      "La culture québécoise valorise une hiérarchie moins marquée qu'ailleurs dans la francophonie",
+      "Comprendre les expressions québécoises ouvre la vie sociale de l'équipe",
+      "Reconnaître une expression et l'employer soi-même sont deux étapes distinctes",
+      "L'horizontalité québécoise attend une réelle participation, même des juniors",
+      "Le feedback québécois est souvent adouci : il faut entendre le message sous la politesse",
       "Observer avant d'imiter reste la meilleure stratégie d'adaptation culturelle",
     ],
     resources: [
@@ -121,19 +234,47 @@ export const francaisAffairesLessons: Lesson[] = [
   {
     title: "Préparation aux entretiens d'embauche",
     objectives: [
-      "Préparer des réponses structurées aux questions fréquentes",
-      "Présenter son parcours de manière convaincante en français",
+      "Préparer des réponses structurées aux questions fréquentes avec la méthode STAR",
+      "Présenter son parcours international comme un atout convaincant",
       "Poser des questions pertinentes à l'employeur",
+      "Aborder l'entrevue comme un échange, pas un interrogatoire",
     ],
     content: [
       "Les questions fréquentes en entrevue québécoise incluent 'Parlez-moi de vous', 'Pourquoi ce poste vous intéresse-t-il', et 'Quelle est votre plus grande force/faiblesse'. La méthode STAR (Situation, Tâche, Action, Résultat) structure efficacement les réponses comportementales.",
+      "La méthode STAR répond à un piège classique : face à une question du type « parlez-moi d'une fois où vous avez géré un conflit », beaucoup de candidats répondent par des généralités (« je suis quelqu'un de diplomate »). L'employeur, lui, veut une preuve concrète. STAR force à raconter une histoire vérifiable : la Situation (le contexte), la Tâche (ce qu'il fallait accomplir), l'Action (ce que vous avez précisément fait) et le Résultat (l'issue, si possible chiffrée). Une réponse STAR est mémorable parce qu'elle est concrète — elle montre au lieu d'affirmer, et laisse une image précise dans l'esprit du recruteur.",
       "Présenter son parcours international comme un atout plutôt qu'un obstacle change la perception de l'employeur : mettre en avant l'adaptabilité, les compétences transférables et la motivation à contribuer à l'économie québécoise.",
+      "C'est un renversement de posture crucial. Beaucoup de nouveaux arrivants abordent l'entrevue sur la défensive, s'excusant presque de leur accent, de leurs diplômes obtenus ailleurs ou de leur méconnaissance du marché local. Or ce même parcours recèle des atouts rares : la capacité à s'adapter à un nouvel environnement, souvent une deuxième ou troisième langue, une expérience de milieux différents, une résilience éprouvée. Reformulé positivement, « je viens d'arriver » devient « j'apporte un regard neuf et une capacité d'adaptation démontrée ». L'employeur ne perçoit pas une faiblesse à compenser, mais une valeur ajoutée. La confiance avec laquelle on présente son parcours compte autant que le parcours lui-même.",
       "Poser des questions à la fin de l'entrevue démontre l'intérêt réel pour le poste : interroger sur l'équipe, les défis actuels du département ou les perspectives d'évolution montre une réflexion sérieuse, pas seulement le désir d'obtenir un emploi.",
+      "Il faut renverser la vision de l'entrevue : ce n'est pas un interrogatoire à sens unique, mais un échange où le candidat évalue aussi l'employeur. Ne poser aucune question en fin d'entrevue est souvent interprété comme un désintérêt ou un manque de préparation. À l'inverse, des questions réfléchies — sur les défis actuels de l'équipe, la façon dont le succès est mesuré dans le poste, les possibilités d'évolution — montrent qu'on se projette déjà et qu'on a fait ses recherches. Ces questions laissent une dernière impression forte, précisément au moment où le recruteur forge son jugement final. C'est un levier trop souvent négligé.",
     ],
+    caseStudy: {
+      title: "L'entrevue de Karim : de la défensive à l'atout",
+      body: [
+        "Karim, gestionnaire logistique arrivé du Maroc, enchaîne les entrevues sans succès. Interrogé sur son expérience, il répond par des généralités (« je suis rigoureux et travaillant ») et, dès qu'on aborde son parcours, il s'excuse presque : « je sais que mes diplômes viennent de l'étranger », « mon accent… ». En fin d'entrevue, invité à poser des questions, il répond « non, tout est clair, merci ». Il repart chaque fois avec le sentiment d'être passé à côté.",
+        "Un conseiller d'Emploi-Québec l'aide à revoir sa préparation. Sur les questions comportementales, Karim apprend la méthode STAR : au lieu de « je gère bien la pression », il raconte une situation précise où il a réorganisé une chaîne d'approvisionnement en crise, avec un résultat chiffré. Sur son parcours, il inverse le cadrage : son expérience internationale devient une preuve d'adaptabilité et de gestion d'environnements complexes.",
+        "Surtout, il prépare trois questions à poser en fin d'entrevue, sur les défis de l'équipe et les critères de réussite du poste. À l'entrevue suivante, le changement est net : ses réponses STAR marquent les esprits, il présente son parcours avec assurance, et ses questions finales impressionnent le recruteur. Il obtient le poste. La leçon : à compétences égales, c'est la préparation — réponses concrètes, cadrage positif du parcours, et questions réfléchies — qui fait la différence en entrevue.",
+      ],
+    },
+    exercise: {
+      title: "Préparer une entrevue avec STAR et cadrage positif",
+      prompt: [
+        "Choisissez une question comportementale fréquente (par exemple : « parlez-moi d'une fois où vous avez surmonté une difficulté ») et rédigez une réponse complète structurée selon la méthode STAR, en identifiant clairement la Situation, la Tâche, l'Action et le Résultat (chiffré si possible).",
+        "Rédigez ensuite une présentation de votre parcours (réel ou fictif) en reformulant au moins deux éléments qui pourraient être perçus comme des obstacles (arrivée récente, diplôme étranger, réorientation…) en atouts concrets pour l'employeur.",
+        "Préparez enfin trois questions pertinentes à poser en fin d'entrevue, et expliquez brièvement ce que chacune démontre sur vous auprès du recruteur.",
+      ],
+      deliverables: [
+        "Une réponse comportementale complète structurée en STAR, avec résultat concret",
+        "Une présentation de parcours reformulant au moins deux obstacles en atouts",
+        "Trois questions à poser en fin d'entrevue, chacune justifiée",
+        "Une phrase résumant pourquoi l'entrevue est un échange, pas un interrogatoire",
+      ],
+    },
     keyTakeaways: [
-      "La méthode STAR structure des réponses claires et mémorables",
-      "L'expérience internationale doit être présentée comme une valeur ajoutée",
-      "Poser des questions pertinentes en fin d'entrevue distingue les candidats sérieux",
+      "La méthode STAR remplace les généralités par des preuves concrètes et mémorables",
+      "L'expérience internationale, bien cadrée, devient une valeur ajoutée et non une excuse",
+      "La confiance dans la présentation de son parcours compte autant que le parcours",
+      "L'entrevue est un échange : poser des questions démontre l'intérêt et la préparation",
+      "Les questions de fin d'entrevue laissent une dernière impression décisive",
     ],
     resources: [
       { label: "Emploi-Québec — Guide de préparation à l'entrevue", url: "https://www.quebec.ca/emploi" },
@@ -150,19 +291,47 @@ export const francaisAffairesLessons: Lesson[] = [
   {
     title: "Négociation et présentation en français",
     objectives: [
-      "Utiliser un vocabulaire de négociation approprié",
-      "Présenter une proposition avec assurance",
+      "Utiliser un vocabulaire de négociation nuancé et approprié",
+      "Présenter une proposition avec assurance sans agressivité",
       "Gérer les objections de manière constructive",
+      "Distinguer assurance et agressivité en contexte francophone professionnel",
     ],
     content: [
       "Le vocabulaire de négociation inclut des expressions clés : 'Je propose que...', 'Serait-il possible de...', 'Je comprends votre point, cependant...'. Ces formules permettent d'exprimer un désaccord tout en maintenant une relation professionnelle cordiale.",
+      "Ces tournures nuancées sont particulièrement précieuses pour le locuteur non natif, car elles évitent le double écueil de la brutalité et de la soumission. Dire « vous avez tort » ferme la discussion et crée un adversaire ; se taire par crainte de mal formuler prive de son point. La voie du milieu — « je comprends votre point ; cependant, les chiffres suggèrent une autre approche » — reconnaît l'interlocuteur tout en défendant sa position. En négociation, la forme n'est pas un habillage : elle détermine si l'autre se braque ou reste ouvert. Maîtriser une poignée de ces formules donne les moyens d'exprimer un désaccord ferme sans jamais paraître agressif.",
       "Présenter une proposition avec assurance ne signifie pas être agressif : il s'agit de structurer son argumentaire avec des faits, d'anticiper les objections possibles et de proposer des solutions plutôt que de simplement énoncer un problème.",
+      "La distinction entre assurance et agressivité est culturellement chargée, et un nouvel arrivant doit y être attentif. Dans certaines cultures, hausser le ton et insister avec force sont des marques normales de conviction ; au Québec, cela peut être perçu comme une agression qui décrédibilise le propos, aussi juste soit-il. L'assurance québécoise se manifeste autrement : par la solidité des faits, le calme, et la capacité à proposer une solution plutôt qu'à seulement dénoncer un problème. « Voici le problème, et voici deux options pour le régler » inspire bien plus confiance que « c'est un scandale, il faut faire quelque chose ». On convainc par la préparation, pas par le volume de la voix.",
       "Gérer les objections de manière constructive implique d'écouter complètement l'objection avant de répondre, de reformuler pour montrer sa compréhension, puis d'apporter une réponse factuelle plutôt que défensive.",
+      "L'erreur la plus commune face à une objection est d'y répondre avant même qu'elle soit terminée, sur un ton défensif — ce qui transforme un échange en affrontement. La démarche constructive inverse ce réflexe : on laisse l'autre exprimer entièrement sa préoccupation, on la reformule pour prouver qu'on l'a comprise (« si je comprends bien, votre inquiétude porte sur le délai »), puis on répond par des faits, non par une justification émotionnelle. Cette écoute complète désamorce la plupart des tensions, car une personne qui se sent réellement entendue baisse spontanément la garde. Anticiper les objections probables avant même la réunion permet en outre d'arriver avec des réponses solides, signe d'une préparation qui inspire le respect.",
     ],
+    caseStudy: {
+      title: "La proposition de Diego : du coup de sang à la solution",
+      body: [
+        "Diego, chef d'équipe arrivé d'Argentine, défend en réunion un projet auquel il croit profondément. Quand un collègue soulève une objection sur le budget, Diego, passionné, hausse le ton, coupe la parole et martèle que « c'est évident qu'il faut y aller ». Dans sa culture d'origine, cette fougue témoignait de l'engagement. Ici, la réunion se tend, et sa proposition — pourtant solide — est reportée.",
+        "Sa gestionnaire lui explique après coup que son intensité a été perçue non comme de la conviction, mais comme de l'agressivité, ce qui a braqué l'auditoire et détourné l'attention du fond. Le problème n'était pas son idée, ni même son désaccord, mais la manière : couper la parole et monter le ton avaient éclipsé ses arguments.",
+        "À la réunion suivante, Diego change d'approche sans renier sa conviction. Face à l'objection budgétaire, il écoute jusqu'au bout, reformule (« votre préoccupation, c'est le dépassement possible, c'est bien ça ? »), puis répond par des chiffres et propose deux scénarios de financement. Calme, factuel, orienté solution. Cette fois, sa proposition est adoptée. La leçon : au Québec, on porte une idée avec assurance par la préparation et le calme, pas par l'intensité — et écouter l'objection en entier désamorce plus sûrement qu'y répliquer à chaud.",
+      ],
+    },
+    exercise: {
+      title: "Négocier une proposition et gérer les objections",
+      prompt: [
+        "Choisissez une proposition professionnelle à défendre (par exemple : obtenir un budget, changer un processus, demander un délai supplémentaire) et rédigez-la de manière structurée : le fait/problème, votre proposition, et une ou deux solutions concrètes plutôt qu'un simple constat.",
+        "Anticipez deux objections probables à votre proposition et, pour chacune, rédigez une réponse constructive appliquant la démarche : reformulation de l'objection puis réponse factuelle (non défensive).",
+        "Rédigez enfin trois formules nuancées permettant d'exprimer un désaccord tout en restant cordial, adaptées à une négociation en français professionnel.",
+      ],
+      deliverables: [
+        "Une proposition structurée (problème, proposition, solutions concrètes)",
+        "Deux objections anticipées avec une réponse constructive (reformulation + faits) chacune",
+        "Trois formules nuancées pour exprimer un désaccord cordial",
+        "Une phrase distinguant l'assurance de l'agressivité en contexte québécois",
+      ],
+    },
     keyTakeaways: [
       "Le désaccord professionnel s'exprime par des formules nuancées, pas des refus directs",
+      "Au Québec, on convainc par la préparation et le calme, pas par le volume de la voix",
+      "Proposer une solution inspire plus confiance que dénoncer un problème",
+      "Écouter complètement l'objection avant de répondre désamorce la plupart des tensions",
       "Une bonne négociation anticipe les objections avant qu'elles ne soient soulevées",
-      "Écouter complètement avant de répondre désamorce la plupart des tensions",
     ],
     resources: [
       { label: "HEC Montréal — Ressources en négociation", url: "https://www.hec.ca" },
@@ -180,17 +349,45 @@ export const francaisAffairesLessons: Lesson[] = [
     title: "Terminologie sectorielle (finance, tech, santé)",
     objectives: [
       "Maîtriser le vocabulaire spécifique au secteur d'activité visé",
-      "Comprendre les acronymes courants en milieu professionnel québécois",
-      "Utiliser une terminologie précise dans son domaine d'expertise",
+      "Comprendre les acronymes institutionnels courants au Québec",
+      "Utiliser une terminologie précise pour renforcer sa crédibilité",
+      "Apprendre le vocabulaire sectoriel en contexte plutôt que par listes",
     ],
     content: [
       "Chaque secteur professionnel possède sa terminologie propre : en finance, on parle de 'REER', 'CELI', 'relevé bancaire' ; en technologie, de 'infonuagique' (cloud), 'pourriel' ; en santé, de 'CLSC', 'CHSLD'. Cette maîtrise lexicale est indispensable pour une intégration professionnelle rapide.",
+      "Un professionnel expérimenté dans son domaine peut se retrouver, en arrivant au Québec, dans la position déstabilisante de ne plus reconnaître le vocabulaire de son propre métier. Un comptable connaît parfaitement les régimes d'épargne de son pays d'origine, mais « REER » et « CELI » lui sont opaques ; un informaticien maîtrise le cloud mais découvre le mot « infonuagique ». Ce décalage n'a rien à voir avec la compétence : c'est un vocabulaire local à réapprendre. La bonne nouvelle, c'est qu'il est fini et sectoriel — quelques dizaines de termes suffisent souvent à retrouver toute son aisance dans son domaine.",
       "Les acronymes institutionnels québécois (RAMQ, CNESST, CSST, SAAQ) reviennent fréquemment dans les communications administratives et professionnelles. Les comprendre évite des malentendus coûteux dans les démarches officielles.",
+      "Ces acronymes sont une langue dans la langue. RAMQ (assurance maladie), CNESST (normes du travail et santé-sécurité), SAAQ (assurance automobile), Revenu Québec : ils structurent la vie administrative et professionnelle, et sont utilisés sans jamais être explicités, comme des évidences. Ne pas les connaître, c'est risquer de mal remplir un formulaire, de manquer une obligation ou de paraître perdu dans une réunion où ils fusent. Se constituer un petit glossaire personnel des acronymes de son secteur et des institutions qu'on côtoie est l'un des investissements les plus rentables pour une intégration rapide.",
       "La précision terminologique démontre l'expertise : utiliser le terme exact plutôt qu'une paraphrase générale renforce la crédibilité professionnelle, particulièrement dans les secteurs techniques ou réglementés.",
+      "La façon d'apprendre ce vocabulaire compte autant que le vocabulaire lui-même. Mémoriser des listes de termes hors contexte s'oublie vite et ne prépare pas à les utiliser à bon escient. En revanche, apprendre chaque terme dans une phrase réelle, tel qu'il est employé au travail, ancre le mot dans un usage — on retient « cotiser à son REER » plutôt que « REER : régime enregistré d'épargne-retraite » isolé. Lire des documents de son secteur, écouter les collègues, noter les termes rencontrés en situation : voilà comment la terminologie devient un réflexe plutôt qu'une leçon. La précision qui en découle est ce qui distingue, aux oreilles d'un employeur, le professionnel intégré du débutant.",
     ],
+    caseStudy: {
+      title: "Priya, infirmière : la compétence masquée par le vocabulaire",
+      body: [
+        "Priya, infirmière chevronnée arrivée d'Inde, possède des années d'expérience clinique solide. Pourtant, lors de ses premières journées dans un établissement de santé québécois, elle se sent soudain incompétente : on l'oriente vers le « CLSC », on parle de transferts en « CHSLD », de dossiers à la « RAMQ ». Elle connaît parfaitement les soins, mais ce vocabulaire institutionnel lui échappe entièrement, au point de douter d'elle-même.",
+        "Le malentendu est double. Priya interprète son incompréhension comme une lacune professionnelle, alors qu'il ne s'agit que d'un vocabulaire local à acquérir. Et ses collègues, la voyant hésiter sur ces termes de base, sous-estiment un temps sa réelle expertise clinique. Le décalage lexical masquait la compétence dans les deux sens.",
+        "Priya se constitue méthodiquement un glossaire des acronymes et termes du réseau de la santé québécois, en notant chacun dans une phrase réelle entendue au travail. En quelques semaines, ces mots deviennent naturels, et son expertise, enfin lisible pour tous, reprend toute sa place. La leçon : la maîtrise de la terminologie sectorielle locale ne remplace pas la compétence, mais elle est ce qui la rend visible — sans elle, même un excellent professionnel peut paraître, à tort, mal préparé.",
+      ],
+    },
+    exercise: {
+      title: "Constituer un glossaire sectoriel en contexte",
+      prompt: [
+        "Choisissez un secteur d'activité (le vôtre si possible) et dressez un glossaire d'au moins dix termes ou acronymes québécois qui y sont courants (en incluant les institutions pertinentes comme la RAMQ, la CNESST, etc. selon le secteur).",
+        "Pour chaque terme, ne vous contentez pas d'une définition : rédigez une phrase réaliste le mettant en contexte, telle qu'elle pourrait être entendue ou lue au travail.",
+        "Identifiez enfin trois termes de votre domaine d'expertise pour lesquels l'équivalent québécois diffère de celui que vous connaissiez ailleurs, et expliquez en une phrase pourquoi utiliser le terme exact renforce votre crédibilité.",
+      ],
+      deliverables: [
+        "Un glossaire d'au moins dix termes/acronymes sectoriels québécois",
+        "Une phrase de mise en contexte réaliste pour chaque terme",
+        "Trois termes dont l'équivalent québécois diffère de celui connu ailleurs",
+        "Une justification du lien entre précision terminologique et crédibilité",
+      ],
+    },
     keyTakeaways: [
-      "La terminologie sectorielle doit être apprise en contexte, pas par mémorisation isolée",
-      "Les acronymes institutionnels québécois sont essentiels à connaître pour les démarches administratives",
+      "Un professionnel compétent doit réapprendre le vocabulaire local de son propre métier",
+      "Les acronymes institutionnels québécois sont essentiels aux démarches administratives",
+      "La maîtrise de la terminologie rend la compétence visible, elle ne la remplace pas",
+      "La terminologie sectorielle s'apprend en contexte, pas par mémorisation isolée",
       "La précision lexicale renforce la crédibilité professionnelle perçue",
     ],
     resources: [
@@ -208,19 +405,47 @@ export const francaisAffairesLessons: Lesson[] = [
   {
     title: "Examen final & certification",
     objectives: [
-      "Démontrer la maîtrise du français professionnel acquis",
+      "Démontrer la maîtrise intégrée du français professionnel acquis",
       "Réussir une simulation d'entrevue et de rédaction professionnelle",
+      "Communiquer efficacement plutôt que viser la perfection grammaticale",
       "Obtenir le certificat ARCADINS de français des affaires",
     ],
     content: [
       "L'examen final évalue les quatre compétences travaillées durant la formation : compréhension orale d'une réunion simulée, rédaction d'un courriel professionnel, présentation orale d'un projet, et simulation d'entrevue d'embauche.",
+      "Ces quatre épreuves ne sont pas choisies au hasard : elles reproduisent les quatre situations où un professionnel utilise réellement le français au travail. Comprendre ce qui se dit en réunion (module 2), écrire un message clair (module 3), présenter une idée (modules 2 et 6) et se vendre en entrevue (module 5) : l'examen fait converger tout le programme sur des mises en situation authentiques. On n'y récite pas des règles de grammaire ; on démontre qu'on sait fonctionner en milieu de travail québécois.",
       "Les évaluateurs portent une attention particulière à la clarté du message plutôt qu'à la perfection grammaticale absolue — l'objectif est la communication professionnelle efficace, pas la maîtrise académique de la langue.",
+      "Ce critère est libérateur et doit rassurer le candidat anxieux. Un employeur québécois n'embauche pas un professeur de grammaire : il cherche quelqu'un capable de comprendre, de se faire comprendre et de collaborer. Un candidat au français imparfait mais clair, structuré et confiant réussit mieux qu'un candidat grammaticalement irréprochable mais confus ou paralysé par la peur de l'erreur. L'examen valorise donc ce qui compte vraiment sur le marché du travail : la capacité à faire passer un message et à interagir, accent et petites imperfections compris. Viser la communication efficace plutôt que la perfection retire une pression contre-productive.",
       "À la réussite de l'examen, un certificat numérique ARCADINS est délivré, attestant du niveau de français professionnel atteint et pouvant être ajouté au CV ou présenté à un employeur potentiel.",
+      "Ce certificat a une valeur concrète dans une recherche d'emploi : il fournit à un employeur une preuve tierce et vérifiable que le candidat peut fonctionner en français en milieu professionnel, ce qui lève une incertitude fréquente lors du recrutement d'un nouvel arrivant. Ajouté au CV ou mentionné en entrevue, il transforme une compétence difficile à démontrer en soi en un atout tangible. Mais au-delà du document, le vrai acquis de la formation est l'aisance : savoir écrire un courriel qui obtient une réponse, prendre la parole en réunion sans crainte, et se présenter en entrevue avec assurance. Le certificat atteste ; l'aisance ouvre les portes.",
     ],
+    caseStudy: {
+      title: "La journée d'examen de Wei : tout se rejoint",
+      body: [
+        "Wei, développeur arrivé de Chine, aborde l'examen final avec appréhension : son français reste imparfait et il redoute les fautes. La première épreuve est une réunion simulée qu'il doit comprendre puis résumer. Il mobilise ce qu'il a appris au module 2 : il écoute activement, repère la structure, et reformule mentalement — il saisit l'essentiel sans tout comprendre mot à mot.",
+        "Vient la rédaction d'un courriel : Wei applique les réflexes du module 3 — objet précis, intention annoncée d'emblée, paragraphes courts. Son français n'est pas parfait, mais le message est limpide et bien structuré. À la présentation orale, il suit le plan contexte-problème-solution-bénéfices ; sa trame claire compense ses hésitations. Enfin, en simulation d'entrevue, il présente son parcours international comme un atout et pose des questions préparées.",
+        "À aucun moment Wei n'a produit un français irréprochable — et pourtant il réussit haut la main, parce que les évaluateurs mesurent la communication efficace, pas la perfection. Chaque épreuve a mobilisé un module du programme, prouvant que ces compétences ne sont pas des chapitres isolés mais un tout cohérent. La leçon : la maîtrise du français professionnel ne se juge pas à l'absence de fautes, mais à la capacité de comprendre, se faire comprendre et interagir — exactement ce dont le monde du travail a besoin.",
+      ],
+    },
+    exercise: {
+      title: "S'auto-évaluer sur les quatre compétences",
+      prompt: [
+        "En vue de l'examen, préparez une auto-évaluation sur les quatre compétences visées : compréhension orale, rédaction, présentation orale, et entrevue. Pour chacune, notez une force acquise durant la formation et un point à consolider.",
+        "Choisissez la compétence où vous vous sentez le moins à l'aise et réalisez une mise en pratique concrète : par exemple rédigez le courriel, ou écrivez la trame d'une présentation ou d'une réponse d'entrevue complète.",
+        "Rédigez enfin une courte réflexion personnelle : en quoi viser la communication efficace plutôt que la perfection grammaticale change-t-il votre rapport à l'examen et, plus largement, à votre intégration professionnelle en français ?",
+      ],
+      deliverables: [
+        "Une auto-évaluation des quatre compétences (une force et un point à consolider chacune)",
+        "Une mise en pratique concrète de la compétence la moins maîtrisée",
+        "Une réflexion sur le passage de la « perfection » à la « communication efficace »",
+        "Un plan d'action de trois points pour se préparer aux épreuves finales",
+      ],
+    },
     keyTakeaways: [
+      "L'examen fait converger tout le programme sur quatre situations de travail authentiques",
       "L'examen évalue la communication efficace, pas la perfection grammaticale",
-      "Les quatre compétences (oral, écrit, présentation, interaction) sont toutes évaluées",
-      "Le certificat délivré est un atout concret pour la recherche d'emploi",
+      "Un message clair et structuré l'emporte sur une grammaire parfaite mais confuse",
+      "Le certificat fournit à l'employeur une preuve tierce et vérifiable de compétence",
+      "Le vrai acquis de la formation est l'aisance professionnelle, au-delà du certificat",
     ],
     resources: [],
     quiz: [
