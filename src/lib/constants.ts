@@ -11,3 +11,4 @@ export { SLIDES, VIDEOS, TESTIMONIALS } from "./data/content";
 export { TEF_TESTS } from "./data/tef-tests";
 export { IMMIGRATION_STEPS, COUNTRIES, PROVINCES } from "./data/immigration";
 export { PRICING, PAYMENT_METHODS } from "./data/pricing-plans";
+export { ACCREDITATIONS } from "./data/accreditations";

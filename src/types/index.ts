@@ -42,6 +42,27 @@ export interface PricingPlan {
   cta: string;
 }
 
+/**
+ * Une accréditation / reconnaissance officielle VÉRIFIABLE.
+ * Règle de conformité : n'afficher un badge que si `verified === true` ET
+ * qu'une preuve publique (`proofUrl`) est fournie. Aucune accréditation ne doit
+ * être inventée — la liste reste vide tant qu'aucune preuve n'existe.
+ */
+export interface Accreditation {
+  /** Nom de l'accréditation ou de l'organisme reconnaissant. */
+  name: string;
+  /** Organisme émetteur (autorité qui délivre la reconnaissance). */
+  issuer: string;
+  /** Vérifiée avec preuve à l'appui. Un badge ne s'affiche que si true. */
+  verified: boolean;
+  /** Lien public permettant de vérifier la reconnaissance (obligatoire si affichée). */
+  proofUrl?: string;
+  /** Numéro / identifiant de l'accréditation, s'il existe. */
+  reference?: string;
+  /** Courte description de ce que couvre l'accréditation. */
+  description?: string;
+}
+
 export interface NavItem {
   id: string;
   href: string;

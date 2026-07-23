@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/immigration`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/tarifs`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/temoignages`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/accreditations`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/auth/login`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/auth/register`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },

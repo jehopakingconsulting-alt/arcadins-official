@@ -19,6 +19,7 @@ const FOOTER_SERVICES = [
   { key: "fl.ircc", href: "/immigration" },
   { key: "fl.emploi", href: "/immigration" },
   { key: "fl.tarifs", href: "/tarifs" },
+  { key: "acc.nav", href: "/accreditations" },
   { key: "fl.contacter", href: "/contact" },
 ];
 
