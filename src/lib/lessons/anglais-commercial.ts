@@ -6,15 +6,43 @@ export const anglaisCommercialLessons: Lesson[] = [
     objectives: [
       "Build core business vocabulary used across industries",
       "Understand formal vs informal register in English business contexts",
-      "Construct clear, professional sentences in everyday work situations",
+      "Balance directness with politeness in requests",
+      "Construct clear, action-first professional sentences",
     ],
     content: [
       "Business English relies on a specific vocabulary set: stakeholder, deadline, deliverable, revenue, onboarding. Mastering these terms early makes every subsequent interaction — meetings, emails, presentations — significantly easier to navigate.",
+      "For a fluent English speaker arriving in Canada, this specialized vocabulary can still be the first invisible hurdle: you may understand the language perfectly yet feel lost when a colleague mentions a 'tight deadline', asks for the 'deliverable' before the 'stand-up', or refers to 'onboarding' a new hire. These words are no harder than others, but their precise use in the workplace must become automatic. As long as you are still decoding these basic terms, you cannot fully focus on the substance of the exchange. Mastering the vocabulary first frees your attention for what really matters.",
       "English business communication in Canada tends to favor directness balanced with politeness. Phrases like 'I was wondering if...' or 'Would it be possible to...' soften requests while remaining clear, a balance many non-native speakers find tricky at first.",
+      "This balance is a genuine cultural code, and getting it wrong cuts both ways. Speakers from more direct cultures may sound abrupt or even rude to Canadian ears by saying 'Send me the report today', when 'Could you send me the report by end of day?' carries the exact same request more smoothly. Conversely, speakers from cultures where requests are heavily indirect may sound vague, leaving colleagues unsure of what is actually being asked. The Canadian sweet spot is clear about the 'what' but soft about the 'how' — the request is unmistakable, but wrapped in a politeness marker. Learning a handful of these softening phrases lets you make firm requests without ever sounding harsh.",
       "Clear sentence construction in a professional context means short, action-oriented statements: state the point first, then the supporting detail. Avoid overly complex sentences that can obscure your meaning, especially in writing.",
+      "This is reassuring news for the non-native speaker: professional English rewards clarity, not literary flourish. Nobody at work is impressed by long, ornate sentences — they want to understand you the first time. Leading with the main point ('We need to delay the launch') before the explanation ('because testing revealed a bug') respects the reader's time and removes ambiguity. Trying to sound sophisticated with complex, clause-heavy sentences usually backfires, burying the message. In business English, mastered simplicity is a mark of competence, not of limited vocabulary — and it is far more achievable than fluency in ornate prose.",
     ],
+    caseStudy: {
+      title: "Amara's blunt emails",
+      body: [
+        "Amara, a skilled project manager from Nigeria, speaks flawless English but keeps getting terse, cool replies from her Canadian colleagues. She is confused — her messages are perfectly clear and grammatically correct. She writes things like 'Send me the figures by noon' and 'This is wrong, fix it.' In her professional background, this directness was normal and efficient; nobody took offense.",
+        "A friendly teammate gently explains how these messages land in a Canadian office: they read as curt, even aggressive, even though Amara means nothing of the sort. The issue is not her English — it is the missing layer of politeness that Canadian colleagues expect around requests and criticism. 'Send me the figures by noon' feels like an order; 'Could you send me the figures by noon? Thanks!' feels like a normal request between equals.",
+        "Amara adjusts quickly. She keeps her clarity — the request stays unmistakable — but adds softening phrases and a warmer tone: 'Would you be able to…', 'When you have a moment…', 'Thanks so much.' The cool replies disappear and her working relationships warm up. The lesson: in Canadian business English, being understood is not enough — the balance of directness and politeness is a cultural code, and mastering it matters as much as the language itself.",
+      ],
+    },
+    exercise: {
+      title: "Master core vocabulary and the politeness balance",
+      prompt: [
+        "Build a mini-glossary of ten core business English terms (e.g. stakeholder, deadline, deliverable, onboarding, revenue…) and, for each, write one sentence using it in a realistic workplace situation.",
+        "Take three blunt or overly direct requests (e.g. 'Send me the report now') and rewrite each to keep the request perfectly clear while adding an appropriate Canadian-style politeness marker.",
+        "Take one long, overly complex sentence of your own invention and rewrite it as a short, action-first professional statement, leading with the main point.",
+      ],
+      deliverables: [
+        "A glossary of ten business terms, each used in a workplace sentence",
+        "Three blunt requests rewritten to balance clarity and politeness",
+        "One complex sentence rewritten in a short, action-first form",
+        "A short note on why the directness/politeness balance is a cultural code, not just grammar",
+      ],
+    },
     keyTakeaways: [
       "Core vocabulary should be automatic before tackling complex communication",
+      "Fluency in English and mastery of its workplace codes are two different skills",
+      "The Canadian balance: clear about the 'what', soft about the 'how'",
       "Politeness markers soften direct requests without losing clarity",
       "Short, action-first sentences communicate more effectively than complex ones",
     ],
@@ -34,18 +62,46 @@ export const anglaisCommercialLessons: Lesson[] = [
     title: "Professional communication & emails",
     objectives: [
       "Write a clear, well-structured professional email",
-      "Use appropriate greetings and closings for different contexts",
-      "Respond professionally to requests and complaints in writing",
+      "Choose greetings and closings appropriate to each context",
+      "Lead with the main point rather than burying it",
+      "Respond to complaints professionally, without defensiveness",
     ],
     content: [
       "An effective business email has a clear subject line, a brief greeting, a focused message (one main topic per email when possible), and a professional closing. Avoid burying the main request in the third paragraph — lead with it.",
+      "The subject line is the most underestimated part of an email: it decides whether your message is read now, later, or never. 'Question' or 'Follow-up' tell the reader nothing; 'Approval needed by Friday 3pm — Q3 budget' lets them prioritize at a glance. In an inbox flooded with dozens of messages a day, a precise subject line is a courtesy to the reader — and it measurably increases your response rate. The body should then state its purpose immediately: is this email informing, requesting an action, or asking for a decision? Making that clear in the first line saves everyone time.",
       "Greetings range from formal ('Dear Mr. Smith') to semi-formal ('Hi John') depending on the relationship and company culture. Canadian workplaces often default to a friendly but professional tone, even in first contact emails.",
+      "Choosing the right register is a small decision with real consequences. Too formal ('Dear Sir/Madam, I am writing to inquire…') can feel stiff and distant in a Canadian office that runs on first names; too casual ('Hey!') with a senior client you've never met can seem presumptuous. A safe strategy for newcomers is to start one notch more formal than you think necessary and then mirror the other person: if they reply with 'Hi Amara, thanks!' and their first name, you can match that warmth in your next message. Reading and adapting to the other person's register is often more important than any fixed rule.",
       "Responding to complaints in writing requires acknowledging the issue, taking ownership without being defensive, and proposing a concrete next step. A well-written response can turn a frustrated client into a loyal one.",
+      "Written complaints carry a special danger: unlike a phone call, they leave a permanent record, and a defensive reply can be forwarded and re-read, making things worse. The instinct to explain why it wasn't your fault almost always backfires. The effective structure is disciplined: acknowledge the problem sincerely, take ownership without excuses, and propose a concrete next step with a timeline. 'You're right that the shipment was late, I'm sorry for the disruption — here's what we'll do…' defuses far more anger than a paragraph of justifications. A frustrated client doesn't want to win an argument; they want to feel heard and to see the problem fixed. Handled well, a complaint in writing can build more loyalty than a flawless transaction ever would.",
     ],
+    caseStudy: {
+      title: "The defensive reply that went up the chain",
+      body: [
+        "Diego, new to a Canadian firm, receives an email from an important client complaining that a delivery arrived late and incomplete. Stung and eager to defend his team, Diego fires back a long reply explaining that the warehouse was short-staffed, that the client's own address details were unclear, and that 'these things happen.' Every point may be partly true — but the tone is defensive, and he never actually apologizes or offers a solution.",
+        "The client, now angrier, forwards the exchange to Diego's manager, who is dismayed: a recoverable complaint has become a relationship crisis, all preserved in writing for everyone to read. The problem was never the late delivery — those can be forgiven — but the defensive written response, which read as if the company cared more about being right than about the client.",
+        "The manager coaches Diego on the acknowledge–own–resolve structure. Diego sends a new message: he acknowledges the late, incomplete shipment, apologizes sincerely without excuses, and proposes a concrete fix with a date. The client's tone softens immediately and the account is saved. The lesson: written complaints are permanent and forwardable, defensiveness makes them worse, and acknowledging plus proposing a solution turns a frustrated client into a loyal one.",
+      ],
+    },
+    exercise: {
+      title: "Write emails that get read and defuse complaints",
+      prompt: [
+        "Write a complete professional email for a realistic workplace situation (e.g. requesting an approval or sending an update): craft a precise subject line, an appropriate greeting, a body that states its purpose in the first line, and a professional closing.",
+        "For the same content, write two versions of the greeting/closing: one for a senior external client you've never met, and one for a close teammate — and note what changes between them and why.",
+        "Write a model reply to a realistic customer complaint, applying the acknowledge–own–resolve structure, and explain why avoiding defensiveness matters especially in writing.",
+      ],
+      deliverables: [
+        "A complete professional email with a precise subject line and purpose stated up front",
+        "Two register variations of the greeting/closing (senior client vs teammate), with rationale",
+        "A model complaint reply structured as acknowledge, own, resolve",
+        "A short note on why defensiveness is especially damaging in written communication",
+      ],
+    },
     keyTakeaways: [
-      "Lead with your main point — don't bury the request",
-      "Match your greeting formality to the relationship and company culture",
-      "Acknowledge and propose action when responding to complaints, never get defensive",
+      "A precise subject line decides whether an email is read, and lifts response rates",
+      "Lead with your main point and state the email's purpose in the first line",
+      "Match your greeting to the relationship, then mirror the other person's register",
+      "Written complaints are permanent and forwardable — never reply defensively",
+      "Acknowledge, take ownership, and propose action to turn a complaint into loyalty",
     ],
     resources: [
       { label: "Purdue OWL — Business Writing Guide", url: "https://owl.purdue.edu/owl/subject_specific_writing/professional_technical_writing" },
@@ -63,18 +119,46 @@ export const anglaisCommercialLessons: Lesson[] = [
     title: "Meetings, presentations & public speaking",
     objectives: [
       "Participate confidently in English-language meetings",
-      "Structure a clear business presentation",
-      "Handle questions and unexpected interruptions smoothly",
+      "Use polite phrases to interject and ask for clarification",
+      "Structure a clear business presentation with a hook and a call to action",
+      "Handle questions, including ones you can't answer, with composure",
     ],
     content: [
       "Active participation in meetings means knowing how to interject politely ('If I may add...'), ask for clarification ('Could you elaborate on that?'), and summarize discussion points to confirm shared understanding before moving forward.",
+      "For many non-native speakers, the hardest part of a meeting is not understanding — it is finding the moment and the words to speak up. In fast, overlapping English discussion, staying silent feels safer, but silence is often misread as disengagement or lack of ideas. A small toolkit of ready-made phrases removes this barrier: 'Can I jump in here?', 'Building on what Sarah said…', 'Just to make sure I understand…'. Having these phrases automatic means you don't have to invent them under pressure. Asking a clarifying question, far from revealing weakness, signals engagement — and often voices a doubt others in the room share but didn't dare to raise.",
       "A strong business presentation follows a simple structure: hook the audience's attention, state the purpose clearly, present supporting points in a logical order, and end with a clear call to action or summary of next steps.",
+      "The opening seconds decide everything. An audience forms an impression fast, and beginning with 'Hello, my name is… and today I'm going to talk about…' wastes that precious window. Opening with the problem made vivid — a striking statistic, a short story, a question — captures attention immediately; you introduce yourself after you've hooked them. This structure is also a lifeline for non-native speakers: a clear framework ('here's the problem, here's my solution, here's what I'm asking for') lets the audience follow even through an accent or a hesitation. Clarity of structure forgives imperfections of language, whereas a linguistically perfect but disorganized talk loses the room.",
       "Handling questions confidently — even when you don't know the answer immediately — involves acknowledging the question, offering what you do know, and committing to follow up rather than guessing or going silent.",
+      "The question period intimidates presenters most, precisely because it can't be rehearsed — yet it is where credibility is truly won or lost. The worst responses are guessing (which risks being caught out) and freezing in silence. The professional move, when you don't have the answer, is honest and simple: 'That's a great question. I don't have the exact figure in front of me, but I'll follow up with you by tomorrow.' This builds more trust than a confident-sounding guess. Admitting the limits of what you know, and committing to close the gap, signals reliability. Nobody expects a presenter to know everything; they expect honesty and follow-through.",
     ],
+    caseStudy: {
+      title: "Wei's silent meetings and the question he couldn't answer",
+      body: [
+        "Wei, a talented analyst from China, understands English meetings well but rarely speaks. In his previous work culture, speaking up in front of senior people uninvited would have been inappropriate, and asking a question might suggest he hadn't understood. So he listens attentively and says nothing. After a few weeks, his manager grows concerned that he is disengaged — a complete misreading of his careful attention.",
+        "Coached to use simple entry phrases, Wei starts small: 'Just to confirm my understanding…', which is low-risk and shows engagement. Encouraged, he later gives a short presentation. He opens not with his name but with a striking figure about wasted processing time — and the room leans in. Then comes the moment he dreaded: a director asks a question he cannot answer precisely. Wei feels the old urge to freeze.",
+        "Instead of guessing or going silent, he applies what he learned: 'That's an important question — I don't have the precise number here, but I'll send it to you by end of day.' The director nods, satisfied; the honesty lands as competence, not weakness. Wei follows up that afternoon, cementing his credibility. The lesson: in English-speaking Canadian meetings, speaking up is expected, a clear structure carries a presentation despite an accent, and honestly deferring a question you can't answer builds more trust than a confident guess.",
+      ],
+    },
+    exercise: {
+      title: "Prepare to participate and present under pressure",
+      prompt: [
+        "Prepare a personal toolkit of at least five ready-made English phrases for meetings: one to interject, one to ask for clarification, one to build on someone's point, one to summarize, and one to politely disagree.",
+        "Outline a short business presentation on a topic of your choice, writing out specifically the opening hook (do not start by introducing yourself) and the closing call to action.",
+        "Write out how you would respond, word for word, to a question you cannot answer during your presentation, applying the acknowledge–offer–follow-up approach.",
+      ],
+      deliverables: [
+        "A toolkit of five ready-made meeting phrases covering distinct functions",
+        "A presentation outline with an explicit opening hook and closing call to action",
+        "A word-for-word response to an unanswerable question using acknowledge–offer–follow-up",
+        "A note on why structure carries a presentation despite an imperfect accent",
+      ],
+    },
     keyTakeaways: [
-      "Polite interjection phrases help you participate without appearing rude",
-      "Every presentation needs a clear hook, structure, and call to action",
-      "It's better to commit to following up than to guess an uncertain answer",
+      "A small toolkit of ready-made phrases removes the barrier to speaking up",
+      "Asking a clarifying question signals engagement, not weakness",
+      "Open a presentation with a hook, not your name; end with a call to action",
+      "A clear structure carries a presentation despite an accent or hesitation",
+      "Honestly deferring a question you can't answer builds more trust than a guess",
     ],
     resources: [
       { label: "TED — How to give a great presentation", url: "https://www.ted.com/playlists/574" },
@@ -91,19 +175,47 @@ export const anglaisCommercialLessons: Lesson[] = [
   {
     title: "Negotiation skills in English",
     objectives: [
-      "Use appropriate negotiation vocabulary and phrasing",
+      "Use appropriate negotiation vocabulary and phrasing in English",
       "Present a position assertively without aggression",
-      "Handle counteroffers and objections constructively",
+      "Handle counteroffers by reframing around shared interests",
+      "Distinguish assertiveness from aggression across cultures",
     ],
     content: [
       "Negotiation language includes phrases like 'I propose that...', 'What if we considered...', and 'I understand your position, however...'. These expressions allow disagreement while maintaining a collaborative tone.",
+      "These phrases are especially valuable for the non-native speaker because they steer a safe path between two failures: bluntness and passivity. 'You're wrong' shuts the conversation down and creates an opponent; saying nothing for fear of phrasing it badly forfeits your point entirely. The middle path — 'I see your point; however, the numbers suggest another approach' — acknowledges the other side while firmly holding your ground. In negotiation, form is not decoration: it determines whether the other party digs in or stays open. Mastering a small set of these expressions lets you disagree firmly without ever sounding hostile, which is exactly the balance English-speaking Canadian business culture rewards.",
       "Assertive presentation in English negotiation means stating your position with supporting facts, not just opinions, while remaining open to alternative solutions. Confidence comes from preparation, not volume or aggression.",
+      "The line between assertive and aggressive is drawn differently across cultures, and newcomers must watch for it carefully. In some business cultures, raising your voice and pushing hard signal conviction and are expected; in Canada, the same behavior often reads as aggression that undermines your case, however sound it is. Canadian assertiveness shows itself differently — through the strength of your facts, a calm tone, and readiness to offer a solution rather than merely to complain. 'Here's the issue, and here are two options to solve it' inspires far more confidence than 'This is unacceptable, something must be done.' You win by preparation, not by the volume of your voice.",
       "When handling counteroffers, listening fully before responding, then reframing the conversation around shared interests rather than fixed positions, tends to produce better outcomes for both sides.",
+      "The most powerful shift in negotiation is moving from positions to interests. A position is what someone says they want ('I need a 20% discount'); an interest is why they want it ('I need to hit my budget this quarter'). When two parties dig into opposing positions, they deadlock. When they uncover the interests beneath, new solutions appear — perhaps a longer payment term serves the budget just as well as a discount. Listening fully before you respond is what lets you hear those underlying interests instead of only the stated demand. Reframing around what both sides truly need turns a tug-of-war into a shared problem to solve, and it consistently produces better, more durable outcomes than a battle of fixed positions.",
     ],
+    caseStudy: {
+      title: "From ultimatum to agreement: Diego negotiates a contract",
+      body: [
+        "Diego, negotiating a supplier contract for his Canadian employer, is passionate and used to a forceful style. When the supplier resists on price, Diego raises his voice and declares the terms 'simply unacceptable,' pushing hard the way conviction was shown back home. The room tenses; the supplier grows defensive, and the talks stall. His manager later explains that his intensity read not as strength but as aggression, distracting from his otherwise solid case.",
+        "At the next session, Diego changes his approach without abandoning his goal. He listens fully to the supplier's resistance and hears the real interest beneath the stated position: the supplier isn't simply greedy — they fear the low margin on a small first order. That is an interest, not just a price demand. Diego reframes: 'I understand the concern about margin on a first order; what if we committed to a larger annual volume in exchange for the price we need?'",
+        "By trading a fixed position for a shared interest, both sides find room to agree — better price for Diego, guaranteed volume for the supplier. Calm, factual, and solution-oriented, Diego closes the deal. The lesson: in English-speaking Canadian negotiation, assertiveness comes from preparation and facts, not volume; and reframing around interests rather than positions turns a standoff into an agreement both sides can accept.",
+      ],
+    },
+    exercise: {
+      title: "Negotiate by reframing positions into interests",
+      prompt: [
+        "Choose a realistic negotiation scenario (e.g. price, deadline, workload) and write out your opening position along with two or three supporting facts — not just opinions — to present it assertively.",
+        "For the other party, write their likely stated position, then infer the underlying interest behind it, and propose a reframe that addresses that interest and could unlock agreement.",
+        "Write three English negotiation phrases you would use to disagree while keeping a collaborative tone, and add a short note distinguishing assertiveness from aggression in the Canadian context.",
+      ],
+      deliverables: [
+        "An opening position supported by two or three facts",
+        "The other party's position, its underlying interest, and a reframe that addresses it",
+        "Three collaborative disagreement phrases in English",
+        "A note distinguishing assertiveness from aggression across cultures",
+      ],
+    },
     keyTakeaways: [
-      "Negotiation phrasing allows disagreement while preserving the relationship",
+      "Negotiation phrasing lets you disagree firmly without sounding hostile",
+      "The line between assertive and aggressive differs by culture — in Canada, calm and facts win",
       "Assertiveness comes from preparation and facts, not tone of voice",
-      "Reframing around shared interests resolves more conflicts than rigid positions",
+      "Move from positions ('what') to interests ('why') to unlock new solutions",
+      "Listening fully before responding reveals the interests that resolve deadlocks",
     ],
     resources: [
       { label: "Harvard PON — Negotiation resources", url: "https://www.pon.harvard.edu" },
@@ -120,19 +232,47 @@ export const anglaisCommercialLessons: Lesson[] = [
   {
     title: "Business writing & reports",
     objectives: [
-      "Structure a professional business report",
-      "Write clear executive summaries",
+      "Structure a professional business report for busy readers",
+      "Write an executive summary that stands on its own",
+      "Use active voice for clarity and accountability",
       "Avoid common grammar and style errors in business writing",
     ],
     content: [
       "A business report typically follows this structure: executive summary, introduction/context, methodology (if applicable), findings, and recommendations. Each section should be scannable with clear headings for busy readers.",
+      "The key insight is that almost nobody reads a report from start to finish, word for word. A busy decision-maker scans it: they read the executive summary, jump between headings, and land on the recommendations. A good report is therefore designed for this scanning behavior — each heading is informative, the key points stand out, and the essentials sit at the top of each section rather than buried on page seven. Writing to be scanned is not a lowering of standards; it is respect for the reader's time, and it is what makes a report actually get used rather than filed away unread.",
       "An executive summary condenses the entire report into a few sentences or a short paragraph, allowing a reader to grasp the key takeaway without reading the full document — a skill highly valued by senior management.",
+      "Because the executive summary is often the only part a senior reader ever reads, it must stand entirely on its own. Someone who reads nothing else should still understand the situation, the key findings, and the decision being asked of them. This is deceptively hard: it forces you to distill pages of analysis into its essence, which is far more difficult than simply writing more. A weak summary teases ('this report examines several factors…') without delivering the conclusion; a strong one states it plainly ('sales fell 12% due to the pricing change; we recommend reverting by Q3'). If you can only perfect one paragraph of a report, make it the executive summary.",
       "Common errors to avoid include overusing passive voice (which can obscure who is responsible for an action), inconsistent verb tense, and overly long sentences that bury the main point in subordinate clauses.",
+      "Passive voice deserves special attention because it doesn't just muddy style — it hides accountability. 'Mistakes were made' conveniently omits who made them; 'The deadline was missed' avoids naming who missed it. In business writing, this vagueness is sometimes accidental and sometimes a way to dodge responsibility, but either way it weakens the message and can erode trust. Active voice ('Our team missed the deadline because…') is clearer, more honest, and more credible. Combined with consistent tense and short sentences that lead with the point, active voice is the single most reliable way for a non-native writer to sound competent and clear — no advanced vocabulary required.",
     ],
+    caseStudy: {
+      title: "The report nobody acted on",
+      body: [
+        "Priya, an analyst, spends two weeks producing a thorough, well-researched report on why a product line is losing money. She is proud of its depth. But weeks later, nothing has changed, and she is frustrated that her careful work seems ignored. When she asks her director, the answer stings: the director admits she only skimmed it and couldn't quickly find the bottom line.",
+        "Reviewing the report, Priya sees the problems. The executive summary was vague — 'this report analyzes several contributing factors' — so it teased without delivering the conclusion. The findings that mattered were buried on page six under a generic heading. And key sentences hid behind passive voice: 'a decline in margin was observed,' rather than stating plainly what caused it and who should act. A busy reader scanning the document simply couldn't extract the message.",
+        "Priya rewrites it for how executives actually read. The executive summary now stands alone and states the conclusion and recommendation up front. Headings are informative, the crucial finding leads its section, and active voice makes cause and responsibility clear. This time the director grasps it in two minutes and acts on the recommendation. The lesson: a report's value lies not in its depth but in whether its message reaches a scanning reader — a standalone executive summary, informative headings, and active voice are what turn analysis into action.",
+      ],
+    },
+    exercise: {
+      title: "Write a report that a busy reader will actually use",
+      prompt: [
+        "Draft a standalone executive summary (about five to six lines) for a fictional business report, ensuring that a reader who reads nothing else understands the situation, the key finding, and the decision or action requested.",
+        "Write three informative section headings for the same report — headings that convey content at a glance, not generic labels like 'Introduction' or 'Analysis.'",
+        "Take three sentences written in passive voice (of your own invention) and rewrite each in active voice, then note how the change clarifies who is responsible for each action.",
+      ],
+      deliverables: [
+        "A standalone executive summary conveying situation, key finding, and requested decision",
+        "Three informative, scannable section headings",
+        "Three passive-voice sentences rewritten in active voice, with a note on clarity gained",
+        "A short explanation of why reports are written to be scanned, not read in full",
+      ],
+    },
     keyTakeaways: [
+      "Reports are scanned, not read in full — design them for that behavior",
       "Every report section should be scannable with clear, descriptive headings",
-      "A strong executive summary is often the only part senior readers actually read",
-      "Active voice and short sentences improve clarity in business writing",
+      "A strong executive summary must stand entirely on its own",
+      "Passive voice hides accountability; active voice is clearer and more honest",
+      "Active voice and short sentences make a non-native writer sound competent and clear",
     ],
     resources: [
       { label: "Grammarly Business Writing Handbook", url: "https://www.grammarly.com/business-writing" },
@@ -151,17 +291,45 @@ export const anglaisCommercialLessons: Lesson[] = [
     objectives: [
       "Build vocabulary specific to your target industry",
       "Understand common acronyms used in Canadian workplaces",
-      "Use precise terminology to demonstrate expertise",
+      "Use precise terminology to demonstrate expertise and build trust",
+      "Learn sector vocabulary in context rather than from isolated lists",
     ],
     content: [
       "Each industry carries specialized vocabulary: finance ('ROI', 'liquidity', 'portfolio'), tech ('deployment', 'scalability', 'stakeholder'), healthcare ('patient intake', 'compliance'). Building this vocabulary accelerates professional credibility.",
+      "An experienced professional can arrive in Canada and feel the disorienting sensation of no longer recognizing the vocabulary of their own field — not because their expertise has vanished, but because the local terms differ. A seasoned accountant knows the concepts behind 'liquidity' and 'ROI' intimately, yet may stumble if the English labels are unfamiliar. The encouraging reality is that this gap is finite and sector-specific: a few dozen terms often separate a newcomer from sounding fully fluent in their own domain. Targeting the vocabulary of your specific industry, rather than trying to learn 'all of business English' at once, is by far the fastest route back to professional confidence.",
       "Canadian workplaces commonly use acronyms like KPI (Key Performance Indicator), SOP (Standard Operating Procedure), and ASAP — understanding these prevents confusion in fast-paced meetings and written communication.",
+      "Acronyms are a language within the language, and they are used as if everyone already knows them — which is exactly what makes them treacherous for a newcomer. In a fast meeting, someone says 'we need the KPIs in the SOP ASAP,' and if those three acronyms are opaque to you, the whole sentence collapses into noise. There is no shame in not knowing them; there is real cost in pretending to. A practical habit is to keep a running personal list of the acronyms you hear at work and quietly look them up. Asking 'sorry, what does that acronym stand for?' once is far better than nodding through a dozen meetings without understanding.",
       "Using precise industry terminology, rather than vague general language, signals expertise and builds trust with colleagues and clients, particularly important for newcomers establishing professional credibility in a new market.",
+      "How you learn this vocabulary matters as much as the words themselves. Memorizing isolated lists ('liquidity = …') fades fast and doesn't prepare you to use a term correctly at the right moment. Learning each term inside a real sentence, as it is actually used at work, anchors it in usage — you remember 'we improved liquidity by shortening payment terms,' not a dictionary definition floating free. Reading documents from your sector, listening to how colleagues phrase things, and noting terms in context turns vocabulary into reflex rather than recitation. The precision that results is what makes an employer hear an integrated professional rather than a hesitant beginner.",
     ],
+    caseStudy: {
+      title: "Kofi, the engineer who spoke his field in the wrong words",
+      body: [
+        "Kofi, an experienced mechanical engineer from Ghana, has strong English and deep expertise. Yet in his first weeks at a Canadian firm, he feels strangely incompetent: colleagues throw around acronyms — 'send me the BOM,' 'what's the ETA on the QA?' — and reference terms for tools and processes that differ from those he used abroad. He knows the underlying engineering perfectly, but the local vocabulary trips him up, and he begins to doubt himself.",
+        "The misunderstanding runs both ways. Kofi reads his own confusion as a professional shortcoming, when it is only a vocabulary gap. And colleagues, seeing him hesitate on basic terms, briefly underestimate his considerable skill. The lexical mismatch was masking real expertise on both sides.",
+        "Kofi builds a personal glossary: every unfamiliar acronym and term he hears, he notes with its meaning and a real sentence in which it was used. He isn't shy about asking, once, what an acronym stands for. Within weeks these words become natural, and his expertise — no longer hidden behind an unfamiliar vocabulary — is finally visible to everyone. The lesson: mastering your industry's local terminology in Canada doesn't add to your competence, it reveals it; learned in context, a finite set of terms is enough to close the gap fast.",
+      ],
+    },
+    exercise: {
+      title: "Build an industry glossary in context",
+      prompt: [
+        "Choose an industry (ideally your own) and build a glossary of at least ten key terms or acronyms common in Canadian workplaces in that field (including general ones like KPI, SOP, ROI where relevant).",
+        "For each term, don't just give a definition — write one realistic sentence using it as it would actually be spoken or written at work.",
+        "Identify three terms in your field whose Canadian English label differs from what you knew elsewhere, and write a short note on why using the precise local term builds credibility with colleagues and clients.",
+      ],
+      deliverables: [
+        "A glossary of at least ten industry terms/acronyms",
+        "A realistic in-context sentence for each term",
+        "Three terms whose local English label differs from what you knew elsewhere",
+        "A note linking precise terminology to professional credibility",
+      ],
+    },
     keyTakeaways: [
-      "Industry-specific vocabulary should be learned in context, not through isolated lists",
+      "Mastering local industry vocabulary reveals your expertise rather than adding to it",
+      "The gap is finite and sector-specific — target your field, not all of business English",
       "Common workplace acronyms are essential to avoid confusion in daily communication",
-      "Precise terminology builds professional credibility faster than general language",
+      "Asking once what an acronym means beats nodding through meetings without understanding",
+      "Learning terms in real sentences turns vocabulary into reflex, not recitation",
     ],
     resources: [
       { label: "Investopedia — Business & finance terms", url: "https://www.investopedia.com" },
@@ -179,18 +347,46 @@ export const anglaisCommercialLessons: Lesson[] = [
     title: "Canadian workplace culture in English",
     objectives: [
       "Understand Canadian workplace norms and expectations",
-      "Navigate hierarchy and feedback culture appropriately",
-      "Adapt communication style to Canadian professional contexts",
+      "Navigate a flat hierarchy and diplomatic disagreement",
+      "Decode indirect feedback and the 'sandwich' approach",
+      "Adapt your communication style by observing before assuming",
     ],
     content: [
       "Canadian workplace culture generally values politeness, consensus-building, and a relatively flat hierarchy compared to many other countries. Direct confrontation is rare; disagreement is usually expressed diplomatically.",
+      "This flat hierarchy surprises newcomers from more hierarchical cultures, and misreading it causes real friction. When a Canadian manager asks a junior employee 'What do you think?' in a meeting, they usually mean it — they want genuine input, not a deferential echo of their own view. Staying silent out of respect can read as disengagement, while politely offering a different opinion, backed by reasons, is generally welcomed. This doesn't mean hierarchy has vanished; decisions still have owners. But participation is expected across levels, and the person who contributes thoughtfully — even to disagree with a superior — is usually valued, not penalized. Understanding this changes how actively you engage.",
       "Feedback culture in Canada tends to favor a 'sandwich' approach — positive comment, constructive criticism, positive comment — though this varies by industry and company size. Tech startups often favor more direct feedback than traditional corporations.",
+      "This indirectness is a frequent source of cross-cultural misunderstanding, in both directions. A Canadian colleague's feedback often comes wrapped in softening language — 'This is a really good start; it might be worth revisiting the data section; overall great effort' — where the real message is 'the data section needs work.' A newcomer used to blunt feedback may miss the criticism entirely and hear only praise. Conversely, feedback that is normal and direct elsewhere can feel harsh here. The skill is learning to hear the message inside the politeness: when someone says 'it might be worth considering…', they are usually asking you to change something. When in doubt, rephrase to confirm: 'So you'd like me to rework the data section?'",
       "Adapting communication style means observing how colleagues interact before adopting a particular tone: some Canadian workplaces are quite informal (first names, casual language) while others, especially in finance or law, remain more formal.",
+      "There is no single 'Canadian workplace' to memorize, which is why observation beats assumption. A tech startup and a law firm can both be thoroughly Canadian yet operate by very different codes — one with hoodies and first names and blunt Slack messages, the other with suits, titles, and carefully worded emails. Arriving with a fixed script for 'how Canadians communicate' will misfire in half of workplaces. The reliable strategy is to watch first: how do colleagues address the boss, how do they disagree, how formal are their emails, how much humor is acceptable? Then calibrate your own tone to match. Observing before imitating is the safest and fastest way to fit into any specific workplace culture.",
     ],
+    caseStudy: {
+      title: "The praise Ling didn't realize was criticism",
+      body: [
+        "Ling, newly arrived from a direct-feedback work culture, submits a draft plan to her Canadian manager. The manager replies warmly: 'This is a great start, Ling! It might be worth taking another look at the timeline section, but overall really solid work.' Ling hears mostly praise — 'great start,' 'really solid' — and files the plan as approved, moving on to other tasks. The soft 'it might be worth' registered to her as an optional suggestion.",
+        "Two weeks later, the manager is puzzled that the timeline was never revised. To Ling, it had sounded like a compliment with a minor aside; to the manager, 'it might be worth taking another look' was a clear, if polite, request to redo that section. Neither was wrong — they were operating by different feedback codes, and the softened Canadian criticism had sailed past Ling entirely.",
+        "A colleague helps Ling learn to 'translate' Canadian feedback: gentle phrases like 'you might consider…' or 'I wonder if…' usually contain a real ask. Ling adopts a simple safeguard — when unsure, she rephrases to confirm: 'Just to make sure — would you like me to rework the timeline?' The misunderstandings stop. The lesson: Canadian workplace feedback is often wrapped in politeness, and the skill is hearing the message beneath it; when in doubt, confirming by rephrasing is the best safety net.",
+      ],
+    },
+    exercise: {
+      title: "Decode Canadian feedback and calibrate your tone",
+      prompt: [
+        "Take three examples of softened Canadian-style feedback (e.g. 'it might be worth considering…', 'this is a good start, but…', 'I wonder if…') and, for each, spell out the direct request likely hidden inside it.",
+        "Write two versions of a disagreement you might voice to a superior in a meeting: one appropriately diplomatic for a Canadian context, and note what makes it land as respectful rather than confrontational.",
+        "Describe how you would 'observe before assuming' in a new workplace: list at least four specific things you would watch for (forms of address, email formality, how people disagree, use of humor) before calibrating your own tone.",
+      ],
+      deliverables: [
+        "Three pieces of softened feedback 'translated' into their direct request",
+        "A diplomatic way to disagree with a superior, with a note on why it lands as respectful",
+        "A list of at least four workplace signals to observe before calibrating your tone",
+        "A rephrasing technique to confirm feedback you're unsure about",
+      ],
+    },
     keyTakeaways: [
+      "A flat hierarchy means input is expected across levels — silence reads as disengagement",
       "Canadian workplaces generally favor diplomatic disagreement over direct confrontation",
-      "Feedback styles vary significantly by industry — observe before assuming",
-      "Watching colleagues' communication patterns is the safest way to calibrate your own tone",
+      "Softened feedback usually contains a real request — learn to hear the message beneath the politeness",
+      "When unsure of feedback, confirm by rephrasing what is being asked",
+      "There is no single Canadian workplace: observe the specific culture before imitating it",
     ],
     resources: [
       { label: "Government of Canada — Working in Canada Guide", url: "https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/pursue-career.html" },
@@ -207,19 +403,47 @@ export const anglaisCommercialLessons: Lesson[] = [
   {
     title: "Final exam & certification",
     objectives: [
-      "Demonstrate mastery of business English skills acquired",
-      "Successfully complete a simulated business scenario in English",
+      "Demonstrate integrated mastery of business English skills acquired",
+      "Complete a realistic simulated business scenario in English",
+      "Communicate effectively rather than aim for grammatical perfection",
       "Earn the ARCADINS Business English certification",
     ],
     content: [
       "The final exam evaluates all four core skills developed throughout the program: written communication (email/report), oral presentation, meeting participation, and negotiation role-play in a realistic business scenario.",
+      "These four tasks are not chosen at random: they mirror the four situations in which professionals actually use English at work. Understanding and contributing in a meeting (module 3), writing a clear message or report (modules 2 and 5), presenting an idea (module 3), and negotiating or handling a difficult exchange (module 4) — the exam brings the whole program together into authentic simulations. You don't recite grammar rules; you demonstrate that you can function in an English-speaking Canadian workplace. Each component draws on the vocabulary, phrasing, and cultural codes practiced across the modules.",
       "Evaluators focus on effective communication and professional appropriateness rather than perfect grammar — the goal is functional business fluency, not academic perfection.",
+      "This criterion should reassure the anxious candidate. A Canadian employer is not hiring a grammar teacher; they need someone who can understand, be understood, and collaborate. A candidate with imperfect English who is clear, structured, and confident outperforms a grammatically flawless one who is confusing or paralyzed by fear of mistakes. The exam therefore rewards what actually matters in the workplace: getting the message across and interacting professionally — accent and small imperfections included. Aiming for effective communication rather than perfection removes a counterproductive pressure and reflects how real workplaces judge people every day.",
       "Upon passing, the ARCADINS Business English certificate is issued, recognized by partner employers as proof of practical workplace English proficiency.",
+      "This certificate carries concrete value in a job search. For an employer, it provides third-party, verifiable evidence that a candidate can operate in English in a professional setting — resolving a common uncertainty when hiring a newcomer. Added to a résumé or mentioned in an interview, it turns a hard-to-prove skill into a tangible asset, and opens doors, especially for those seeking a recognized first Canadian experience. But beyond the document, the real achievement of the program is confidence: knowing you can write an email that gets a reply, speak up in a meeting without fear, present an idea, and hold your own in a negotiation. The certificate attests; the fluency opens doors.",
     ],
+    caseStudy: {
+      title: "Exam day: everything comes together for Samuel",
+      body: [
+        "Samuel, a newcomer who worked hard through the program, walks into the final exam nervous about his imperfect English and afraid of making mistakes. The first task is a simulated meeting he must follow and then summarize. He draws on module 3: he listens actively, uses a clarifying phrase, and reformulates the key points — capturing the essence without catching every word.",
+        "Next comes a written email, where he applies module 2: a precise subject line, the request stated in the first line, a professional close. His English isn't flawless, but the message is unmistakably clear. In the presentation, he opens with a hook rather than his name, and his clear structure carries him through a few hesitations. Finally, in the negotiation role-play, he stays calm, supports his position with facts, and reframes around a shared interest instead of pushing hard.",
+        "At no point does Samuel produce perfect English — and yet he passes comfortably, because the evaluators measure effective communication, not perfection. Each task drew on a different module, proving these were never isolated lessons but one connected set of workplace skills. He earns his ARCADINS certificate and, through the partner network, soon lands a role. The lesson: business English mastery is judged not by the absence of errors, but by the ability to understand, be understood, and interact — exactly what the workplace needs.",
+      ],
+    },
+    exercise: {
+      title: "Self-assess across the four core skills",
+      prompt: [
+        "Prepare a self-assessment across the four skills the exam evaluates: written communication, oral presentation, meeting participation, and negotiation. For each, note one strength you've gained and one area to consolidate in real situations.",
+        "Choose the skill where you feel least confident and do a concrete practice piece: for example, write the email, or the outline of a presentation, or a full negotiation exchange.",
+        "Write a short personal reflection: how does aiming for 'effective communication' instead of 'grammatical perfection' change your relationship to the exam and, more broadly, to working in English in Canada?",
+      ],
+      deliverables: [
+        "A self-assessment across the four core skills (one strength and one gap each)",
+        "A concrete practice piece for your least confident skill",
+        "A reflection on shifting from 'perfection' to 'effective communication'",
+        "A three-point action plan to prepare for the final exam",
+      ],
+    },
     keyTakeaways: [
+      "The exam brings the whole program together into four authentic workplace situations",
       "The exam prioritizes effective communication over grammatical perfection",
-      "All four core skills (writing, speaking, meetings, negotiation) are evaluated",
-      "The certificate is recognized across ARCADINS's employer partner network",
+      "A clear, confident message outperforms flawless grammar that is confusing or fearful",
+      "The certificate gives employers third-party, verifiable proof of workplace English",
+      "The real achievement of the program is workplace confidence, beyond the certificate",
     ],
     resources: [],
     quiz: [
