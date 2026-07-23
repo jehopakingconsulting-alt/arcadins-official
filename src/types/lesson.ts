@@ -39,4 +39,5 @@ export interface Lesson {
 
 export type CourseLessons = Record<string, Lesson[]>;
 
-export const PASSING_SCORE = 65;
+// Source unique : la note de passage vit dans le module de scoring central.
+export { PASSING_SCORE } from "@/lib/scoring";

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { QuizQuestion } from "@/types/lesson";
-import { PASSING_SCORE } from "@/types/lesson";
+import { PASSING_SCORE, toPercent, isPassing } from "@/lib/scoring";
 
 interface Props {
   quiz: QuizQuestion[];
@@ -16,8 +16,8 @@ export default function QuizView({ quiz, onPass, saving }: Props) {
 
   const allAnswered = answers.every((a) => a !== null);
   const correctCount = answers.reduce<number>((acc, a, i) => acc + (a === quiz[i].correctIndex ? 1 : 0), 0);
-  const scorePct = quiz.length > 0 ? Math.round((correctCount / quiz.length) * 100) : 0;
-  const passed = scorePct >= PASSING_SCORE;
+  const scorePct = toPercent(correctCount, quiz.length);
+  const passed = isPassing(correctCount, quiz.length);
 
   function selectAnswer(qIndex: number, optionIndex: number) {
     if (submitted) return;

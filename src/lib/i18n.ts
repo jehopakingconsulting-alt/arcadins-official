@@ -146,7 +146,7 @@ export const UI: Translations = {
   "form.label": { fr: "Formations professionnelles · 7 langues", en: "Professional Programs · 7 languages", es: "Programas profesionales · 7 idiomas", it: "Programmi professionali · 7 lingue", pt: "Programas profissionais · 7 idiomas", de: "Berufsprogramme · 7 Sprachen", ht: "Fòmasyon pwofesyonèl · 7 lang" },
   "form.title1": { fr: "Formations", en: "Training", es: "Formación", it: "Formazione", pt: "Formação", de: "Ausbildung", ht: "Fòmasyon" },
   "form.title2": { fr: "professionnelles", en: "professional", es: "profesionales", it: "professionali", pt: "profissionais", de: "beruflich", ht: "pwofesyonèl" },
-  "form.title3": { fr: "reconnues au Québec et à l'international", en: "recognized in Quebec and internationally", es: "reconocida en Quebec e internacionalmente", it: "riconosciuta in Quebec e a livello internazionale", pt: "reconhecida em Quebec e internacionalmente", de: "anerkannt in Quebec und international", ht: "rekonèt nan Quebec ak entènasyonal" },
+  "form.title3": { fr: "adaptées au marché canadien, en 7 langues", en: "tailored to the Canadian market, in 7 languages", es: "adaptadas al mercado canadiense, en 7 idiomas", it: "su misura per il mercato canadese, in 7 lingue", pt: "adaptadas ao mercado canadiano, em 7 línguas", de: "auf den kanadischen Markt zugeschnitten, in 7 Sprachen", ht: "adapte pou mache kanadyen an, nan 7 lang" },
   "form.all": { fr: "Tous", en: "All", es: "Todos", it: "Tutti", pt: "Todos", de: "Alle", ht: "Tout" },
   "form.see": { fr: "Voir →", en: "View →", es: "Ver →", it: "Vedi →", pt: "Ver →", de: "Ansehen →", ht: "Wè →" },
 
