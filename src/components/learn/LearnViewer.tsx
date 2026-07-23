@@ -45,8 +45,12 @@ export default function LearnViewer({ courseSlug, courseName, courseIcon, lesson
     }
   }, [courseSlug]);
 
+  // Effet volontaire : émettre l'attestation (appel API) une fois la
+  // formation entièrement complétée. issueCertificate déclenche un setState
+  // de chargement, d'où la désactivation ciblée de la règle.
   useEffect(() => {
     if (isFullyComplete && !certificateId && !issuingCert) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       issueCertificate();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

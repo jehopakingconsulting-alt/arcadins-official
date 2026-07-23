@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { SLIDES } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
 
@@ -64,18 +65,18 @@ export default function HeroSlider() {
         </p>
 
         <div className="flex gap-4 justify-center flex-wrap mb-13">
-          <a
+          <Link
             href="/formations"
             className="bg-gold text-navy font-bold text-[15px] px-8 py-3.5 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-[0_14px_42px_rgba(201,168,76,0.32)]"
           >
             🎓 {t(UI["hero.cta1"], lang)}
-          </a>
-          <a
+          </Link>
+          <Link
             href="/formations"
             className="bg-transparent text-white font-semibold text-[15px] px-7 py-3 rounded-[10px] border-[1.5px] border-white/28 transition-all inline-flex items-center gap-2 hover:border-gold hover:text-gold"
           >
             {t(UI["hero.cta2"], lang)}
-          </a>
+          </Link>
         </div>
 
         <div className="inline-flex gap-6 md:gap-10 flex-wrap justify-center px-6 md:px-9 py-5 bg-white/6 backdrop-blur-[12px] border border-white/10 rounded-2xl">

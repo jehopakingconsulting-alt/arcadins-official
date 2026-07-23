@@ -13,8 +13,11 @@ function getSavedLang(): Lang {
 export default function LangProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>("fr");
 
+  // Hydration : le SSR rend "fr", puis on synchronise avec la langue
+  // sauvegardée (localStorage, indisponible côté serveur) après le montage.
   useEffect(() => {
     const saved = getSavedLang();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLangState(saved);
     document.documentElement.lang = saved;
   }, []);

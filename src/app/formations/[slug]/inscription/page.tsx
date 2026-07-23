@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PROGRAMS } from "@/lib/constants";
-import { getInstallmentPlan, getFullPaymentTotal } from "@/lib/pricing";
+import { getInstallmentPlan, getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 
@@ -17,6 +17,7 @@ export default function InscriptionPage() {
   const course = PROGRAMS.find((p) => p.slug === slug);
   const [enrollment, setEnrollment] = useState<EnrollmentInfo | null>(null);
   const [loading, setLoading] = useState(true);
+  const [daysLeft, setDaysLeft] = useState<number | null>(null);
   const [paymentChoice, setPaymentChoice] = useState<"full" | "installment">("full");
 
   useEffect(() => {
@@ -36,6 +37,10 @@ export default function InscriptionPage() {
           .limit(1)
           .maybeSingle();
         setEnrollment(data);
+        if (data?.payment_deadline) {
+          const ms = new Date(data.payment_deadline).getTime() - Date.now();
+          setDaysLeft(Math.max(0, Math.ceil(ms / (1000 * 60 * 60 * 24))));
+        }
       }
       setLoading(false);
     })();
@@ -67,7 +72,6 @@ export default function InscriptionPage() {
   const installmentPlan = getInstallmentPlan(course.price);
   const fullTotal = getFullPaymentTotal(course.price);
   const deadline = enrollment?.payment_deadline ? new Date(enrollment.payment_deadline) : null;
-  const daysLeft = deadline ? Math.max(0, Math.ceil((deadline.getTime() - Date.now()) / (1000 * 60 * 60 * 24))) : null;
 
   if (enrollment?.status === "active") {
     return (
@@ -120,7 +124,7 @@ export default function InscriptionPage() {
               </h3>
               <p className="text-[13.5px] text-body leading-[1.6]">
                 {deadline && `Date limite : ${deadline.toLocaleDateString("fr-CA", { day: "numeric", month: "long", year: "numeric" })}. `}
-                Passé ce délai, votre inscription sera automatiquement annulée et les frais d&apos;inscription de 50$ seront perdus — ils sont non remboursables.
+                Passé ce délai, votre inscription sera automatiquement annulée et les frais d&apos;inscription de {REGISTRATION_FEE}$ seront perdus — ils sont non remboursables.
               </p>
             </div>
           </div>

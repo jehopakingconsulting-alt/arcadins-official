@@ -15,7 +15,6 @@ export default function CourseDetailPage() {
   const cName = course && UI[`c.${course.slug}`] ? t(UI[`c.${course.slug}`], lang) : course?.name || "";
   const cDesc = course && UI[`cd.${course.slug}`] ? t(UI[`cd.${course.slug}`], lang) : course?.description || "";
   const [enrollmentStatus, setEnrollmentStatus] = useState<string | null>(null);
-  const [checking, setChecking] = useState(true);
   const fullTotal = course ? getFullPaymentTotal(course.price) : 0;
 
   useEffect(() => {
@@ -23,7 +22,7 @@ export default function CourseDetailPage() {
     const supabase = createClient();
     (async () => {
       const { data: { user } } = await supabase.auth.getUser();
-      if (!user) { setChecking(false); return; }
+      if (!user) { return; }
       const { data: program } = await supabase.from("programs").select("id").eq("slug", course.slug).single();
       if (program) {
         const { data: enrollment } = await supabase
@@ -36,7 +35,6 @@ export default function CourseDetailPage() {
           .maybeSingle();
         setEnrollmentStatus(enrollment?.status || null);
       }
-      setChecking(false);
     })();
   }, [course]);
 
