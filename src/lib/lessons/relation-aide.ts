@@ -6,17 +6,45 @@ export const relationAideLessons: Lesson[] = [
     objectives: [
       "Comprendre les principes éthiques de base de la relation d'aide",
       "Distinguer aide professionnelle et soutien informel",
-      "Identifier ses propres limites et besoin de supervision",
+      "Respecter l'autonomie de la personne même en désaccord avec ses choix",
+      "Identifier ses propres limites et son besoin de supervision",
     ],
     content: [
       "La relation d'aide repose sur des principes fondamentaux : le respect inconditionnel de la personne aidée, la confidentialité, la non-jugement et le respect de l'autonomie de la personne dans ses décisions, même lorsqu'elles diffèrent des recommandations de l'intervenant.",
+      "Le respect de l'autonomie est sans doute le principe le plus difficile à incarner, car il heurte l'instinct naturel de « sauver » l'autre. Un intervenant convaincu de savoir ce qui est bon pour une personne peut être tenté de décider à sa place, avec les meilleures intentions. Mais imposer une solution, même juste, prive la personne de sa dignité et de son pouvoir d'agir — et se révèle souvent contre-productif, car un changement non choisi ne tient pas. Le rôle de l'intervenant n'est pas de décider pour la personne, mais de l'éclairer, de l'accompagner et de respecter sa décision finale, quitte à la trouver imparfaite. Aider n'est pas contrôler.",
       "L'aide professionnelle se distingue du soutien informel par un cadre structuré : objectifs définis, limites de temps et de rôle claires, et une distance professionnelle qui protège à la fois l'intervenant et la personne aidée d'une dépendance malsaine.",
+      "Cette distinction déroute souvent les débutants au grand cœur, qui confondent aider et « être l'ami de » la personne. Le cadre professionnel n'est pas de la froideur : c'est une protection mutuelle. Sans limites claires de rôle, de temps et d'engagement, deux dérives guettent — la personne aidée développe une dépendance à un intervenant devenu son unique soutien, et l'intervenant s'épuise, happé par des demandes sans fin qu'aucune frontière ne contient. Le cadre permet paradoxalement une aide plus efficace et durable : il pose une relation fiable et prévisible, où chacun sait ce qu'il peut attendre. La chaleur humaine et le professionnalisme ne s'opposent pas ; le cadre est ce qui permet à la chaleur de durer sans détruire celui qui la donne.",
       "Reconnaître ses propres limites — émotionnelles, de compétence ou de temps — et savoir référer vers d'autres ressources ou demander une supervision est une compétence professionnelle essentielle, pas un signe de faiblesse.",
+      "Dans une profession fondée sur l'aide, il existe un piège insidieux : croire qu'un bon intervenant doit tout porter seul et ne jamais flancher. C'est l'inverse. Le professionnel mature reconnaît qu'une situation dépasse sa compétence, qu'un dossier le touche trop personnellement, ou qu'il n'a pas la disponibilité requise — et il agit en conséquence, en référant ou en demandant une supervision. Loin d'être un aveu d'échec, c'est un acte de responsabilité envers la personne aidée, qui mérite la meilleure aide possible, fût-elle celle d'un autre. C'est aussi une protection contre l'épuisement professionnel, si fréquent dans ce métier. Savoir passer le relais, c'est déjà bien aider.",
     ],
+    caseStudy: {
+      title: "Quand Martine voulait sauver Jonathan malgré lui",
+      body: [
+        "Martine, intervenante débutante et profondément dévouée, accompagne Jonathan, un homme qui peine à sortir d'une situation précaire. Convaincue de connaître la bonne solution, elle pousse fortement Jonathan vers un programme qu'elle juge idéal, insiste, rappelle sans cesse, et se rend disponible à toute heure, y compris le soir et la fin de semaine. Elle veut sincèrement le sauver.",
+        "Deux problèmes émergent. D'abord, Jonathan se braque : la solution imposée, même bonne, n'est pas la sienne, et il résiste d'autant plus qu'il se sent dépossédé de ses choix — son autonomie n'a pas été respectée. Ensuite, Martine, sans cadre ni limites, devient l'unique béquille de Jonathan, qui l'appelle pour tout ; elle-même s'épuise, envahie, et sent poindre le découragement. Sa générosité sans frontières nuit aux deux.",
+        "En supervision, Martine comprend deux choses essentielles. Respecter l'autonomie de Jonathan — l'éclairer puis le laisser décider, même imparfaitement — donne paradoxalement plus de chances à un changement qui tienne. Et poser un cadre clair (horaires, rôle, limites) n'est pas abandonner Jonathan, mais protéger la relation et se protéger elle-même de l'épuisement. Elle ajuste sa pratique, et l'accompagnement devient plus sain et plus efficace. La leçon : aider n'est ni contrôler ni tout porter seul ; le respect de l'autonomie et un cadre professionnel clair protègent à la fois la personne aidée et l'intervenant.",
+      ],
+    },
+    exercise: {
+      title: "Poser un cadre et respecter l'autonomie",
+      prompt: [
+        "Décrivez une situation d'intervention (réelle ou fictive) où l'intervenant serait tenté de décider à la place de la personne aidée. Expliquez comment respecter l'autonomie de la personne tout en l'éclairant, et pourquoi imposer une solution — même bonne — est souvent contre-productif.",
+        "Pour cette même situation, définissez un cadre professionnel clair : limites de rôle, de temps et de disponibilité. Expliquez en quoi ce cadre protège autant la personne aidée que l'intervenant.",
+        "Identifiez enfin trois signaux qui devraient amener un intervenant à demander une supervision ou à référer (limite de compétence, implication émotionnelle, manque de disponibilité), et expliquez pourquoi le faire est une force et non une faiblesse.",
+      ],
+      deliverables: [
+        "Une situation illustrant le respect de l'autonomie plutôt que l'imposition d'une solution",
+        "Un cadre professionnel clair (rôle, temps, disponibilité) et son rôle de protection mutuelle",
+        "Trois signaux justifiant une supervision ou une référence",
+        "Une explication de pourquoi savoir passer le relais est une compétence professionnelle",
+      ],
+    },
     keyTakeaways: [
-      "Le respect de l'autonomie de la personne prime même en désaccord avec ses choix",
+      "Le respect de l'autonomie prime même en désaccord : aider n'est pas contrôler",
+      "Un changement non choisi ne tient pas : imposer une solution est souvent contre-productif",
       "Un cadre professionnel clair protège l'intervenant autant que la personne aidée",
-      "Savoir référer ou demander de l'aide est une compétence, pas un échec",
+      "Le cadre permet à la chaleur humaine de durer sans épuiser celui qui la donne",
+      "Savoir référer ou demander de l'aide est une compétence et une protection contre l'épuisement",
     ],
     resources: [
       { label: "Ordre des travailleurs sociaux du Québec (OTSTCFQ)", url: "https://www.otstcfq.org" },
@@ -33,19 +61,47 @@ export const relationAideLessons: Lesson[] = [
   {
     title: "Écoute active et communication empathique",
     objectives: [
-      "Pratiquer les techniques d'écoute active",
+      "Pratiquer consciemment les techniques d'écoute active",
       "Utiliser la reformulation pour valider la compréhension",
+      "Distinguer empathie professionnelle et fusion émotionnelle",
       "Communiquer avec empathie sans perdre l'objectivité professionnelle",
     ],
     content: [
       "L'écoute active implique une attention complète à la personne — contact visuel approprié, langage corporel ouvert, absence d'interruption — combinée à des signaux verbaux et non verbaux confirmant que le message est reçu et compris.",
+      "L'obstacle le plus courant à l'écoute active est un réflexe bien intentionné : vouloir régler le problème trop vite. Pendant que la personne parle, l'intervenant débutant prépare déjà sa réponse, sa solution, son conseil — et cesse en réalité d'écouter. Or, bien souvent, la personne n'a pas d'abord besoin d'une solution, mais d'être entendue. Écouter vraiment, c'est suspendre son envie de répondre, accueillir ce qui est dit sans le juger ni le corriger, et résister au silence qu'on voudrait combler. Cette attention pleine et entière est exigeante et se pratique consciemment ; elle n'a rien d'automatique. Le premier cadeau que l'on fait à quelqu'un en détresse, c'est un espace où il peut se déposer sans être interrompu.",
       "La reformulation consiste à redire dans ses propres mots ce que la personne vient d'exprimer, permettant de vérifier sa compréhension et donnant à la personne aidée le sentiment d'être réellement entendue, souvent un besoin fondamental en lui-même.",
+      "La reformulation a une double fonction, l'une technique et l'autre profondément humaine. Techniquement, elle vérifie : « si je comprends bien, vous vous sentez seul depuis ce déménagement ? » permet de corriger un malentendu avant qu'il ne fausse tout l'accompagnement. Humainement, elle offre à la personne l'expérience rare d'être vraiment entendue — quelqu'un a reçu ses mots, les a compris, les lui rend. Ce sentiment d'être entendu est en lui-même un besoin fondamental, parfois plus apaisant que n'importe quel conseil. Beaucoup de personnes en détresse n'ont, dans leur entourage, personne qui les écoute réellement ; la reformulation, simple en apparence, répond à ce manque et crée le lien de confiance sur lequel toute l'intervention repose.",
       "L'empathie professionnelle signifie comprendre et valider les émotions de la personne sans s'y fondre complètement — maintenir une distance suffisante pour rester un soutien stable plutôt que de devenir submergé par les émotions de l'autre.",
+      "Il faut distinguer empathie et fusion émotionnelle, car les confondre mène à l'épuisement. L'empathie, c'est comprendre la douleur de l'autre et la reconnaître ; la fusion, c'est absorber cette douleur comme si elle était la sienne. Une image aide : face à quelqu'un qui se noie, on ne saute pas dans l'eau pour couler avec lui — on garde un pied sur la berge pour pouvoir le tirer. L'intervenant qui se laisse submerger par les émotions de chaque personne rencontrée perd sa capacité à offrir un soutien stable et se vide de ses ressources. La distance professionnelle n'est pas de la froideur ni de l'indifférence : c'est ce qui permet de rester présent, chaleureux et utile jour après jour, sans se briser. Prendre soin des autres exige de savoir aussi se préserver.",
     ],
+    caseStudy: {
+      title: "Karim, qui écoutait pour répondre",
+      body: [
+        "Karim, nouvel intervenant, reçoit Sophie, une femme submergée par une série d'épreuves. Voulant bien faire, il l'interrompt dès les premières phrases pour proposer des solutions : un programme ici, une ressource là, un conseil pratique. Sophie se referme peu à peu ; elle repart avec une liste de démarches, mais visiblement plus seule qu'en arrivant. Karim ne comprend pas : il lui a pourtant donné de bonnes pistes.",
+        "En supervision, Karim réalise qu'il écoutait pour répondre, non pour comprendre. Sophie n'avait pas d'abord besoin de solutions, mais d'être entendue dans ce qu'elle traversait. En le privant de cet espace, Karim, malgré ses bonnes intentions, avait manqué l'essentiel. Il découvre aussi qu'à l'inverse, certaines rencontres le bouleversaient tellement qu'il rentrait chez lui écrasé par la détresse des autres — il fusionnait au lieu de garder la bonne distance.",
+        "Karim change sa pratique. À la rencontre suivante, il écoute Sophie sans l'interrompre, reformule ce qu'elle exprime (« si je comprends bien, vous vous sentez épuisée et seule face à tout ça »), et la voit se détendre, enfin entendue. Il apprend aussi à rester empathique sans se laisser submerger, gardant « un pied sur la berge ». La leçon : écouter pour comprendre plutôt que pour répondre, valider par la reformulation, et distinguer empathie et fusion — c'est ce qui aide vraiment la personne tout en préservant l'intervenant.",
+      ],
+    },
+    exercise: {
+      title: "Pratiquer l'écoute active et la juste distance",
+      prompt: [
+        "Rédigez un court dialogue d'intervention où la personne aidée exprime une détresse. Montrez d'abord une mauvaise réaction (interrompre pour proposer une solution trop vite), puis une bonne réaction (écoute pleine suivie d'une reformulation), et expliquez ce qui change pour la personne.",
+        "Écrivez trois exemples de reformulation à partir de phrases qu'une personne pourrait dire, en veillant à redire le contenu et l'émotion dans vos propres mots, sans juger ni conseiller.",
+        "Expliquez, avec l'image de « la berge », la différence entre empathie professionnelle et fusion émotionnelle, et proposez deux moyens concrets par lesquels un intervenant peut se préserver de l'épuisement.",
+      ],
+      deliverables: [
+        "Un dialogue contrastant une mauvaise et une bonne réaction d'écoute",
+        "Trois reformulations restituant contenu et émotion, sans jugement ni conseil",
+        "Une explication de la distinction empathie / fusion via l'image de la berge",
+        "Deux moyens concrets pour l'intervenant de se préserver de l'épuisement",
+      ],
+    },
     keyTakeaways: [
-      "L'écoute active est une compétence qui se pratique consciemment, elle n'est pas automatique",
-      "La reformulation valide la compréhension et renforce le sentiment d'être entendu",
-      "L'empathie professionnelle maintient une distance protectrice sans devenir froide",
+      "Écouter pour comprendre, non pour répondre : suspendre l'envie de régler trop vite",
+      "L'écoute active se pratique consciemment, elle n'est pas automatique",
+      "La reformulation valide la compréhension et comble le besoin fondamental d'être entendu",
+      "Empathie n'est pas fusion : garder « un pied sur la berge » permet de rester utile",
+      "La juste distance protège l'intervenant de l'épuisement sans le rendre froid",
     ],
     resources: [
       { label: "Tel-Aide — Ressources sur l'écoute active", url: "https://www.telaide.org" },
@@ -63,18 +119,47 @@ export const relationAideLessons: Lesson[] = [
     title: "Intervention en situation de crise",
     objectives: [
       "Reconnaître les signes d'une situation de crise",
-      "Appliquer un protocole d'intervention de premier contact",
-      "Connaître les ressources d'urgence disponibles au Québec",
+      "Appliquer un protocole de premier contact centré sur la sécurité",
+      "Aborder directement et sans détour l'idéation suicidaire",
+      "Connaître et mobiliser les ressources d'urgence du Québec",
     ],
     content: [
       "Une situation de crise se reconnaît par des signes comportementaux et émotionnels marqués : agitation extrême, propos suicidaires, désorganisation de la pensée, ou détresse intense disproportionnée par rapport à l'événement déclencheur apparent.",
+      "La crise se distingue de la détresse ordinaire par son intensité et sa rupture : la personne est débordée, ses mécanismes habituels d'adaptation ne fonctionnent plus, et elle peut agir de façon dangereuse pour elle-même ou autrui. Savoir repérer ces signes tôt est capital, car une crise n'attend pas. Certains propos ne doivent jamais être minimisés ni interprétés comme de simples « paroles en l'air » : toute évocation d'idées suicidaires, tout plan mentionné, toute désorganisation marquée de la pensée appellent une attention immédiate et sérieuse. Dans le doute, on prend toujours au sérieux : sous-estimer une crise coûte infiniment plus cher que de la surestimer.",
       "Le protocole de premier contact en situation de crise privilégie d'abord la sécurité immédiate de la personne et de l'intervenant, puis l'établissement d'un contact calme et rassurant, avant d'évaluer la nature et la gravité de la crise.",
+      "En situation de crise, l'ordre des priorités est non négociable, et il commence toujours par la sécurité. Avant toute analyse, tout historique, toute recherche de solution, il faut s'assurer que personne n'est en danger immédiat — ni la personne, ni l'entourage, ni l'intervenant lui-même. Une fois la sécurité établie, le levier le plus puissant est souvent le plus simple : le calme de l'intervenant. Une voix posée, un débit lent, une présence stable ont un effet contagieux et peuvent désamorcer une escalade avant qu'elle ne devienne incontrôlable. À l'inverse, un intervenant paniqué ou autoritaire aggrave la crise. Rester calme n'est pas de la froideur : c'est offrir à une personne débordée un point d'ancrage stable.",
+      "Une compétence délicate mais essentielle est d'aborder directement l'idéation suicidaire. Beaucoup craignent qu'en posant la question — « pensez-vous à mettre fin à vos jours ? » — on « donne l'idée » à la personne. C'est un mythe tenace et dangereux : demander clairement ne provoque pas le suicide ; au contraire, cela ouvre un espace où la personne peut enfin parler de ce qu'elle porte seule, souvent avec soulagement. Éviter le sujet par gêne laisse la personne encore plus isolée. Poser la question franchement, avec calme et sans jugement, est l'un des gestes les plus protecteurs qui soient.",
       "Le Québec dispose de ressources d'urgence dédiées : la ligne 811 pour l'information socio-sanitaire, les centres de crise régionaux, et le 911 pour les situations de danger immédiat. Connaître ces ressources et savoir orienter rapidement est essentiel.",
+      "En pleine crise, on n'a pas le temps de chercher : ces ressources doivent être connues d'avance, presque par réflexe. Le 911 pour un danger immédiat, la ligne d'intervention en prévention du suicide, le 811 (Info-Social) pour un soutien psychosocial, les centres de crise régionaux : chaque seconde compte, et hésiter sur le bon numéro peut coûter cher. L'intervenant n'est pas censé tout gérer seul — savoir vers qui orienter rapidement fait partie intégrante de la compétence en situation de crise. Reconnaître qu'une situation dépasse son rôle et mobiliser sans délai la ressource spécialisée appropriée n'est pas se défausser : c'est offrir à la personne la réponse la plus adaptée, le plus vite possible.",
     ],
+    caseStudy: {
+      title: "L'appel de Nadia : oser poser la question",
+      body: [
+        "Nadia, intervenante dans un organisme communautaire, reçoit en fin de journée un homme, Réal, visiblement bouleversé après la perte de son emploi. Au fil de l'échange, il tient des propos sombres — « de toute façon, ça ne sert plus à rien » — et Nadia sent une inquiétude monter. Elle hésite : et si, en posant la question du suicide, elle « lui donnait l'idée » ? Elle est tentée de changer de sujet pour ne pas aggraver les choses.",
+        "Se rappelant sa formation, Nadia surmonte sa gêne et pose la question directement, avec calme et sans jugement : « Réal, quand vous dites que ça ne sert plus à rien, est-ce qu'il vous arrive de penser à mettre fin à vos jours ? » Loin de le heurter, la question provoque un soulagement visible : Réal fond en larmes et confie qu'il y pense depuis des jours, sans avoir osé en parler à personne. La question, loin de créer le danger, a ouvert la seule porte qui pouvait l'aider.",
+        "Nadia assure d'abord la sécurité immédiate, reste calme pour lui offrir un point d'ancrage, puis mobilise sans délai la ressource appropriée — la ligne d'intervention spécialisée — tout en restant présente auprès de lui. Réal accepte l'aide. La leçon : en situation de crise, la sécurité prime, le calme de l'intervenant désamorce, aborder franchement l'idéation suicidaire protège au lieu de nuire, et connaître les ressources d'urgence permet d'orienter vite quand chaque minute compte.",
+      ],
+    },
+    exercise: {
+      title: "Réagir à une situation de crise",
+      prompt: [
+        "Décrivez une situation de crise plausible et listez les signes qui permettent de la reconnaître (agitation, propos inquiétants, désorganisation…). Expliquez pourquoi ces signes ne doivent jamais être minimisés.",
+        "Rédigez, dans l'ordre, les étapes de votre protocole de premier contact, en plaçant clairement la sécurité immédiate en priorité, puis l'établissement d'un contact calme et rassurant. Précisez ce que vous diriez pour poser calmement et directement la question de l'idéation suicidaire.",
+        "Dressez enfin une liste des ressources d'urgence à mobiliser selon la situation (danger immédiat, soutien psychosocial, prévention du suicide) et expliquez pourquoi les connaître par cœur est indispensable.",
+      ],
+      deliverables: [
+        "Les signes de reconnaissance d'une crise et pourquoi ne pas les minimiser",
+        "Un protocole de premier contact ordonné, avec la sécurité en priorité",
+        "Une formulation calme et directe pour aborder l'idéation suicidaire",
+        "La liste des ressources d'urgence par type de situation",
+      ],
+    },
     keyTakeaways: [
+      "Dans le doute, toujours prendre une crise au sérieux : la sous-estimer coûte plus cher",
       "La sécurité immédiate prime toujours avant toute autre considération en situation de crise",
-      "Un ton calme et rassurant désamorce souvent une situation avant qu'elle ne s'aggrave",
-      "Connaître les ressources d'urgence par cœur évite la perte de temps précieuse en situation réelle",
+      "Le calme de l'intervenant est contagieux et désamorce souvent l'escalade",
+      "Poser directement la question du suicide protège, ce n'est pas « donner l'idée »",
+      "Connaître les ressources d'urgence par cœur permet d'orienter vite quand chaque minute compte",
     ],
     resources: [
       { label: "Association québécoise de prévention du suicide", url: "https://www.aqps.info" },
@@ -92,19 +177,48 @@ export const relationAideLessons: Lesson[] = [
   {
     title: "Santé mentale et dépendances",
     objectives: [
-      "Comprendre les principaux troubles de santé mentale courants",
-      "Connaître les bases de l'intervention auprès des personnes aux prises avec une dépendance",
+      "Reconnaître les principaux troubles de santé mentale courants",
+      "Comprendre l'approche de réduction des méfaits en dépendance",
+      "Reconnaître les limites de son rôle et savoir référer",
       "Identifier les ressources spécialisées disponibles",
     ],
     content: [
       "Les troubles de santé mentale les plus fréquemment rencontrés en intervention communautaire incluent les troubles anxieux, la dépression, les troubles de stress post-traumatique et, dans certains contextes, les troubles psychotiques nécessitant une référence spécialisée rapide.",
+      "Il est essentiel de bien situer son rôle : l'intervenant de première ligne n'est pas un thérapeute ni un psychiatre, et il ne pose pas de diagnostic. Sa mission est d'accueillir, de soutenir, de repérer les signes de détresse et d'orienter vers l'expertise appropriée quand c'est nécessaire. Reconnaître un trouble psychotique — pensée désorganisée, perte de contact avec la réalité — impose par exemple une référence spécialisée rapide, car il dépasse le champ de la première ligne. Confondre son rôle avec celui d'un spécialiste, par excès de zèle ou de compassion, peut nuire à la personne en la privant des soins dont elle a réellement besoin. Bien aider, ici, c'est aussi savoir précisément où s'arrête sa compétence.",
+      "Un piège fréquent est le jugement. Face à la dépression, l'anxiété ou une dépendance, l'entourage — et parfois l'intervenant débutant — glisse vers des réactions du type « secoue-toi » ou « il n'a qu'à arrêter ». Ces attitudes, même bien intentionnées, aggravent la souffrance et la honte, et éloignent la personne de l'aide. Comprendre que ces troubles ne sont ni un choix ni un manque de volonté, mais des réalités complexes, est le point de départ d'un accompagnement respectueux. La non-jugement n'est pas de la complaisance : c'est la condition pour que la personne ose parler et accepter du soutien.",
       "L'intervention auprès des personnes aux prises avec une dépendance privilégie une approche de réduction des méfaits plutôt qu'une exigence d'abstinence immédiate, reconnaissant que le changement est un processus graduel nécessitant un accompagnement patient.",
+      "La réduction des méfaits est une approche parfois contre-intuitive mais profondément réaliste. Plutôt que d'exiger l'abstinence totale et immédiate comme condition de l'aide — ce qui exclut ceux qui ne sont pas prêts —, elle cherche d'abord à réduire les dangers concrets liés à la consommation et à maintenir le lien. On rencontre la personne là où elle en est, sans la condamner ni lui imposer un objectif qu'elle ne peut tenir. Cette approche reconnaît que le rétablissement est rarement une ligne droite : il comporte des rechutes, des avancées et des reculs. Juger une rechute comme un échec définitif décourage et rompt le lien ; l'accompagner avec patience préserve la relation qui, seule, rend le changement possible. Le changement se construit dans la durée, au rythme de la personne.",
       "Le réseau québécois offre des ressources spécialisées : Centres de réadaptation en dépendance (CRD), lignes d'écoute spécialisées, et groupes de soutien comme les Alcooliques Anonymes, qui complètent l'intervention de première ligne.",
+      "Ces ressources ne remplacent pas l'accompagnement de première ligne : elles le complètent, et savoir les articuler est une compétence en soi. Un CRD offre une expertise clinique que l'intervenant communautaire n'a pas ; un groupe de soutien apporte l'appartenance et le vécu partagé qu'aucun professionnel ne peut donner. Orienter une personne vers la bonne ressource, au bon moment, et parfois l'accompagner dans cette démarche, démultiplie l'aide qu'on peut lui offrir seul. Connaître ce réseau — ses portes d'entrée, ses spécialités, ses limites — transforme un intervenant isolé en maillon d'une chaîne de soutien bien plus solide que ce qu'une seule personne pourrait porter.",
     ],
+    caseStudy: {
+      title: "La rechute de Luc : accompagner plutôt que condamner",
+      body: [
+        "Luc, aux prises avec une dépendance à l'alcool, est suivi depuis quelques mois par David, un intervenant communautaire. Les progrès étaient encourageants. Puis Luc rechute lourdement et, honteux, cesse de venir aux rencontres. David, déçu et un peu dépassé, est tenté d'interpréter cette rechute comme un échec — le sien comme celui de Luc — et se demande si l'accompagnement avait un sens.",
+        "En supervision, David revisite deux principes. D'abord, la rechute n'est pas un échec définitif mais une étape fréquente du rétablissement : la condamner ou s'en décourager romprait précisément le lien dont Luc a le plus besoin à ce moment. Ensuite, David reconnaît les limites de son rôle : l'ampleur de la dépendance de Luc appelle une expertise clinique qu'il ne possède pas seul. Son travail n'est pas de « guérir » Luc, mais de maintenir le lien et de l'orienter vers la bonne ressource.",
+        "David reprend contact avec Luc sans jugement, l'accueille malgré la rechute, et, dans une logique de réduction des méfaits, l'accompagne vers un Centre de réadaptation en dépendance tout en restant présent. Luc, touché de ne pas être condamné, accepte cette aide spécialisée. La leçon : en santé mentale et dépendance, la non-jugement, l'approche de réduction des méfaits et la reconnaissance des limites de son rôle — en s'appuyant sur le réseau spécialisé — sont ce qui rend l'accompagnement à la fois réaliste et humain.",
+      ],
+    },
+    exercise: {
+      title: "Accompagner sans juger et bien référer",
+      prompt: [
+        "Expliquez, avec vos propres mots, pourquoi une approche de non-jugement est indispensable face à la dépression, l'anxiété ou une dépendance, et donnez deux exemples de réactions à éviter (« secoue-toi », « il n'a qu'à arrêter ») en les remplaçant par une réponse respectueuse.",
+        "Décrivez le principe de la réduction des méfaits et expliquez comment vous réagiriez à une rechute d'une personne accompagnée, de façon à préserver le lien plutôt qu'à le rompre.",
+        "Identifiez enfin une situation qui dépasserait le rôle d'un intervenant de première ligne, et indiquez vers quelle(s) ressource(s) spécialisée(s) vous orienteriez la personne, en expliquant l'apport de chacune.",
+      ],
+      deliverables: [
+        "Une justification de la non-jugement, avec deux réactions à éviter reformulées",
+        "Une explication de la réduction des méfaits et une réaction à une rechute préservant le lien",
+        "Une situation dépassant la première ligne et la ressource spécialisée appropriée",
+        "Une explication de l'apport complémentaire d'une ressource spécialisée",
+      ],
+    },
     keyTakeaways: [
-      "Reconnaître les limites de son rôle et référer vers un spécialiste est crucial en santé mentale",
-      "L'approche de réduction des méfaits est plus efficace que l'exigence d'abstinence immédiate",
-      "Le réseau de ressources spécialisées doit être connu pour orienter efficacement",
+      "L'intervenant de première ligne accueille et oriente ; il ne diagnostique pas",
+      "La non-jugement est la condition pour que la personne ose parler et accepter de l'aide",
+      "La réduction des méfaits rencontre la personne là où elle en est, sans exiger l'abstinence immédiate",
+      "La rechute est une étape fréquente du rétablissement, non un échec définitif",
+      "Le réseau spécialisé complète la première ligne : bien orienter démultiplie l'aide",
     ],
     resources: [
       { label: "Association québécoise des centres d'intervention en dépendance", url: "https://www.aiderqc.com" },
@@ -122,18 +236,46 @@ export const relationAideLessons: Lesson[] = [
     title: "Travail avec les populations vulnérables",
     objectives: [
       "Adapter son approche selon les besoins de populations spécifiques",
-      "Comprendre les enjeux propres aux nouveaux arrivants vulnérables",
-      "Travailler avec sensibilité culturelle",
+      "Comprendre les obstacles systémiques distincts des difficultés individuelles",
+      "Accompagner les nouveaux arrivants cumulant plusieurs vulnérabilités",
+      "Travailler avec sensibilité culturelle et conscience de ses biais",
     ],
     content: [
       "Le travail auprès des personnes âgées, des personnes en situation d'itinérance, des familles à faible revenu ou des personnes en situation de handicap exige une adaptation de l'approche : rythme, langage, accessibilité physique et compréhension des obstacles systémiques spécifiques.",
+      "Une distinction fondamentale doit guider l'intervenant : séparer l'obstacle systémique de la difficulté individuelle. Il est facile, et injuste, d'attribuer à la personne des problèmes qui relèvent en réalité de barrières structurelles — un système complexe, des formulaires inaccessibles, des délais décourageants, de la discrimination. Une personne en situation d'itinérance n'est pas simplement « désorganisée » ; elle navigue un système qui multiplie les obstacles pour qui n'a pas d'adresse. Comprendre cette dimension systémique change tout : l'intervenant cesse de « corriger » la personne pour l'aider à franchir des barrières qui ne sont pas de sa faute. C'est une question de justice autant que d'efficacité.",
       "Les nouveaux arrivants vulnérables font face à des défis particuliers : barrière linguistique, méconnaissance des services disponibles, isolement social et parfois traumatismes liés au parcours migratoire. Une approche d'accompagnement patient et informé est essentielle.",
+      "Ce qui rend la situation des nouveaux arrivants particulièrement délicate, c'est le cumul et l'intersection des vulnérabilités. Rarement un seul facteur : souvent la barrière linguistique s'ajoute à l'isolement, lui-même aggravé par un traumatisme migratoire et une précarité financière, le tout dans un système inconnu. Chaque difficulté amplifie les autres — ne pas parler la langue empêche de connaître les services, ce qui accentue l'isolement, qui pèse sur la santé mentale. L'intervenant doit voir cet enchevêtrement plutôt que de traiter chaque problème isolément. Un accompagnement patient, qui prend le temps d'établir la confiance et de démêler les fils, est bien plus efficace qu'une réponse rapide à un seul symptôme visible.",
       "La sensibilité culturelle implique de reconnaître ses propres biais culturels, d'éviter les généralisations sur des groupes entiers et de comprendre que les normes de communication, de famille ou d'autorité varient considérablement selon les cultures d'origine.",
+      "La sensibilité culturelle marche sur une ligne de crête entre deux erreurs opposées. D'un côté, l'aveuglement : ignorer que les normes de communication, de famille ou d'autorité varient profondément, et plaquer sa propre grille culturelle comme si elle était universelle. De l'autre, le stéréotype : croire « connaître » une personne parce qu'on connaît sa culture d'origine, et la réduire à des généralisations sur son groupe. La juste posture reconnaît la culture comme un contexte à comprendre, jamais comme une étiquette qui définit l'individu. Chaque personne est unique à l'intérieur de sa culture. La vraie sensibilité commence par l'humilité — reconnaître ses propres biais — et par la curiosité : demander à la personne ce qui compte pour elle, plutôt que de le présumer.",
     ],
+    caseStudy: {
+      title: "Amina, entre système hostile et présomptions culturelles",
+      body: [
+        "Amina, réfugiée récemment arrivée, se présente dans un organisme pour de l'aide alimentaire. L'intervenant qui la reçoit, pressé, la juge d'abord « peu coopérative » : elle remplit mal les formulaires, ne fournit pas les documents demandés, semble hésitante. Il attribue ces difficultés à un manque de volonté ou d'organisation de sa part.",
+        "Un regard plus juste révèle une tout autre réalité. Amina ne comprend pas des formulaires en français administratif dense — une barrière systémique, pas un défaut personnel. Elle ignore quels documents existent, arrive d'un parcours migratoire traumatisant, et se retrouve isolée sans réseau : plusieurs vulnérabilités s'entremêlent. De plus, l'intervenant avait présumé, à partir de sa culture d'origine, qu'elle « ne voudrait pas parler à un homme », alors qu'Amina n'avait exprimé aucune telle réserve — un stéréotype plaqué sur une personne unique.",
+        "Une collègue reprend l'accompagnement autrement : elle ralentit, explique chaque formulaire simplement, mobilise un interprète, démêle les besoins entremêlés, et surtout demande à Amina ce qui compte pour elle plutôt que de le présumer. La confiance s'installe et l'aide devient réellement utile. La leçon : distinguer l'obstacle systémique de la difficulté individuelle, tenir compte du cumul de vulnérabilités, et fonder la sensibilité culturelle sur l'humilité et la curiosité plutôt que sur les stéréotypes.",
+      ],
+    },
+    exercise: {
+      title: "Adapter son intervention aux vulnérabilités et à la culture",
+      prompt: [
+        "Choisissez une population vulnérable (personnes âgées, itinérance, nouveaux arrivants…) et décrivez trois adaptations concrètes de votre approche (rythme, langage, accessibilité). Pour au moins un problème rencontré, distinguez clairement ce qui relève d'un obstacle systémique de ce qui relèverait de la personne.",
+        "Pour un nouvel arrivant vulnérable, décrivez comment plusieurs facteurs de vulnérabilité peuvent s'entremêler et s'amplifier, et proposez une manière d'accompagner qui tienne compte de cet enchevêtrement plutôt que d'un seul symptôme.",
+        "Rédigez enfin une courte réflexion sur la sensibilité culturelle : donnez un exemple d'aveuglement culturel et un exemple de stéréotype, et expliquez comment l'humilité et la curiosité permettent d'éviter les deux.",
+      ],
+      deliverables: [
+        "Trois adaptations concrètes pour une population vulnérable, dont une distinction systémique/individuel",
+        "Une analyse du cumul de vulnérabilités d'un nouvel arrivant et une réponse adaptée",
+        "Un exemple d'aveuglement culturel et un de stéréotype, avec la posture juste",
+        "Une phrase illustrant comment demander plutôt que présumer ce qui compte pour la personne",
+      ],
+    },
     keyTakeaways: [
-      "Chaque population vulnérable présente des obstacles systémiques qui doivent être compris spécifiquement",
-      "Les nouveaux arrivants combinent souvent plusieurs facteurs de vulnérabilité simultanément",
-      "La sensibilité culturelle commence par la reconnaissance de ses propres biais",
+      "Distinguer l'obstacle systémique de la difficulté individuelle est une question de justice",
+      "Les nouveaux arrivants cumulent souvent plusieurs vulnérabilités qui s'amplifient mutuellement",
+      "La sensibilité culturelle évite deux écueils : l'aveuglement et le stéréotype",
+      "La culture est un contexte à comprendre, jamais une étiquette qui définit l'individu",
+      "La sensibilité culturelle commence par l'humilité sur ses biais et la curiosité de demander",
     ],
     resources: [
       { label: "Table de concertation des organismes au service des personnes réfugiées et immigrantes (TCRI)", url: "https://tcri.qc.ca" },
@@ -151,18 +293,46 @@ export const relationAideLessons: Lesson[] = [
     title: "Ressources communautaires au Canada",
     objectives: [
       "Cartographier les ressources communautaires disponibles localement",
-      "Savoir orienter efficacement une personne vers le bon service",
-      "Comprendre le fonctionnement du réseau communautaire québécois",
+      "Orienter efficacement en connaissant les critères d'accès réels",
+      "Utiliser le 211 comme outil de référence",
+      "Comprendre l'importance de l'accompagnement dans les démarches",
     ],
     content: [
       "Le réseau communautaire québécois comprend les CLSC (Centres locaux de services communautaires), les organismes communautaires spécialisés (banques alimentaires, refuges, centres pour femmes), et les services municipaux d'aide sociale, chacun ayant un mandat et des critères d'admissibilité spécifiques.",
+      "Ce réseau, riche mais fragmenté, constitue un véritable labyrinthe pour qui ne le connaît pas — et c'est précisément là que l'intervenant apporte une valeur immense. Une personne en difficulté ignore souvent que l'aide existe, ou se perd entre des dizaines d'organismes aux mandats qui se chevauchent. L'intervenant qui maîtrise cette carte devient un pont : il sait que tel besoin relève du CLSC, tel autre d'un organisme spécialisé, tel autre du municipal. Cette connaissance du réseau n'est pas un savoir accessoire ; c'est l'un des outils les plus concrets et les plus utiles du métier, car une aide qu'on ne sait pas trouver n'existe pas, en pratique, pour celui qui en a besoin.",
       "Savoir orienter efficacement signifie connaître non seulement l'existence d'une ressource, mais aussi ses critères d'accès, ses délais d'attente et la meilleure façon d'initier le contact pour la personne aidée, parfois en l'accompagnant directement dans cette démarche.",
+      "Orienter n'est pas simplement donner un numéro de téléphone, et c'est là que beaucoup d'orientations échouent. Envoyer une personne épuisée vers une ressource qui, en réalité, ne l'admet pas (mauvais territoire, critères non remplis) ou dont le délai d'attente est de six mois, c'est ajouter un échec à sa détresse et risquer qu'elle abandonne. Une orientation utile est précise : elle vérifie les critères d'accès réels, anticipe les délais, et prépare la personne à la démarche. Le pire service qu'on puisse rendre est une orientation approximative qui envoie quelqu'un se heurter à une porte fermée. Bien orienter demande de connaître le réseau non pas en surface, mais dans ses modalités concrètes d'accès.",
       "Le 211 est un service téléphonique et en ligne gratuit qui recense l'ensemble des ressources communautaires et sociales par région au Québec et dans plusieurs provinces canadiennes, un outil essentiel pour tout intervenant.",
+      "Le 211 est l'allié de l'intervenant précisément parce que nul ne peut mémoriser un réseau aussi vaste et changeant. Gratuit et régulièrement mis à jour, il recense les ressources par région et par besoin — un réflexe à adopter dès qu'on cherche un service qu'on ne connaît pas de mémoire. Mais l'outil le plus décisif reste souvent humain : l'accompagnement. Pour une personne vulnérable, isolée ou peu familière du système, franchir seule la porte d'une ressource peut être insurmontable — un appel intimidant, un formulaire opaque, une peur du refus. Accompagner physiquement la démarche, ou au moins la préparer soigneusement, augmente considérablement les chances de succès. Parfois, faire le premier pas avec la personne vaut plus que toute la liste de ressources du monde.",
     ],
+    caseStudy: {
+      title: "Le numéro qui ne suffisait pas pour Gabriel",
+      body: [
+        "Gabriel, isolé et en grande précarité, confie à un intervenant débordé qu'il a besoin d'aide alimentaire et de soutien psychologique. L'intervenant, voulant l'aider vite, lui griffonne le nom de deux organismes et un numéro de téléphone, satisfait de l'avoir « orienté ». Gabriel repart avec le papier. Deux semaines plus tard, rien n'a avancé : il n'a contacté personne.",
+        "Ce qui ressemblait à de l'aide était une orientation approximative. D'abord, l'un des organismes ne desservait pas le territoire de Gabriel, et l'autre avait un long délai d'attente — des obstacles que l'intervenant n'avait pas vérifiés. Ensuite, Gabriel, intimidé et épuisé, n'a jamais osé passer l'appel : le simple fait de composer un numéro inconnu et d'expliquer sa situation à un étranger était, pour lui, une montagne. Le papier n'a rien changé à sa détresse.",
+        "Une intervenante reprend le dossier autrement. Elle utilise le 211 pour trouver des ressources réellement accessibles à Gabriel, en vérifie les critères et les délais, puis, plutôt que de lui tendre un numéro, elle prépare l'appel avec lui et l'accompagne dans la première démarche. Cette fois, la porte s'ouvre. La leçon : orienter n'est pas donner un numéro ; c'est connaître les critères d'accès réels, s'appuyer sur des outils comme le 211, et souvent accompagner concrètement la personne pour que l'aide qui existe lui devienne enfin accessible.",
+      ],
+    },
+    exercise: {
+      title: "Construire et réussir une orientation",
+      prompt: [
+        "Pour un besoin donné (aide alimentaire, hébergement d'urgence, soutien psychologique…), identifiez les types de ressources du réseau communautaire québécois susceptibles de répondre, et expliquez le rôle de chacune (CLSC, organisme spécialisé, service municipal).",
+        "Rédigez une « fiche d'orientation » utile pour une de ces ressources : au-delà de son existence, précisez les informations à vérifier avant d'y envoyer une personne (critères d'accès, délais, façon d'initier le contact), et expliquez pourquoi une orientation approximative peut nuire.",
+        "Décrivez enfin comment vous accompagneriez concrètement une personne vulnérable dans cette démarche (préparer l'appel, l'accompagner physiquement…), et expliquez pourquoi l'accompagnement augmente les chances de succès.",
+      ],
+      deliverables: [
+        "Les types de ressources adaptées à un besoin, avec le rôle de chacune",
+        "Une fiche d'orientation précisant critères d'accès, délais et façon d'initier le contact",
+        "Une explication de pourquoi une orientation approximative peut nuire",
+        "Une description d'un accompagnement concret dans la démarche",
+      ],
+    },
     keyTakeaways: [
-      "Une bonne orientation exige de connaître les critères d'accès, pas seulement l'existence d'une ressource",
+      "Connaître le réseau communautaire est l'un des outils les plus concrets du métier",
+      "Une bonne orientation exige de connaître les critères d'accès et délais, pas seulement l'existence",
+      "Une orientation approximative peut nuire en envoyant la personne vers une porte fermée",
       "Le 211 est un outil de référence essentiel à connaître et utiliser régulièrement",
-      "Accompagner physiquement une démarche augmente significativement les chances de succès",
+      "Accompagner concrètement une démarche augmente significativement les chances de succès",
     ],
     resources: [
       { label: "211 Québec — Répertoire des ressources communautaires", url: "https://www.211qc.ca" },
@@ -180,18 +350,46 @@ export const relationAideLessons: Lesson[] = [
     title: "Éthique et déontologie professionnelle",
     objectives: [
       "Comprendre les principes déontologiques applicables en relation d'aide",
-      "Gérer les dilemmes éthiques courants",
+      "Connaître les limites légales de la confidentialité",
+      "Gérer les dilemmes éthiques par la consultation plutôt que seul",
       "Maintenir des limites professionnelles appropriées",
     ],
     content: [
       "Les principes déontologiques fondamentaux incluent la confidentialité (avec ses exceptions légales, comme le signalement obligatoire en cas de risque pour un enfant), le consentement éclairé, et l'évitement des conflits d'intérêts dans la relation d'aide.",
+      "La confidentialité est le socle de la confiance : sans l'assurance que ce qu'elle confie restera privé, une personne ne se livrera pas. Mais elle n'est pas absolue, et cette nuance est cruciale à maîtriser précisément. La loi prévoit des exceptions strictes où la confidentialité doit être levée — au premier rang, le signalement obligatoire lorsqu'un enfant est en danger, ou une menace sérieuse pour la vie d'une personne. Un intervenant doit connaître ces limites avec exactitude : promettre une confidentialité « totale » qu'on devra ensuite rompre trahit la confiance, tandis qu'ignorer ces obligations peut avoir des conséquences graves. La transparence est la meilleure voie : expliquer d'emblée à la personne ce qui restera confidentiel et dans quels cas rares la loi impose d'agir.",
       "Les dilemmes éthiques courants incluent la tension entre le respect de l'autonomie et la protection de la personne en danger, ou la gestion d'une demande d'aide dépassant son champ de compétence professionnelle. Ces situations exigent réflexion et souvent consultation avec un superviseur.",
+      "Un dilemme éthique se reconnaît à ceci : il n'oppose pas le bien au mal, mais deux valeurs légitimes qui se contredisent. Respecter l'autonomie d'une personne et la protéger d'un danger sont toutes deux justes — et pourtant, parfois, elles s'excluent. C'est ce qui rend ces situations si inconfortables, et c'est précisément pourquoi elles ne doivent jamais se trancher seul, dans l'urgence ou l'isolement. La règle d'or est la consultation : porter le dilemme à un superviseur ou à un collègue, non par incapacité à décider, mais parce qu'un regard extérieur éclaire les angles morts et partage le poids d'une décision difficile. Décider seul un dilemme complexe expose à des erreurs que la réflexion partagée aurait évitées. Consulter n'est pas se décharger : c'est agir avec rigueur professionnelle.",
       "Le maintien de limites professionnelles appropriées — éviter les relations personnelles avec les personnes aidées, ne pas accepter de cadeaux significatifs, respecter les heures et le cadre de l'intervention — protège l'intégrité de la relation d'aide à long terme.",
+      "Les entorses aux limites professionnelles commencent presque toujours par de petits gestes en apparence anodins et bien intentionnés : accepter un café offert, donner son numéro personnel « pour dépanner », rendre un petit service hors cadre. C'est le glissement progressif — et non la faute spectaculaire — qui menace la relation d'aide. Chaque petit franchissement en rend le suivant plus facile, jusqu'à ce que la frontière entre relation professionnelle et relation personnelle se brouille, compromettant l'objectivité de l'intervenant et créant des attentes malsaines chez la personne aidée. Les limites ne sont pas de la rigidité bureaucratique : elles protègent la clarté du rôle, garante à long terme d'une aide saine. Une règle simple aide à trancher : ce geste sert-il l'intérêt de la personne aidée, ou mon propre confort relationnel ?",
     ],
+    caseStudy: {
+      title: "Le glissement de Sylvie et le secret impossible à tenir",
+      body: [
+        "Sylvie, intervenante chaleureuse, accompagne depuis des mois Manon, avec qui le courant passe très bien. Petit à petit, les limites se sont estompées : Sylvie a donné son numéro personnel « en cas de besoin », accepté quelques cadeaux, prolongé des rencontres bien au-delà de l'horaire. La relation ressemble de plus en plus à une amitié. Sylvie ne voit là que de la bienveillance.",
+        "Un jour, Manon lui confie, en lui faisant promettre le secret absolu, qu'elle craint pour la sécurité de son jeune enfant à la maison. Sylvie est prise au piège de deux façons. D'une part, elle a implicitement promis une confidentialité « totale » qu'elle ne peut légalement tenir : le signalement est obligatoire quand un enfant est en danger. D'autre part, le glissement des limites a créé une proximité qui rend la situation encore plus douloureuse et confuse — comment « trahir » une amie ? Le brouillage du cadre complique une décision déjà lourde.",
+        "En supervision, plutôt que de décider seule dans l'urgence, Sylvie clarifie ses obligations : la protection de l'enfant impose le signalement, et la confidentialité connaît ici une exception légale claire. Elle comprend aussi comment le glissement progressif des limites l'a fragilisée. Elle agit dans le respect de la loi, avec le soutien de son superviseur. La leçon : la confidentialité a des limites légales à connaître d'avance, les dilemmes se portent en consultation et non seuls, et les limites professionnelles se protègent dès les petits gestes, avant que le glissement ne piège l'intervenant.",
+      ],
+    },
+    exercise: {
+      title: "Naviguer confidentialité, dilemmes et limites",
+      prompt: [
+        "Expliquez pourquoi la confidentialité est essentielle mais non absolue, en citant au moins une exception légale (comme le signalement obligatoire), et rédigez une phrase que vous diriez en début d'accompagnement pour expliquer honnêtement à la personne ce qui restera confidentiel et les cas rares où la loi impose d'agir.",
+        "Décrivez un dilemme éthique opposant deux valeurs légitimes (par exemple autonomie vs protection) et expliquez votre démarche pour le gérer — en particulier pourquoi et comment vous consulteriez plutôt que de décider seul.",
+        "Identifiez trois « petits gestes » qui peuvent amorcer un glissement des limites professionnelles, et pour chacun, expliquez le risque et la limite à maintenir, en appliquant la question : ce geste sert-il l'intérêt de la personne ou mon propre confort ?",
+      ],
+      deliverables: [
+        "Une explication des limites légales de la confidentialité et une phrase d'annonce honnête en début d'accompagnement",
+        "Un dilemme éthique à deux valeurs et une démarche de gestion par consultation",
+        "Trois petits gestes menant à un glissement des limites, avec le risque de chacun",
+        "L'application de la question « intérêt de la personne vs confort de l'intervenant »",
+      ],
+    },
     keyTakeaways: [
-      "La confidentialité a des limites légales claires qu'il faut connaître précisément",
-      "Les dilemmes éthiques complexes méritent toujours une consultation, jamais une décision isolée",
-      "Des limites professionnelles claires protègent la relation d'aide sur la durée",
+      "La confidentialité fonde la confiance mais connaît des exceptions légales à connaître précisément",
+      "La transparence sur les limites de la confidentialité vaut mieux qu'une promesse intenable",
+      "Un dilemme éthique oppose deux valeurs légitimes : il se porte en consultation, jamais seul",
+      "Les entorses aux limites commencent par de petits gestes : c'est le glissement qui menace",
+      "Question-repère : ce geste sert-il l'intérêt de la personne ou mon propre confort relationnel ?",
     ],
     resources: [
       { label: "OTSTCFQ — Code de déontologie", url: "https://www.otstcfq.org" },
@@ -209,18 +407,46 @@ export const relationAideLessons: Lesson[] = [
     title: "Stage pratique & certification",
     objectives: [
       "Appliquer les compétences d'intervention dans un contexte réel supervisé",
-      "Démontrer la maîtrise des techniques de relation d'aide",
+      "Démontrer un jugement professionnel autant que des techniques",
+      "Transformer la théorie en réflexe professionnel",
       "Obtenir le certificat ARCADINS en relation d'aide et service communautaire",
     ],
     content: [
       "Le stage pratique place l'apprenant dans un contexte réel d'intervention communautaire, sous la supervision d'un professionnel expérimenté, permettant de mettre en pratique l'écoute active, l'intervention de crise et l'orientation vers les ressources appropriées.",
+      "C'est le moment où tout le programme se rejoint et prend vie : les fondements éthiques (module 1), l'écoute active (module 2), l'intervention de crise (module 3), la santé mentale et les dépendances (module 4), le travail avec les populations vulnérables (module 5), les ressources communautaires (module 6) et la déontologie (module 7). Mais le stage enseigne surtout ce qu'aucune salle de classe ne peut transmettre : la relation d'aide se vit avec de vraies personnes, dans leur détresse réelle, sans scénario ni reprise. La théorie parfaitement sue ne suffit pas quand une personne bouleversée est en face de soi ; le stage transforme le savoir en présence, en écoute et en jugement incarnés.",
       "L'évaluation finale porte sur la capacité à établir une relation d'aide respectueuse, à reconnaître les limites de son rôle, et à appliquer les principes éthiques appris dans des situations concrètes, parfois complexes ou imprévues.",
+      "Ce qui est évalué n'est pas la récitation de techniques, mais le jugement professionnel — cette capacité à faire le bon choix dans une situation ambiguë, où aucune règle toute faite ne s'applique parfaitement. Sait-on rester présent sans se laisser submerger ? Reconnaître le moment où une situation dépasse son rôle et référer ? Respecter l'autonomie d'une personne dont on désapprouve le choix ? Naviguer un dilemme éthique en consultant plutôt qu'en tranchant seul ? C'est ce discernement, plus que la maîtrise mécanique des outils, qui distingue l'intervenant prêt à exercer. La relation d'aide est autant un art du jugement qu'un ensemble de techniques, et le stage est là pour le révéler.",
       "Le certificat ARCADINS en relation d'aide et service communautaire, délivré à l'issue du stage et de l'évaluation, atteste d'une compétence pratique reconnue par les organismes communautaires partenaires pour des postes d'intervention de première ligne.",
+      "Ce certificat a une valeur concrète dans un secteur qui a un besoin réel d'intervenants formés, humains et fiables. Pour un organisme communautaire, il atteste non seulement de connaissances, mais d'une compétence pratique validée auprès de vraies personnes, sous supervision — une assurance précieuse au moment de confier des situations sensibles. Reconnu par le réseau de partenaires, il ouvre des portes, notamment pour les nouveaux arrivants cherchant à s'engager dans un métier de sens. Mais au-delà du document, le véritable acquis de cette formation est une posture : savoir écouter vraiment, accompagner sans juger, respecter l'autonomie et les limites, et prendre soin des autres sans se détruire soi-même. Le certificat atteste ; c'est cette posture humaine et professionnelle qui fera la différence, pour l'intervenant comme pour ceux qu'il accompagnera.",
     ],
+    caseStudy: {
+      title: "Le stage de Farida : du savoir au discernement",
+      body: [
+        "Farida, nouvelle arrivante profondément motivée, aborde son stage en organisme communautaire avec d'excellentes connaissances théoriques — principes éthiques, techniques d'écoute, ressources, tout est là. Mais dès les premières journées, la réalité l'ébranle : une personne en crise dont les propos l'inquiètent, un homme dont elle désapprouve intérieurement les choix, une femme dont la détresse la bouleverse presque aux larmes. En classe, elle avait les réponses ; face aux vraies personnes, elle doit apprendre à juger dans l'instant.",
+        "Sous la supervision d'une intervenante d'expérience, Farida développe ce que les manuels ne donnent pas : le discernement. Face à l'homme dont elle réprouve les décisions, elle apprend à respecter son autonomie plutôt qu'à imposer sa vision. Face à la personne en crise, elle assure la sécurité, reste calme, ose poser la question difficile, et mobilise la bonne ressource. Face à la femme qui la bouleverse, elle garde « un pied sur la berge » sans se fermer. Et devant un dilemme éthique, son premier réflexe devient la consultation, non la décision solitaire.",
+        "À l'évaluation finale, ce n'est pas la connaissance des concepts qui impressionne — elle était acquise — mais son jugement professionnel : sa capacité à faire le bon choix, avec humanité, dans des situations complexes et imprévues. Farida obtient son certificat ARCADINS et, à travers le réseau de partenaires, rejoint un organisme où elle exercera ce métier de sens. La leçon, et la conclusion de toute la formation : la relation d'aide se juge au discernement incarné bien plus qu'à la théorie, et le stage est ce qui transforme un savoir en une posture humaine et professionnelle prête à accompagner de vraies personnes.",
+      ],
+    },
+    exercise: {
+      title: "Se préparer au stage et à l'exercice du jugement",
+      prompt: [
+        "Dressez votre bilan de préparation au stage : pour chacune des grandes compétences de la formation (éthique, écoute active, crise, santé mentale/dépendances, populations vulnérables, ressources, déontologie), notez une force acquise et un point à consolider en situation réelle.",
+        "Choisissez trois situations d'intervention exigeant du jugement (par exemple : un choix que vous désapprouvez, une personne en crise, un dilemme éthique) et, pour chacune, décrivez comment vous mobiliseriez les principes appris pour discerner la bonne conduite.",
+        "Rédigez enfin une courte réflexion personnelle : en quoi la relation d'aide est-elle autant un art du jugement qu'un ensemble de techniques, et quelle posture humaine souhaitez-vous incarner comme intervenant ?",
+      ],
+      deliverables: [
+        "Un bilan des compétences (force + point à consolider) par grand domaine de la formation",
+        "Trois situations exigeant du jugement, avec la conduite discernée pour chacune",
+        "Une réflexion sur la relation d'aide comme art du jugement",
+        "Un plan pour transformer, durant le stage, ses connaissances en posture professionnelle",
+      ],
+    },
     keyTakeaways: [
-      "Le stage supervisé est l'occasion de transformer la théorie en réflexe professionnel",
-      "L'évaluation porte sur le jugement professionnel autant que sur les techniques apprises",
-      "Le certificat ouvre la voie vers le réseau d'organismes communautaires partenaires",
+      "Le stage fait converger tous les modules et transforme la théorie en présence incarnée",
+      "Le stage supervisé transforme le savoir en réflexe et en jugement professionnels",
+      "L'évaluation porte sur le discernement autant que sur les techniques apprises",
+      "La relation d'aide est autant un art du jugement qu'un ensemble de techniques",
+      "Au-delà du certificat, le vrai acquis est une posture : aider sans juger, sans se détruire",
     ],
     resources: [],
     quiz: [
