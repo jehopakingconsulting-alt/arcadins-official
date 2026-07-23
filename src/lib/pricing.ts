@@ -1,4 +1,4 @@
-export const REGISTRATION_FEE = 50;
+export const REGISTRATION_FEE = 100;
 export const PAYMENT_DEADLINE_DAYS = 30;
 
 export interface InstallmentPlan {
@@ -7,12 +7,13 @@ export interface InstallmentPlan {
 }
 
 /**
- * Splits a course price into 3 installments paid monthly: the last two are
- * always $1000, the first absorbs the remainder. The $50 registration fee
- * is paid separately, upfront, before this plan begins.
+ * Splits a course price into 3 monthly installments as evenly as possible.
+ * Recurring installments are rounded down; the first installment absorbs any
+ * remainder so the three always sum exactly to `price`. The $100 registration
+ * fee is paid separately, upfront, before this plan begins.
  */
 export function getInstallmentPlan(price: number): InstallmentPlan {
-  const recurring = 1000;
+  const recurring = Math.floor(price / 3);
   const first = price - 2 * recurring;
   return {
     installments: [first, recurring, recurring],

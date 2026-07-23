@@ -43,6 +43,23 @@ export default function InscriptionPage() {
 
   if (!course) return null;
 
+  if (course.comingSoon || !course.price || course.price <= 0) {
+    return (
+      <div className="min-h-screen bg-off-white pt-32 pb-20 flex items-center justify-center px-7">
+        <div className="bg-white rounded-[28px] border border-gold/15 p-10 max-w-md text-center">
+          <div className="text-5xl mb-4">🚀</div>
+          <h1 className="font-[family-name:var(--font-heading)] text-2xl text-navy mb-3">Programme à venir</h1>
+          <p className="text-[15px] text-body leading-[1.7] mb-6">
+            Ce programme est en cours de préparation. Les inscriptions et le tarif seront communiqués dès son lancement.
+          </p>
+          <Link href="/contact" className="inline-block bg-gold text-navy font-bold text-[15px] px-7 py-3.5 rounded-[10px] transition-all hover:bg-gold-light">
+            Être notifié du lancement
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   if (loading) {
     return <div className="min-h-screen bg-off-white pt-32" />;
   }

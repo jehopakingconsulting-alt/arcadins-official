@@ -48,13 +48,13 @@ export default function TarifsPage() {
                 </span>
               </div>
               <div className="text-[11.5px] text-white/40 mb-5">
-                + {REGISTRATION_FEE}$ inscription (séparés) · puis complet ou 3× ({getInstallmentPlan(course.price).installments[0]}$, 1000$, 1000$)
+                + {REGISTRATION_FEE}$ inscription (séparés) · puis complet ou 3× ({getInstallmentPlan(course.price).installments.map((v) => `${v}$`).join(", ")})
               </div>
 
               <ul className="mb-6 space-y-0">
                 {[
                   { text: "Formation complète 24 semaines", included: true },
-                  { text: "Certificat numérique inclus", included: true },
+                  { text: "Attestation de complétion incluse", included: true },
                   { text: "8 modules progressifs", included: true },
                   { text: "Support multilingue", included: true },
                   { text: "Accès 100% en ligne", included: true },

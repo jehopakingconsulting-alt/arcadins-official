@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { createClient } from "@/lib/supabase/server";
 import { getInstallmentPlan, getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
+import { PROGRAMS } from "@/lib/constants";
 
 const PLANS: Record<string, { monthly: number; annual: number; name: string }> = {
   starter: { monthly: 19900, annual: 15900, name: "ARCADINS Starter" },
@@ -13,7 +14,6 @@ export async function GET(request: Request) {
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "").trim() || "https://arcadins-official.vercel.app";
 
   const course = searchParams.get("course");
-  const coursePrice = searchParams.get("price");
   const step = searchParams.get("step") || "fee"; // "fee" | "installment1"
   const paymentMode = searchParams.get("payment") || "full"; // "full" | "installment"
 
@@ -28,12 +28,20 @@ export async function GET(request: Request) {
     return NextResponse.redirect(loginUrl);
   }
 
-  if (course && coursePrice) {
-    const price = parseInt(coursePrice);
-    const courseName = course.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+  if (course) {
+    // Price and name come from canonical data — never trusted from the query.
+    const program = PROGRAMS.find((p) => p.slug === course);
+
+    // Reject unknown, unreleased ("à venir"), or unpriced programs.
+    if (!program || program.comingSoon || !program.price || program.price <= 0) {
+      return NextResponse.redirect(`${siteUrl}/formations/${course}?error=unavailable`);
+    }
+
+    const price = program.price;
+    const courseName = program.name;
 
     try {
-      // ── STEP 1: Registration fee ($50, one-time, non-refundable) ──
+      // ── STEP 1: Registration fee (one-time, non-refundable) ──
       if (step === "fee") {
         const session = await stripe.checkout.sessions.create({
           payment_method_types: ["card"],
@@ -112,7 +120,7 @@ export async function GET(request: Request) {
             {
               price_data: {
                 currency: "cad",
-                product_data: { name: `ARCADINS — ${courseName}`, description: "Formation complète de 24 semaines · Certificat inclus" },
+                product_data: { name: `ARCADINS — ${courseName}`, description: "Formation complète de 24 semaines · Attestation de complétion incluse" },
                 unit_amount: totalCents,
               },
               quantity: 1,
