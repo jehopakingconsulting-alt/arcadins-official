@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Immigration Canada — Accompagnement Complet",
-  description: "De la préparation linguistique à l'installation au Québec, Manitoba ou Ontario. Partenaire IRCC.",
+  title: "Programmes d'immigration disponibles au Canada",
+  description: "Information générale et éducative sur les programmes d'immigration au Canada, et préparation linguistique. Ne constitue pas un avis juridique en immigration.",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

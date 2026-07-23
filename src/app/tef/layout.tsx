@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "TEF / TCF Canada — Préparation aux tests de français",
-  description: "Préparation complète TEF Canada et TCF Canada pour l'immigration. Taux de réussite 96%. Cours, simulations, coaching oral.",
+  title: "Tutorat TEF / TCF — Préparation aux tests de français",
+  description: "Préparation au TEF Canada et au TCF Canada : cours, exercices, simulations en conditions d'examen et coaching oral. ARCADINS prépare aux tests, elle ne les administre pas.",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -42,6 +42,13 @@ export default function ImmigrationPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">{PROVINCES.map((p) => (<div key={p.name} className="bg-gold/7 border border-gold/17 rounded-xl p-3.5"><div className="text-[15px] font-semibold text-white mb-0.5">{p.name}</div><div className="text-xs text-white/42">{p.sub}</div></div>))}</div>
           </div>
         </div>
+
+        {/* Clause de non-responsabilité (conformité) */}
+        <div className="mt-12 bg-navy/[0.04] border border-navy/12 rounded-2xl p-5">
+          <p className="text-[12.5px] text-muted leading-[1.7]">
+            <strong className="text-navy">ⓘ </strong>{t(UI["legal.immigration.disclaimer"], lang)}
+          </p>
+        </div>
       </div>
     </div>
   );

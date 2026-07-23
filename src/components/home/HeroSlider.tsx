@@ -80,10 +80,10 @@ export default function HeroSlider() {
 
         <div className="inline-flex gap-6 md:gap-10 flex-wrap justify-center px-6 md:px-9 py-5 bg-white/6 backdrop-blur-[12px] border border-white/10 rounded-2xl">
           {[
-            { n: "12,400", k: "stat.apprenants" },
-            { n: "96%", k: "stat.reussite" },
-            { n: "47", k: "stat.pays" },
-            { n: "28", k: "stat.programmes" },
+            { n: "9", k: "stats.formations" },
+            { n: "72", k: "stats.modules" },
+            { n: "7", k: "stats.langues" },
+            { n: "4", k: "stats.competences" },
           ].map((s) => (
             <div key={s.k}>
               <div className="font-[family-name:var(--font-heading)] text-[26px] md:text-[30px] font-bold text-gold leading-none">

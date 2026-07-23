@@ -31,11 +31,11 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "ARCADINS Training Center — Formation professionnelle certifiée, TEF/TCF Canada",
+    default: "ARCADINS Training Center — Formation professionnelle & préparation TEF/TCF Canada",
     template: "%s | ARCADINS Training Center",
   },
-  description: "Formation professionnelle certifiée, TEF/TCF Canada, 7 langues, 47 pays. Préparez votre avenir au Canada avec ARCADINS Training Center.",
-  keywords: "TEF Canada, TCF Canada, formation professionnelle, immigration Canada, Québec, certification, IRCC, résidence permanente",
+  description: "Plateforme de formation professionnelle et de préparation au TEF Canada et au TCF Canada, en 7 langues. Pensée pour les nouveaux arrivants et professionnels visant le Canada.",
+  keywords: "TEF Canada, TCF Canada, préparation TEF, préparation TCF, formation professionnelle, français des affaires, immigration Canada, apprentissage en ligne",
   metadataBase: (() => {
     try {
       return new URL((process.env.NEXT_PUBLIC_SITE_URL || "").trim() || "https://arcadins-official.vercel.app");
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_CA",
     siteName: "ARCADINS Training Center",
-    title: "ARCADINS Training Center — Formation certifiée, TEF/TCF Canada",
-    description: "Plateforme internationale de formation professionnelle certifiée. Préparation TEF/TCF, immigration Canada, 28 programmes, 47 pays, 7 langues.",
+    title: "ARCADINS Training Center — Formation & préparation TEF/TCF Canada",
+    description: "Plateforme de formation professionnelle et de préparation aux tests de français (TEF/TCF Canada), disponible en 7 langues.",
   },
   twitter: {
     card: "summary_large_image",
     title: "ARCADINS Training Center",
-    description: "Formation certifiée TEF/TCF Canada · 47 pays · 7 langues · 28 programmes",
+    description: "Formation professionnelle & préparation TEF/TCF Canada · 7 langues",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "/" },

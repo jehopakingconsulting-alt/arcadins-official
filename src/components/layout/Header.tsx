@@ -72,11 +72,11 @@ export default function Header() {
         {/* Ribbon */}
         <div className="bg-gradient-to-r from-gold via-[#a07830] to-gold px-4 md:px-7 py-1 flex items-center justify-between text-[11.5px] font-semibold text-navy">
           <div className="flex items-center gap-4">
-            <span>🏛️ Certifié Québec &amp; Canada</span>
+            <span>🎓 Formation &amp; préparation TEF/TCF</span>
             <span className="opacity-40 text-[10px] hidden sm:inline">|</span>
             <span className="hidden sm:inline">TEF · TCF · TFI · DELF</span>
             <span className="opacity-40 text-[10px] hidden sm:inline">|</span>
-            <span className="hidden sm:inline">47 Pays · ISO 9001</span>
+            <span className="hidden sm:inline">7 langues</span>
           </div>
           <LanguageSelector />
         </div>

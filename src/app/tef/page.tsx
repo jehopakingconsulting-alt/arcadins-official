@@ -34,7 +34,7 @@ export default function TefPage() {
             <br />{t(UI["tef.title3"], lang)}
           </h2>
           <p className="text-[17px] text-white/52 max-w-[600px] leading-[1.75]">
-            {t(UI["tef.desc"], lang)} <strong className="text-gold">96%</strong>.
+            {t(UI["tef.desc"], lang)}
           </p>
         </div>
 
@@ -74,6 +74,13 @@ export default function TefPage() {
               {t(UI["tef.panel.cta"], lang)}
             </Link>
           </div>
+        </div>
+
+        {/* Clause de non-responsabilité (conformité) */}
+        <div className="mt-12 bg-white/[0.04] border border-gold/17 rounded-2xl p-5">
+          <p className="text-[12.5px] text-white/55 leading-[1.7]">
+            <strong className="text-gold">ⓘ </strong>{t(UI["legal.exam.disclaimer"], lang)}
+          </p>
         </div>
       </div>
     </div>

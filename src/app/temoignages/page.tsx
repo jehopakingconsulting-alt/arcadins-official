@@ -15,18 +15,27 @@ export default function TemoignagesPage() {
             {t(UI["testi.title1"], lang)} <em className="text-gold italic">{t(UI["testi.title2"], lang)}</em>
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {TESTIMONIALS.map((te, i) => (
-            <div key={i} className="bg-white rounded-[20px] p-7 border border-gold/11 transition-all hover:border-gold/38 hover:shadow-[0_8px_30px_rgba(201,168,76,0.1)]">
-              <div className="text-gold text-[15px] tracking-[2px] mb-3">{"★".repeat(te.stars)}</div>
-              <p className="text-[14.5px] leading-[1.75] text-body mb-5 italic">{te.text}</p>
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-navy text-gold flex items-center justify-center font-[family-name:var(--font-heading)] text-base font-bold shrink-0">{te.initials}</div>
-                <div><div className="text-sm font-semibold text-navy">{te.name}</div><div className="text-xs text-muted">{te.from}</div></div>
+        {TESTIMONIALS.length === 0 ? (
+          <div className="max-w-[620px] mx-auto text-center bg-white rounded-[24px] p-10 border border-gold/15">
+            <div className="text-4xl mb-4">💬</div>
+            <p className="text-[15px] text-body leading-[1.75]">
+              {t(UI["testi.empty"], lang)}
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {TESTIMONIALS.map((te, i) => (
+              <div key={i} className="bg-white rounded-[20px] p-7 border border-gold/11 transition-all hover:border-gold/38 hover:shadow-[0_8px_30px_rgba(201,168,76,0.1)]">
+                <div className="text-gold text-[15px] tracking-[2px] mb-3">{"★".repeat(te.stars)}</div>
+                <p className="text-[14.5px] leading-[1.75] text-body mb-5 italic">{te.text}</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-full bg-navy text-gold flex items-center justify-center font-[family-name:var(--font-heading)] text-base font-bold shrink-0">{te.initials}</div>
+                  <div><div className="text-sm font-semibold text-navy">{te.name}</div><div className="text-xs text-muted">{te.from}</div></div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
