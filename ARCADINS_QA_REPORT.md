@@ -73,8 +73,16 @@ appliquées ; `EMAIL_PROVIDER=console`. Aucun déploiement, aucune écriture en 
 | — | Files séparées à l'écran | ✅ | `/admin/tutorat` et `/admin/tuteurs` distinctes, cycles de statut propres |
 | — | Automatisés (lint/tsc/test/build/audit) | ✅ | 0 / 0 / 50 verts / succès / 0 vuln |
 
-**Conclusion :** la phase est **fonctionnellement validée en environnement réel**. Restent, hors périmètre
-de cette validation : l'envoi d'e-mails réels (activation Resend) et le déploiement (décision de direction).
+**Conclusion :** la phase est **fonctionnellement validée en environnement réel**.
+
+### Envoi d'e-mails RÉELS via Resend — validé le 2026-07-24 ✅
+- `EMAIL_PROVIDER=resend`, expéditeur de test `onboarding@resend.dev`.
+- Soumission d'une demande → **e-mail réellement reçu** dans la boîte (objet « Confirmation de votre demande
+  de tutorat en TEF et TCF », modèle FR conforme).
+- `notification_delivery_logs` : `status=sent`, **`provider=resend`**, `error=null`.
+- ⚠️ **Pour la production** : `onboarding@resend.dev` n'envoie qu'à l'adresse du compte Resend. Il faudra
+  **vérifier un domaine** dans Resend (ex. `arcadins-training.com`) et régler `EMAIL_FROM` sur une adresse de
+  ce domaine (ex. `noreply@arcadins-training.com`) pour écrire à de vrais élèves/candidats.
 
 ### Points relevés pendant la validation (corrigés)
 - Bouton « S'inscrire » du header pointait vers `/tarifs` → corrigé vers `/auth/register` (+ lien « Connexion »).
