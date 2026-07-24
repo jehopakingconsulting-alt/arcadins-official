@@ -38,6 +38,17 @@ export default function TefPage() {
           </p>
         </div>
 
+        {/* Accès à la plateforme de tutorat pédagogique */}
+        <Link href="/tutorat" className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gold/10 border border-gold/40 rounded-[20px] p-6 mb-11 transition-all hover:bg-gold/15 hover:-translate-y-0.5">
+          <div>
+            <div className="font-[family-name:var(--font-heading)] text-[21px] text-white font-bold mb-1">{t(UI["tut.title"], lang)}</div>
+            <div className="text-[13.5px] text-white/60 max-w-[560px] leading-[1.6]">{t(UI["tut.desc"], lang)}</div>
+          </div>
+          <span className="shrink-0 bg-gold text-navy font-bold text-[14px] px-6 py-3 rounded-[10px] text-center group-hover:bg-gold-light transition-all">
+            {t(UI["tut.cta.explore"], lang)} →
+          </span>
+        </Link>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="flex flex-col gap-3.5">
             {TEF_TESTS.map((test, i) => (

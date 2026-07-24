@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SKILLS, LEVELS } from "@/lib/data/tutorat";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = (process.env.NEXT_PUBLIC_SITE_URL || "").trim() || "https://arcadins-official.vercel.app";
@@ -7,6 +8,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: base, lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: `${base}/tef`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/tutorat`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    ...SKILLS.flatMap((s) =>
+      LEVELS.map((l) => ({
+        url: `${base}/tutorat/${s.id}/${l.id}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      })),
+    ),
     { url: `${base}/formations`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/examens`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/immigration`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
