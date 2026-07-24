@@ -24,7 +24,7 @@
 | 7 | Gestion administrative des candidatures | 🟡 | `app/admin/tuteurs/page.tsx`, `app/admin/tutorat/page.tsx`, `lib/admin-data.ts` | `/admin/tuteurs`, `/admin/tutorat` | lit `tutor_applications`, `tutoring_requests` | Garde d'accès vérifiée (redirection) ; `rbac.test.ts` | `/admin` non-auth → login (vérifié) | **Lecture seule** : pas d'actions changer statut / accepter / refuser / commenter via l'UI ; pas de notification au candidat | Workflow de traitement souhaité (statuts, e-mail de réponse type) ? |
 | 8 | Programme de parrainage multigénérationnel | 🟡 | migration `0003`, `lib/data/referral-config.ts`, `lib/referral.ts` | `/parrainage` (404 si OFF) | `referral_codes`, `referral_relationships`, `referral_commissions` | `referral.test.ts` (6) | Tests verts ; `/parrainage` → **404 vérifié** (flag OFF) | Flag OFF ; migration non appliquée ; **calcul non branché sur les ventes Stripe** | Validation **juridique** du plan de rémunération avant activation |
 | 9 | Calcul et historique des commissions | 🟡 | `lib/referral.ts`, `app/admin/parrainage/page.tsx`, migration `0003` | `/admin/parrainage` | `referral_commissions` | `referral.test.ts` (montants cents, troncature générations) | Tests verts | Calcul OK mais **jamais déclenché** (pas d'appel depuis le webhook) ; historique affichable mais vide | idem #8 |
-| 10 | Protection auto-parrainage & fraude | ⬜/🟡 | migration `0003` (unique anti-double-crédit uniquement) | — | `referral_commissions` (`unique(enrollment,beneficiary,generation)`) | — | Contrainte unique documentée | **À CONSTRUIRE** : interdiction `referrer = referee` (auto-parrainage), détection cycles, garde-fous IP/compte, plafond, statut `reversed` sur remboursement | Règles anti-fraude à valider (plafonds, délais, remboursements) |
+| 10 | Protection auto-parrainage & fraude | 🟡 | migration `0003`, `lib/referral.ts` (`sanitizeReferralChain`) | — | `referral_commissions` unique + `referral_relationships` CHECK `referrer<>referee` | `referral.test.ts` : auto-parrainage retiré, cycles/doublons éliminés (2 tests) | Tests verts ; contrainte SQL anti-auto-parrainage + garde applicative | Reste : garde-fous IP/compte, plafond de commissions, statut `reversed` auto sur remboursement Stripe | Règles anti-fraude à valider (plafonds, délais, remboursements) |
 | 11 | Tableau de bord admin avec rôles granulaires | ✅ (lecture) | `lib/rbac.ts`, `app/admin/**`, `middleware.ts`, migration `0002` | `/admin`, `/admin/*` | `profiles.role`, lit les files | `rbac.test.ts` (6) : matrice + isolation rôles | Redirections vérifiées ; tests verts | Actions d'écriture (gérer comptes/rôles via UI) non incluses ; nécessite migration 0002 + attribution rôle | Appliquer 0002 + désigner les admins |
 | 12 | Page `/accreditations` | ✅ | `app/accreditations/**`, `lib/data/accreditations.ts` | `/accreditations` | — | Build + vérif navigateur (Ét.5) | Page état vide honnête rendue | — | Fournir d'éventuelles accréditations réelles + preuves |
 | 13 | Composant `VerificationBadge` | ✅ | `components/ui/VerificationBadge.tsx` | — | — | Build ; garde-fou anti-fabrication (ne rend rien sans preuve) | Composant intégré | — | — |
@@ -53,9 +53,9 @@
 
 | Migration | Crée | Réversible ? | Appliquée ? | Débloque |
 |---|---|---|---|---|
-| `0001_tutoring_and_tutor_applications.sql` | `tutoring_requests`, `tutor_applications` | à compléter (down script) | **NON** | #4, #5, #6, #7 |
-| `0002_roles_expansion.sql` | élargit `profiles.role` | à compléter (down script) | **NON** | #11 |
-| `0003_referrals.sql` | 3 tables parrainage | à compléter (down script) | **NON** | #8, #9, #10 |
+| `0001_tutoring_and_tutor_applications.sql` | `tutoring_requests`, `tutor_applications` | ✅ section ROLLBACK (DOWN) | **NON** | #4, #5, #6, #7 |
+| `0002_roles_expansion.sql` | élargit `profiles.role` | ✅ section ROLLBACK (DOWN) | **NON** | #11 |
+| `0003_referrals.sql` | 3 tables parrainage (+ CHECK anti-auto-parrainage) | ✅ section ROLLBACK (DOWN) | **NON** | #8, #9, #10 |
 
 > **Prochaine phase :** rendre ces migrations explicitement **réversibles** (section `-- DOWN`), puis les
 > appliquer sur **staging** (jamais prod directement) pour permettre la démonstration fonctionnelle des #4–#10.

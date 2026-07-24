@@ -43,4 +43,16 @@ alter table public.profiles
     'support'
   ));
 
--- Fin de migration 0002.
+-- Fin de migration 0002 (UP).
+
+-- ============================================================================
+-- ROLLBACK (DOWN) — restaure la contrainte d'origine (student|admin).
+-- ⚠️ Échouera si des comptes portent déjà un nouveau rôle : les réaffecter à
+-- 'student' au préalable. À n'exécuter qu'après sauvegarde et décision.
+-- ----------------------------------------------------------------------------
+-- update public.profiles set role = 'student'
+--   where role not in ('student','admin');
+-- alter table public.profiles drop constraint if exists profiles_role_check;
+-- alter table public.profiles
+--   add constraint profiles_role_check check (role in ('student','admin'));
+-- ============================================================================

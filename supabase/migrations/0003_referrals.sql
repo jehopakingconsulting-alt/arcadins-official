@@ -30,6 +30,9 @@ create table if not exists public.referral_relationships (
   referrer_id  uuid not null references auth.users (id) on delete cascade,
   referee_id   uuid not null references auth.users (id) on delete cascade,
   generation   int  not null check (generation >= 1),
+  -- Anti-fraude : interdiction de l'auto-parrainage (un compte ne peut se
+  -- parrainer lui-même, à aucune génération).
+  constraint referral_no_self_referral check (referrer_id <> referee_id),
   unique (referrer_id, referee_id)
 );
 create index if not exists referral_rel_referee_idx  on public.referral_relationships (referee_id);
@@ -83,4 +86,16 @@ create policy referral_comm_owner_read
 -- service role côté serveur, qui contourne la RLS. Aucune police d'insertion
 -- publique n'est ouverte.
 
--- Fin de migration 0003.
+-- Fin de migration 0003 (UP).
+
+-- ============================================================================
+-- ROLLBACK (DOWN) — destructif : supprime les tables de parrainage et leurs
+-- données. À n'exécuter qu'après sauvegarde et décision explicite.
+-- ----------------------------------------------------------------------------
+-- drop policy if exists referral_codes_owner_read     on public.referral_codes;
+-- drop policy if exists referral_rel_referrer_read    on public.referral_relationships;
+-- drop policy if exists referral_comm_owner_read      on public.referral_commissions;
+-- drop table if exists public.referral_commissions;
+-- drop table if exists public.referral_relationships;
+-- drop table if exists public.referral_codes;
+-- ============================================================================

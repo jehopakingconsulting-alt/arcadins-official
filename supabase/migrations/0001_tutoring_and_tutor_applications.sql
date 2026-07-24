@@ -87,4 +87,15 @@ create policy tutor_applications_admin_read
     where p.id = auth.uid() and p.role = 'admin'
   ));
 
--- Fin de migration 0001.
+-- Fin de migration 0001 (UP).
+
+-- ============================================================================
+-- ROLLBACK (DOWN) — à exécuter séparément, uniquement pour annuler cette
+-- migration. Destructif : supprime les tables et LEURS DONNÉES. À n'utiliser
+-- qu'après sauvegarde et décision explicite.
+-- ----------------------------------------------------------------------------
+-- drop policy if exists tutoring_requests_admin_read  on public.tutoring_requests;
+-- drop policy if exists tutor_applications_admin_read on public.tutor_applications;
+-- drop table if exists public.tutoring_requests;
+-- drop table if exists public.tutor_applications;
+-- ============================================================================

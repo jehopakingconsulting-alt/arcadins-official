@@ -4,6 +4,7 @@ import {
   generateReferralCode,
   computeCommissions,
   computeCommissionLines,
+  sanitizeReferralChain,
   totalCommissionCents,
 } from "./referral.ts";
 import { REFERRAL_ENABLED, REFERRAL_PLAN } from "./data/referral-config.ts";
@@ -15,7 +16,18 @@ test("le code de parrainage a le format ARC-XXXXXX (alphabet non ambigu)", () =>
 
 test("le programme est désactivé par défaut → computeCommissions renvoie []", () => {
   assert.equal(REFERRAL_ENABLED, false);
-  assert.deepEqual(computeCommissions(150000, ["a", "b", "c"]), []);
+  assert.deepEqual(computeCommissions(150000, "buyer", ["a", "b", "c"]), []);
+});
+
+test("anti-fraude : l'auto-parrainage est retiré de la chaîne", () => {
+  // L'acheteur ne peut pas figurer comme bénéficiaire (aucune génération).
+  assert.deepEqual(sanitizeReferralChain("buyer", ["buyer", "p1", "p2"]), ["p1", "p2"]);
+  assert.deepEqual(sanitizeReferralChain("p1", ["p1"]), []);
+});
+
+test("anti-fraude : doublons et cycles éliminés, ordre préservé", () => {
+  assert.deepEqual(sanitizeReferralChain("b", ["p1", "p2", "p1", "p3"]), ["p1", "p2", "p3"]);
+  assert.deepEqual(sanitizeReferralChain("b", ["", "p1", "", "p2"]), ["p1", "p2"]);
 });
 
 test("computeCommissionLines applique les taux du plan par génération", () => {

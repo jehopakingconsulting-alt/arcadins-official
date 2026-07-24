@@ -19,6 +19,26 @@ export function generateReferralCode(rand: () => number = Math.random): string {
   return `ARC-${body}`;
 }
 
+/**
+ * Assainit une chaîne de parrainage avant tout calcul (anti-fraude) :
+ *   • retire l'acheteur lui-même (auto-parrainage interdit) ;
+ *   • retire les entrées vides ;
+ *   • dédoublonne en gardant la première occurrence (bloque les cycles où un
+ *     même bénéficiaire apparaîtrait à plusieurs générations).
+ * L'ordre (génération 1, 2, …) est préservé.
+ */
+export function sanitizeReferralChain(buyerId: string, chain: string[]): string[] {
+  const seen = new Set<string>();
+  const clean: string[] = [];
+  for (const id of chain) {
+    if (!id || id === buyerId) continue; // auto-parrainage / vide
+    if (seen.has(id)) continue; // cycle / doublon
+    seen.add(id);
+    clean.push(id);
+  }
+  return clean;
+}
+
 export interface CommissionLine {
   beneficiaryId: string;
   generation: number;
@@ -36,11 +56,13 @@ export interface CommissionLine {
  */
 export function computeCommissions(
   saleAmountCents: number,
+  buyerId: string,
   chain: string[],
 ): CommissionLine[] {
   // Interrupteur maître : rien tant que le programme n'est pas activé.
   if (!REFERRAL_ENABLED) return [];
-  return computeCommissionLines(saleAmountCents, chain);
+  // Anti-fraude : on retire l'acheteur lui-même et les doublons/cycles.
+  return computeCommissionLines(saleAmountCents, sanitizeReferralChain(buyerId, chain));
 }
 
 /**
