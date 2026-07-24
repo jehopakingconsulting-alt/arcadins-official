@@ -28,6 +28,12 @@ EMAIL_PROVIDER=console        # aucun envoi réel au départ
 ## Étape 3 — Appliquer les migrations (SQL Editor du projet de test)
 Exécuter **dans l'ordre**, chacune en transaction, en vérifiant les contrôles :
 
+0. `supabase/migrations/0000_staging_base.sql` — **amorçage staging uniquement** (crée `profiles`,
+   le déclencheur d'inscription et `contact_requests` qu'un projet de test vierge n'a pas ; la production
+   les possède déjà, donc **ne jamais l'exécuter en prod**).
+   ```sql
+   select to_regclass('public.profiles'), to_regclass('public.contact_requests'); -- non null
+   ```
 1. `supabase/migrations/0001_tutoring_and_tutor_applications.sql` (section UP)
    ```sql
    select to_regclass('public.tutoring_requests'), to_regclass('public.tutor_applications'); -- non null
