@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { PROGRAMS } from "@/lib/constants";
+import { canAccessAdmin } from "@/lib/rbac";
 import Link from "next/link";
 
 const STATUS_BADGES: Record<string, { label: string; className: string }> = {
@@ -33,6 +34,11 @@ export default async function DashboardPage() {
         .order("issued_at", { ascending: false })
     : { data: [] };
 
+  const { data: profile } = user
+    ? await supabase.from("profiles").select("role").eq("id", user.id).maybeSingle()
+    : { data: null };
+  const isAdmin = canAccessAdmin(profile?.role as string | undefined);
+
   const activeCount = (enrollments || []).filter((e) => e.status === "active").length;
   const certCount = (certificates || []).length;
 
@@ -51,6 +57,16 @@ export default async function DashboardPage() {
             Gérez vos formations, examens et certificats.
           </p>
         </div>
+
+        {isAdmin && (
+          <Link href="/admin" className="flex items-center justify-between gap-4 bg-navy rounded-[18px] p-5 mb-8 transition-all hover:-translate-y-0.5">
+            <div>
+              <div className="text-gold font-bold text-[15px]">🛠️ Espace d&apos;administration</div>
+              <div className="text-white/55 text-[13px] mt-0.5">Files de tutorat, candidatures tuteur et contacts.</div>
+            </div>
+            <span className="bg-gold text-navy font-bold text-sm px-5 py-2.5 rounded-lg shrink-0">Ouvrir →</span>
+          </Link>
+        )}
 
         {/* Quick stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
