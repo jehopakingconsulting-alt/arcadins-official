@@ -33,7 +33,7 @@
 | 16 | Bouton « Tutorat en TEF et TCF » | ✅ | `Header.tsx`, `i18n.ts` (`nav.tef`), `/tef` → `/tutorat` | `/tef`, lien `/tutorat` | — | Vérif navigateur | Libellé « Tutorat TEF / TCF » rendu (7 langues) | — | — |
 | 17 | Bouton « Programmes d'immigration disponibles au Canada » | ✅ | `i18n.ts` (`nav.immigration`) | `/immigration` | — | `i18n.test.ts` (7 langues) | Libellé long rendu en 7 langues | — | — |
 | 18 | Documents de formation des collaborateurs | ⬜ | — | — | — | — | — | **À CONSTRUIRE** : guides d'utilisation admin/tuteur/support | Public cible et format (PDF, wiki interne) ? |
-| 19 | Environnement staging | ⛔ | — | — | — | — | — | **À CONSTRUIRE** : projet Vercel preview + Supabase de test | Provisionner staging (Vercel + Supabase test) = action direction/infra |
+| 19 | Environnement staging | 🟡 (kit prêt) | `ARCADINS_STAGING_GUIDE.md`, `.env.example`, `supabase/seed_demo.sql` | — | applique 0001/0002/0004 | — | Guide clé-en-main (20-30 min) + seed démo + modèle env | **Exécution** : créer le projet Supabase de test + preview Vercel (action direction), puis dérouler le guide | Provisionner Supabase de test + preview Vercel |
 | 20 | Checklist de validation finale | 🟡 | `ARCADINS_REFONTE_REPORT.md` §3 | — | — | — | Checklist présente dans le rapport de bascule | Doc dédié signable + exécution réelle sur staging | Valider la checklist |
 | 21 | Rapport QA complet | ⬜ | — | — | — | 24 tests automatisés existent | Suite de tests verte | **À CONSTRUIRE** : `ARCADINS_QA_REPORT.md` (plan de tests manuels, matrice de compatibilité, résultats) | — |
 | 22 | Guide de déploiement | 🟡 | `ARCADINS_REFONTE_REPORT.md` §2/§4 | — | — | — | Procédure migrations + bascule présentes | Guide dédié complet (env vars, Vercel, Stripe, rollback) | — |

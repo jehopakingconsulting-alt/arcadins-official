@@ -22,6 +22,13 @@
 ### Dépendances
 - Ajout de `zod` (validation serveur). `npm audit` : 0 vulnérabilité.
 
+## Phase — Kit de validation staging
+### Ajouté
+- `ARCADINS_STAGING_GUIDE.md` : procédure clé-en-main (création base de test, env, application 0001/0002/0004, seed, checklist de validation, activation Resend optionnelle).
+- `.env.example` : modèle de variables d'environnement (aucune clé réelle ; exception `.gitignore`).
+- `supabase/seed_demo.sql` : données de démonstration (1 demande élève + 1 candidature tuteur) pour peupler l'admin sur staging.
+- Décision assumée : **arrêt de l'accumulation de fonctionnalités**, priorité à la validation en environnement réel (aligné avec la revue externe).
+
 ## Phases précédentes (rappel)
 - Migrations réversibles (0001/0002/0003) + anti-auto-parrainage (`0cea2ca`).
 - Master Progress Matrix (`9532370`).
