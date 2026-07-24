@@ -6,16 +6,17 @@ import { usePathname, useRouter } from "next/navigation";
 import { useLang, t, UI } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
 import LanguageSelector from "./LanguageSelector";
+import Icon, { type IconName } from "@/components/ui/Icon";
 
-const NAV_KEYS = [
-  { href: "/", key: "nav.home", icon: "🏠" },
-  { href: "/tef", key: "nav.tef", icon: "📋" },
-  { href: "/formations", key: "nav.formations", icon: "🎓" },
-  { href: "/examens", key: "nav.examens", icon: "💻" },
-  { href: "/immigration", key: "nav.immigration", icon: "🌍" },
-  { href: "/tarifs", key: "nav.tarifs", icon: "💰" },
-  { href: "/temoignages", key: "nav.temoignages", icon: "⭐" },
-  { href: "/contact", key: "nav.contact", icon: "📞" },
+const NAV_KEYS: { href: string; key: string; icon: IconName }[] = [
+  { href: "/", key: "nav.home", icon: "home" },
+  { href: "/tef", key: "nav.tef", icon: "clipboard" },
+  { href: "/formations", key: "nav.formations", icon: "cap" },
+  { href: "/examens", key: "nav.examens", icon: "laptop" },
+  { href: "/immigration", key: "nav.immigration", icon: "globe" },
+  { href: "/tarifs", key: "nav.tarifs", icon: "coin" },
+  { href: "/temoignages", key: "nav.temoignages", icon: "star" },
+  { href: "/contact", key: "nav.contact", icon: "phone" },
 ];
 
 export default function Header() {
@@ -119,7 +120,7 @@ export default function Header() {
                     : "text-white/72 hover:text-gold hover:bg-gold/10"
                 }`}
               >
-                <span className="text-[13px] opacity-55">{item.icon}</span>
+                <Icon name={item.icon} size={15} className="opacity-55" />
                 {t(UI[item.key], lang)}
               </Link>
             ))}
@@ -147,13 +148,13 @@ export default function Header() {
                     onClick={() => setAccountOpen(false)}
                     className="block px-4 py-3 text-[13.5px] font-medium text-white/80 hover:bg-gold/10 hover:text-gold transition-all"
                   >
-                    📊 {t(UI["nav.dashboard"], lang)}
+                    <span className="inline-flex items-center gap-2"><Icon name="chart" size={16} />{t(UI["nav.dashboard"], lang)}</span>
                   </Link>
                   <button
                     onClick={handleLogout}
                     className="w-full text-left px-4 py-3 text-[13.5px] font-medium text-white/80 hover:bg-gold/10 hover:text-gold transition-all border-t border-white/5"
                   >
-                    🚪 {t(UI["nav.logout"], lang)}
+                    <span className="inline-flex items-center gap-2"><Icon name="logout" size={16} />{t(UI["nav.logout"], lang)}</span>
                   </button>
                 </div>
               )}
@@ -193,7 +194,7 @@ export default function Header() {
                   : "text-white/80 border-l-[3px] border-l-transparent hover:text-gold hover:border-l-gold hover:bg-gold/8"
               }`}
             >
-              {item.icon} {t(UI[item.key], lang)}
+              <span className="inline-flex items-center gap-3"><Icon name={item.icon} size={18} className="opacity-60" />{t(UI[item.key], lang)}</span>
             </Link>
           ))}
           {userEmail ? (
@@ -203,13 +204,13 @@ export default function Header() {
                 onClick={() => setMenuOpen(false)}
                 className="bg-gold text-navy font-bold text-base py-4 rounded-xl text-center mt-4"
               >
-                📊 {t(UI["nav.dashboard"], lang)}
+                <span className="inline-flex items-center gap-2"><Icon name="chart" size={16} />{t(UI["nav.dashboard"], lang)}</span>
               </Link>
               <button
                 onClick={() => { handleLogout(); setMenuOpen(false); }}
                 className="bg-white/8 border border-gold/25 text-gold font-semibold text-base py-4 rounded-xl text-center"
               >
-                🚪 {t(UI["nav.logout"], lang)}
+                <span className="inline-flex items-center gap-2"><Icon name="logout" size={16} />{t(UI["nav.logout"], lang)}</span>
               </button>
             </>
           ) : (

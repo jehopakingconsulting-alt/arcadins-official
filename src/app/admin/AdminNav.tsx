@@ -4,13 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Permission } from "@/lib/rbac";
 import { REFERRAL_ENABLED } from "@/lib/data/referral-config";
+import Icon, { type IconName } from "@/components/ui/Icon";
 
-const LINKS: { href: string; label: string; icon: string; perm?: Permission; flag?: boolean }[] = [
-  { href: "/admin", label: "Vue d'ensemble", icon: "📊" },
-  { href: "/admin/tutorat", label: "Demandes de tutorat", icon: "🎯", perm: "tutoring_requests.view" },
-  { href: "/admin/tuteurs", label: "Candidatures tuteur", icon: "🧑‍🏫", perm: "tutor_applications.view" },
-  { href: "/admin/contacts", label: "Contacts", icon: "📨", perm: "contacts.view" },
-  { href: "/admin/parrainage", label: "Parrainage", icon: "🤝", perm: "referrals.view", flag: REFERRAL_ENABLED },
+const LINKS: { href: string; label: string; icon: IconName; perm?: Permission; flag?: boolean }[] = [
+  { href: "/admin", label: "Vue d'ensemble", icon: "chart" },
+  { href: "/admin/tutorat", label: "Demandes de tutorat", icon: "target", perm: "tutoring_requests.view" },
+  { href: "/admin/tuteurs", label: "Candidatures tuteur", icon: "teacher", perm: "tutor_applications.view" },
+  { href: "/admin/contacts", label: "Contacts", icon: "inbox", perm: "contacts.view" },
+  { href: "/admin/parrainage", label: "Parrainage", icon: "handshake", perm: "referrals.view", flag: REFERRAL_ENABLED },
 ];
 
 export default function AdminNav({ permissions }: { permissions: Permission[] }) {
@@ -31,7 +32,7 @@ export default function AdminNav({ permissions }: { permissions: Permission[] })
               active ? "bg-navy text-gold" : "text-body hover:bg-gold/8 hover:text-navy"
             }`}
           >
-            <span aria-hidden>{l.icon}</span>
+            <Icon name={l.icon} size={16} />
             {l.label}
           </Link>
         );

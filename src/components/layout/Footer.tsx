@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { PrivacyLink, TermsLink } from "./FooterModals";
 import { useLang, t, UI } from "@/lib/i18n";
+import Icon from "@/components/ui/Icon";
 
 const FOOTER_FORMATIONS = [
   { key: "nav.tef", label: "TEF / TCF Canada", href: "/tef" },
@@ -102,17 +103,17 @@ export default function Footer() {
           <h5 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mb-4">
             {t(UI["footer.contact"], lang)}
           </h5>
-          <a href="https://maps.google.com/?q=116+Albert+Street+Suite+300+Ottawa+ON+K1P+5G3" target="_blank" rel="noopener noreferrer" className="block text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold">
-            📍 Ottawa, ON Canada
+          <a href="https://maps.google.com/?q=116+Albert+Street+Suite+300+Ottawa+ON+K1P+5G3" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold">
+            <Icon name="pin" size={15} className="shrink-0 opacity-70" /> Ottawa, ON Canada
           </a>
-          <a href="mailto:info@arcadins-training.com" className="block text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold">
-            📧 info@arcadins-training.com
+          <a href="mailto:info@arcadins-training.com" className="flex items-center gap-2 text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold">
+            <Icon name="mail" size={15} className="shrink-0 opacity-70" /> info@arcadins-training.com
           </a>
-          <a href="tel:+15144513436" className="block text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold">
-            📞 +1 (514) 451-3436
+          <a href="tel:+15144513436" className="flex items-center gap-2 text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold">
+            <Icon name="phone" size={15} className="shrink-0 opacity-70" /> +1 (514) 451-3436
           </a>
-          <a href="https://wa.me/15144513436" target="_blank" rel="noopener noreferrer" className="block text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold">
-            💬 {t(UI["footer.whatsapp"], lang)}
+          <a href="https://wa.me/15144513436" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold">
+            <Icon name="chat" size={15} className="shrink-0 opacity-70" /> {t(UI["footer.whatsapp"], lang)}
           </a>
           <PrivacyLink />
           <TermsLink />
