@@ -103,6 +103,7 @@ export default function DevenirTuteurPage() {
             className={`w-full py-3.5 font-bold text-[15px] rounded-xl transition-all disabled:opacity-60 ${status === "sent" ? "bg-gold text-navy" : "bg-navy text-gold hover:bg-navy-mid hover:-translate-y-0.5"}`}>
             {status === "sent" ? t(UI["contact.form.sent"], lang) : status === "sending" ? t(UI["contact.form.sending"], lang) : t(UI["tapp.title"], lang)}
           </button>
+          {status === "sent" && <p className="text-[13px] font-semibold text-green-700 bg-green-50 border border-green-200 rounded-lg px-3 py-2.5 mt-3 text-center">{t(UI["tapp.success"], lang)}</p>}
           {status === "error" && <p className="text-[12.5px] text-red-600 mt-3 text-center">{t(UI["contact.form.note"], lang)}</p>}
           <p className="text-xs text-muted mt-3 text-center">{t(UI["contact.form.note"], lang)}</p>
         </form>

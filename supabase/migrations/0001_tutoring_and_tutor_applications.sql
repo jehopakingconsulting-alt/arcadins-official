@@ -32,9 +32,11 @@ create table if not exists public.tutoring_requests (
   -- Disponibilités déclarées (texte libre).
   availability  text,
   message       text,
-  -- Cycle de vie : nouvelle → contactee → planifiee → close | archivee
-  status        text not null default 'nouvelle'
-                  check (status in ('nouvelle','contactee','planifiee','close','archivee'))
+  -- Cycle de vie (parcours ÉLÈVE) — voir src/lib/tutoring/status.ts :
+  -- submitted → under_review → contacted → scheduled → enrolled → closed | cancelled
+  status        text not null default 'submitted'
+                  check (status in ('submitted','under_review','contacted','scheduled','enrolled','closed','cancelled')),
+  updated_at    timestamptz not null default now()
 );
 
 create index if not exists tutoring_requests_status_idx  on public.tutoring_requests (status);
@@ -56,9 +58,12 @@ create table if not exists public.tutor_applications (
   experience     text,      -- années / contexte d'enseignement
   qualifications text,      -- diplômes, certifications (déclaratif)
   motivation     text,
-  -- Cycle de vie DISTINCT de celui des demandes élèves.
-  status         text not null default 'recue'
-                   check (status in ('recue','en_revue','entretien','acceptee','refusee','archivee'))
+  -- Cycle de vie DISTINCT (parcours TUTEUR) — voir src/lib/tutor/status.ts :
+  -- submitted → under_review → interview_requested → interview_scheduled →
+  -- approved | rejected | suspended | archived
+  status         text not null default 'submitted'
+                   check (status in ('submitted','under_review','interview_requested','interview_scheduled','approved','rejected','suspended','archived')),
+  updated_at     timestamptz not null default now()
 );
 
 create index if not exists tutor_applications_status_idx  on public.tutor_applications (status);

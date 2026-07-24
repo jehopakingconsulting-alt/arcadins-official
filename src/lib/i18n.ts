@@ -86,6 +86,7 @@ export const UI: Translations = {
   "treq.form.goal": { fr: "Votre objectif (score visé, échéance…)", en: "Your goal (target score, deadline…)", es: "Tu objetivo (puntuación, plazo…)", it: "Il tuo obiettivo (punteggio, scadenza…)", pt: "O seu objetivo (pontuação, prazo…)", de: "Ihr Ziel (Zielwert, Frist…)", ht: "Objektif ou (nòt vize, dat limit…)" },
   "treq.form.avail": { fr: "Vos disponibilités (facultatif)", en: "Your availability (optional)", es: "Tu disponibilidad (opcional)", it: "La tua disponibilità (facoltativo)", pt: "A sua disponibilidade (opcional)", de: "Ihre Verfügbarkeit (optional)", ht: "Disponibilite ou (opsyonèl)" },
   "treq.form.message": { fr: "Précisions (facultatif)", en: "Details (optional)", es: "Detalles (opcional)", it: "Dettagli (facoltativo)", pt: "Detalhes (opcional)", de: "Details (optional)", ht: "Detay (opsyonèl)" },
+  "treq.success": { fr: "Votre demande de tutorat a bien été reçue.", en: "Your tutoring request has been received.", es: "Tu solicitud de tutoría se ha recibido correctamente.", it: "La tua richiesta di tutoraggio è stata ricevuta.", pt: "O seu pedido de tutoria foi recebido.", de: "Ihre Tutoring-Anfrage ist eingegangen.", ht: "Nou byen resevwa demann tutora ou." },
 
   // Devenir tuteur (candidature)
   "tapp.label": { fr: "Rejoindre l'équipe", en: "Join the team", es: "Únete al equipo", it: "Unisciti al team", pt: "Junte-se à equipa", de: "Team beitreten", ht: "Antre nan ekip la" },
@@ -101,6 +102,7 @@ export const UI: Translations = {
   "tapp.form.experience": { fr: "Expérience d'enseignement (facultatif)", en: "Teaching experience (optional)", es: "Experiencia docente (opcional)", it: "Esperienza di insegnamento (facoltativo)", pt: "Experiência de ensino (opcional)", de: "Lehrerfahrung (optional)", ht: "Eksperyans nan anseye (opsyonèl)" },
   "tapp.form.qualifications": { fr: "Diplômes / certifications (facultatif)", en: "Degrees / certifications (optional)", es: "Títulos / certificaciones (opcional)", it: "Titoli / certificazioni (facoltativo)", pt: "Diplomas / certificações (opcional)", de: "Abschlüsse / Zertifikate (optional)", ht: "Diplòm / sètifikasyon (opsyonèl)" },
   "tapp.form.motivation": { fr: "Votre motivation (facultatif)", en: "Your motivation (optional)", es: "Tu motivación (opcional)", it: "La tua motivazione (facoltativo)", pt: "A sua motivação (opcional)", de: "Ihre Motivation (optional)", ht: "Motivasyon ou (opsyonèl)" },
+  "tapp.success": { fr: "Votre candidature comme tuteur a bien été reçue et sera examinée.", en: "Your tutor application has been received and will be reviewed.", es: "Tu candidatura como tutor se ha recibido y será evaluada.", it: "La tua candidatura come tutor è stata ricevuta e sarà esaminata.", pt: "A sua candidatura como tutor foi recebida e será avaliada.", de: "Ihre Tutor-Bewerbung ist eingegangen und wird geprüft.", ht: "Nou byen resevwa kandidati ou kòm tutè epi n ap egzamine l." },
 
   // ── Parrainage (visible seulement si le programme est activé) ──
   "par.label": { fr: "Parrainage", en: "Referrals", es: "Referidos", it: "Referral", pt: "Indicações", de: "Empfehlungen", ht: "Parennaj" },
