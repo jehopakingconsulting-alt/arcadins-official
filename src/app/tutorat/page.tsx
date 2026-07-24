@@ -78,9 +78,17 @@ export default function TutoratPage() {
         <div className="bg-white/[0.04] border border-gold/17 rounded-[24px] p-8 mb-8">
           <div className="font-[family-name:var(--font-heading)] text-[22px] text-gold mb-2">{t(UI["tut.how.title"], lang)}</div>
           <p className="text-[14.5px] text-white/60 leading-[1.75] max-w-[760px]">{t(UI["tut.how.desc"], lang)}</p>
-          <Link href="/tarifs" className="inline-block mt-6 bg-gold text-navy font-bold text-[15px] px-7 py-3.5 rounded-[10px] transition-all hover:bg-gold-light hover:-translate-y-0.5">
-            {t(UI["tut.cta.pricing"], lang)}
-          </Link>
+          <div className="flex flex-wrap gap-3 mt-6">
+            <Link href="/tutorat/demande" className="bg-gold text-navy font-bold text-[14.5px] px-6 py-3.5 rounded-[10px] transition-all hover:bg-gold-light hover:-translate-y-0.5">
+              {t(UI["tut.cta.request"], lang)}
+            </Link>
+            <Link href="/devenir-tuteur" className="bg-white/8 border border-gold/30 text-gold font-bold text-[14.5px] px-6 py-3.5 rounded-[10px] transition-all hover:bg-white/12">
+              {t(UI["tut.cta.becometutor"], lang)}
+            </Link>
+            <Link href="/tarifs" className="bg-white/8 border border-gold/30 text-gold font-bold text-[14.5px] px-6 py-3.5 rounded-[10px] transition-all hover:bg-white/12">
+              {t(UI["tut.cta.pricing"], lang)}
+            </Link>
+          </div>
         </div>
 
         {/* Clause de non-responsabilité (conformité) */}

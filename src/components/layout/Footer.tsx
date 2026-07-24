@@ -6,6 +6,7 @@ import { useLang, t, UI } from "@/lib/i18n";
 
 const FOOTER_FORMATIONS = [
   { key: "nav.tef", label: "TEF / TCF Canada", href: "/tef" },
+  { key: "tut.title", href: "/tutorat" },
   { key: "fl.leadership", href: "/formations" },
   { key: "fl.epe", href: "/formations" },
   { key: "fl.pab", href: "/formations" },
@@ -18,6 +19,7 @@ const FOOTER_SERVICES = [
   { key: "fl.certificats", href: "/examens" },
   { key: "fl.ircc", href: "/immigration" },
   { key: "fl.emploi", href: "/immigration" },
+  { key: "tut.cta.becometutor", href: "/devenir-tuteur" },
   { key: "fl.tarifs", href: "/tarifs" },
   { key: "acc.nav", href: "/accreditations" },
   { key: "fl.contacter", href: "/contact" },

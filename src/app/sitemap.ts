@@ -17,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.6,
       })),
     ),
+    { url: `${base}/tutorat/demande`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
+    { url: `${base}/devenir-tuteur`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/formations`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/examens`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/immigration`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
