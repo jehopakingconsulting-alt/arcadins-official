@@ -116,6 +116,7 @@ export const UI: Translations = {
   "nav.temoignages": { fr: "Témoignages", en: "Reviews", es: "Testimonios", it: "Testimonianze", pt: "Depoimentos", de: "Erfahrungen", ht: "Temwayaj" },
   "nav.contact": { fr: "Contact", en: "Contact", es: "Contacto", it: "Contatto", pt: "Contato", de: "Kontakt", ht: "Kontak" },
   "nav.cta": { fr: "S'inscrire", en: "Enroll Now", es: "Inscribirse", it: "Iscriviti", pt: "Inscrever-se", de: "Einschreiben", ht: "Enskri" },
+  "nav.login": { fr: "Connexion", en: "Log in", es: "Iniciar sesión", it: "Accedi", pt: "Entrar", de: "Anmelden", ht: "Konekte" },
   "nav.dashboard": { fr: "Mon tableau de bord", en: "My Dashboard", es: "Mi panel", it: "La mia dashboard", pt: "Meu painel", de: "Mein Dashboard", ht: "Tablo bò mwen" },
   "nav.logout": { fr: "Déconnexion", en: "Log out", es: "Cerrar sesión", it: "Disconnetti", pt: "Sair", de: "Abmelden", ht: "Dekonekte" },
 

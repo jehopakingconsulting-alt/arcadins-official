@@ -160,12 +160,20 @@ export default function Header() {
               )}
             </div>
           ) : (
-            <Link
-              href="/tarifs"
-              className="hidden lg:block bg-gold text-navy font-bold text-[13px] px-5 py-2.5 rounded-[9px] transition-all hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(201,168,76,0.3)] shrink-0"
-            >
-              {t(UI["nav.cta"], lang)}
-            </Link>
+            <div className="hidden lg:flex items-center gap-2 shrink-0">
+              <Link
+                href="/auth/login"
+                className="text-gold font-semibold text-[13px] px-3 py-2.5 rounded-[9px] transition-all hover:bg-gold/10"
+              >
+                {t(UI["nav.login"], lang)}
+              </Link>
+              <Link
+                href="/auth/register"
+                className="bg-gold text-navy font-bold text-[13px] px-5 py-2.5 rounded-[9px] transition-all hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(201,168,76,0.3)]"
+              >
+                {t(UI["nav.cta"], lang)}
+              </Link>
+            </div>
           )}
 
           {/* Hamburger */}
@@ -214,13 +222,22 @@ export default function Header() {
               </button>
             </>
           ) : (
-            <Link
-              href="/tarifs"
-              onClick={() => setMenuOpen(false)}
-              className="bg-gold text-navy font-bold text-base py-4 rounded-xl text-center mt-4"
-            >
-              {t(UI["nav.cta"], lang)} →
-            </Link>
+            <>
+              <Link
+                href="/auth/register"
+                onClick={() => setMenuOpen(false)}
+                className="bg-gold text-navy font-bold text-base py-4 rounded-xl text-center mt-4"
+              >
+                {t(UI["nav.cta"], lang)} →
+              </Link>
+              <Link
+                href="/auth/login"
+                onClick={() => setMenuOpen(false)}
+                className="bg-white/8 border border-gold/25 text-gold font-semibold text-base py-4 rounded-xl text-center"
+              >
+                {t(UI["nav.login"], lang)}
+              </Link>
+            </>
           )}
         </div>
       )}
