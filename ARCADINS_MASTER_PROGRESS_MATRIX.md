@@ -1,13 +1,15 @@
 # ARCADINS — Master Progress Matrix
 
 **Branche :** `audit-refonte` · **Aucune fusion `main`, aucun déploiement production.**
-**État global build :** `tsc` 0 · `eslint .` 0 · `npm test` 24/24 · `next build` vert · git propre.
+**État global build :** `tsc` 0 · `eslint .` 0 · `npm test` **50/50** · `next build` vert · git propre.
 **Convention statut :** ✅ Terminée · 🟡 Partiellement terminée · ⬜ Non commencée · ⛔ Bloquée (dépend d'une décision/infra).
 
-> ⚠️ **Le projet complet n'est PAS terminé.** Ce tableau distingue le *code écrit et testable en isolation*
-> du *fonctionnel de bout en bout*, qui dépend pour plusieurs items de l'application des migrations Supabase
-> (non faite) et d'un environnement staging (non fait). Les formulaires tutorat/tuteur et le parrainage ne
-> sont **pas fonctionnels de bout en bout** tant que les migrations ne sont pas appliquées.
+> ✅ **VALIDÉ EN STAGING RÉEL (2026-07-24).** Les parcours élève (#4) et tuteur (#5), les notifications
+> distinctes (#6) et les actions administratives / statuts / historique (#7) ont été **exécutés et prouvés
+> de bout en bout** sur un projet Supabase de test dédié (migrations `0000`→`0004` appliquées) : soumissions
+> 200 + ids, 2 notifications distinctes `sent`, changement de statut admin avec `changed_by` + historique,
+> refus 401 non autorisé. Détails dans `ARCADINS_QA_REPORT.md` §7. **Rien n'est déployé ni fusionné.**
+> Restent hors périmètre : envoi d'e-mails réels (Resend) et déploiement (décisions de direction).
 
 ---
 

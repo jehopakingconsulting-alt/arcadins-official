@@ -1,8 +1,20 @@
 # ARCADINS — Changelog (branche `audit-refonte`)
 
-> Aucune fusion `main`, aucun déploiement production. Toutes les dates : 2026-07-23.
+> Aucune fusion `main`, aucun déploiement production.
 
-## Phase — Notifications réelles & actions administratives (parcours élève & tuteur)
+## Validation staging (2026-07-24)
+### Validé en environnement réel
+- Parcours élève & tuteur, notifications distinctes, actions admin (statut + historique), refus 401 — **exécutés et prouvés** sur un projet Supabase de test dédié (migrations `0000`→`0004`). Voir `ARCADINS_QA_REPORT.md` §7.
+### Corrigé
+- Header : « S'inscrire » → `/auth/register` (au lieu de `/tarifs`) + ajout lien « Connexion » (clé i18n `nav.login`, 7 langues).
+- `lib/stripe.ts` : repli placeholder si `STRIPE_SECRET_KEY` absente → build robuste sans clé (staging).
+- Données de démo : correction d'un encodage UTF-8 corrompu par le bundle SQL généré hors-app (source `seed_demo.sql` intacte ; bundle régénéré).
+### Ajouté
+- `supabase/migrations/0000_staging_base.sql` (amorçage staging : `profiles` + trigger + `contact_requests` — jamais en prod).
+### Point ouvert
+- Déclencheur d'auto-profil non déclenché sur base de test vierge (profil admin créé manuellement) — à diagnostiquer, sans impact prod.
+
+## Phase — Notifications réelles & actions administratives (parcours élève & tuteur) — 2026-07-23
 ### Ajouté
 - **Machines à états** serveur : `lib/tutoring/status.ts`, `lib/tutor/status.ts` (statuts + transitions validées + réouverture explicite).
 - **Moteur de notifications** : `lib/notifications/` — événements (13), fournisseur interchangeable (console / Resend prêt), modèles multilingues (dont les messages FR officiels), dispatch avec journal de livraison, anti-duplication, gestion d'erreur.
