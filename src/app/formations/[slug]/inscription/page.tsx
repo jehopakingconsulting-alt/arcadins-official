@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { PROGRAMS } from "@/lib/constants";
 import { getInstallmentPlan, getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
 import { createClient } from "@/lib/supabase/client";
+import Icon from "@/components/ui/Icon";
 import Link from "next/link";
 
 interface EnrollmentInfo {
@@ -52,7 +53,7 @@ export default function InscriptionPage() {
     return (
       <div className="min-h-screen bg-off-white pt-32 pb-20 flex items-center justify-center px-7">
         <div className="bg-white rounded-[28px] border border-gold/15 p-10 max-w-md text-center">
-          <div className="text-5xl mb-4">🚀</div>
+          <div className="flex justify-center text-gold mb-4"><Icon name="rocket" size={48} /></div>
           <h1 className="font-[family-name:var(--font-heading)] text-2xl text-navy mb-3">Programme à venir</h1>
           <p className="text-[15px] text-body leading-[1.7] mb-6">
             Ce programme est en cours de préparation. Les inscriptions et le tarif seront communiqués dès son lancement.
@@ -77,7 +78,7 @@ export default function InscriptionPage() {
     return (
       <div className="min-h-screen bg-off-white pt-32 pb-20 flex items-center justify-center px-7">
         <div className="bg-white rounded-[28px] border border-gold/15 p-10 max-w-md text-center">
-          <div className="text-5xl mb-4">✅</div>
+          <div className="flex justify-center text-green-500 mb-4"><Icon name="check" size={46} /></div>
           <h1 className="font-[family-name:var(--font-heading)] text-2xl text-navy mb-3">Inscription confirmée</h1>
           <p className="text-muted text-[14px] mb-6">Votre premier versement a été reçu. Vous avez maintenant accès au contenu de la formation.</p>
           <Link href={`/formations/${course.slug}/learn`} className="block w-full bg-gold text-navy font-bold py-3.5 rounded-xl">
@@ -92,7 +93,7 @@ export default function InscriptionPage() {
     return (
       <div className="min-h-screen bg-off-white pt-32 pb-20 flex items-center justify-center px-7">
         <div className="text-center">
-          <div className="text-5xl mb-4">🔍</div>
+          <div className="flex justify-center text-gold mb-4"><Icon name="search" size={46} /></div>
           <p className="text-muted mb-4">Aucune inscription en attente trouvée pour cette formation.</p>
           <Link href={`/formations/${course.slug}`} className="text-gold hover:underline">← Retour à la formation</Link>
         </div>
@@ -105,7 +106,7 @@ export default function InscriptionPage() {
       <div className="max-w-[700px] mx-auto">
         {/* Confirmation banner */}
         <div className="bg-navy rounded-[28px] p-8 mb-6 text-center">
-          <div className="text-4xl mb-3">✅</div>
+          <div className="flex justify-center text-green-500 mb-3"><Icon name="check" size={38} /></div>
           <h1 className="font-[family-name:var(--font-heading)] text-2xl text-white mb-2">
             Frais d&apos;inscription reçus
           </h1>

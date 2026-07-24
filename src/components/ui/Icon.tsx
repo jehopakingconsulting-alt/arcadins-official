@@ -7,7 +7,8 @@ import type { SVGProps } from "react";
 export type IconName =
   | "home" | "clipboard" | "cap" | "laptop" | "globe" | "coin" | "star"
   | "phone" | "chart" | "logout" | "target" | "teacher" | "handshake"
-  | "tools" | "mail" | "pin" | "chat" | "inbox" | "arrow-right" | "check";
+  | "tools" | "mail" | "pin" | "chat" | "inbox" | "arrow-right" | "check"
+  | "search" | "rocket" | "book" | "ban" | "shield" | "bell" | "calendar" | "card" | "award" | "clock";
 
 // Chaque icône : contenu interne d'un <svg viewBox="0 0 24 24">, trait 1.8.
 const PATHS: Record<IconName, React.ReactNode> = {
@@ -31,6 +32,16 @@ const PATHS: Record<IconName, React.ReactNode> = {
   inbox: <path d="M4 13l2-8h12l2 8v6H4v-6zm0 0h5a3 3 0 006 0h5" />,
   "arrow-right": <path d="M5 12h14M13 6l6 6-6 6" />,
   check: <path d="M5 12l4 4 10-10" />,
+  search: <><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></>,
+  rocket: <path d="M12 3c3 1 5 4 5 8l-2.5 2.5h-5L7 11c0-4 2-7 5-8zM9.5 14L7 16.5M14.5 14L17 16.5M10 18c0 1.5-1 3-3 3 0-2 1.5-3 3-3z" />,
+  book: <path d="M5 4h11a2 2 0 012 2v14H7a2 2 0 01-2-2V4zM5 18h13" />,
+  ban: <><circle cx="12" cy="12" r="8.5" /><path d="M6 6l12 12" /></>,
+  shield: <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3zM9 12l2 2 4-4" />,
+  bell: <path d="M6 9a6 6 0 1112 0c0 5 2 6 2 6H4s2-1 2-6M10 20a2 2 0 004 0" />,
+  calendar: <><rect x="4" y="5" width="16" height="16" rx="2" /><path d="M4 9h16M8 3v4M16 3v4" /></>,
+  card: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 10h18" /></>,
+  award: <><circle cx="12" cy="9" r="5" /><path d="M9 13.5L8 21l4-2 4 2-1-7.5" /></>,
+  clock: <><circle cx="12" cy="12" r="8.5" /><path d="M12 7v5l3.5 2" /></>,
 };
 
 interface IconProps extends Omit<SVGProps<SVGSVGElement>, "name"> {

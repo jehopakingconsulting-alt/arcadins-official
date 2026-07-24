@@ -6,6 +6,7 @@ import { PROGRAMS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
 import { getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
+import Icon, { type IconName } from "@/components/ui/Icon";
 import Link from "next/link";
 
 export default function CourseDetailPage() {
@@ -46,7 +47,7 @@ export default function CourseDetailPage() {
     return (
       <div className="min-h-screen bg-navy flex items-center justify-center pt-32">
         <div className="text-center">
-          <div className="text-5xl mb-4">🔍</div>
+          <div className="flex justify-center text-gold mb-4"><Icon name="search" size={48} /></div>
           <h1 className="font-[family-name:var(--font-heading)] text-3xl text-white mb-3">Formation introuvable</h1>
           <Link href="/formations" className="text-gold hover:underline">← Retour aux formations</Link>
         </div>
@@ -88,8 +89,8 @@ export default function CourseDetailPage() {
             {course.comingSoon ? (
               <>
                 <div className="flex items-center gap-3">
-                  <span className="bg-gold/20 text-gold font-bold text-lg px-5 py-2 rounded-full tracking-[1px] uppercase">
-                    🚀 À Venir
+                  <span className="bg-gold/20 text-gold font-bold text-lg px-5 py-2 rounded-full tracking-[1px] uppercase inline-flex items-center gap-2">
+                    <Icon name="rocket" size={18} /> À Venir
                   </span>
                   <span className="text-white/40 text-sm">Programme en cours de développement</span>
                 </div>
@@ -97,14 +98,14 @@ export default function CourseDetailPage() {
                   href="/contact"
                   className="bg-gold text-navy font-bold text-[15px] px-8 py-4 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 sm:ml-auto"
                 >
-                  📧 Être notifié du lancement
+                  <Icon name="mail" size={18} /> Être notifié du lancement
                 </Link>
               </>
             ) : enrolled ? (
               <>
                 <div className="flex items-center gap-3">
-                  <span className="bg-gold/20 text-gold font-bold text-base px-5 py-2 rounded-full">
-                    ✓ Déjà inscrit
+                  <span className="bg-gold/20 text-gold font-bold text-base px-5 py-2 rounded-full inline-flex items-center gap-2">
+                    <Icon name="check" size={17} /> Déjà inscrit
                   </span>
                   <span className="text-white/40 text-sm">Vous avez accès au contenu complet</span>
                 </div>
@@ -112,14 +113,14 @@ export default function CourseDetailPage() {
                   href={`/formations/${course.slug}/learn`}
                   className="bg-gold text-navy font-bold text-[15px] px-8 py-4 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 sm:ml-auto"
                 >
-                  📚 Accéder au contenu →
+                  <Icon name="book" size={18} /> Accéder au contenu →
                 </Link>
               </>
             ) : pendingPayment ? (
               <>
                 <div className="flex items-center gap-3">
-                  <span className="bg-amber-400/20 text-amber-300 font-bold text-base px-5 py-2 rounded-full">
-                    ⏳ En attente de versement
+                  <span className="bg-amber-400/20 text-amber-300 font-bold text-base px-5 py-2 rounded-full inline-flex items-center gap-2">
+                    <Icon name="bell" size={16} /> En attente de versement
                   </span>
                   <span className="text-white/40 text-sm">Complétez votre premier versement pour débuter</span>
                 </div>
@@ -133,8 +134,8 @@ export default function CourseDetailPage() {
             ) : suspended ? (
               <>
                 <div className="flex items-center gap-3">
-                  <span className="bg-red-400/20 text-red-300 font-bold text-base px-5 py-2 rounded-full">
-                    ⛔ Compte suspendu
+                  <span className="bg-red-400/20 text-red-300 font-bold text-base px-5 py-2 rounded-full inline-flex items-center gap-2">
+                    <Icon name="ban" size={16} /> Compte suspendu
                   </span>
                   <span className="text-white/40 text-sm">Un versement n&apos;a pas été reçu — régularisez pour reprendre l&apos;accès</span>
                 </div>
@@ -158,7 +159,7 @@ export default function CourseDetailPage() {
                   href="/contact"
                   className="bg-transparent text-white font-semibold text-[15px] px-7 py-4 rounded-[10px] border-[1.5px] border-white/28 transition-all inline-flex items-center gap-2 hover:border-gold hover:text-gold sm:ml-auto"
                 >
-                  📞 Nous contacter
+                  <Icon name="phone" size={18} /> Nous contacter
                 </Link>
               </>
             )}
@@ -203,18 +204,18 @@ export default function CourseDetailPage() {
                 Détails de la formation
               </h3>
               <div className="space-y-4">
-                {[
-                  { icon: "⏱", label: "Durée", value: course.duration },
-                  { icon: "🎓", label: "Certification", value: course.certification },
-                  { icon: "💰", label: "Prix", value: `${course.price.toLocaleString()} CAD + ${REGISTRATION_FEE}$ inscription` },
-                  { icon: "📅", label: "Paiement", value: "Complet ou 3 versements" },
-                  { icon: "📋", label: "Modules", value: `${course.modules.length} modules` },
-                  { icon: "🌐", label: "Format", value: "100% en ligne" },
-                  { icon: "🗣", label: "Langues", value: "Français · Anglais" },
-                ].map((item) => (
+                {([
+                  { icon: "clock", label: "Durée", value: course.duration },
+                  { icon: "award", label: "Certification", value: course.certification },
+                  { icon: "coin", label: "Prix", value: `${course.price.toLocaleString()} CAD + ${REGISTRATION_FEE}$ inscription` },
+                  { icon: "card", label: "Paiement", value: "Complet ou 3 versements" },
+                  { icon: "clipboard", label: "Modules", value: `${course.modules.length} modules` },
+                  { icon: "globe", label: "Format", value: "100% en ligne" },
+                  { icon: "chat", label: "Langues", value: "Français · Anglais" },
+                ] as { icon: IconName; label: string; value: string }[]).map((item) => (
                   <div key={item.label} className="flex items-center justify-between py-2 border-b border-gold/8 last:border-b-0">
                     <span className="text-[13.5px] text-muted flex items-center gap-2">
-                      {item.icon} {item.label}
+                      <Icon name={item.icon} size={15} className="text-gold" /> {item.label}
                     </span>
                     <span className="text-[13.5px] font-semibold text-navy">
                       {item.value}
@@ -228,7 +229,7 @@ export default function CourseDetailPage() {
             <div className="bg-gradient-to-br from-gold/15 to-gold/5 rounded-[28px] p-8 border border-gold/25 text-center">
               {course.comingSoon ? (
                 <>
-                  <div className="text-3xl mb-3">🚀</div>
+                  <div className="flex justify-center text-gold mb-3"><Icon name="rocket" size={30} /></div>
                   <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">
                     Bientôt disponible
                   </h3>
@@ -239,12 +240,12 @@ export default function CourseDetailPage() {
                     href="/contact"
                     className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid hover:-translate-y-0.5"
                   >
-                    📧 Être notifié →
+                    <span className="inline-flex items-center gap-2"><Icon name="mail" size={17} /> Être notifié →</span>
                   </Link>
                 </>
               ) : enrolled ? (
                 <>
-                  <div className="text-3xl mb-3">📚</div>
+                  <div className="flex justify-center text-gold mb-3"><Icon name="book" size={30} /></div>
                   <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">Vous êtes inscrit</h3>
                   <Link href={`/formations/${course.slug}/learn`} className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid">
                     Accéder au contenu →
@@ -252,7 +253,7 @@ export default function CourseDetailPage() {
                 </>
               ) : pendingPayment ? (
                 <>
-                  <div className="text-3xl mb-3">⏳</div>
+                  <div className="flex justify-center text-gold mb-3"><Icon name="bell" size={28} /></div>
                   <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">Versement en attente</h3>
                   <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
                     Vos frais d&apos;inscription ont été reçus. Complétez votre premier versement avant la date limite.
@@ -263,7 +264,7 @@ export default function CourseDetailPage() {
                 </>
               ) : suspended ? (
                 <>
-                  <div className="text-3xl mb-3">⛔</div>
+                  <div className="flex justify-center text-red-400 mb-3"><Icon name="ban" size={28} /></div>
                   <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">Compte suspendu</h3>
                   <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
                     Un versement mensuel n&apos;a pas été reçu à temps. Contactez-nous pour régulariser votre dossier.
@@ -274,7 +275,7 @@ export default function CourseDetailPage() {
                 </>
               ) : (
                 <>
-                  <div className="text-3xl mb-3">🎯</div>
+                  <div className="flex justify-center text-gold mb-3"><Icon name="target" size={30} /></div>
                   <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">
                     Réservez votre place
                   </h3>
@@ -296,7 +297,7 @@ export default function CourseDetailPage() {
 
             {/* Guarantee */}
             <div className="bg-white rounded-[28px] p-8 border border-gold/11 text-center">
-              <div className="text-3xl mb-2">🛡️</div>
+              <div className="flex justify-center text-gold mb-2"><Icon name="shield" size={28} /></div>
               <h4 className="font-[family-name:var(--font-heading)] text-base text-navy mb-2">
                 Garantie satisfaction
               </h4>
