@@ -84,6 +84,24 @@ const EMAIL_TEMPLATES: Record<NotificationEvent, TemplateSet> = {
         SIGN_FR,
     },
   },
+  tutoring_request_cancelled: {
+    fr: {
+      subject: "Mise à jour concernant votre demande de tutorat",
+      body:
+        "Bonjour {{firstName}},\n\n" +
+        "Après examen, nous ne sommes pas en mesure de donner suite à votre demande de tutorat pour le moment.\n\n" +
+        "Nous vous remercions de l'intérêt porté à ARCADINS Training Center. Vous pourrez soumettre une nouvelle demande à l'avenir si vous le souhaitez.\n\n" +
+        SIGN_FR,
+    },
+    en: {
+      subject: "Update regarding your tutoring request",
+      body:
+        "Hello {{firstName}},\n\n" +
+        "After review, we are unable to proceed with your tutoring request at this time.\n\n" +
+        "Thank you for your interest in ARCADINS Training Center. You are welcome to submit a new request in the future.\n\n" +
+        SIGN_EN,
+    },
+  },
 
   // ---------- PARCOURS TUTEUR ----------
   tutor_application_submitted: {

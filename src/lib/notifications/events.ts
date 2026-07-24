@@ -8,6 +8,7 @@ export const TUTORING_EVENTS = [
   "tutoring_session_scheduled",
   "tutoring_request_enrolled",
   "tutoring_request_closed",
+  "tutoring_request_cancelled",
 ] as const;
 
 export const TUTOR_EVENTS = [
@@ -44,7 +45,7 @@ export const TUTORING_STATUS_EVENT: Record<string, TutoringEvent | null> = {
   scheduled: "tutoring_session_scheduled",
   enrolled: "tutoring_request_enrolled",
   closed: "tutoring_request_closed",
-  cancelled: null,
+  cancelled: "tutoring_request_cancelled",
 };
 
 /** Statut de tutor_applications → événement correspondant (null si aucun). */
