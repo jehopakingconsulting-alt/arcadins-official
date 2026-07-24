@@ -89,6 +89,18 @@ appliquées ; `EMAIL_PROVIDER=console`. Aucun déploiement, aucune écriture en 
 - Corruption d'accents dans les **données de démo** (fichier SQL groupé généré hors-app) → source correcte, bundle régénéré en UTF-8, données rectifiées.
 - `stripe.ts` : repli placeholder pour permettre le build sans clé Stripe (staging).
 
+### UAT complète — validée le 2026-07-24 ✅
+Recette utilisateur déroulée intégralement sur staging (voir `ARCADINS_UAT_CHECKLIST.md`) :
+- **A/B** — parcours élève et tuteur : soumission, confirmations UI **distinctes**, e-mails réels reçus.
+- **D/E** — actions admin : chaînes de statut complètes (élève `submitted→…→closed/cancelled` ; tuteur
+  `submitted→…→approved` et `→rejected`), **historique** + `changed_by`, e-mails à chaque étape
+  (approbation, refus professionnel, etc.), **transitions interdites refusées**, réouverture explicite.
+- **F/G** — 7 langues, design navy/or, journaux cohérents.
+- **Statistiques de livraison observées** : `sent·resend` 14 (vrais e-mails), `sent·console` 5, `failed·resend`
+  5 (adresses fictives — restriction attendue du domaine de test).
+- **Amélioration issue de la recette** : ajout d'une notification à l'annulation d'une demande de tutorat
+  (`tutoring_request_cancelled`, commit dédié).
+
 ### Point ouvert (non bloquant)
 - Sur la base de test vierge, le déclencheur d'auto-création de profil à l'inscription n'a pas produit de
   ligne `profiles` (profil créé manuellement pour le compte admin de test). À diagnostiquer avant un
