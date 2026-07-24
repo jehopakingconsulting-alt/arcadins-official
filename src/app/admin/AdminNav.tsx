@@ -3,17 +3,21 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Permission } from "@/lib/rbac";
+import { REFERRAL_ENABLED } from "@/lib/data/referral-config";
 
-const LINKS: { href: string; label: string; icon: string; perm?: Permission }[] = [
+const LINKS: { href: string; label: string; icon: string; perm?: Permission; flag?: boolean }[] = [
   { href: "/admin", label: "Vue d'ensemble", icon: "📊" },
   { href: "/admin/tutorat", label: "Demandes de tutorat", icon: "🎯", perm: "tutoring_requests.view" },
   { href: "/admin/tuteurs", label: "Candidatures tuteur", icon: "🧑‍🏫", perm: "tutor_applications.view" },
   { href: "/admin/contacts", label: "Contacts", icon: "📨", perm: "contacts.view" },
+  { href: "/admin/parrainage", label: "Parrainage", icon: "🤝", perm: "referrals.view", flag: REFERRAL_ENABLED },
 ];
 
 export default function AdminNav({ permissions }: { permissions: Permission[] }) {
   const pathname = usePathname();
-  const visible = LINKS.filter((l) => !l.perm || permissions.includes(l.perm));
+  const visible = LINKS.filter(
+    (l) => (!l.perm || permissions.includes(l.perm)) && l.flag !== false,
+  );
 
   return (
     <nav className="bg-white border border-gold/16 rounded-[18px] p-2.5 flex flex-row lg:flex-col gap-1 overflow-x-auto">

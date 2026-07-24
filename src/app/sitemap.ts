@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SKILLS, LEVELS } from "@/lib/data/tutorat";
+import { REFERRAL_ENABLED } from "@/lib/data/referral-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = (process.env.NEXT_PUBLIC_SITE_URL || "").trim() || "https://arcadins-official.vercel.app";
@@ -19,6 +20,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ),
     { url: `${base}/tutorat/demande`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
     { url: `${base}/devenir-tuteur`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    ...(REFERRAL_ENABLED
+      ? [{ url: `${base}/parrainage`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.6 }]
+      : []),
     { url: `${base}/formations`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/examens`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/immigration`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },

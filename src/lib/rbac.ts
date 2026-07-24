@@ -17,6 +17,7 @@ export type Permission =
   | "tutor_applications.view" // file des candidatures tuteur
   | "contacts.view"           // demandes de contact
   | "enrollments.view"        // inscriptions / paiements
+  | "referrals.view"          // parrainage & commissions
   | "content.manage"          // contenu pédagogique
   | "users.manage";           // rôles & comptes
 
@@ -27,13 +28,14 @@ const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "tutor_applications.view",
     "contacts.view",
     "enrollments.view",
+    "referrals.view",
     "content.manage",
     "users.manage",
   ],
   // Gère les candidatures tuteur + le contenu, sans finance ni comptes.
   content_manager: ["admin.access", "tutor_applications.view", "content.manage"],
-  // Vue finance + inscriptions.
-  finance_manager: ["admin.access", "enrollments.view"],
+  // Vue finance + inscriptions + parrainage (commissions).
+  finance_manager: ["admin.access", "enrollments.view", "referrals.view"],
   // Première ligne : demandes de tutorat + contacts.
   support: ["admin.access", "tutoring_requests.view", "contacts.view"],
   // Le tuteur n'a pas accès à l'admin (espace tuteur = étape ultérieure).
