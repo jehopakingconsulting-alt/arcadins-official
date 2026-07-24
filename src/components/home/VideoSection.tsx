@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { VIDEOS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
+import Icon from "@/components/ui/Icon";
 
 export default function VideoSection() {
   const { lang } = useLang();
@@ -65,7 +66,7 @@ export default function VideoSection() {
           </div>
           <div className="flex gap-3 shrink-0 flex-wrap">
             <Link href="/tef" className="bg-gold text-navy font-bold text-[15px] px-8 py-3.5 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5">
-              🎯 {t(UI["cta.start_tef"], lang)}
+<Icon name="target" size={18} /> {t(UI["cta.start_tef"], lang)}
             </Link>
             <Link href="/formations" className="bg-transparent text-white font-semibold text-[15px] px-7 py-3 rounded-[10px] border-[1.5px] border-white/28 transition-all inline-flex items-center gap-2 hover:border-gold hover:text-gold">
               {t(UI["cta.see_formations"], lang)}

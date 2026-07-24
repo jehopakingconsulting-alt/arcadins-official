@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { SLIDES } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
+import Icon from "@/components/ui/Icon";
 
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
@@ -69,7 +70,7 @@ export default function HeroSlider() {
             href="/formations"
             className="bg-gold text-navy font-bold text-[15px] px-8 py-3.5 rounded-[10px] transition-all inline-flex items-center gap-2 hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-[0_14px_42px_rgba(201,168,76,0.32)]"
           >
-            🎓 {t(UI["hero.cta1"], lang)}
+<Icon name="cap" size={18} /> {t(UI["hero.cta1"], lang)}
           </Link>
           <Link
             href="/formations"

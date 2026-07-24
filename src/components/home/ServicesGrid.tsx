@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useLang, t, UI } from "@/lib/i18n";
+import Icon, { type IconName } from "@/components/ui/Icon";
 
-const SERVICES = [
-  { icon: "📋", catKey: "svc.tests.cat", nameKey: "svc.tests.name", descKey: "svc.tests.desc", href: "/tef" },
-  { icon: "🎓", catKey: "svc.formations.cat", nameKey: "svc.formations.name", descKey: "svc.formations.desc", href: "/formations" },
-  { icon: "💻", catKey: "svc.examens.cat", nameKey: "svc.examens.name", descKey: "svc.examens.desc", href: "/examens" },
-  { icon: "🍁", catKey: "svc.immigration.cat", nameKey: "svc.immigration.name", descKey: "svc.immigration.desc", href: "/immigration" },
+const SERVICES: { icon: IconName; catKey: string; nameKey: string; descKey: string; href: string }[] = [
+  { icon: "clipboard", catKey: "svc.tests.cat", nameKey: "svc.tests.name", descKey: "svc.tests.desc", href: "/tef" },
+  { icon: "cap", catKey: "svc.formations.cat", nameKey: "svc.formations.name", descKey: "svc.formations.desc", href: "/formations" },
+  { icon: "laptop", catKey: "svc.examens.cat", nameKey: "svc.examens.name", descKey: "svc.examens.desc", href: "/examens" },
+  { icon: "globe", catKey: "svc.immigration.cat", nameKey: "svc.immigration.name", descKey: "svc.immigration.desc", href: "/immigration" },
 ];
 
 export default function ServicesGrid() {
@@ -33,7 +34,9 @@ export default function ServicesGrid() {
               href={s.href}
               className="bg-white border border-gold/16 rounded-[20px] p-6 cursor-pointer transition-all hover:-translate-y-1 hover:border-gold/48 hover:shadow-[0_16px_40px_rgba(13,27,46,0.1)] block"
             >
-              <div className="text-[34px] mb-3">{s.icon}</div>
+              <div className="w-14 h-14 rounded-2xl bg-navy text-gold flex items-center justify-center mb-3">
+                <Icon name={s.icon} size={26} />
+              </div>
               <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold mb-1.5">
                 {t(UI[s.catKey], lang)}
               </div>
