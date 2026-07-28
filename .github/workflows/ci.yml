@@ -58,7 +58,8 @@ jobs:
         with: { fail-on-severity: high }
       - name: Scan secrets (gitleaks)
         uses: gitleaks/gitleaks-action@v2
-        env: { GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: SBOM (CycloneDX)
         run: npx --yes @cyclonedx/cyclonedx-npm --output-file sbom.json
       - name: Scan licences

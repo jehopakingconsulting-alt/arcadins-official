@@ -25,7 +25,8 @@ jobs:
           ts=$(date -u +%Y%m%d-%H%M)
           pg_dump "$SUPABASE_DB_URL" -Fc -f "arcadins-$ts.dump"
           echo "DUMP=arcadins-$ts.dump" >> "$GITHUB_ENV"
-        env: { SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }} }
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
       - name: Chiffrer (gpg symétrique)
         run: gpg --batch --yes --passphrase "${{ secrets.BACKUP_PASSPHRASE }}" -c "$DUMP"
       - name: Publier l'artefact chiffré

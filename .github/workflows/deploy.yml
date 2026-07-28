@@ -24,7 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 24, cache: npm }
+        with:
+          node-version: 24
+          cache: npm
       - run: npm ci
       - name: Install Vercel CLI
         run: npm i -g vercel@latest
@@ -32,16 +34,19 @@ jobs:
       # 1) Build + déploiement "preview" (non promu) = staging éphémère
       - name: Vercel pull env
         run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-        env: { VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} }
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       - name: Build
         run: vercel build --prod --token=$VERCEL_TOKEN
-        env: { VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} }
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       - name: Deploy (prebuilt, non promu)
         id: deploy
         run: |
           URL=$(vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN)
           echo "url=$URL" >> "$GITHUB_OUTPUT"
-        env: { VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} }
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
       # 2) Health-gate sur le déploiement fraîchement créé
       - name: Readiness gate
@@ -57,7 +62,8 @@ jobs:
       # 3) Promotion en production (alias)
       - name: Promote to production
         run: vercel promote "${{ steps.deploy.outputs.url }}" --token=$VERCEL_TOKEN --yes
-        env: { VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} }
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
       # 4) Smoke post-promotion + ROLLBACK auto si échec
       - name: Post-promotion smoke + auto-rollback
@@ -70,4 +76,5 @@ jobs:
             vercel rollback --token=$VERCEL_TOKEN --yes || true
             exit 1
           fi
-        env: { VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} }
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
