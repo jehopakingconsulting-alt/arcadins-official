@@ -28,7 +28,8 @@ réussi. Tous les fichiers sont versionnés sur la branche `audit-refonte` (comm
 - [STAGING_PILOT_REPORT.md](../../STAGING_PILOT_REPORT.md) — **pilote 1 utilisateur : ✅ GO**.
 
 ## Production (préparation, non exécuté)
-- [PRODUCTION_IMPORT_PLAN.md](../../PRODUCTION_IMPORT_PLAN.md) — plan d'import progressif par lots.
+- [PRODUCTION_IMPORT_PLAN.md](../../PRODUCTION_IMPORT_PLAN.md) — plan générique par % + PRODUCTION MASTER PLAYBOOK.
+- [PRODUCTION_RELEASE_CHECKLIST.md](../../PRODUCTION_RELEASE_CHECKLIST.md) — checklist obligatoire avant chaque migration prod.
 
 ## Scripts & migrations de référence
 - `supabase/migrations/0005_legacy_import.sql`, `0006_migration_rpcs.sql`
