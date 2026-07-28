@@ -69,7 +69,8 @@ jobs:
         run: |
           curl -fsSL -o cosign https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64
           chmod +x cosign
-          COSIGN_EXPERIMENTAL=1 ./cosign sign-blob --yes sbom.json --output-signature sbom.json.sig --output-certificate sbom.json.pem
+          # cosign moderne : --output-signature/--output-certificate dépréciés → --bundle
+          ./cosign sign-blob --yes sbom.json --bundle sbom.json.bundle
       - name: Publier le SBOM signé
         uses: actions/upload-artifact@v4
         with: { name: sbom-signed, path: "sbom.json*" }
