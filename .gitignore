@@ -34,6 +34,10 @@ yarn-error.log*
 .env*
 !.env.example
 
+# Données de migration legacy (exports contenant hachages/PII) — JAMAIS committées
+scripts/migration/_data/
+ARCADINS_MIGRATION_RECONCILIATION_REPORT.md
+
 # vercel
 .vercel
 
