@@ -14,7 +14,8 @@ const sample = () => ({
   prospects: [{ id: 1, email: "p@ex.com", nom: "P", prenom: "Q", created_at: "2026-06-04 10:00:00" }],
   tests: [
     { id: 1, user_id: 2, test_type: "final", score: 80, passed: 1, attempt_number: 1, answers: "[]", created_at: "2026-06-06 10:00:00" },
-    { id: 2, user_id: 999, test_type: "trial", score: 10 }, // orphelin
+    { id: 2, user_id: 999, test_type: "trial", score: 10 }, // orphelin (user supprimé)
+    { id: 3, user_id: 4, test_type: "trial", score: 55, created_at: "2026-06-05 09:00:00" }, // prospect → à CONSERVER
   ],
   modules: [{ id: 1, user_id: 2, module_number: 1, status: "done", completed_at: "2026-06-07 10:00:00" }],
   tuteur_modules: [],
@@ -55,11 +56,21 @@ test("paiement confirmé + parrainage + commission en cents", () => {
   assert.equal(out.referralCommissions[0].status, "paid");
 });
 
-test("orphelins rejetés + dates historiques conservées", () => {
+test("Option A : tests de prospects conservés, seul l'orphelin réel rejeté", () => {
   const r = new Report();
   const out = transformAll(sample(), r);
-  assert.equal(out.tests.length, 1, "test orphelin (user 999) rejeté");
-  assert.ok(r.errors.some(e => e.entity === "tests" && e.reason === "user_introuvable"));
+  // 2 tests conservés : compte (id1) + prospect (id3). Orphelin réel (id2) rejeté.
+  assert.equal(out.tests.length, 2, "test compte + test prospect conservés");
+  assert.equal(out.tests.filter(t => t.kind === "prospect").length, 1, "test prospect préservé");
+  assert.equal(out.tests.filter(t => t.kind === "account").length, 1);
+  assert.ok(r.errors.some(e => e.entity === "tests" && e.reason === "user_supprime"));
+  const prospTest = out.tests.find(t => t.kind === "prospect");
+  assert.equal(prospTest.email, "lead@ex.com", "email prospect conservé pour rattachement futur");
+  assert.equal(prospTest.converted, false);
+});
+
+test("dates historiques conservées", () => {
+  const out = transformAll(sample(), new Report());
   const learner = out.profiles.find(p => p.legacy_id === 2);
   assert.equal(learner.created_at, "2026-06-05T10:00:00.000Z", "date d'inscription conservée");
   assert.equal(out.certificates.length, 1);

@@ -24,8 +24,8 @@ export function runReconcile() {
   lines.push(`**Source :** ${meta.dbPath || "?"} · **sha256 :** \`${meta.sha256 || "?"}\``);
   lines.push(`**Intégrité :** ${meta.integrity_check || "?"} · **FK violations :** ${meta.foreign_key_violations ?? "?"}`);
   lines.push("");
-  lines.push("> ⚠️ Effectué sur la **copie de dév locale** (≈9 comptes), **pas** la production. Le rapport");
-  lines.push("> officiel sera régénéré sur le `arcadins.db` de production, avant tout import.");
+  lines.push(`> Dry-run **lecture seule** — aucune écriture en base. Source = ${usersTotal} utilisateurs.`);
+  lines.push("> L'import réel n'aura lieu qu'après application de `0005` sur staging + votre autorisation.");
   lines.push("");
   lines.push("## Comptage source → cible");
   lines.push("| Entité source | Source | Transformé (cible) | Rejeté | Note |");

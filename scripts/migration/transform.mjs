@@ -114,21 +114,33 @@ export function transformAll(data, report) {
     report.count("prospects", "inserted");
   }
 
-  // ── 3) TESTS / RESULTS ──────────────────────────────────────────────────────
-  const userIds = new Set(out.idMap.filter(m => m.entity === "user").map(m => m.legacy_id));
+  // ── 3) TESTS / RESULTS (Option A : AUCUNE perte, prospects inclus) ──────────
+  const userById = new Map(users.map((u) => [u.id, u]));
+  const accountIds = new Set(out.idMap.filter((m) => m.entity === "user").map((m) => m.legacy_id));
+  const prospectIds = new Set(out.prospects.filter((p) => p.origin === "user_prospect").map((p) => p.legacy_id));
   for (const t of data.tests || []) {
-    if (!userIds.has(t.user_id)) { report.reject("tests", { legacy_id: t.id }, "user_introuvable"); continue; }
-    out.tests.push({
-      legacy_id: t.id, user_legacy_id: t.user_id, test_type: t.test_type, score: toNum(t.score),
+    const owner = userById.get(t.user_id);
+    const base = {
+      legacy_test_id: t.id, test_type: t.test_type, score: toNum(t.score),
       passed: toBool(t.passed), attempt_number: toNum(t.attempt_number) ?? 1,
-      answers: parseJsonSafe(t.answers, []), created_at: parseLegacyDate(t.created_at),
-    });
-    report.count("tests", "inserted");
+      langue: owner?.lang || null, answers: parseJsonSafe(t.answers, []),
+      date: parseLegacyDate(t.created_at), email: owner ? normEmail(owner.email) : null,
+    };
+    if (accountIds.has(t.user_id)) {
+      out.tests.push({ ...base, kind: "account", user_legacy_id: t.user_id, converted: true });
+      report.count("tests", "inserted");
+    } else if (prospectIds.has(t.user_id)) {
+      // Test d'essai d'un prospect : conservé, rattachable plus tard via l'email.
+      out.tests.push({ ...base, kind: "prospect", prospect_legacy_id: t.user_id, converted: false });
+      report.count("tests", "inserted");
+    } else {
+      report.reject("tests", { legacy_id: t.id }, "user_supprime"); // utilisateur source réellement absent
+    }
   }
 
   // ── 4) MODULES (learner + tuteur) → progression ─────────────────────────────
   const pushModule = (m, track) => {
-    if (!userIds.has(m.user_id)) { report.reject("modules", { legacy_id: m.id, track }, "user_introuvable"); return; }
+    if (!accountIds.has(m.user_id)) { report.reject("modules", { legacy_id: m.id, track }, "user_introuvable"); return; }
     out.modules.push({
       legacy_id: m.id, user_legacy_id: m.user_id, track, module_number: m.module_number, status: m.status,
       started_at: parseLegacyDate(m.started_at), completed_at: parseLegacyDate(m.completed_at),

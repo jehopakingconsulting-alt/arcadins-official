@@ -59,18 +59,47 @@ create table if not exists public.legacy_learners (
   created_at              timestamptz not null default now()
 );
 
+-- legacy_tests couvre TOUS les tests (comptes ET prospects) — aucune perte.
+-- Un test appartient soit à un compte (user_id), soit à un prospect (prospect_id).
+-- Pour les prospects : conversion auto vers un futur compte via l'email (converted).
 create table if not exists public.legacy_tests (
-  id             uuid primary key default gen_random_uuid(),
-  legacy_id      bigint unique,
-  user_id        uuid references auth.users(id) on delete cascade,
+  legacy_test_id bigint primary key,           -- id source (tests.id) — idempotent
+  user_id        uuid references auth.users(id) on delete set null,        -- si compte
+  prospect_id    uuid references public.legacy_prospects(id) on delete set null, -- si prospect
+  email          text,                          -- email normalisé (clé de rattachement futur)
   test_type      text,
   score          numeric,
   passed         boolean default false,
   attempt_number int default 1,
+  langue         text,
   answers        jsonb default '[]'::jsonb,
-  created_at     timestamptz
+  date           timestamptz,                   -- date historique du test (source)
+  converted      boolean not null default false,-- le prospect est-il devenu un compte ?
+  converted_at   timestamptz,
+  imported_at    timestamptz not null default now(),
+  check (user_id is not null or prospect_id is not null or email is not null)
 );
-create index if not exists legacy_tests_user_idx on public.legacy_tests(user_id);
+create index if not exists legacy_tests_user_idx     on public.legacy_tests(user_id);
+create index if not exists legacy_tests_prospect_idx on public.legacy_tests(prospect_id);
+create index if not exists legacy_tests_email_idx    on public.legacy_tests(lower(email));
+
+-- Rattachement automatique : quand un prospect (avec des legacy_tests) devient un
+-- compte (même email), on lie ses tests et on marque converted.
+create or replace function public.link_legacy_tests_on_signup()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  update public.legacy_tests
+     set user_id = new.id, converted = true, converted_at = now()
+   where user_id is null
+     and email is not null
+     and lower(email) = lower(new.email);
+  return new;
+end;
+$$;
+drop trigger if exists on_auth_user_created_link_tests on auth.users;
+create trigger on_auth_user_created_link_tests
+  after insert on auth.users
+  for each row execute function public.link_legacy_tests_on_signup();
 
 create table if not exists public.legacy_modules (
   id                   uuid primary key default gen_random_uuid(),
