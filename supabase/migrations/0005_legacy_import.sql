@@ -65,7 +65,8 @@ create table if not exists public.legacy_learners (
 create table if not exists public.legacy_tests (
   legacy_test_id bigint primary key,           -- id source (tests.id) — idempotent
   user_id        uuid references auth.users(id) on delete set null,        -- si compte
-  prospect_id    uuid references public.legacy_prospects(id) on delete set null, -- si prospect
+  prospect_id    uuid,   -- FK vers legacy_prospects ajoutée plus bas (ALTER) : évite la
+                         -- référence en avant (legacy_prospects est créée après cette table)
   email          text,                          -- email normalisé (clé de rattachement futur)
   test_type      text,
   score          numeric,
@@ -163,6 +164,14 @@ create table if not exists public.legacy_prospects (
   unique (origin, legacy_id)
 );
 create index if not exists legacy_prospects_email_idx on public.legacy_prospects(lower(email));
+
+-- FK différée : legacy_tests.prospect_id → legacy_prospects.id (les deux tables
+-- existent désormais). Idempotent : on retire puis on (re)crée la contrainte.
+alter table public.legacy_tests
+  drop constraint if exists legacy_tests_prospect_id_fkey;
+alter table public.legacy_tests
+  add constraint legacy_tests_prospect_id_fkey
+  foreign key (prospect_id) references public.legacy_prospects(id) on delete set null;
 
 -- Parrainage : relations (referred_by) ET commissions d'affiliation.
 create table if not exists public.legacy_referrals (

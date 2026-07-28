@@ -13,6 +13,10 @@
 
 -- =========================== UP =============================================
 
+-- pgcrypto fournit crypt()/gen_salt() (repli mot de passe). Sur Supabase il est
+-- déjà présent dans le schéma `extensions` ; cette ligne est un no-op idempotent.
+create extension if not exists pgcrypto with schema extensions;
+
 -- ── 1) Création/di-idempotente d'un compte réel + données pédagogiques ───────
 -- payload attendu (jsonb) :
 -- {
@@ -29,7 +33,8 @@ create or replace function public.migrate_import_account(payload jsonb)
 returns uuid
 language plpgsql
 security definer
-set search_path = public, auth
+-- `extensions` inclus pour résoudre crypt()/gen_salt() (pgcrypto) dans le repli.
+set search_path = public, auth, extensions
 as $$
 declare
   v_email      text := lower(trim(payload->>'email'));
@@ -93,10 +98,15 @@ begin
         last_name  = coalesce(nullif(excluded.last_name,''),  public.profiles.last_name);
 
   -- Données pédagogiques riches (si fournies), upsert idempotent sur user_id.
+  -- On fusionne user_id = v_uid DANS le jsonb, puis jsonb_populate_record produit
+  -- exactement les colonnes de legacy_learners (aucune valeur en trop).
   if payload ? 'learner' and jsonb_typeof(payload->'learner') = 'object' then
     insert into public.legacy_learners
-      select v_uid as user_id, x.*
-      from jsonb_populate_record(null::public.legacy_learners, payload->'learner') x
+      select r.*
+      from jsonb_populate_record(
+             null::public.legacy_learners,
+             (payload->'learner') || jsonb_build_object('user_id', v_uid::text)
+           ) r
     on conflict (user_id) do update set
       legacy_id = excluded.legacy_id, plan = excluded.plan, legacy_status = excluded.legacy_status,
       country = excluded.country, phone = excluded.phone, phone_normalized = excluded.phone_normalized,
@@ -135,7 +145,7 @@ language sql stable security definer set search_path = public, auth as $$
       'certificats',   (select count(*) from public.legacy_certificates),
       'journaux',      (select count(*) from public.legacy_audit_log),
       'tests',         (select count(*) from public.legacy_tests),
-      'affiliation',   (select count(*) from public.legacy_id_map where entity = 'commission'),
+      'affiliation',   (select count(*) from public.legacy_referrals),
       'reglages',      (select count(*) from public.legacy_admin_settings)
     ),
     'integrity', jsonb_build_object(
