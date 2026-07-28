@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { tutorApplicationSchema } from "@/lib/validation/tutor";
 import { enforceRateLimit } from "@/lib/rate-limit";
@@ -51,13 +51,20 @@ export async function POST(request: Request) {
     toStatus: TUTOR_INITIAL_STATUS, event: "tutor_application_submitted",
   });
 
-  const provider = getEmailProvider();
-  const result = await dispatchExternalEvent(
-    { provider, alreadySent: alreadySentInDb },
-    { event: "tutor_application_submitted", relatedId: inserted.id, recipientEmail: d.email, firstName: d.firstName, lang: d.lang },
-  );
-  await persistDispatch(result);
-  await persistAdminNotification(buildAdminNotification({ event: "tutor_application_submitted", relatedId: inserted.id }));
+  // Effets de bord hors chemin critique (S1).
+  after(async () => {
+    try {
+      const provider = getEmailProvider();
+      const result = await dispatchExternalEvent(
+        { provider, alreadySent: alreadySentInDb },
+        { event: "tutor_application_submitted", relatedId: inserted.id, recipientEmail: d.email, firstName: d.firstName, lang: d.lang },
+      );
+      await persistDispatch(result);
+      await persistAdminNotification(buildAdminNotification({ event: "tutor_application_submitted", relatedId: inserted.id }));
+    } catch (e) {
+      console.error("notif tutor_application_submitted (after):", e);
+    }
+  });
 
   return NextResponse.json({ success: true, id: inserted.id, message: "Candidature reçue" });
 }

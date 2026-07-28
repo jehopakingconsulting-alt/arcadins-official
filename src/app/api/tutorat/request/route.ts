@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { tutoringRequestSchema } from "@/lib/validation/tutoring";
 import { enforceRateLimit } from "@/lib/rate-limit";
@@ -53,13 +53,21 @@ export async function POST(request: Request) {
     toStatus: TUTORING_INITIAL_STATUS, event: "tutoring_request_submitted",
   });
 
-  const provider = getEmailProvider();
-  const result = await dispatchExternalEvent(
-    { provider, alreadySent: alreadySentInDb },
-    { event: "tutoring_request_submitted", relatedId: inserted.id, recipientEmail: d.email, firstName: d.firstName, lang: d.lang },
-  );
-  await persistDispatch(result);
-  await persistAdminNotification(buildAdminNotification({ event: "tutoring_request_submitted", relatedId: inserted.id }));
+  // Effets de bord (e-mail + journaux) HORS du chemin critique : la réponse part
+  // immédiatement ; l'envoi se fait après via after() (pas de backpressure). S1.
+  after(async () => {
+    try {
+      const provider = getEmailProvider();
+      const result = await dispatchExternalEvent(
+        { provider, alreadySent: alreadySentInDb },
+        { event: "tutoring_request_submitted", relatedId: inserted.id, recipientEmail: d.email, firstName: d.firstName, lang: d.lang },
+      );
+      await persistDispatch(result);
+      await persistAdminNotification(buildAdminNotification({ event: "tutoring_request_submitted", relatedId: inserted.id }));
+    } catch (e) {
+      console.error("notif tutoring_request_submitted (after):", e);
+    }
+  });
 
   return NextResponse.json({ success: true, id: inserted.id, message: "Demande de tutorat reçue" });
 }

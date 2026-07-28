@@ -1,7 +1,9 @@
 name: CI
 
-# Pipeline de qualité (A8) : lint + typecheck + tests + build + audit SQL.
-# Aucun secret requis ; aucune connexion base (audit statique uniquement).
+# Pipeline Enterprise : qualité + sécurité (S11).
+# quality  : lint, typecheck, tests, couverture, audit SQL, build.
+# security : scan dépendances, secrets, SBOM (CycloneDX), licences.
+# codeql   : analyse statique de sécurité.
 on:
   push:
     branches: [main, audit-refonte]
@@ -18,28 +20,55 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
-
+        with: { node-version: 24, cache: npm }
       - name: Install (clean)
         run: npm ci
-
       - name: Lint
         run: npm run lint
-
       - name: Type check
         run: npm run typecheck
-
       - name: Tests
         run: npm test
-
+      - name: Coverage
+        run: npm run coverage
       - name: Audit SQL statique
-        run: node scripts/migration/sql-audit.mjs
-
+        run: npm run audit:sql
       - name: Build
         run: npm run build
-        env:
-          NEXT_TELEMETRY_DISABLED: "1"
+        env: { NEXT_TELEMETRY_DISABLED: "1" }
+
+  security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: npm }
+      - name: Install (clean)
+        run: npm ci
+      - name: Scan dépendances (npm audit, prod)
+        run: npm audit --omit=dev --audit-level=high
+        continue-on-error: true
+      - name: Scan secrets (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env: { GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
+      - name: SBOM (CycloneDX)
+        run: npx --yes @cyclonedx/cyclonedx-npm --output-file sbom.json
+      - name: Scan licences
+        run: npx --yes license-checker --production --summary
+        continue-on-error: true
+      - name: Publier le SBOM
+        uses: actions/upload-artifact@v4
+        with: { name: sbom, path: sbom.json }
+
+  codeql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions: { security-events: write, actions: read, contents: read }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with: { languages: javascript-typescript }
+      - uses: github/codeql-action/analyze@v3

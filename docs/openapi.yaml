@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  title: ARCADINS API
+  version: "1.0.0"
+  description: >
+    API publique ARCADINS. Les routes d'administration exigent une session
+    authentifiée + permission RBAC ; le webhook Stripe exige une signature valide.
+servers:
+  - url: https://arcadins-official.vercel.app
+paths:
+  /api/health:
+    get:
+      summary: Liveness probe
+      responses:
+        "200":
+          description: Process vivant
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: { status: { type: string }, ts: { type: string }, uptime_s: { type: integer } }
+  /api/ready:
+    get:
+      summary: Readiness probe (sonde base de données)
+      responses:
+        "200": { description: Prêt }
+        "503": { description: Dégradé (base injoignable) }
+  /api/tutorat/request:
+    post:
+      summary: Soumettre une demande de tutorat (flux élève)
+      description: Rate-limité (5/min/IP). Validation Zod. E-mail envoyé de façon asynchrone.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TutoringRequest" }
+      responses:
+        "200": { description: Demande reçue }
+        "400": { description: JSON invalide }
+        "422": { description: Champs invalides }
+        "429": { description: Trop de soumissions }
+        "503": { description: Service non encore activé }
+  /api/tutor/apply:
+    post:
+      summary: Soumettre une candidature tuteur (flux tuteur)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TutorApplication" }
+      responses:
+        "200": { description: Candidature reçue }
+        "422": { description: Champs invalides }
+        "429": { description: Trop de soumissions }
+  /api/webhook:
+    post:
+      summary: Webhook Stripe (signature obligatoire)
+      responses:
+        "200": { description: Traité }
+        "400": { description: Signature absente/invalide }
+components:
+  schemas:
+    TutoringRequest:
+      type: object
+      required: [firstName, email, skills]
+      properties:
+        firstName: { type: string }
+        email: { type: string, format: email }
+        skills: { type: array, items: { type: string } }
+        lang: { type: string }
+    TutorApplication:
+      type: object
+      required: [firstName, lastName, email, skills]
+      properties:
+        firstName: { type: string }
+        lastName: { type: string }
+        email: { type: string, format: email }
+        skills: { type: array, items: { type: string } }
+        levels: { type: array, items: { type: string } }

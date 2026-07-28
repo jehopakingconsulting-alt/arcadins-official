@@ -57,6 +57,8 @@ export class ResendProvider implements EmailProvider {
           subject: message.subject,
           text: message.body,
         }),
+        // Timeout borné : évite qu'un incident réseau bloque la fonction serverless.
+        signal: AbortSignal.timeout(5000),
       });
       if (!res.ok) {
         return { status: "failed", provider: this.name, error: `HTTP ${res.status}` };

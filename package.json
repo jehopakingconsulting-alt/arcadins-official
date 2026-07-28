@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test": "node --test --experimental-strip-types"
+    "test": "node --test --experimental-strip-types",
+    "coverage": "node --test --experimental-strip-types --experimental-test-coverage",
+    "audit:sql": "node scripts/migration/sql-audit.mjs",
+    "loadtest": "k6 run perf/k6-load.js"
   },
   "dependencies": {
     "@stripe/stripe-js": "^9.8.0",
