@@ -87,12 +87,29 @@ async function getTarget(flags) {
   return createClient(url, key, { auth: { persistSession: false } });
 }
 
+// ── Lecture paginée robuste (contourne le plafond db-max-rows de PostgREST) ───
+// Itère par pages jusqu'à épuisement → aucune perte silencieuse à grande échelle
+// (100 → 100 000+ lignes), mémoire bornée à une page à la fois.
+export const PAGE = 1000;
+export async function selectAllPaged(query) {
+  const rows = [];
+  for (let from = 0; ; from += PAGE) {
+    const { data, error } = await query().range(from, from + PAGE - 1);
+    if (error) throw new Error(error.message);
+    const batch = data || [];
+    rows.push(...batch);
+    if (batch.length < PAGE) break; // dernière page atteinte
+  }
+  return rows;
+}
+
 // ── Résolution legacy_id → uuid via legacy_id_map (cache mémoire) ────────────
 async function loadIdMap(target, entity) {
   const map = new Map();
-  const { data, error } = await target.from("legacy_id_map").select("legacy_id,new_id").eq("entity", entity);
-  if (error) throw new Error(`legacy_id_map(${entity}): ${error.message}`);
-  for (const r of data || []) map.set(Number(r.legacy_id), r.new_id);
+  const data = await selectAllPaged(() =>
+    target.from("legacy_id_map").select("legacy_id,new_id").eq("entity", entity),
+  );
+  for (const r of data) map.set(Number(r.legacy_id), r.new_id);
   return map;
 }
 
@@ -172,9 +189,10 @@ const LIVE_WRITERS = {
   async results(target, data, report) {
     const uid = await loadIdMap(target, "user");
     // Prospects (origin user_prospect) : legacy_id → uuid de legacy_prospects.
-    const { data: pros } = await target.from("legacy_prospects")
-      .select("id,legacy_id").eq("origin", "user_prospect");
-    const prospectByLegacy = new Map((pros || []).map((p) => [Number(p.legacy_id), p.id]));
+    const pros = await selectAllPaged(() =>
+      target.from("legacy_prospects").select("id,legacy_id").eq("origin", "user_prospect"),
+    );
+    const prospectByLegacy = new Map(pros.map((p) => [Number(p.legacy_id), p.id]));
     const rows = (data.tests || []).map((t) => ({
       legacy_test_id: t.legacy_test_id,
       user_id: t.kind === "account" ? (uid.get(Number(t.user_legacy_id)) || null) : null,

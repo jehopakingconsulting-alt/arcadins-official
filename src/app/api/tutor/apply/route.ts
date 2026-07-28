@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { tutorApplicationSchema } from "@/lib/validation/tutor";
-import { rateLimit } from "@/lib/rate-limit";
+import { enforceRateLimit } from "@/lib/rate-limit";
 import { getEmailProvider } from "@/lib/notifications/provider";
 import { dispatchExternalEvent, buildAdminNotification } from "@/lib/notifications/dispatch";
 import { alreadySentInDb, persistDispatch, persistAdminNotification, recordStatusHistory } from "@/lib/notifications/persist";
@@ -12,7 +12,7 @@ const MISSING = new Set(["42P01", "PGRST205"]);
 // Flux CANDIDATURE TUTEUR — strictement séparé du flux élève.
 export async function POST(request: Request) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  const rl = rateLimit(`tutor:${ip}`, 5, 60_000);
+  const rl = await enforceRateLimit(`tutor:${ip}`, 5, 60_000);
   if (!rl.allowed) {
     return NextResponse.json({ error: "Trop de soumissions. Réessayez plus tard." }, { status: 429 });
   }

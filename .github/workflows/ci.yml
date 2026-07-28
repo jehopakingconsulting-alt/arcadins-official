@@ -1,0 +1,45 @@
+name: CI
+
+# Pipeline de qualité (A8) : lint + typecheck + tests + build + audit SQL.
+# Aucun secret requis ; aucune connexion base (audit statique uniquement).
+on:
+  push:
+    branches: [main, audit-refonte]
+  pull_request:
+    branches: [main, audit-refonte]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install (clean)
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Tests
+        run: npm test
+
+      - name: Audit SQL statique
+        run: node scripts/migration/sql-audit.mjs
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"

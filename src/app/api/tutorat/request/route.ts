@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { tutoringRequestSchema } from "@/lib/validation/tutoring";
-import { rateLimit } from "@/lib/rate-limit";
+import { enforceRateLimit } from "@/lib/rate-limit";
 import { getEmailProvider } from "@/lib/notifications/provider";
 import { dispatchExternalEvent, buildAdminNotification } from "@/lib/notifications/dispatch";
 import { alreadySentInDb, persistDispatch, persistAdminNotification, recordStatusHistory } from "@/lib/notifications/persist";
@@ -13,7 +13,7 @@ const MISSING = new Set(["42P01", "PGRST205"]);
 export async function POST(request: Request) {
   // Anti-spam / anti-soumissions multiples.
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  const rl = rateLimit(`tutoring:${ip}`, 5, 60_000);
+  const rl = await enforceRateLimit(`tutoring:${ip}`, 5, 60_000);
   if (!rl.allowed) {
     return NextResponse.json({ error: "Trop de soumissions. Réessayez plus tard." }, { status: 429 });
   }
