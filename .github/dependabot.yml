@@ -1,0 +1,19 @@
+version: 2
+# Mises à jour de sécurité + versions (npm + GitHub Actions). Regroupées pour
+# limiter le bruit ; les PR passent la CI (lint/tests/build/CodeQL/audit).
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule: { interval: "weekly" }
+    open-pull-requests-limit: 5
+    groups:
+      production:
+        dependency-type: "production"
+      dev:
+        dependency-type: "development"
+    labels: ["dependencies"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule: { interval: "weekly" }
+    labels: ["ci"]
