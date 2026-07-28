@@ -31,26 +31,44 @@ async function getTarget(flags) {
 
 async function main() {
   const flags = parseFlags();
-  const purgeAuth = process.argv.includes("--purge-auth");
+  const purgeAuth = flags.purgeAuth;
+  // Portée : pilote (un seul compte) si --user-id, sinon rollback GLOBAL.
+  const userId = flags.userId !== null && flags.userId !== undefined && flags.userId !== "" ? Number(flags.userId) : null;
+  if (flags.userId && (!Number.isInteger(userId) || userId <= 0)) {
+    console.error(`--user-id invalide : « ${flags.userId} » (entier positif attendu).`); process.exit(2);
+  }
   const target = await getTarget(flags);
+  const scopeLabel = userId !== null ? `PILOTE (legacy_id=${userId})` : "GLOBAL";
 
-  console.log(`\n=== ROLLBACK MIGRATION (${flags.willWrite ? "LIVE" : "dry-run"}) ===`);
+  console.log(`\n=== ROLLBACK MIGRATION — ${scopeLabel} (${flags.willWrite ? "LIVE" : "dry-run"}) ===`);
 
   if (!flags.willWrite || !target) {
     console.log("Mode lecture seule — aucune suppression.");
-    console.log("Seraient vidées, dans l'ordre :");
-    LEGACY_TABLES.forEach((t) => console.log(`  • ${t}`));
-    if (purgeAuth) console.log("  • auth.users créés par la migration (legacy_id_map entity='user')");
-    else console.log("  • (comptes auth CONSERVÉS — ajoutez --purge-auth pour les supprimer)");
-    console.log("\nPour exécuter : node rollback.mjs --live --confirm [--purge-auth]");
+    if (userId !== null) {
+      console.log(`Seraient supprimées : les données legacy du seul compte legacy_id=${userId}`);
+      console.log(purgeAuth ? "  + son compte auth (via --purge-auth)" : "  (compte auth CONSERVÉ — ajoutez --purge-auth)");
+      console.log(`\nPour exécuter : node rollback.mjs --live --confirm --user-id ${userId} [--purge-auth]`);
+    } else {
+      console.log("Seraient vidées, dans l'ordre :");
+      LEGACY_TABLES.forEach((t) => console.log(`  • ${t}`));
+      console.log(purgeAuth ? "  • auth.users créés par la migration" : "  • (comptes auth CONSERVÉS — ajoutez --purge-auth)");
+      console.log("\nPour exécuter : node rollback.mjs --live --confirm [--purge-auth]  (rollback GLOBAL)");
+    }
     return;
   }
 
-  // Rollback ATOMIQUE en une transaction SQL (RPC migrate_rollback).
-  const { data, error } = await target.rpc("migrate_rollback", { p_purge_auth: purgeAuth });
-  if (error) { console.error("Rollback échoué :", error.message); process.exit(4); }
-  console.log("Résultat :", JSON.stringify(data));
-  console.log("Rollback terminé. Relancez validate-migration.mjs pour confirmer l'état vide.");
+  if (userId !== null) {
+    // Rollback ATOMIQUE d'un seul utilisateur.
+    const { data, error } = await target.rpc("migrate_rollback_user", { p_legacy_id: userId, p_purge_auth: purgeAuth });
+    if (error) { console.error("Rollback pilote échoué :", error.message); process.exit(4); }
+    console.log("Résultat :", JSON.stringify(data));
+  } else {
+    // Rollback ATOMIQUE global (RPC migrate_rollback).
+    const { data, error } = await target.rpc("migrate_rollback", { p_purge_auth: purgeAuth });
+    if (error) { console.error("Rollback échoué :", error.message); process.exit(4); }
+    console.log("Résultat :", JSON.stringify(data));
+  }
+  console.log("Rollback terminé. Relancez validate-migration.mjs pour confirmer l'état.");
 }
 
 main();

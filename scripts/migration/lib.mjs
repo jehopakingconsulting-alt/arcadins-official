@@ -18,13 +18,15 @@ export function ensureDataDir() { fs.mkdirSync(DATA_DIR, { recursive: true }); }
 
 // ── CLI ─────────────────────────────────────────────────────────────────────
 export function parseFlags(argv = process.argv.slice(2)) {
-  const f = { dryRun: true, batchSize: 500, only: null, userId: null, resume: false, confirm: false, db: null };
+  const f = { dryRun: true, batchSize: 500, only: null, userId: null, resume: false, confirm: false, db: null, all: false, purgeAuth: false };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--no-dry-run" || a === "--live") f.dryRun = false;
     else if (a === "--dry-run") f.dryRun = true;
     else if (a === "--confirm") f.confirm = true;
     else if (a === "--resume") f.resume = true;
+    else if (a === "--all") f.all = true;
+    else if (a === "--purge-auth") f.purgeAuth = true;
     else if (a === "--batch-size") f.batchSize = parseInt(argv[++i], 10) || 500;
     else if (a === "--only") f.only = argv[++i];
     else if (a === "--user-id") f.userId = argv[++i];

@@ -1,8 +1,9 @@
 # ARCADINS — Rapport de validation de base de données (RC1)
 
-**Date :** 2026-07-28T07:37:59.577Z
+**Date :** 2026-07-28T07:50:45.754Z
 **Source :** C:\Users\PC\Desktop\arcadins-training\server\arcadins-PROD.db · **sha256 :** `952c4126c6ef0f6bb0e234ce1afb018a5bb6244000173c73fc86379674183b5b`
 **Intégrité source :** ok · **FK :** 0
+**Portée :** COMPLÈTE
 **Mode :** ATTENDU seul (offline, aucune lecture cible)
 
 ## Comptages

@@ -21,6 +21,47 @@ import {
   readJson, EXPORT_FILE, TRANSFORMED_FILE, Report, parseFlags, isBcrypt,
 } from "./lib.mjs";
 
+// ── Portée de l'import : pilote (--user-id) vs complet (--all) ───────────────
+// Règle de sécurité : un import RÉEL (willWrite) est REFUSÉ tant qu'aucune cible
+// explicite n'est fournie. Il faut soit `--user-id <id>` (pilote, un seul
+// compte), soit `--all` (import complet assumé). Le dry-run conserve son
+// comportement d'origine : sans cible il simule TOUT ; avec --user-id il ne
+// prévisualise que ce compte.
+export function resolveScope(flags) {
+  if (flags.userId !== null && flags.userId !== undefined && flags.userId !== "") {
+    const id = Number(flags.userId);
+    if (!Number.isInteger(id) || id <= 0) return { error: `--user-id invalide : « ${flags.userId} » (entier positif attendu)` };
+    return { mode: "user", userId: id };
+  }
+  if (flags.willWrite && !flags.all) {
+    return { error: "refus de sécurité : import réel sans cible. Fournissez --user-id <id> (pilote) ou --all (import complet)." };
+  }
+  return { mode: "all" };
+}
+
+// Restreint les données transformées à UN seul utilisateur (par legacy_id).
+// Les entités non rattachées à un compte (prospects, réglages, journaux) sont
+// exclues du périmètre pilote.
+export function filterByUser(data, userId) {
+  const id = Number(userId);
+  const owns = (v) => Number(v) === id;
+  return {
+    ...data,
+    authUsers: (data.authUsers || []).filter((a) => owns(a.legacy_id)),
+    profiles: (data.profiles || []).filter((p) => owns(p.legacy_id)),
+    learners: (data.learners || []).filter((l) => owns(l.legacy_id)),
+    payments: (data.payments || []).filter((p) => owns(p.user_legacy_id)),
+    modules: (data.modules || []).filter((m) => owns(m.user_legacy_id)),
+    tests: (data.tests || []).filter((t) => t.kind === "account" && owns(t.user_legacy_id)),
+    certificates: (data.certificates || []).filter((c) => owns(c.user_legacy_id)),
+    referralRelationships: (data.referralRelationships || []).filter((r) => owns(r.referrer_legacy_id) || owns(r.referee_legacy_id)),
+    referralCommissions: (data.referralCommissions || []).filter((c) => owns(c.referrer_legacy_id) || owns(c.referee_legacy_id)),
+    prospects: [],
+    adminSettings: [],
+    auditLog: [],
+  };
+}
+
 // Entité logique → tranches du fichier transformé (utilisé pour le dry-run).
 const ENTITY_SLICES = {
   users: ["authUsers", "profiles", "learners"],
@@ -200,7 +241,20 @@ export async function importEntity(entity, flags = parseFlags(), report = new Re
   const slices = ENTITY_SLICES[entity];
   if (!slices) { console.error(`Entité inconnue : ${entity}`); process.exit(1); }
   if (!fs.existsSync(TRANSFORMED_FILE)) { console.error("transformed.json absent — lancez run-dryrun.mjs"); process.exit(1); }
-  const data = readJson(TRANSFORMED_FILE);
+  const raw = readJson(TRANSFORMED_FILE);
+
+  // Portée (pilote / complet) : refuse tout import réel sans cible explicite.
+  const scope = resolveScope(flags);
+  if (scope.error) { console.error(scope.error); process.exit(5); }
+
+  let data = raw;
+  if (scope.mode === "user") {
+    const exists = (raw.authUsers || []).some((a) => Number(a.legacy_id) === scope.userId);
+    if (!exists) { console.error(`--user-id ${scope.userId} : aucun compte correspondant dans les données transformées.`); process.exit(6); }
+    data = filterByUser(raw, scope.userId);
+    console.log(`Mode PILOTE — un seul utilisateur (legacy_id=${scope.userId}).`);
+  }
+
   const target = await getTarget(flags);
 
   if (!flags.willWrite || !target) {

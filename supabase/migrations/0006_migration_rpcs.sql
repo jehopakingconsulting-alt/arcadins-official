@@ -183,6 +183,60 @@ end;
 $$;
 revoke all on function public.migrate_rollback(boolean) from public, anon, authenticated;
 
+-- ── 4bis) Rollback d'UN SEUL utilisateur (mode pilote) ───────────────────────
+-- Supprime uniquement les données legacy rattachées à ce compte + son mapping.
+-- p_purge_auth = true → supprime aussi le compte auth (et son profil par cascade).
+create or replace function public.migrate_rollback_user(p_legacy_id bigint, p_purge_auth boolean default false)
+returns jsonb
+language plpgsql security definer set search_path = public, auth as $$
+declare v_uid uuid;
+begin
+  select new_id into v_uid from public.legacy_id_map where entity = 'user' and legacy_id = p_legacy_id;
+  if v_uid is null then
+    return jsonb_build_object('found', false, 'legacy_id', p_legacy_id);
+  end if;
+
+  delete from public.legacy_tests        where user_id = v_uid;
+  delete from public.legacy_modules      where user_id = v_uid;
+  delete from public.legacy_certificates where user_id = v_uid;
+  delete from public.legacy_payments     where user_id = v_uid;
+  delete from public.legacy_referrals    where referrer_id = v_uid or referee_id = v_uid;
+  delete from public.legacy_learners     where user_id = v_uid;
+  delete from public.legacy_id_map       where entity = 'user' and legacy_id = p_legacy_id;
+
+  if p_purge_auth then
+    delete from auth.users where id = v_uid;  -- cascade → profiles
+  end if;
+
+  return jsonb_build_object('found', true, 'user', v_uid, 'legacy_id', p_legacy_id, 'purged_auth', p_purge_auth, 'at', now());
+end;
+$$;
+revoke all on function public.migrate_rollback_user(bigint, boolean) from public, anon, authenticated;
+
+-- ── 5bis) Validation d'UN SEUL utilisateur (mode pilote) — LECTURE SEULE ──────
+create or replace function public.migrate_validation_user(p_legacy_id bigint)
+returns jsonb
+language plpgsql stable security definer set search_path = public, auth as $$
+declare v_uid uuid;
+begin
+  select new_id into v_uid from public.legacy_id_map where entity = 'user' and legacy_id = p_legacy_id;
+  return jsonb_build_object(
+    'legacy_id', p_legacy_id,
+    'mapped', v_uid is not null,
+    'auth_exists', exists (select 1 from auth.users u where u.id = v_uid),
+    'counts', jsonb_build_object(
+      'comptes',     (case when v_uid is not null then 1 else 0 end),
+      'paiements',   (select count(*) from public.legacy_payments     where user_id = v_uid),
+      'progression', (select count(*) from public.legacy_modules      where user_id = v_uid),
+      'certificats', (select count(*) from public.legacy_certificates where user_id = v_uid),
+      'tests',       (select count(*) from public.legacy_tests        where user_id = v_uid),
+      'affiliation', (select count(*) from public.legacy_referrals    where referrer_id = v_uid or referee_id = v_uid)
+    )
+  );
+end;
+$$;
+revoke all on function public.migrate_validation_user(bigint) from anon;
+
 -- Droits : seul le service_role appelle les fonctions d'écriture ; la validation
 -- est appelée côté serveur admin (service role également). On révoque au public.
 revoke all on function public.migrate_import_account(jsonb) from public, anon, authenticated;
@@ -196,4 +250,7 @@ revoke all on function public.migrate_validation_report() from anon;
 -- drop function if exists public.migrate_import_account(jsonb);
 -- drop function if exists public.migrate_lookup(text, bigint);
 -- drop function if exists public.migrate_validation_report();
+-- drop function if exists public.migrate_rollback(boolean);
+-- drop function if exists public.migrate_rollback_user(bigint, boolean);
+-- drop function if exists public.migrate_validation_user(bigint);
 -- ============================================================================
