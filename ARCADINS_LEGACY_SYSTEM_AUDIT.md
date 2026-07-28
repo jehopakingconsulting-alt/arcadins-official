@@ -109,3 +109,47 @@ CSV des comptes + le type de base), je passe à :
 - puis Phases 4–11 (auth, scripts idempotents dry-run, pilote, réconciliation, runbook de bascule).
 
 **Rien ne touche la production, ni l'ancienne ni la nouvelle, sans votre autorisation explicite.**
+
+---
+
+# MISE À JOUR — Schéma EXACT (code source local trouvé) 2026-07-28
+
+Le code source de l'ancien site est présent localement (`C:\Users\PC\Desktop\arcadins-training`).
+L'audit passe de « déduit » à **EXACT**.
+
+## Base de données ✅ CONFIRMÉ
+- **SQLite** via `better-sqlite3` (fichier `arcadins.db`, WAL, `foreign_keys=ON`).
+- **En production : disque persistant Render monté sur `/data`** (`DATABASE_PATH`). La copie locale
+  (`server/arcadins.db`) est une **base de DÉV** (9 comptes) — **PAS la production** (27 comptes).
+- Auth : **bcryptjs** (coût 10) pour `password_hash` + **JWT** (`jsonwebtoken`). → **Scénario B possible**
+  (import des hachages bcrypt dans Supabase → mots de passe conservés). Reset token déjà prévu (`reset_token`).
+- E-mail : **nodemailer** (SMTP). Paiements : **Stripe** (`stripe_session_id`) + **PayPal** (confirmation manuelle).
+- Certificats : **PDF générés par `pdfkit`**, stockés dans `server/certificates/` (`certificates.pdf_path`).
+
+## Tables (schéma réel)
+| Table | Colonnes clés |
+|---|---|
+| **users** | `id` PK · nom, prenom, email(UNIQUE), telephone(+_normalized), pays · **password_hash(bcrypt)** · role(`prospect/apprenant/tuteur/moderator/admin`) · status(`trial/active/…`) · plan · created_at · trial_done/score · qualification_done/score/level/started_at · final_test_done/score/passed/started_at · certificate_id, certificate_generated_at · payment_confirmed/plan/date/method/notes · stripe_session_id · access_expires_at · **modules_progress(JSON)**, current_module, all_modules_done · lang · **referral_code(UNIQUE), referred_by(FK users.id)** · is_tuteur_candidat, tuteur_application(JSON), tuteur_payment_*, tuteur_current_module, tuteur_all_modules_done, tuteur_test_* · reset_token(+expires) · signup_ip, last_login_at/ip/device · moderator_permissions(JSON) |
+| **prospects** | id · nom, prenom, email, telephone, pays, source, created_at |
+| **tests** | id · user_id(FK) · test_type · score, passed, attempt_number · answers(JSON) · created_at |
+| **modules** | id · user_id(FK) · module_number · status · started_at, completed_at · score · test_score/passed/attempts/last_attempt_at · UNIQUE(user_id,module_number) |
+| **certificates** | id · user_id(FK) · certificate_number(UNIQUE) · nom, prenom, programme · score · issued_at · pdf_path |
+| **tuteur_modules** | id · user_id(FK) · module_number · status · started_at, completed_at |
+| **affiliate_commissions** | id · referrer_id(FK) · referred_user_id(FK) · plan · amount · status(`pending/paid`) · created_at, paid_at |
+| **admin_settings** | key/value — `passing_score_final=70`, `max_attempts_final=3`, `total_modules=14`, `max_attempts_trial=1` |
+| **admin_audit_log** | id · admin_id · action · target_user_id · details(JSON) · ip · created_at |
+
+## Règles métier confirmées
+- **14 modules** au total · **note de passage finale = 70** · **max 3 tentatives** au test final.
+- Parrainage **à un seul niveau** (`referred_by` → un parrain) + `affiliate_commissions` (parrain→filleul, montant, pending/paid).
+- Progression stockée en double : `users.modules_progress` (JSON) **et** table `modules` (une ligne / module).
+
+## Le SEUL élément qu'il me reste à obtenir de vous
+- **Le fichier `arcadins.db` de PRODUCTION** (depuis le disque `/data` de Render), pour migrer les **27 vrais
+  comptes**. La copie locale suffit pour **construire et tester** toute la migration en attendant.
+
+## Ce que je peux faire dès maintenant (sans toucher la prod)
+- **Phase 2** — plan de sauvegarde (copie horodatée + checksum du `arcadins.db`, des PDF, restauration).
+- **Phase 3** — mapping exact `users/tests/modules/certificates/affiliate_commissions/prospects` → schéma Supabase.
+- **Phase 5** — scripts de migration **idempotents en dry-run**, testés sur la **copie locale** puis contre le
+  **staging Supabase** (jamais la prod).
