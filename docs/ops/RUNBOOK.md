@@ -4,7 +4,7 @@ Procédures courantes. Toutes les commandes CLI chargent l'environnement sans ex
 `set -a; source <(grep -E '^(NEXT_PUBLIC_SUPABASE_URL|SUPABASE_SERVICE_ROLE_KEY)=' .env.local); set +a`.
 
 ## Déployer
-- Merge sur `main` → build Vercel automatique. CI (GitHub Actions) doit être vert : lint, typecheck,
+- Merge sur `master` (branche de production) → build Vercel automatique. CI (GitHub Actions) doit être vert : lint, typecheck,
   tests, audit SQL, build.
 
 ## Vérifier l'état d'une migration (lecture seule)

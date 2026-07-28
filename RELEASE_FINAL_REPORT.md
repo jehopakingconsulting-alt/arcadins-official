@@ -66,7 +66,7 @@ maître. **Complète.** **[PROUVÉ]**
 2. Appliquer `0005 → 0006 → 0007` en prod (SQL Editor).
 3. Renseigner les secrets GitHub + Vercel (voir `DEPLOYMENT_RUNBOOK.md`).
 4. Resend : domaine vérifié + `EMAIL_FROM`.
-5. Merge `main` → déploiement + import **par lots gatés**.
+5. Merge `master` (branche de production) → déploiement + import **par lots gatés**.
 
 **RPV (non bloquants pour une prod contrôlée, à exécuter ensuite)** : benchmarks 100k, CI GitHub
 exécutée + SBOM signé publié, OTel/Prometheus/Grafana/Sentry live, Upstash, exercice PITR, audit a11y,

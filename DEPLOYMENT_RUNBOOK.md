@@ -17,7 +17,7 @@ Références : `GO_LIVE_CHECKLIST.md`, `ROLLBACK.md`, `docs/ops/*`, `PRODUCTION_
 4. **Décision GO/NO-GO.**
 
 ## Phase 2 — Application
-5. Merge `audit-refonte → main` (déclenche `deploy.yml`).
+5. Merge `audit-refonte → master` (branche de production officielle ; déclenche `deploy.yml`).
 6. Pipeline : build → **health-gate** `/api/ready` → promote → smoke `/api/health` → **rollback auto** si KO.
 7. Vérifier en-têtes (CSP/HSTS) + `/api/health` 200 + `/api/ready` 200 sur le domaine prod.
 8. **Décision GO/NO-GO.**

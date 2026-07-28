@@ -6,9 +6,9 @@ name: CI
 # codeql   : analyse statique de sécurité.
 on:
   push:
-    branches: [main, audit-refonte]
+    branches: [master, audit-refonte]
   pull_request:
-    branches: [main, audit-refonte]
+    branches: [master, audit-refonte]
 
 concurrency:
   group: ci-${{ github.ref }}
