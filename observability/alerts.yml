@@ -1,0 +1,37 @@
+# Règles d'alerte Prometheus (SLO-based + symptômes). Seuils alignés sur les SLO
+# de docs/ops/SLO_ERROR_BUDGET.md. Router vers Alertmanager → Slack/PagerDuty.
+groups:
+  - name: arcadins-availability
+    rules:
+      - alert: EndpointDown
+        expr: probe_success == 0
+        for: 2m
+        labels: { severity: critical }
+        annotations:
+          summary: "Endpoint {{ $labels.instance }} indisponible (>2m)"
+
+      - alert: HighErrorRate
+        expr: |
+          sum(rate(http_server_requests_seconds_count{status=~"5.."}[5m]))
+          / sum(rate(http_server_requests_seconds_count[5m])) > 0.01
+        for: 5m
+        labels: { severity: critical }
+        annotations:
+          summary: "Taux d'erreur 5xx > 1% (5m) — SLO availability menacé"
+
+      - alert: LatencyP95High
+        expr: |
+          histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket[5m])) by (le)) > 0.8
+        for: 10m
+        labels: { severity: warning }
+        annotations:
+          summary: "p95 latence > 800ms (10m) — SLO performance menacé"
+
+  - name: arcadins-dependencies
+    rules:
+      - alert: ReadinessDegraded
+        expr: probe_http_status_code{instance=~".*/api/ready"} == 503
+        for: 3m
+        labels: { severity: warning }
+        annotations:
+          summary: "Readiness dégradée (base injoignable) >3m"

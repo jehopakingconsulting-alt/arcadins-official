@@ -1,0 +1,33 @@
+name: Uptime & synthetic monitoring
+
+# Sonde synthétique toutes les 5 min : liveness + readiness. Alerte (issue +
+# webhook Slack optionnel) en cas d'échec. Complète un service externe d'uptime
+# (Better Uptime / UptimeRobot / Grafana Synthetic) recommandé en prod.
+#
+# Secrets : PROD_URL (obligatoire), SLACK_WEBHOOK_URL (optionnel).
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Health + readiness
+        id: check
+        run: |
+          h=$(curl -s -o /dev/null -w "%{http_code}" "${{ secrets.PROD_URL }}/api/health" || echo 000)
+          r=$(curl -s -o /dev/null -w "%{http_code}" "${{ secrets.PROD_URL }}/api/ready" || echo 000)
+          echo "health=$h ready=$r"
+          echo "health=$h" >> "$GITHUB_OUTPUT"; echo "ready=$r" >> "$GITHUB_OUTPUT"
+          [ "$h" = "200" ] || exit 1
+          # readiness 503 = dégradé toléré mais signalé, pas d'échec dur
+      - name: Alerte Slack (si configuré)
+        if: failure()
+        run: |
+          [ -z "${{ secrets.SLACK_WEBHOOK_URL }}" ] && exit 0
+          curl -s -X POST -H 'Content-type: application/json' \
+            --data "{\"text\":\"🔴 ARCADINS uptime KO — health=${{ steps.check.outputs.health }} ready=${{ steps.check.outputs.ready }}\"}" \
+            "${{ secrets.SLACK_WEBHOOK_URL }}"

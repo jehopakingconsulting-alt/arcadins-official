@@ -1,0 +1,36 @@
+name: Backup (database)
+
+# Sauvegarde logique quotidienne (pg_dump) en COMPLÉMENT des backups managés
+# Supabase + PITR. Artefact chiffré conservé (rétention GitHub). Ne remplace pas
+# le PITR — voir docs/ops/BACKUP.md et DISASTER_RECOVERY.md.
+#
+# Secret requis : SUPABASE_DB_URL (chaîne de connexion Postgres, jamais en clair).
+on:
+  schedule:
+    - cron: "0 3 * * *" # 03:00 UTC quotidien
+  workflow_dispatch:
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Install pg_dump (client 16)
+        run: |
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /usr/share/keyrings/pgdg.gpg
+          sudo apt-get update && sudo apt-get install -y postgresql-client-16
+      - name: Dump (custom format, compressé)
+        run: |
+          ts=$(date -u +%Y%m%d-%H%M)
+          pg_dump "$SUPABASE_DB_URL" -Fc -f "arcadins-$ts.dump"
+          echo "DUMP=arcadins-$ts.dump" >> "$GITHUB_ENV"
+        env: { SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }} }
+      - name: Chiffrer (gpg symétrique)
+        run: gpg --batch --yes --passphrase "${{ secrets.BACKUP_PASSPHRASE }}" -c "$DUMP"
+      - name: Publier l'artefact chiffré
+        uses: actions/upload-artifact@v4
+        with:
+          name: db-backup
+          path: ${{ env.DUMP }}.gpg
+          retention-days: 30

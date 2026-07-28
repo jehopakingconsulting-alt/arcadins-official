@@ -1,0 +1,40 @@
+{
+  "title": "ARCADINS — Production Overview",
+  "uid": "arcadins-prod",
+  "schemaVersion": 39,
+  "timezone": "utc",
+  "refresh": "30s",
+  "tags": ["arcadins", "production"],
+  "templating": { "list": [] },
+  "panels": [
+    {
+      "id": 1, "title": "Availability (probe_success)", "type": "stat",
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
+      "targets": [{ "expr": "avg(probe_success)" }]
+    },
+    {
+      "id": 2, "title": "Request rate (req/s)", "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
+      "targets": [{ "expr": "sum(rate(http_server_requests_seconds_count[1m]))" }]
+    },
+    {
+      "id": 3, "title": "Error rate 5xx (%)", "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 },
+      "targets": [{ "expr": "100 * sum(rate(http_server_requests_seconds_count{status=~\"5..\"}[5m])) / sum(rate(http_server_requests_seconds_count[5m]))" }]
+    },
+    {
+      "id": 4, "title": "Latency p50/p95/p99 (s)", "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 12 },
+      "targets": [
+        { "expr": "histogram_quantile(0.50, sum(rate(http_server_requests_seconds_bucket[5m])) by (le))", "legendFormat": "p50" },
+        { "expr": "histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket[5m])) by (le))", "legendFormat": "p95" },
+        { "expr": "histogram_quantile(0.99, sum(rate(http_server_requests_seconds_bucket[5m])) by (le))", "legendFormat": "p99" }
+      ]
+    },
+    {
+      "id": 5, "title": "Readiness DB latency (ms)", "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 12 },
+      "targets": [{ "expr": "probe_duration_seconds{instance=~\".*/api/ready\"} * 1000" }]
+    }
+  ]
+}

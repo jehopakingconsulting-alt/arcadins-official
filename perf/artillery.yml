@@ -1,0 +1,37 @@
+# ARCADINS — campagne de charge Artillery (complément de perf/k6-load.js).
+#   BASE_URL=https://<cible> artillery run perf/artillery.yml
+# Choisir le palier via la variable STAGE (10|100|1k|10k|100k) — les paliers
+# 10k/100k nécessitent Artillery en mode distribué (plusieurs workers/cloud),
+# une seule machine ne génère pas 100k utilisateurs. Jamais contre la prod sans
+# autorisation. Seuils (SLO) : p95<800ms, p99<1500ms, erreurs<1%.
+config:
+  target: "{{ $processEnvironment.BASE_URL }}"
+  http: { timeout: 10 }
+  ensure:
+    thresholds:
+      - http.response_time.p95: 800
+      - http.response_time.p99: 1500
+    conditions:
+      - expression: "http.codes.500 == 0"
+  phases:
+    # Profils = arrivalRate (nouveaux utilisateurs/seconde) × durée.
+    - name: "warmup"
+      duration: 30
+      arrivalRate: 2
+    - name: "load"
+      duration: 120
+      arrivalRate: "{{ $processEnvironment.RATE }}" # 1|10|100|1000|... selon STAGE
+      rampTo: "{{ $processEnvironment.RATE }}"
+
+scenarios:
+  - name: "parcours-public"
+    weight: 8
+    flow:
+      - get: { url: "/" }
+      - think: 1
+      - get: { url: "/formations" }
+      - get: { url: "/api/ready" }
+  - name: "sondes-sante"
+    weight: 2
+    flow:
+      - get: { url: "/api/health" }

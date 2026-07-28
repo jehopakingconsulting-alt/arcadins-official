@@ -1,0 +1,73 @@
+name: Deploy (production)
+
+# Déploiement progressif Vercel avec HEALTH-GATE + ROLLBACK AUTOMATIQUE.
+# Stratégie : Vercel promeut un déploiement atomique (immutable). On déploie en
+# "preview" (staging), on vérifie la santé (readiness), puis on PROMEUT en prod ;
+# si le health-check post-promotion échoue, on rollback (alias) automatiquement.
+#
+# Secrets requis (GitHub → Settings → Secrets) :
+#   VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID, PROD_URL
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: npm }
+      - run: npm ci
+      - name: Install Vercel CLI
+        run: npm i -g vercel@latest
+
+      # 1) Build + déploiement "preview" (non promu) = staging éphémère
+      - name: Vercel pull env
+        run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+        env: { VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} }
+      - name: Build
+        run: vercel build --prod --token=$VERCEL_TOKEN
+        env: { VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} }
+      - name: Deploy (prebuilt, non promu)
+        id: deploy
+        run: |
+          URL=$(vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+        env: { VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} }
+
+      # 2) Health-gate sur le déploiement fraîchement créé
+      - name: Readiness gate
+        run: |
+          for i in $(seq 1 10); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "${{ steps.deploy.outputs.url }}/api/ready" || true)
+            echo "try $i -> $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 6
+          done
+          echo "Readiness KO"; exit 1
+
+      # 3) Promotion en production (alias)
+      - name: Promote to production
+        run: vercel promote "${{ steps.deploy.outputs.url }}" --token=$VERCEL_TOKEN --yes
+        env: { VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} }
+
+      # 4) Smoke post-promotion + ROLLBACK auto si échec
+      - name: Post-promotion smoke + auto-rollback
+        run: |
+          sleep 8
+          code=$(curl -s -o /dev/null -w "%{http_code}" "${{ secrets.PROD_URL }}/api/health" || true)
+          echo "prod /api/health -> $code"
+          if [ "$code" != "200" ]; then
+            echo "Smoke KO → rollback"
+            vercel rollback --token=$VERCEL_TOKEN --yes || true
+            exit 1
+          fi
+        env: { VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} }
