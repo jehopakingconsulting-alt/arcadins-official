@@ -14,7 +14,6 @@
     "loadtest": "k6 run perf/k6-load.js"
   },
   "dependencies": {
-    "@stripe/stripe-js": "^9.8.0",
     "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.108.2",
     "next": "16.2.11",
