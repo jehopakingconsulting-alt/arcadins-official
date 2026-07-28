@@ -19,7 +19,8 @@ export type Permission =
   | "enrollments.view"        // inscriptions / paiements
   | "referrals.view"          // parrainage & commissions
   | "content.manage"          // contenu pédagogique
-  | "users.manage";           // rôles & comptes
+  | "users.manage"            // rôles & comptes
+  | "migration.view";         // validateur de migration & santé plateforme
 
 const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
   admin: [
@@ -31,6 +32,7 @@ const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "referrals.view",
     "content.manage",
     "users.manage",
+    "migration.view",
   ],
   // Gère les candidatures tuteur + le contenu, sans finance ni comptes.
   content_manager: ["admin.access", "tutor_applications.view", "content.manage"],

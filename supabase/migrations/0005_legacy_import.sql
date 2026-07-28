@@ -164,6 +164,27 @@ create table if not exists public.legacy_prospects (
 );
 create index if not exists legacy_prospects_email_idx on public.legacy_prospects(lower(email));
 
+-- Parrainage : relations (referred_by) ET commissions d'affiliation.
+create table if not exists public.legacy_referrals (
+  id                     uuid primary key default gen_random_uuid(),
+  legacy_id              bigint,
+  kind                   text not null check (kind in ('relationship','commission')),
+  referrer_legacy_id     bigint,
+  referee_legacy_id      bigint,
+  referrer_id            uuid references auth.users(id) on delete set null,
+  referee_id             uuid references auth.users(id) on delete set null,
+  generation             int default 1,
+  plan                   text,
+  commission_amount_cents int default 0,
+  currency               text default 'CAD',
+  status                 text,
+  created_at             timestamptz,
+  paid_at                timestamptz,
+  source                 text not null default 'legacy_import',
+  unique (kind, legacy_id)
+);
+create index if not exists legacy_referrals_referrer_idx on public.legacy_referrals(referrer_legacy_id);
+
 create table if not exists public.legacy_admin_settings (
   key   text primary key,
   value text
@@ -187,7 +208,7 @@ begin
   foreach t in array array[
     'legacy_id_map','legacy_learners','legacy_tests','legacy_modules',
     'legacy_certificates','legacy_payments','legacy_prospects',
-    'legacy_admin_settings','legacy_audit_log'
+    'legacy_referrals','legacy_admin_settings','legacy_audit_log'
   ] loop
     execute format('alter table public.%I enable row level security;', t);
     execute format('drop policy if exists %I_admin_read on public.%I;', t, t);
@@ -204,5 +225,5 @@ end $$;
 -- drop table if exists public.legacy_audit_log, public.legacy_admin_settings,
 --   public.legacy_prospects, public.legacy_payments, public.legacy_certificates,
 --   public.legacy_modules, public.legacy_tests, public.legacy_learners,
---   public.legacy_id_map cascade;
+--   public.legacy_referrals, public.legacy_id_map cascade;
 -- ============================================================================

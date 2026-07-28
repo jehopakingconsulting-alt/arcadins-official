@@ -12,6 +12,8 @@ const LINKS: { href: string; label: string; icon: IconName; perm?: Permission; f
   { href: "/admin/tuteurs", label: "Candidatures tuteur", icon: "teacher", perm: "tutor_applications.view" },
   { href: "/admin/contacts", label: "Contacts", icon: "inbox", perm: "contacts.view" },
   { href: "/admin/parrainage", label: "Parrainage", icon: "handshake", perm: "referrals.view", flag: REFERRAL_ENABLED },
+  { href: "/admin/migration", label: "Validateur migration", icon: "shield", perm: "migration.view" },
+  { href: "/admin/health", label: "Santé plateforme", icon: "clock", perm: "migration.view" },
 ];
 
 export default function AdminNav({ permissions }: { permissions: Permission[] }) {
