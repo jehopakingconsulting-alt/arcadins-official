@@ -8,7 +8,11 @@ import Link from "next/link";
 export default function FormationsPage() {
   const [filter, setFilter] = useState("all");
   const { lang } = useLang();
-  const filtered = filter === "all" ? PROGRAMS : PROGRAMS.filter((p) => p.category === filter);
+  // Catalogue PUBLIC : uniquement les formations actives. Les programmes `comingSoon`
+  // (À venir) sont archivés — conservés dans PROGRAMS (source de vérité) mais exclus
+  // de l'affichage public. Voir ARCHIVED_TRAININGS_REPORT.md.
+  const activePrograms = PROGRAMS.filter((p) => !p.comingSoon);
+  const filtered = filter === "all" ? activePrograms : activePrograms.filter((p) => p.category === filter);
 
   return (
     <div className="bg-off-white min-h-screen pt-32 pb-20">
