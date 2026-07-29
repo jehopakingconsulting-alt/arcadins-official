@@ -102,7 +102,7 @@ export default function HeroSlider() {
       {/* Dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2.5 items-center">
         {SLIDES.map((_, i) => (
-          <button key={i} onClick={() => goTo(i)} className={`transition-all rounded-full ${i === current ? "w-6 h-2 bg-gold rounded shadow-[0_0_8px_rgba(201,168,76,0.55)]" : "w-2 h-2 bg-white/35 hover:bg-white/60 hover:scale-[1.2]"}`} />
+          <button key={i} onClick={() => goTo(i)} aria-label={`Diapositive ${i + 1}`} aria-current={i === current} className={`transition-all rounded-full ${i === current ? "w-6 h-2 bg-gold rounded shadow-[0_0_8px_rgba(201,168,76,0.55)]" : "w-2 h-2 bg-white/35 hover:bg-white/60 hover:scale-[1.2]"}`} />
         ))}
       </div>
 

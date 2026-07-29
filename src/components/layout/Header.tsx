@@ -180,6 +180,8 @@ export default function Header() {
           <button
             className="lg:hidden flex flex-col gap-[5px] p-2"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={menuOpen}
           >
             <span className={`block w-[22px] h-[2px] bg-white rounded transition-all ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`} />
             <span className={`block w-[22px] h-[2px] bg-white rounded transition-all ${menuOpen ? "opacity-0" : ""}`} />

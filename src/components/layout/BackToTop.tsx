@@ -22,6 +22,7 @@ export default function BackToTop() {
           : "opacity-0 translate-y-3.5 pointer-events-none"
       } hover:bg-gold-light hover:-translate-y-1 hover:shadow-[0_10px_32px_rgba(201,168,76,0.55)]`}
       title="Retour en haut"
+      aria-label="Retour en haut de la page"
     >
       ↑
     </button>
