@@ -85,3 +85,7 @@ next-env.d.ts
 # QA Phase 20 (locaux)
 PHASE_20_QA_REPORT.md
 NPM_AUDIT_REPORT.md
+QA_ENVIRONMENT_SETUP.md
+QA_FINAL_REPORT.md
+.env.qa.local
+!.env.qa.example
