@@ -39,7 +39,7 @@ jobs:
       - name: Chiffrer (gpg symétrique)
         run: gpg --batch --yes --passphrase "${{ secrets.BACKUP_PASSPHRASE }}" -c "$DUMP"
       - name: Publier l'artefact chiffré
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: db-backup
           path: ${{ env.DUMP }}.gpg
