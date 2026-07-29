@@ -40,6 +40,15 @@ const nextConfig: NextConfig = {
   compress: true,
   productionBrowserSourceMaps: false,
 
+  // Miniatures YouTube (façade LiteYouTube) optimisées via next/image.
+  // AVIF volontairement non activé (défauts de rendu Safari mobile) → WebP par défaut.
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "i.ytimg.com" },
+      { protocol: "https", hostname: "img.youtube.com" },
+    ],
+  },
+
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

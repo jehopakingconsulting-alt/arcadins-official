@@ -27,7 +27,7 @@ export default function StatsBar() {
             <div className="font-[family-name:var(--font-heading)] text-[38px] font-bold text-navy leading-none">
               <AnimatedCounter target={stat.value} suffix={stat.suffix} />
             </div>
-            <div className="text-[11px] font-semibold text-navy/52 tracking-[1px] uppercase mt-1">
+            <div className="text-[11px] font-semibold text-navy/75 tracking-[1px] uppercase mt-1">
               {t(UI[stat.key], lang)}
             </div>
           </div>

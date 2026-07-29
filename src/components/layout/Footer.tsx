@@ -54,9 +54,9 @@ export default function Footer() {
 
         {/* Formations */}
         <div>
-          <h5 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mb-4">
+          <h2 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mb-4">
             {t(UI["footer.formations"], lang)}
-          </h5>
+          </h2>
           {FOOTER_FORMATIONS.map((item) => (
             <Link
               key={item.key}
@@ -70,9 +70,9 @@ export default function Footer() {
 
         {/* Services */}
         <div>
-          <h5 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mb-4">
+          <h2 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mb-4">
             {t(UI["footer.services"], lang)}
-          </h5>
+          </h2>
           {FOOTER_SERVICES.map((item) => (
             <Link
               key={item.key}
@@ -86,9 +86,9 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h5 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mb-4">
+          <h2 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mb-4">
             {t(UI["footer.contact"], lang)}
-          </h5>
+          </h2>
           <a href="https://maps.google.com/?q=116+Albert+Street+Suite+300+Ottawa+ON+K1P+5G3" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold">
             <Icon name="pin" size={15} className="shrink-0 opacity-70" /> Ottawa, ON Canada
           </a>

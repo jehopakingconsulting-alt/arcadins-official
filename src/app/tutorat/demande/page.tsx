@@ -55,12 +55,12 @@ export default function DemandeTutoratPage() {
           <h2 className="font-[family-name:var(--font-heading)] text-2xl text-navy mb-6">{t(UI["treq.form.title"], lang)}</h2>
 
           <div className="grid grid-cols-2 gap-3.5 mb-3.5">
-            <div><label className={labelCls}>{t(UI["contact.form.first"], lang)}</label><input name="firstName" required className={inputCls} /></div>
-            <div><label className={labelCls}>{t(UI["contact.form.last"], lang)}</label><input name="lastName" required className={inputCls} /></div>
+            <div><label className={labelCls}>{t(UI["contact.form.first"], lang)}</label><input name="firstName" required aria-label={t(UI["contact.form.first"], lang)} className={inputCls} /></div>
+            <div><label className={labelCls}>{t(UI["contact.form.last"], lang)}</label><input name="lastName" required aria-label={t(UI["contact.form.last"], lang)} className={inputCls} /></div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-3.5">
-            <div><label className={labelCls}>{t(UI["contact.form.email"], lang)}</label><input name="email" type="email" required className={inputCls} /></div>
-            <div><label className={labelCls}>{t(UI["fld.phone"], lang)}</label><input name="phone" className={inputCls} /></div>
+            <div><label className={labelCls}>{t(UI["contact.form.email"], lang)}</label><input name="email" type="email" required aria-label={t(UI["contact.form.email"], lang)} className={inputCls} /></div>
+            <div><label className={labelCls}>{t(UI["fld.phone"], lang)}</label><input name="phone" aria-label={t(UI["fld.phone"], lang)} className={inputCls} /></div>
           </div>
 
           <div className="mb-4">
@@ -78,16 +78,16 @@ export default function DemandeTutoratPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-3.5">
             <div><label className={labelCls}>{t(UI["treq.form.target"], lang)}</label>
-              <select name="targetLevel" className={inputCls} defaultValue="">
+              <select name="targetLevel" aria-label={t(UI["treq.form.target"], lang)} className={inputCls} defaultValue="">
                 <option value="" disabled>—</option>
                 {LEVELS.map((l) => (<option key={l.id} value={l.id}>{t(UI[`tut.level.${l.id}`], lang)} · {l.cefr}</option>))}
               </select>
             </div>
-            <div><label className={labelCls}>{t(UI["treq.form.current"], lang)}</label><input name="currentLevel" className={inputCls} /></div>
+            <div><label className={labelCls}>{t(UI["treq.form.current"], lang)}</label><input name="currentLevel" aria-label={t(UI["treq.form.current"], lang)} className={inputCls} /></div>
           </div>
-          <div className="mb-3.5"><label className={labelCls}>{t(UI["treq.form.goal"], lang)}</label><textarea name="goal" className={`${inputCls} resize-y min-h-[70px]`} /></div>
-          <div className="mb-3.5"><label className={labelCls}>{t(UI["treq.form.avail"], lang)}</label><input name="availability" className={inputCls} /></div>
-          <div className="mb-5"><label className={labelCls}>{t(UI["treq.form.message"], lang)}</label><textarea name="message" className={`${inputCls} resize-y min-h-[90px]`} /></div>
+          <div className="mb-3.5"><label className={labelCls}>{t(UI["treq.form.goal"], lang)}</label><textarea name="goal" aria-label={t(UI["treq.form.goal"], lang)} className={`${inputCls} resize-y min-h-[70px]`} /></div>
+          <div className="mb-3.5"><label className={labelCls}>{t(UI["treq.form.avail"], lang)}</label><input name="availability" aria-label={t(UI["treq.form.avail"], lang)} className={inputCls} /></div>
+          <div className="mb-5"><label className={labelCls}>{t(UI["treq.form.message"], lang)}</label><textarea name="message" aria-label={t(UI["treq.form.message"], lang)} className={`${inputCls} resize-y min-h-[90px]`} /></div>
 
           <button type="submit" disabled={status === "sending" || skills.length === 0}
             className={`w-full py-3.5 font-bold text-[15px] rounded-xl transition-all disabled:opacity-60 ${status === "sent" ? "bg-gold text-navy" : "bg-navy text-gold hover:bg-navy-mid hover:-translate-y-0.5"}`}>

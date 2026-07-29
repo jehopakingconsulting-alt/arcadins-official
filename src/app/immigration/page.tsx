@@ -30,7 +30,7 @@ export default function ImmigrationPage() {
               {steps.map((step) => (
                 <div key={step.num} className="flex gap-4 py-5 border-b border-gold/11 last:border-b-0">
                   <div className="w-11 h-11 rounded-full bg-navy text-gold font-[family-name:var(--font-heading)] text-lg font-bold flex items-center justify-center shrink-0">{step.num}</div>
-                  <div><h4 className="font-[family-name:var(--font-heading)] text-base text-navy mb-1">{step.title}</h4><p className="text-[13.5px] text-muted leading-[1.65]">{step.desc}</p></div>
+                  <div><h3 className="font-[family-name:var(--font-heading)] text-base text-navy mb-1">{step.title}</h3><p className="text-[13.5px] text-muted leading-[1.65]">{step.desc}</p></div>
                 </div>
               ))}
             </div>

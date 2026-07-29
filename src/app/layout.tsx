@@ -56,7 +56,9 @@ export const metadata: Metadata = {
     description: "Formation professionnelle & préparation TEF/TCF Canada · 7 langues",
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: "/" },
+  // Pas de canonical global : un canonical "/" hérité par toutes les pages
+  // pointerait à tort vers l'accueil (nuisible au SEO). Chaque page est
+  // auto-référencée par défaut ; canonical spécifique à ajouter par page si besoin.
 };
 
 export default function RootLayout({

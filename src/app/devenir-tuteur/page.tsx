@@ -62,12 +62,12 @@ export default function DevenirTuteurPage() {
           <h2 className="font-[family-name:var(--font-heading)] text-2xl text-navy mb-6">{t(UI["tapp.form.title"], lang)}</h2>
 
           <div className="grid grid-cols-2 gap-3.5 mb-3.5">
-            <div><label className={labelCls}>{t(UI["contact.form.first"], lang)}</label><input name="firstName" required className={inputCls} /></div>
-            <div><label className={labelCls}>{t(UI["contact.form.last"], lang)}</label><input name="lastName" required className={inputCls} /></div>
+            <div><label className={labelCls}>{t(UI["contact.form.first"], lang)}</label><input name="firstName" aria-label={t(UI["contact.form.first"], lang)} required className={inputCls} /></div>
+            <div><label className={labelCls}>{t(UI["contact.form.last"], lang)}</label><input name="lastName" aria-label={t(UI["contact.form.last"], lang)} required className={inputCls} /></div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-4">
-            <div><label className={labelCls}>{t(UI["contact.form.email"], lang)}</label><input name="email" type="email" required className={inputCls} /></div>
-            <div><label className={labelCls}>{t(UI["fld.phone"], lang)}</label><input name="phone" className={inputCls} /></div>
+            <div><label className={labelCls}>{t(UI["contact.form.email"], lang)}</label><input name="email" aria-label={t(UI["contact.form.email"], lang)} type="email" required className={inputCls} /></div>
+            <div><label className={labelCls}>{t(UI["fld.phone"], lang)}</label><input name="phone" aria-label={t(UI["fld.phone"], lang)} className={inputCls} /></div>
           </div>
 
           <div className="mb-4">
@@ -95,9 +95,9 @@ export default function DevenirTuteurPage() {
             </div>
           </div>
 
-          <div className="mb-3.5"><label className={labelCls}>{t(UI["tapp.form.experience"], lang)}</label><textarea name="experience" className={`${inputCls} resize-y min-h-[70px]`} /></div>
-          <div className="mb-3.5"><label className={labelCls}>{t(UI["tapp.form.qualifications"], lang)}</label><textarea name="qualifications" className={`${inputCls} resize-y min-h-[70px]`} /></div>
-          <div className="mb-5"><label className={labelCls}>{t(UI["tapp.form.motivation"], lang)}</label><textarea name="motivation" className={`${inputCls} resize-y min-h-[90px]`} /></div>
+          <div className="mb-3.5"><label className={labelCls}>{t(UI["tapp.form.experience"], lang)}</label><textarea name="experience" aria-label={t(UI["tapp.form.experience"], lang)} className={`${inputCls} resize-y min-h-[70px]`} /></div>
+          <div className="mb-3.5"><label className={labelCls}>{t(UI["tapp.form.qualifications"], lang)}</label><textarea name="qualifications" aria-label={t(UI["tapp.form.qualifications"], lang)} className={`${inputCls} resize-y min-h-[70px]`} /></div>
+          <div className="mb-5"><label className={labelCls}>{t(UI["tapp.form.motivation"], lang)}</label><textarea name="motivation" aria-label={t(UI["tapp.form.motivation"], lang)} className={`${inputCls} resize-y min-h-[90px]`} /></div>
 
           <button type="submit" disabled={status === "sending" || skills.length === 0}
             className={`w-full py-3.5 font-bold text-[15px] rounded-xl transition-all disabled:opacity-60 ${status === "sent" ? "bg-gold text-navy" : "bg-navy text-gold hover:bg-navy-mid hover:-translate-y-0.5"}`}>

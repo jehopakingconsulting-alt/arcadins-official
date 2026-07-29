@@ -86,7 +86,7 @@ export default function Header() {
         <div className="flex items-center justify-between px-4 md:px-7 h-20 gap-3">
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0 group">
-            <svg viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ height: 54, width: "auto" }} className="drop-shadow-[0_2px_10px_rgba(201,168,76,0.28)] transition-[filter] group-hover:drop-shadow-[0_3px_16px_rgba(201,168,76,0.55)]">
+            <svg role="img" aria-label="ARCADINS Training Center — Accueil" viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ height: 54, width: "auto" }} className="drop-shadow-[0_2px_10px_rgba(201,168,76,0.28)] transition-[filter] group-hover:drop-shadow-[0_3px_16px_rgba(201,168,76,0.55)]">
               <g>
                 <polygon points="6,42 14,20 22,34 30,20 38,42" fill="none" stroke="#8A9BB5" strokeWidth="2.2" strokeLinejoin="round"/>
                 <polyline points="24,36 32,12 38,18" fill="none" stroke="url(#gArrowH)" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/>

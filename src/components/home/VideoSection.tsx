@@ -4,6 +4,7 @@ import Link from "next/link";
 import { VIDEOS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
 import Icon from "@/components/ui/Icon";
+import LiteYouTube from "./LiteYouTube";
 
 export default function VideoSection() {
   const { lang } = useLang();
@@ -31,7 +32,7 @@ export default function VideoSection() {
         <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-5 mb-5">
           <div>
             <div className="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-[14px] bg-navy-mid border-[1.5px] border-gold/28">
-              <iframe className="absolute inset-0 w-full h-full border-none rounded-[14px]" src={`https://www.youtube.com/embed/${VIDEOS[0].id}`} title={VIDEOS[0].title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+              <LiteYouTube id={VIDEOS[0].id} title={VIDEOS[0].title} className="rounded-[14px]" />
             </div>
             <div className="pt-4 px-0.5">
               <div className="inline-flex items-center gap-1.5 bg-gold text-navy text-[10px] font-bold px-3 py-1 rounded-full tracking-[1px] uppercase mb-2.5">{VIDEOS[0].chip}</div>
@@ -43,7 +44,7 @@ export default function VideoSection() {
             {VIDEOS.slice(1, 3).map((v) => (
               <div key={v.id} className="bg-white/[0.042] border border-gold/16 rounded-2xl overflow-hidden transition-all hover:border-gold/42 hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(0,0,0,0.25)] flex-1 flex flex-col">
                 <div className="relative w-full pb-[52%] h-0 overflow-hidden rounded-t-2xl">
-                  <iframe className="absolute inset-0 w-full h-full border-none rounded-t-2xl" src={`https://www.youtube.com/embed/${v.id}`} title={v.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                  <LiteYouTube id={v.id} title={v.title} className="rounded-t-2xl" />
                 </div>
                 <div className="p-3.5 flex-1">
                   <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold mb-1">{v.chip}</div>
