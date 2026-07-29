@@ -5,14 +5,14 @@ import { PrivacyLink, TermsLink } from "./FooterModals";
 import { useLang, t, UI } from "@/lib/i18n";
 import Icon from "@/components/ui/Icon";
 
+// Uniquement des destinations réelles et des formations ACTIVES : les entrées
+// vers des formations archivées (EPE, PAB, Famille Sans Dette) ou inexistantes
+// (Leadership) ont été retirées — cohérence avec le catalogue public (Phase 5/19).
 const FOOTER_FORMATIONS = [
   { key: "nav.tef", label: "TEF / TCF Canada", href: "/tef" },
   { key: "tut.title", href: "/tutorat" },
-  { key: "fl.leadership", href: "/formations" },
-  { key: "fl.epe", href: "/formations" },
-  { key: "fl.pab", href: "/formations" },
   { key: "fl.informatique", href: "/formations" },
-  { key: "fl.dette", href: "/formations" },
+  { key: "footer.formations", href: "/formations" },
 ];
 
 const FOOTER_SERVICES = [
@@ -45,25 +45,11 @@ export default function Footer() {
           <p className="text-white/40 text-[13.5px] leading-[1.75] mb-6 max-w-[280px]">
             {t(UI["footer.desc"], lang)}
           </p>
-          <div className="flex gap-2">
-            {[
-              { label: "f", href: "https://facebook.com" },
-              { label: "in", href: "https://linkedin.com" },
-              { label: "X", href: "https://x.com" },
-              { label: "▶", href: "https://youtube.com" },
-              { label: "📷", href: "https://instagram.com" },
-            ].map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-white/5 border border-gold/17 flex items-center justify-center text-white/48 text-[13px] transition-all hover:bg-gold/13 hover:text-gold hover:border-gold/44"
-              >
-                {s.label}
-              </a>
-            ))}
-          </div>
+          {/* Liens sociaux masqués : les href pointaient vers les pages d'accueil
+              génériques des plateformes (facebook.com, linkedin.com, x.com,
+              youtube.com, instagram.com), pas vers des comptes ARCADINS officiels.
+              Règle « ne pas inventer d'URL ». Rétablir ce bloc en renseignant les
+              URLs réelles des comptes ARCADINS. */}
         </div>
 
         {/* Formations */}
