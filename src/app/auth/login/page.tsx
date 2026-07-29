@@ -17,7 +17,12 @@ function LoginForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect") || "/dashboard";
+  // Anti open-redirect : n'accepter qu'un chemin interne (commence par "/" mais
+  // pas "//" qui vaut une URL protocol-relative externe). Sinon → /dashboard.
+  const rawRedirect = searchParams.get("redirect");
+  const redirect = rawRedirect && rawRedirect.startsWith("/") && !rawRedirect.startsWith("//")
+    ? rawRedirect
+    : "/dashboard";
   const { lang } = useLang();
 
   async function handleSubmit(e: React.FormEvent) {
