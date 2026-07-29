@@ -1,7 +1,11 @@
+import dynamic from "next/dynamic";
 import HeroSlider from "@/components/home/HeroSlider";
-import StatsBar from "@/components/home/StatsBar";
-import VideoSection from "@/components/home/VideoSection";
-import ServicesGrid from "@/components/home/ServicesGrid";
+
+// Code-splitting : les sections sous la ligne de flottaison sont chargées en
+// chunks séparés (réduit le JS initial / TBT). SSR conservé (contenu dans le HTML).
+const StatsBar = dynamic(() => import("@/components/home/StatsBar"));
+const VideoSection = dynamic(() => import("@/components/home/VideoSection"));
+const ServicesGrid = dynamic(() => import("@/components/home/ServicesGrid"));
 
 export default function HomePage() {
   return (
