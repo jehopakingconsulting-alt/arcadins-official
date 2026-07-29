@@ -89,3 +89,4 @@ QA_ENVIRONMENT_SETUP.md
 QA_FINAL_REPORT.md
 .env.qa.local
 !.env.qa.example
+LIGHTHOUSE_OPTIMIZATION_REPORT.md
