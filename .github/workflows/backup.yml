@@ -23,13 +23,16 @@ jobs:
           # Script officiel PostgreSQL : configure le dépôt PGDG + la clé, sans TTY.
           sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
           sudo apt-get install -y postgresql-client-17
-          # Vérifie pg_dump — échoue immédiatement s'il manque.
-          command -v pg_dump >/dev/null || { echo "❌ pg_dump introuvable"; exit 1; }
-          pg_dump --version
+          # Binaire versionné explicite (le wrapper pg_dump prend la 16 par défaut).
+          PGDUMP=$(ls /usr/lib/postgresql/*/bin/pg_dump | sort -V | tail -1)
+          echo "PGDUMP=$PGDUMP" >> "$GITHUB_ENV"
+          "$PGDUMP" --version
       - name: Dump (custom format, compressé)
         run: |
+          set -euo pipefail
           ts=$(date -u +%Y%m%d-%H%M)
-          pg_dump "$SUPABASE_DB_URL" -Fc -f "arcadins-$ts.dump"
+          # Utilise le pg_dump le plus récent installé (>= version serveur 17).
+          "$PGDUMP" "$SUPABASE_DB_URL" -Fc -f "arcadins-$ts.dump"
           echo "DUMP=arcadins-$ts.dump" >> "$GITHUB_ENV"
         env:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
