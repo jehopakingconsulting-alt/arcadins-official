@@ -43,7 +43,10 @@ export default function CourseDetailPage() {
   const pendingPayment = enrollmentStatus === "pending_payment";
   const suspended = enrollmentStatus === "suspended";
 
-  if (!course) {
+  // Formation inexistante OU archivée (comingSoon) → introuvable côté public.
+  // Les programmes « À venir » restent dans PROGRAMS mais ne sont pas exposés
+  // publiquement, même par URL directe. Voir ARCHIVED_TRAININGS_REPORT.md.
+  if (!course || course.comingSoon) {
     return (
       <div className="min-h-screen bg-navy flex items-center justify-center pt-32">
         <div className="text-center">
