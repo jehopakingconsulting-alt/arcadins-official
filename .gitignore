@@ -81,3 +81,7 @@ SECURITY_FUNCTIONAL_REVIEW.md
 next-env.d.ts
 
 .vercel
+
+# QA Phase 20 (locaux)
+PHASE_20_QA_REPORT.md
+NPM_AUDIT_REPORT.md
