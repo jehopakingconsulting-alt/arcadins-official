@@ -11,7 +11,8 @@
     "test": "node --test --experimental-strip-types",
     "coverage": "node --test --experimental-strip-types --experimental-test-coverage",
     "audit:sql": "node scripts/migration/sql-audit.mjs",
-    "loadtest": "k6 run perf/k6-load.js"
+    "loadtest": "k6 run perf/k6-load.js",
+    "e2e": "playwright test"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",
@@ -23,6 +24,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

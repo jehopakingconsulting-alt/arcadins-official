@@ -67,6 +67,12 @@ ACCESSIBILITY_AUDIT.md
 RESPONSIVE_QA_REPORT.md
 SECURITY_FUNCTIONAL_REVIEW.md
 
+# playwright
+/test-results
+/playwright-report
+/blob-report
+/playwright/.cache
+
 # vercel
 .vercel
 
