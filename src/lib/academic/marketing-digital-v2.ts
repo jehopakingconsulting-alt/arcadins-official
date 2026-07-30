@@ -5,6 +5,7 @@ import { marketingDigitalV2Module4 } from "./modules/marketing-digital-v2-m4.ts"
 import { marketingDigitalV2Module5 } from "./modules/marketing-digital-v2-m5.ts";
 import { marketingDigitalV2Module6 } from "./modules/marketing-digital-v2-m6.ts";
 import { marketingDigitalV2Module7 } from "./modules/marketing-digital-v2-m7.ts";
+import { marketingDigitalV2Module8 } from "./modules/marketing-digital-v2-m8.ts";
 
 /**
  * Cursus Marketing Digital et E-commerce — version académique v2 (24 semaines).
@@ -219,66 +220,7 @@ export const marketingDigitalV2: ProgramCurriculumV2 = {
     marketingDigitalV2Module6,
     // Module 7 authored en profondeur (semaines 19–21).
     marketingDigitalV2Module7,
-    {
-      index: 8,
-      title: "Analytique, projet intégrateur et examen final",
-      weeks: [22, 23, 24],
-      summary: "Tableaux de bord et KPI (approfondit L6 v1), finalisation du projet intégrateur et examen final.",
-      competencies: ["C23", "C24"],
-      lessons: makeLessonStubs(8, [
-        "Analytique et tableaux de bord",
-        "Finalisation du projet intégrateur",
-        "Révision et préparation à l'examen",
-      ]),
-      assessments: [
-        ...makeModuleAssessments(8, "Analytique"),
-        {
-          id: "mkt-v2-final-project",
-          kind: "final_project",
-          title: "Projet final — Stratégie marketing & e-commerce complète (rubrique 100 pts)",
-          passThreshold: 60,
-          weightHint: "Projet final (20 %)",
-        },
-        {
-          id: "mkt-v2-final-exam",
-          kind: "final_exam",
-          title: "Examen final — 60 questions, 120 min",
-          passThreshold: 60,
-          weightHint: "Examen final (15 %)",
-        },
-      ],
-    },
+    // Module 8 authored en profondeur (semaines 22–24) — capstone : synthèse, projet intégrateur, examen final.
+    marketingDigitalV2Module8,
   ],
 };
-
-/** Génère les stubs de leçons d'un module (structure, non « authored »). */
-function makeLessonStubs(moduleIndex: number, titles: string[]) {
-  return titles.map((title, i) => ({
-    id: `mkt-v2-m${moduleIndex}-l${i + 1}`,
-    title,
-    objectives: [`Objectifs détaillés à rédiger lors de l'authoring du module ${moduleIndex}.`],
-    content: [] as string[],
-    keyTakeaways: [] as string[],
-    authored: false,
-  }));
-}
-
-/** Génère le sommatif + le TP standard d'un module. */
-function makeModuleAssessments(moduleIndex: number, label: string) {
-  return [
-    {
-      id: `mkt-v2-m${moduleIndex}-sum`,
-      kind: "summative" as const,
-      title: `Sommatif Module ${moduleIndex} — ${label}`,
-      passThreshold: 70,
-      weightHint: "Quiz de modules (20 %)",
-    },
-    {
-      id: `mkt-v2-m${moduleIndex}-tp`,
-      kind: "practical" as const,
-      title: `TP${moduleIndex} — livrable ${moduleIndex}/7 du projet intégrateur`,
-      passThreshold: 60,
-      weightHint: "Travaux pratiques (25 %)",
-    },
-  ];
-}

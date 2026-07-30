@@ -259,10 +259,55 @@ test("Module 7 est authored, couvre les semaines 19-21 et compte 12 leçons", ()
   assert.equal(m7.lessons.length, 12);
 });
 
-test("Module 7 : exactement 20 questions et banque cumulée = 140", () => {
+test("Module 7 : exactement 20 questions", () => {
   const m7Questions = marketingDigitalV2Bank.filter((q) => q.module === 7);
   assert.equal(m7Questions.length, 20);
-  assert.equal(marketingDigitalV2Bank.length, 140);
+});
+
+// ─────────────────────────── MODULE 8 (capstone) ───────────────────────────
+
+test("Module 8 est authored, couvre les semaines 22-24 et compte 12 leçons", () => {
+  const m8 = marketingDigitalV2.modules.find((m) => m.index === 8)!;
+  assert.deepEqual(m8.weeks, [22, 23, 24]);
+  assert.ok(m8.lessons.every((l) => l.authored));
+  assert.equal(m8.lessons.length, 12);
+});
+
+test("Module 8 : exactement 20 questions et banque cumulée = 160", () => {
+  const m8Questions = marketingDigitalV2Bank.filter((q) => q.module === 8);
+  assert.equal(m8Questions.length, 20);
+  assert.equal(marketingDigitalV2Bank.length, 160);
+});
+
+test("Module 8 : rubrique 100 pts, projet + examen final présents", () => {
+  const m8 = marketingDigitalV2.modules.find((m) => m.index === 8)!;
+  const sum = m8.rubric!.criteria.reduce((acc, c) => acc + c.points, 0);
+  assert.equal(sum, 100);
+  assert.ok(m8.assessments.some((a) => a.kind === "practical"));
+  assert.ok(m8.assessments.some((a) => a.kind === "final_exam"));
+});
+
+test("Examen final : 60 questions uniques, toutes présentes dans la banque, seuil 60 %", () => {
+  const m8 = marketingDigitalV2.modules.find((m) => m.index === 8)!;
+  const fx = m8.finalExam!;
+  assert.equal(fx.questionIds.length, 60);
+  assert.equal(new Set(fx.questionIds).size, 60, "questions de l'examen final dupliquées");
+  const bankIds = new Set(marketingDigitalV2Bank.map((q) => q.id));
+  for (const qid of fx.questionIds) assert.ok(bankIds.has(qid), `examen final référence ${qid} absent`);
+  assert.equal(fx.passThreshold, 60);
+  assert.equal(fx.durationMinutes, 120);
+});
+
+test("PROGRAMME COMPLET : 8 modules, 24 semaines (1-24), 160 questions, validation sans erreur", () => {
+  const report = validateCurriculum(marketingDigitalV2, marketingDigitalV2Bank);
+  assert.deepEqual(report.errors, [], JSON.stringify(report.errors));
+  assert.equal(report.stats.modules, 8);
+  assert.equal(report.stats.weeksCovered, 24);
+  assert.equal(report.stats.bankQuestions, 160);
+  assert.ok(marketingDigitalV2.modules.every((m) => m.lessons.every((l) => l.authored)), "tous les modules doivent être authored");
+  // Toutes les semaines 1..24 couvertes une seule fois.
+  const weeks = marketingDigitalV2.modules.flatMap((m) => m.weeks).sort((a, b) => a - b);
+  assert.deepEqual(weeks, Array.from({ length: 24 }, (_, i) => i + 1));
 });
 
 test("Module 7 : rubrique 100 pts, projet présent, formules complètes", () => {

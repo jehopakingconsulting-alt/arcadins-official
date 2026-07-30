@@ -194,6 +194,7 @@ export function validateCurriculum(
     { index: 5, weeks: [13, 14, 15] },
     { index: 6, weeks: [16, 17, 18] },
     { index: 7, weeks: [19, 20, 21] },
+    { index: 8, weeks: [22, 23, 24] },
   ];
   for (const spec of deepSpecs) {
     const mod = curriculum.modules.find((m) => m.index === spec.index);
@@ -236,8 +237,24 @@ export function validateCurriculum(
     }
   }
 
-  // 16) Continuité inter-modules : liens pédagogiques cohérents M1 → … → M7.
-  for (const idx of [2, 3, 4, 5, 6, 7]) {
+  // 15c) Examen final (module capstone) : références valides, sans doublon, seuil défini.
+  for (const m of curriculum.modules) {
+    const fx = m.finalExam;
+    if (!fx) continue;
+    if (fx.questionIds.length < 60)
+      warn("FINAL_EXAM_SIZE", `${fx.id} : ${fx.questionIds.length} questions (cible 60).`);
+    const dupFx = firstDuplicate(fx.questionIds);
+    if (dupFx) err("FINAL_EXAM_DUP", `${fx.id} : question dupliquée ${dupFx}.`);
+    for (const qid of fx.questionIds) {
+      if (!bankIds.has(qid)) err("FINAL_EXAM_REF", `${fx.id} référence une question inconnue : ${qid}.`);
+    }
+    if (fx.passThreshold <= 0 || fx.passThreshold > 100)
+      err("FINAL_EXAM_THRESHOLD", `${fx.id} : seuil de réussite invalide.`);
+    if (fx.durationMinutes <= 0) err("FINAL_EXAM_DURATION", `${fx.id} : durée invalide.`);
+  }
+
+  // 16) Continuité inter-modules : liens pédagogiques cohérents M1 → … → M8.
+  for (const idx of [2, 3, 4, 5, 6, 7, 8]) {
     const mod = curriculum.modules.find((m) => m.index === idx);
     if (mod && mod.lessons.every((l) => l.authored)) {
       if (!mod.links || mod.links.deliverablesForNextModule.length === 0)

@@ -112,6 +112,19 @@ export interface FormativeQuiz {
   passThreshold: number; // 0..100 (indicatif; formatif)
 }
 
+/**
+ * Examen final d'un programme : sélection depuis la banque cumulée, corrigée côté serveur.
+ * Générique (réutilisable pour tout programme : marketing, TEF, TCF, DELF…).
+ */
+export interface FinalExam {
+  id: string;
+  title: string;
+  /** Sélection de questions (références vers la banque). La correction reste serveur. */
+  questionIds: string[];
+  durationMinutes: number;
+  passThreshold: number; // en % (ex: 60)
+}
+
 export interface LessonV2 {
   id: string; // ex: "mkt-v2-m1-l1"
   title: string;
@@ -218,6 +231,8 @@ export interface ModuleV2 {
   links?: PedagogicalLinks;
   /** Métadonnées i18n / gouvernance éditoriale. */
   contentMeta?: ContentMeta;
+  /** Examen final du programme (module de synthèse uniquement). */
+  finalExam?: FinalExam;
 }
 
 /** Pondération globale (doit sommer à 100). */
