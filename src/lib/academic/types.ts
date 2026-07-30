@@ -98,6 +98,13 @@ export interface FeedbackRule {
   message: string;
 }
 
+/** Une formule / indicateur enseigné (ex. CTR, CPC, ROAS), avec un exemple chiffré simulé. */
+export interface Formula {
+  name: string; // ex: "CTR"
+  expression: string; // ex: "clics / impressions × 100"
+  example: string; // ex: "(50 / 5000) × 100 = 1 % — jeu de données pédagogique fictif"
+}
+
 /** Quiz formatif intégré à une leçon (feedback, non bloquant seul). */
 export interface FormativeQuiz {
   id: string;
@@ -134,6 +141,8 @@ export interface LessonV2 {
   interactiveActivities?: InteractiveActivity[];
   /** Encadré « Point de vigilance » (éthique, conformité, pièges). */
   vigilancePoint?: CommonError;
+  /** Formules / indicateurs enseignés (ex. CTR, CPC, ROAS). */
+  formulas?: Formula[];
   successCriteria?: string[];
   resources?: string[];
   glossary?: GlossaryTerm[];

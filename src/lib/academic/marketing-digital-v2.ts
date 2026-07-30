@@ -1,6 +1,7 @@
 import type { ProgramCurriculumV2 } from "@/lib/academic/types";
 import { marketingDigitalV2Module2 } from "./modules/marketing-digital-v2-m2.ts";
 import { marketingDigitalV2Module3 } from "./modules/marketing-digital-v2-m3.ts";
+import { marketingDigitalV2Module4 } from "./modules/marketing-digital-v2-m4.ts";
 
 /**
  * Cursus Marketing Digital et E-commerce — version académique v2 (24 semaines).
@@ -207,28 +208,8 @@ export const marketingDigitalV2: ProgramCurriculumV2 = {
     marketingDigitalV2Module2,
     // Module 3 authored en profondeur (semaines 7–9).
     marketingDigitalV2Module3,
-    {
-      index: 4,
-      title: "Réseaux sociaux et community management",
-      weeks: [10, 11, 12],
-      summary: "Stratégie par plateforme, calendrier social, animation de communauté (enrichit L4 v1). Mi-parcours en fin de module.",
-      competencies: ["C11", "C12", "C13"],
-      lessons: makeLessonStubs(4, [
-        "Stratégie par plateforme",
-        "Calendrier social et formats",
-        "Community management et modération",
-      ]),
-      assessments: [
-        ...makeModuleAssessments(4, "Réseaux sociaux"),
-        {
-          id: "mkt-v2-m4-midterm",
-          kind: "midterm",
-          title: "Évaluation de mi-parcours (diagnostic, après M4)",
-          passThreshold: 70,
-          weightHint: "intégré aux sommatifs",
-        },
-      ],
-    },
+    // Module 4 authored en profondeur (semaines 10–12), avec mi-parcours.
+    marketingDigitalV2Module4,
     {
       index: 5,
       title: "Site web, SEO et expérience utilisateur",

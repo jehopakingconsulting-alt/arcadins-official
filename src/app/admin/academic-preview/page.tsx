@@ -72,7 +72,8 @@ export default function AcademicPreviewPage() {
                   </span>
                   {(l.interactiveActivities?.length ?? 0) > 0 && (
                     <span className="text-xs text-gray-400">
-                      ({l.interactiveActivities!.length} activité(s))
+                      ({l.interactiveActivities!.length} activité(s)
+                      {(l.formulas?.length ?? 0) > 0 ? `, ${l.formulas!.length} formule(s)` : ""})
                     </span>
                   )}
                 </li>

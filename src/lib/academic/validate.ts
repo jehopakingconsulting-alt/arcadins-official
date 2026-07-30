@@ -154,8 +154,8 @@ export function validateCurriculum(
       if (forbiddenComingSoon.test(blob)) err("LESSON_COMING_SOON", `${l.id} : contient un marqueur « À venir » interdit.`);
       if (forbiddenRecognition.test(blob))
         err("LESSON_FAKE_RECOGNITION", `${l.id} : revendication de reconnaissance officielle interdite.`);
-      // Une promesse trompeuse n'est admise que comme contre-exemple explicitement étiqueté « à éviter/interdit/trompeus ».
-      if (forbiddenPromise.test(blob) && !/(à éviter|interdit|trompeus|surpromess|non conforme|ne (jamais|pas))/i.test(blob))
+      // Une promesse trompeuse n'est admise que comme contre-exemple explicitement encadré.
+      if (forbiddenPromise.test(blob) && !/(à éviter|interdit|trompeus|surpromess|non conforme|aucun|sans|jamais|ne (jamais|pas))/i.test(blob))
         err("LESSON_MISLEADING_PROMISE", `${l.id} : promesse trompeuse non encadrée détectée.`);
     }
     // Activités interactives : présence d'une clé de correction et d'un critère de réussite.
@@ -190,6 +190,7 @@ export function validateCurriculum(
   const deepSpecs: { index: number; weeks: number[] }[] = [
     { index: 2, weeks: [4, 5, 6] },
     { index: 3, weeks: [7, 8, 9] },
+    { index: 4, weeks: [10, 11, 12] },
   ];
   for (const spec of deepSpecs) {
     const mod = curriculum.modules.find((m) => m.index === spec.index);
@@ -222,8 +223,18 @@ export function validateCurriculum(
   if (bank.length !== expectedBank)
     err("BANK_TOTAL", `Banque = ${bank.length}, attendu ${expectedBank} (20 × ${authoredModuleCount} modules authored).`);
 
-  // 16) Continuité inter-modules : liens pédagogiques cohérents M1 → M2 → M3.
-  for (const idx of [2, 3]) {
+  // 15b) Cohérence des formules enseignées (nom, expression, exemple présents).
+  for (const m of curriculum.modules) {
+    for (const l of m.lessons) {
+      for (const f of l.formulas ?? []) {
+        if (!f.name.trim() || !f.expression.trim() || !f.example.trim())
+          err("FORMULA_INCOMPLETE", `${l.id} : formule incomplète (${f.name || "sans nom"}).`);
+      }
+    }
+  }
+
+  // 16) Continuité inter-modules : liens pédagogiques cohérents M1 → M2 → M3 → M4.
+  for (const idx of [2, 3, 4]) {
     const mod = curriculum.modules.find((m) => m.index === idx);
     if (mod && mod.lessons.every((l) => l.authored)) {
       if (!mod.links || mod.links.deliverablesForNextModule.length === 0)

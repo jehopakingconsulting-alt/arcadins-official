@@ -125,10 +125,9 @@ test("Module 3 est authored, couvre les semaines 7-9 et compte 12 leçons", () =
   assert.equal(m3.lessons.length, 12);
 });
 
-test("Module 3 : exactement 20 questions et banque cumulée = 60", () => {
+test("Module 3 : exactement 20 questions", () => {
   const m3Questions = marketingDigitalV2Bank.filter((q) => q.module === 3);
   assert.equal(m3Questions.length, 20);
-  assert.equal(marketingDigitalV2Bank.length, 60);
 });
 
 test("Module 3 : chaque leçon a étude de cas fictive, activité interactive, critères et rétroactions", () => {
@@ -170,6 +169,58 @@ test("aucune promesse trompeuse non encadrée ni faux témoignage dans les modul
   const report = validateCurriculum(marketingDigitalV2, marketingDigitalV2Bank);
   assert.ok(!report.errors.some((e) => e.code === "LESSON_MISLEADING_PROMISE"), JSON.stringify(report.errors.filter((e) => e.code === "LESSON_MISLEADING_PROMISE")));
   assert.ok(!report.errors.some((e) => e.code === "CASE_NOT_FLAGGED"));
+});
+
+// ─────────────────────────── MODULE 4 ───────────────────────────
+
+test("Module 4 est authored, couvre les semaines 10-12 et compte 12 leçons", () => {
+  const m4 = marketingDigitalV2.modules.find((m) => m.index === 4)!;
+  assert.deepEqual(m4.weeks, [10, 11, 12]);
+  assert.ok(m4.lessons.every((l) => l.authored));
+  assert.equal(m4.lessons.length, 12);
+});
+
+test("Module 4 : exactement 20 questions et banque cumulée = 80", () => {
+  const m4Questions = marketingDigitalV2Bank.filter((q) => q.module === 4);
+  assert.equal(m4Questions.length, 20);
+  assert.equal(marketingDigitalV2Bank.length, 80);
+});
+
+test("Module 4 : rubrique 100 pts, projet + mi-parcours présents", () => {
+  const m4 = marketingDigitalV2.modules.find((m) => m.index === 4)!;
+  const sum = m4.rubric!.criteria.reduce((acc, c) => acc + c.points, 0);
+  assert.equal(sum, 100);
+  assert.ok(m4.assessments.some((a) => a.kind === "practical"));
+  assert.ok(m4.assessments.some((a) => a.kind === "midterm"));
+});
+
+test("Module 4 : les formules enseignées sont complètes (nom, expression, exemple)", () => {
+  const m4 = marketingDigitalV2.modules.find((m) => m.index === 4)!;
+  const formulas = m4.lessons.flatMap((l) => l.formulas ?? []);
+  assert.ok(formulas.length >= 5, `attendu >= 5 formules, trouvé ${formulas.length}`);
+  for (const f of formulas) {
+    assert.ok(f.name.trim() && f.expression.trim() && f.example.trim(), `formule incomplète : ${f.name}`);
+  }
+});
+
+test("Module 4 : 3 quiz hebdomadaires valides", () => {
+  const m4 = marketingDigitalV2.modules.find((m) => m.index === 4)!;
+  const bankIds = new Set(marketingDigitalV2Bank.map((q) => q.id));
+  assert.equal(m4.weeklyQuizzes?.length, 3);
+  for (const wq of m4.weeklyQuizzes ?? []) {
+    assert.ok(wq.questionIds.length >= 8);
+    for (const qid of wq.questionIds) assert.ok(bankIds.has(qid), `${wq.id} référence ${qid} absent`);
+  }
+});
+
+test("Module 4 : contenu marqué simulation/fictif, sans promesse de résultat garanti non encadrée", () => {
+  const report = validateCurriculum(marketingDigitalV2, marketingDigitalV2Bank);
+  assert.ok(!report.errors.some((e) => e.code === "LESSON_MISLEADING_PROMISE"));
+  assert.ok(!report.errors.some((e) => e.code === "CASE_NOT_FLAGGED"));
+  // Les études de cas de campagne portent la mention de simulation.
+  const m4 = marketingDigitalV2.modules.find((m) => m.index === 4)!;
+  const simMentions = m4.lessons.filter((l) => /Simulation pédagogique|Jeu de données pédagogique fictif/.test(l.caseStudy?.title ?? "")).length;
+  assert.ok(simMentions >= 3, `attendu >= 3 études de cas marquées simulation, trouvé ${simMentions}`);
 });
 
 test("la validation détecte un trou de semaine", () => {
