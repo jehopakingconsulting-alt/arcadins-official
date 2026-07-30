@@ -1,4 +1,5 @@
 import type { ProgramCurriculumV2 } from "@/lib/academic/types";
+import { marketingDigitalV2Module2 } from "./modules/marketing-digital-v2-m2.ts";
 
 /**
  * Cursus Marketing Digital et E-commerce — version académique v2 (24 semaines).
@@ -69,6 +70,14 @@ export const marketingDigitalV2: ProgramCurriculumV2 = {
             "Un bon indicateur relie une dépense à un résultat d'affaires.",
             "La boucle mesurer → décider → ajuster est le cœur du métier.",
           ],
+          successCriteria: [
+            "La définition du marketing digital repose sur la mesure et l'agilité.",
+            "Au moins trois indicateurs mesurables et un indicateur « vanité » sont distingués.",
+          ],
+          feedbackRules: [
+            { condition: "score >= 70", message: "Bien : vous distinguez mesure utile et indicateurs de vanité." },
+            { condition: "score < 70", message: "Revoyez la mesurabilité et la boucle mesurer → décider → ajuster." },
+          ],
           authored: true,
         },
         {
@@ -105,6 +114,14 @@ export const marketingDigitalV2: ProgramCurriculumV2 = {
             "AARRR = Acquisition, Activation, Rétention, Recommandation, Revenu.",
             "On corrige d'abord l'étape qui fuit, pas systématiquement l'Acquisition.",
             "Chaque étape se mesure séparément pour localiser la fuite.",
+          ],
+          successCriteria: [
+            "Les 5 étapes AARRR sont nommées correctement.",
+            "L'étape qui fuit est identifiée et justifiée avant toute décision de budget.",
+          ],
+          feedbackRules: [
+            { condition: "score >= 70", message: "Vous localisez correctement la fuite du funnel." },
+            { condition: "score < 70", message: "Revoyez le diagnostic étape par étape du funnel AARRR." },
           ],
           authored: true,
         },
@@ -155,6 +172,14 @@ export const marketingDigitalV2: ProgramCurriculumV2 = {
             "CAC = dépense ÷ clients ; un ratio LTV/CAC ≥ 3 est un repère sain.",
             "On compare les canaux par taux de conversion (%), pas par volume brut.",
           ],
+          successCriteria: [
+            "Le persona et le choix de canal sont cohérents avec le cycle de vente.",
+            "CAC et taux de conversion sont calculés et interprétés correctement.",
+          ],
+          feedbackRules: [
+            { condition: "score >= 70", message: "Vous reliez persona, canal et indicateurs avec justesse." },
+            { condition: "score < 70", message: "Revoyez le calcul du CAC et la comparaison par taux de conversion." },
+          ],
           authored: true,
         },
       ],
@@ -177,20 +202,8 @@ export const marketingDigitalV2: ProgramCurriculumV2 = {
     },
 
     // ───────────────── MODULES 2–8 — STRUCTURE (authoring à venir) ─────────────────
-    {
-      index: 2,
-      title: "Étude de marché, persona avancé et positionnement",
-      weeks: [4, 5, 6],
-      summary:
-        "Module entièrement nouveau (aucun équivalent v1) : recherche de marché, analyse concurrentielle, persona approfondi, proposition de valeur et positionnement.",
-      competencies: ["C5", "C6", "C7"],
-      lessons: makeLessonStubs(2, [
-        "Méthodes d'étude de marché (primaire/secondaire)",
-        "Analyse concurrentielle et cartographie",
-        "Proposition de valeur et positionnement",
-      ]),
-      assessments: makeModuleAssessments(2, "Étude de marché & positionnement"),
-    },
+    // Module 2 authored en profondeur (semaines 4–6).
+    marketingDigitalV2Module2,
     {
       index: 3,
       title: "Stratégie de marque et de contenu",

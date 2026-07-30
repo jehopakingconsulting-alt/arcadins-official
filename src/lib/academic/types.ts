@@ -12,6 +12,8 @@ export type Difficulty = "easy" | "medium" | "hard";
 export type QuestionType =
   | "mcq" // choix unique
   | "multi" // choix multiple
+  | "truefalse" // vrai ou faux raisonné
+  | "ranking" // classement / ordonnancement
   | "scenario" // décision appliquée
   | "calc" // calcul simple
   | "interpret" // interprétation de données
@@ -45,6 +47,56 @@ export interface Activity {
   estimatedMinutes: number;
 }
 
+/** Une définition de glossaire / terme clé. */
+export interface GlossaryTerm {
+  term: string;
+  definition: string;
+}
+
+/** Encadré « Erreur fréquente ». */
+export interface CommonError {
+  title: string;
+  body: string;
+}
+
+/** Étude de cas rattachée à une leçon. Toujours identifiée comme fictive si elle l'est. */
+export interface LessonCaseStudy {
+  title: string;
+  /** "québécoise" | "canadienne" | "internationale" | "erreur-positionnement" ... */
+  region: string;
+  body: string[];
+  /** true = entreprise fictive utilisée à des fins pédagogiques (jamais présentée comme réelle). */
+  isFictional: boolean;
+}
+
+/** Une section logique de contenu à l'intérieur d'une leçon. */
+export interface LessonSection {
+  heading: string;
+  body: string[];
+}
+
+/**
+ * Activité interactive avec correction (classement, identification d'erreur, appariement…).
+ * Autonome par rapport au quiz : sert à l'entraînement guidé.
+ */
+export interface InteractiveActivity {
+  id: string;
+  title: string;
+  objective: string;
+  instructions: string[];
+  /** Grille / clé de correction (réponse attendue expliquée). */
+  answerKey: string[];
+  feedback: string;
+  successCriterion: string;
+}
+
+/** Une règle de rétroaction conditionnelle (selon la performance au quiz). */
+export interface FeedbackRule {
+  /** ex: "score >= 70", "score < 50" */
+  condition: string;
+  message: string;
+}
+
 /** Quiz formatif intégré à une leçon (feedback, non bloquant seul). */
 export interface FormativeQuiz {
   id: string;
@@ -62,6 +114,30 @@ export interface LessonV2 {
   quiz?: FormativeQuiz;
   keyTakeaways: string[];
   authored: boolean; // true seulement quand le contenu profond est rédigé et vérifié
+
+  // ─── Champs enrichis (optionnels ; utilisés par les modules « authored » riches) ───
+  module?: number;
+  week?: number;
+  introduction?: string;
+  competencies?: string[];
+  prerequisites?: string[];
+  durationMinutes?: number;
+  /** Contenu structuré en sections (alternative/complément à `content`). */
+  sections?: LessonSection[];
+  definitions?: GlossaryTerm[];
+  examples?: string[];
+  commonError?: CommonError;
+  caseStudy?: LessonCaseStudy;
+  /** Exercice pratique noté (distinct des activités interactives). */
+  exercise?: Activity;
+  interactiveActivities?: InteractiveActivity[];
+  successCriteria?: string[];
+  resources?: string[];
+  glossary?: GlossaryTerm[];
+  summary?: string;
+  selfAssessment?: string[];
+  feedbackRules?: FeedbackRule[];
+  progressionRule?: string;
 }
 
 /** Évaluation sommative rattachée à un module. */
@@ -75,6 +151,29 @@ export interface SummativeAssessment {
   weightHint: string;
 }
 
+/** Un critère de rubrique de correction. */
+export interface RubricCriterion {
+  label: string;
+  points: number;
+}
+
+/** Rubrique de correction d'un travail pratique / projet. */
+export interface Rubric {
+  id: string;
+  title: string;
+  totalPoints: number; // doit égaler la somme des critères
+  passThreshold: number; // en % (ex: 60)
+  criteria: RubricCriterion[];
+}
+
+/** Liens pédagogiques explicites entre modules (continuité du cursus). */
+export interface PedagogicalLinks {
+  prerequisitesFromPrevious: string[];
+  consolidatedCompetencies: string[];
+  newCompetencies: string[];
+  deliverablesForNextModule: string[];
+}
+
 export interface ModuleV2 {
   index: number; // 1..8
   title: string;
@@ -83,6 +182,14 @@ export interface ModuleV2 {
   competencies: string[]; // ex: ["C1","C2","C3"]
   lessons: LessonV2[];
   assessments: SummativeAssessment[];
+
+  // ─── Champs enrichis (optionnels) ───
+  introduction?: string;
+  /** Quiz formatifs hebdomadaires (1 par semaine). */
+  weeklyQuizzes?: FormativeQuiz[];
+  /** Rubrique du travail pratique / projet du module. */
+  rubric?: Rubric;
+  links?: PedagogicalLinks;
 }
 
 /** Pondération globale (doit sommer à 100). */

@@ -57,10 +57,14 @@ export function validateCurriculum(
   const dupLesson = firstDuplicate(lessonIds);
   if (dupLesson) err("LESSON_ID_DUP", `Identifiant de leçon dupliqué : ${dupLesson}.`);
 
-  // 5) 3–5 leçons par module.
+  // 5) Nombre de leçons : au moins 3 par module (module structuré).
+  //    Un module « authored » couvrant 3 semaines vise ≥ 4 leçons par semaine (≥ 12).
   for (const m of curriculum.modules) {
-    if (m.lessons.length < 3 || m.lessons.length > 5)
-      err("LESSON_PER_MODULE", `Module ${m.index} a ${m.lessons.length} leçons (attendu 3–5).`);
+    if (m.lessons.length < 3)
+      err("LESSON_PER_MODULE", `Module ${m.index} a ${m.lessons.length} leçons (attendu ≥ 3).`);
+    const fullyAuthored = m.lessons.length > 0 && m.lessons.every((l) => l.authored);
+    if (fullyAuthored && m.lessons.length < 12)
+      warn("LESSON_DEPTH", `Module ${m.index} authored mais seulement ${m.lessons.length} leçons (cible ≥ 12).`);
   }
 
   // 6) Banque : ids uniques.
@@ -103,6 +107,76 @@ export function validateCurriculum(
   for (const mod of authoredModules) {
     const count = bank.filter((q) => q.module === mod).length;
     if (count < 20) warn("BANK_COVERAGE", `Module ${mod} authored mais ${count}/20 questions dans la banque.`);
+  }
+
+  // 11) Contrôles de qualité sur chaque leçon « authored ».
+  const forbiddenComingSoon = /(à venir|a venir|coming soon|bientôt disponible)/i;
+  // Signaux de fausse reconnaissance officielle / gouvernementale à ne jamais laisser passer.
+  const forbiddenRecognition = /(reconnu par le gouvernement|diplôme d'état|accréditation officielle|certifié par le ministère|agréé par l'état)/i;
+  for (const m of curriculum.modules) {
+    for (const l of m.lessons) {
+      if (!l.authored) continue;
+      const hasBody = (l.content && l.content.length > 0) || (l.sections && l.sections.length > 0);
+      if (!hasBody) err("LESSON_EMPTY", `${l.id} : leçon authored sans contenu (ni content ni sections).`);
+      if (!l.objectives || l.objectives.length === 0)
+        err("LESSON_NO_OBJECTIVES", `${l.id} : aucun objectif.`);
+      // Objectifs reliés à une activité (entraînement/exercice).
+      const hasActivity = !!l.activity || (l.interactiveActivities?.length ?? 0) > 0 || !!l.exercise;
+      if (!hasActivity) err("LESSON_NO_ACTIVITY", `${l.id} : objectifs sans activité associée.`);
+      // Critères de réussite.
+      if (!l.successCriteria || l.successCriteria.length === 0)
+        err("LESSON_NO_SUCCESS", `${l.id} : critères de réussite manquants.`);
+      // Rétroactions (règles de feedback ou feedback d'activité interactive).
+      const hasFeedback =
+        (l.feedbackRules?.length ?? 0) > 0 || (l.interactiveActivities?.some((a) => !!a.feedback) ?? false);
+      if (!hasFeedback) err("LESSON_NO_FEEDBACK", `${l.id} : aucune rétroaction définie.`);
+      // Aucun contenu « À venir » dans une leçon authored.
+      const blob = [...(l.content ?? []), ...((l.sections ?? []).flatMap((s) => s.body)), l.introduction ?? "", l.summary ?? ""].join(" ");
+      if (forbiddenComingSoon.test(blob)) err("LESSON_COMING_SOON", `${l.id} : contient un marqueur « À venir » interdit.`);
+      if (forbiddenRecognition.test(blob))
+        err("LESSON_FAKE_RECOGNITION", `${l.id} : revendication de reconnaissance officielle interdite.`);
+    }
+    // Activités interactives : présence d'une clé de correction et d'un critère de réussite.
+    for (const l of m.lessons) {
+      for (const ia of l.interactiveActivities ?? []) {
+        if (ia.answerKey.length === 0) err("IA_NO_KEY", `${ia.id} : activité interactive sans clé de correction.`);
+        if (!ia.successCriterion.trim()) err("IA_NO_SUCCESS", `${ia.id} : activité interactive sans critère de réussite.`);
+      }
+    }
+  }
+
+  // 12) Rubriques : somme des critères = totalPoints.
+  for (const m of curriculum.modules) {
+    if (!m.rubric) continue;
+    const sum = m.rubric.criteria.reduce((acc, c) => acc + c.points, 0);
+    if (sum !== m.rubric.totalPoints)
+      err("RUBRIC_SUM", `Module ${m.index} : rubrique somme ${sum} ≠ total ${m.rubric.totalPoints}.`);
+  }
+
+  // 13) Quiz hebdomadaires : références valides + volume raisonnable (≥ 8).
+  for (const m of curriculum.modules) {
+    for (const wq of m.weeklyQuizzes ?? []) {
+      if (wq.questionIds.length < 8)
+        warn("WEEKLY_QUIZ_SIZE", `${wq.id} : ${wq.questionIds.length} questions (cible 8–10).`);
+      for (const qid of wq.questionIds) {
+        if (!bankIds.has(qid)) err("WEEKLY_QUIZ_REF", `${wq.id} référence une question inconnue : ${qid}.`);
+      }
+    }
+  }
+
+  // 14) Module 2 : exactement 20 questions dans la banque + continuité avec le Module 1.
+  const m2 = curriculum.modules.find((m) => m.index === 2);
+  if (m2) {
+    const m2Count = bank.filter((q) => q.module === 2).length;
+    if (m2Count !== 20) err("M2_QUESTION_COUNT", `Module 2 : ${m2Count} questions, attendu exactement 20.`);
+    const m2AllAuthored = m2.lessons.length > 0 && m2.lessons.every((l) => l.authored);
+    if (m2AllAuthored) {
+      for (const wk of [4, 5, 6]) {
+        if (!m2.weeks.includes(wk)) err("M2_WEEKS", `Module 2 : semaine ${wk} manquante.`);
+      }
+      if (!m2.links || m2.links.prerequisitesFromPrevious.length === 0)
+        err("M2_CONTINUITY", "Module 2 : liens pédagogiques avec le Module 1 manquants.");
+    }
   }
 
   const lessons = lessonIds.length;

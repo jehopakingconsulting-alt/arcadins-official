@@ -56,11 +56,24 @@ export default function AcademicPreviewPage() {
               <span className="text-xs text-gray-500">semaines {m.weeks.join(", ")}</span>
             </div>
             <p className="mt-1 text-sm text-gray-600">{m.summary}</p>
+            <p className="mt-1 text-xs text-gray-500">
+              {m.lessons.length} leçons · {m.weeklyQuizzes?.length ?? 0} quiz hebdo ·{" "}
+              {m.assessments.length} évaluations
+              {m.rubric ? ` · rubrique ${m.rubric.totalPoints} pts` : ""}
+            </p>
             <ul className="mt-2 space-y-1 text-sm">
               {m.lessons.map((l) => (
                 <li key={l.id} className="flex items-center gap-2">
                   <span>{l.authored ? "✅" : "⏳"}</span>
-                  <span>{l.title}</span>
+                  <span>
+                    {l.week ? `S${l.week} · ` : ""}
+                    {l.title}
+                  </span>
+                  {(l.interactiveActivities?.length ?? 0) > 0 && (
+                    <span className="text-xs text-gray-400">
+                      ({l.interactiveActivities!.length} activité(s))
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>

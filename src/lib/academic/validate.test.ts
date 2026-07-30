@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { validateCurriculum } from "./validate.ts";
 import { marketingDigitalV2 } from "./marketing-digital-v2.ts";
 import { marketingDigitalV2Bank } from "./question-bank/marketing-digital-v2.ts";
+import { toPublicQuestion } from "./question-public.ts";
 
 test("le cursus Marketing v2 passe la validation sans erreur", () => {
   const report = validateCurriculum(marketingDigitalV2, marketingDigitalV2Bank);
@@ -47,6 +48,72 @@ test("la validation détecte une pondération incorrecte", () => {
   const report = validateCurriculum(broken, marketingDigitalV2Bank);
   assert.equal(report.ok, false);
   assert.ok(report.errors.some((e) => e.code === "WEIGHTS_SUM"));
+});
+
+// ─────────────────────────── MODULE 2 ───────────────────────────
+
+test("Module 2 est authored, couvre les semaines 4-6 et compte 12 leçons", () => {
+  const m2 = marketingDigitalV2.modules.find((m) => m.index === 2)!;
+  assert.deepEqual(m2.weeks, [4, 5, 6]);
+  assert.ok(m2.lessons.every((l) => l.authored), "toutes les leçons de M2 doivent être authored");
+  assert.ok(m2.lessons.length >= 12, `M2 a ${m2.lessons.length} leçons, attendu >= 12`);
+});
+
+test("Module 2 : exactement 20 questions dans la banque", () => {
+  const m2Questions = marketingDigitalV2Bank.filter((q) => q.module === 2);
+  assert.equal(m2Questions.length, 20);
+});
+
+test("Module 2 : chaque leçon authored a activité, critères de réussite et rétroactions", () => {
+  const m2 = marketingDigitalV2.modules.find((m) => m.index === 2)!;
+  for (const l of m2.lessons) {
+    const hasActivity = !!l.activity || (l.interactiveActivities?.length ?? 0) > 0 || !!l.exercise;
+    assert.ok(hasActivity, `${l.id} sans activité`);
+    assert.ok((l.successCriteria?.length ?? 0) > 0, `${l.id} sans critères de réussite`);
+    const hasFeedback = (l.feedbackRules?.length ?? 0) > 0 || (l.interactiveActivities?.some((a) => a.feedback) ?? false);
+    assert.ok(hasFeedback, `${l.id} sans rétroaction`);
+    const hasBody = (l.content?.length ?? 0) > 0 || (l.sections?.length ?? 0) > 0;
+    assert.ok(hasBody, `${l.id} sans contenu`);
+  }
+});
+
+test("Module 2 : la rubrique du TP totalise 100 points", () => {
+  const m2 = marketingDigitalV2.modules.find((m) => m.index === 2)!;
+  const rubric = m2.rubric!;
+  const sum = rubric.criteria.reduce((acc, c) => acc + c.points, 0);
+  assert.equal(sum, 100);
+  assert.equal(rubric.totalPoints, 100);
+});
+
+test("Module 2 : 3 quiz hebdomadaires valides (>= 8 questions, refs existantes)", () => {
+  const m2 = marketingDigitalV2.modules.find((m) => m.index === 2)!;
+  const bankIds = new Set(marketingDigitalV2Bank.map((q) => q.id));
+  assert.equal(m2.weeklyQuizzes?.length, 3);
+  for (const wq of m2.weeklyQuizzes ?? []) {
+    assert.ok(wq.questionIds.length >= 8, `${wq.id} a ${wq.questionIds.length} questions`);
+    for (const qid of wq.questionIds) assert.ok(bankIds.has(qid), `${wq.id} référence ${qid} absent`);
+  }
+});
+
+test("Module 2 : liens pédagogiques de continuité avec le Module 1", () => {
+  const m2 = marketingDigitalV2.modules.find((m) => m.index === 2)!;
+  assert.ok(m2.links);
+  assert.ok(m2.links!.prerequisitesFromPrevious.length > 0);
+  assert.ok(m2.links!.deliverablesForNextModule.length > 0);
+});
+
+test("la vue publique d'une question n'expose ni bonne réponse ni justification", () => {
+  const pub = toPublicQuestion(marketingDigitalV2Bank[0]) as unknown as Record<string, unknown>;
+  assert.equal("correct" in pub, false);
+  assert.equal("explanation" in pub, false);
+  assert.equal("feedbackOnError" in pub, false);
+  assert.ok(Array.isArray(pub.options));
+});
+
+test("aucune leçon authored ne contient de marqueur « À venir »", () => {
+  const report = validateCurriculum(marketingDigitalV2, marketingDigitalV2Bank);
+  assert.ok(!report.errors.some((e) => e.code === "LESSON_COMING_SOON"));
+  assert.ok(!report.errors.some((e) => e.code === "LESSON_FAKE_RECOGNITION"));
 });
 
 test("la validation détecte un trou de semaine", () => {
