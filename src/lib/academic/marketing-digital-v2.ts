@@ -2,6 +2,7 @@ import type { ProgramCurriculumV2 } from "@/lib/academic/types";
 import { marketingDigitalV2Module2 } from "./modules/marketing-digital-v2-m2.ts";
 import { marketingDigitalV2Module3 } from "./modules/marketing-digital-v2-m3.ts";
 import { marketingDigitalV2Module4 } from "./modules/marketing-digital-v2-m4.ts";
+import { marketingDigitalV2Module5 } from "./modules/marketing-digital-v2-m5.ts";
 
 /**
  * Cursus Marketing Digital et E-commerce — version académique v2 (24 semaines).
@@ -210,19 +211,8 @@ export const marketingDigitalV2: ProgramCurriculumV2 = {
     marketingDigitalV2Module3,
     // Module 4 authored en profondeur (semaines 10–12), avec mi-parcours.
     marketingDigitalV2Module4,
-    {
-      index: 5,
-      title: "Site web, SEO et expérience utilisateur",
-      weeks: [13, 14, 15],
-      summary: "Structure de site, SEO technique et éditorial, UX de conversion (approfondit L2 v1).",
-      competencies: ["C14", "C15", "C16"],
-      lessons: makeLessonStubs(5, [
-        "Architecture de site et UX",
-        "SEO technique",
-        "SEO éditorial et mots-clés",
-      ]),
-      assessments: makeModuleAssessments(5, "Site & SEO"),
-    },
+    // Module 5 authored en profondeur (semaines 13–15).
+    marketingDigitalV2Module5,
     {
       index: 6,
       title: "E-commerce et optimisation de la conversion",

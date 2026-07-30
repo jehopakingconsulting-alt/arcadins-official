@@ -180,10 +180,9 @@ test("Module 4 est authored, couvre les semaines 10-12 et compte 12 leçons", ()
   assert.equal(m4.lessons.length, 12);
 });
 
-test("Module 4 : exactement 20 questions et banque cumulée = 80", () => {
+test("Module 4 : exactement 20 questions", () => {
   const m4Questions = marketingDigitalV2Bank.filter((q) => q.module === 4);
   assert.equal(m4Questions.length, 20);
-  assert.equal(marketingDigitalV2Bank.length, 80);
 });
 
 test("Module 4 : rubrique 100 pts, projet + mi-parcours présents", () => {
@@ -221,6 +220,55 @@ test("Module 4 : contenu marqué simulation/fictif, sans promesse de résultat g
   const m4 = marketingDigitalV2.modules.find((m) => m.index === 4)!;
   const simMentions = m4.lessons.filter((l) => /Simulation pédagogique|Jeu de données pédagogique fictif/.test(l.caseStudy?.title ?? "")).length;
   assert.ok(simMentions >= 3, `attendu >= 3 études de cas marquées simulation, trouvé ${simMentions}`);
+});
+
+// ─────────────────────────── MODULE 5 ───────────────────────────
+
+test("Module 5 est authored, couvre les semaines 13-15 et compte 12 leçons", () => {
+  const m5 = marketingDigitalV2.modules.find((m) => m.index === 5)!;
+  assert.deepEqual(m5.weeks, [13, 14, 15]);
+  assert.ok(m5.lessons.every((l) => l.authored));
+  assert.equal(m5.lessons.length, 12);
+});
+
+test("Module 5 : exactement 20 questions et banque cumulée = 100", () => {
+  const m5Questions = marketingDigitalV2Bank.filter((q) => q.module === 5);
+  assert.equal(m5Questions.length, 20);
+  assert.equal(marketingDigitalV2Bank.length, 100);
+});
+
+test("Module 5 : rubrique 100 pts, projet présent, formules complètes", () => {
+  const m5 = marketingDigitalV2.modules.find((m) => m.index === 5)!;
+  const sum = m5.rubric!.criteria.reduce((acc, c) => acc + c.points, 0);
+  assert.equal(sum, 100);
+  assert.ok(m5.assessments.some((a) => a.kind === "practical"));
+  const formulas = m5.lessons.flatMap((l) => l.formulas ?? []);
+  assert.ok(formulas.length >= 8, `attendu >= 8 formules, trouvé ${formulas.length}`);
+  for (const f of formulas) assert.ok(f.name.trim() && f.expression.trim() && f.example.trim());
+});
+
+test("Module 5 : 3 quiz hebdomadaires valides + études de cas fictives marquées simulation/fictif", () => {
+  const m5 = marketingDigitalV2.modules.find((m) => m.index === 5)!;
+  const bankIds = new Set(marketingDigitalV2Bank.map((q) => q.id));
+  assert.equal(m5.weeklyQuizzes?.length, 3);
+  for (const wq of m5.weeklyQuizzes ?? []) {
+    assert.ok(wq.questionIds.length >= 8);
+    for (const qid of wq.questionIds) assert.ok(bankIds.has(qid), `${wq.id} référence ${qid} absent`);
+  }
+  const simMentions = m5.lessons.filter((l) =>
+    /Simulation pédagogique|Jeu de données pédagogique fictif/.test(l.caseStudy?.title ?? ""),
+  ).length;
+  assert.ok(simMentions >= 3, `attendu >= 3 études de cas marquées, trouvé ${simMentions}`);
+});
+
+test("Module 5 : chaque leçon a étude de cas fictive, activité interactive, critères et rétroactions", () => {
+  const m5 = marketingDigitalV2.modules.find((m) => m.index === 5)!;
+  for (const l of m5.lessons) {
+    assert.ok(l.caseStudy?.isFictional, `${l.id} : étude de cas non fictive`);
+    assert.ok((l.interactiveActivities?.length ?? 0) > 0, `${l.id} sans activité interactive`);
+    assert.ok((l.successCriteria?.length ?? 0) > 0, `${l.id} sans critères`);
+    assert.ok((l.feedbackRules?.length ?? 0) > 0, `${l.id} sans rétroaction`);
+  }
 });
 
 test("la validation détecte un trou de semaine", () => {
