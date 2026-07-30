@@ -17,6 +17,7 @@ export default function TemoignagesPage() {
           </h2>
         </div>
         {TESTIMONIALS.length === 0 ? (
+          <>
           <div className="max-w-[640px] mx-auto text-center bg-white rounded-[24px] p-10 sm:p-12 border border-gold/15 shadow-[0_8px_40px_rgba(13,27,46,0.06)]">
             <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-gold/12 border border-gold/25 flex items-center justify-center text-3xl" aria-hidden="true">💬</div>
             <h3 className="font-[family-name:var(--font-heading)] text-2xl text-navy mb-3">
@@ -34,6 +35,22 @@ export default function TemoignagesPage() {
               </Link>
             </div>
           </div>
+
+          {/* En attendant les avis d'étudiants réels : messages de motivation
+              ÉDITORIAUX, clairement signés ARCADINS (pas de faux témoignages). */}
+          <div className="max-w-[1000px] mx-auto mt-16">
+            <p className="text-center text-[11px] font-bold tracking-[4px] uppercase text-gold mb-7">{t(UI["testi.motiv.label"], lang)}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {([["🎯", "testi.motiv.a"], ["📚", "testi.motiv.b"], ["🤝", "testi.motiv.c"]] as const).map(([icon, key]) => (
+                <div key={key} className="bg-white rounded-[20px] p-7 border border-gold/11 flex flex-col">
+                  <div className="w-12 h-12 rounded-xl bg-gold/12 border border-gold/25 flex items-center justify-center text-2xl mb-4" aria-hidden="true">{icon}</div>
+                  <p className="text-[14.5px] leading-[1.7] text-body flex-1">{t(UI[key], lang)}</p>
+                  <p className="text-xs font-semibold text-navy/60 mt-4">{t(UI["testi.motiv.by"], lang)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          </>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {TESTIMONIALS.map((te, i) => (
