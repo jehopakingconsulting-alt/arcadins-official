@@ -1,4 +1,4 @@
-import type { Testimonial, VideoItem, SlideData } from "@/types";
+import type { Testimonial, IllustrativeTestimonial, VideoItem, SlideData } from "@/types";
 
 export const SLIDES: SlideData[] = [
   { image: "/assets/hero-canada.jpg", fallbackColor: "#0a1628", labelIcon: "🍁", labelText: "Canada · Votre destination" },
@@ -12,6 +12,16 @@ export const SLIDES: SlideData[] = [
 // recueilli avec le consentement de la personne. Les témoignages inventés ont
 // été retirés (conformité — publicité non trompeuse).
 export const TESTIMONIALS: Testimonial[] = [];
+
+// Témoignages ILLUSTRATIFS temporaires (exemples). Profils génériques via i18n,
+// aucun faux nom/photo/ville/note. Toujours affichés avec le badge « EXEMPLE
+// ILLUSTRATIF ». Ils sont remplacés par les témoignages vérifiés (TESTIMONIALS)
+// dès qu'un avis réel approuvé existe.
+export const ILLUSTRATIVE_TESTIMONIALS: IllustrativeTestimonial[] = [
+  { textKey: "testi.ill.1", profileKey: "testi.ill.p1" },
+  { textKey: "testi.ill.2", profileKey: "testi.ill.p2" },
+  { textKey: "testi.ill.3", profileKey: "testi.ill.p3" },
+];
 
 export const VIDEOS: VideoItem[] = [
   { id: "kj6WkZFr-MY", chip: "⭐ Recommandé", title: "TEF vs TCF Canada : Lequel choisir pour l'immigration 2026 ?", desc: "Comparaison complète TEF Canada / TCF Canada pour choisir le bon test selon votre profil.", thumb: "https://img.youtube.com/vi/kj6WkZFr-MY/hqdefault.jpg" },

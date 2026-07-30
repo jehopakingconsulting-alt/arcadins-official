@@ -20,6 +20,15 @@ export interface Testimonial {
   initials: string;
   name: string;
   from: string;
+  // "verified" = avis réel consenti (défaut) ; "illustrative" = exemple temporaire.
+  testimonialType?: "verified" | "illustrative";
+}
+
+// Témoignage illustratif (exemple temporaire) : profils GÉNÉRIQUES via clés i18n,
+// aucun nom/photo/ville/note. Remplacé par un témoignage vérifié dès qu'il existe.
+export interface IllustrativeTestimonial {
+  textKey: string;
+  profileKey: string;
 }
 
 export interface VideoItem {
