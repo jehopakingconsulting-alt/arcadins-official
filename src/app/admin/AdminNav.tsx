@@ -11,6 +11,7 @@ const LINKS: { href: string; label: string; icon: IconName; perm?: Permission; f
   { href: "/admin/tutorat", label: "Demandes de tutorat", icon: "target", perm: "tutoring_requests.view" },
   { href: "/admin/tuteurs", label: "Candidatures tuteur", icon: "teacher", perm: "tutor_applications.view" },
   { href: "/admin/contacts", label: "Contacts", icon: "inbox", perm: "contacts.view" },
+  { href: "/admin/reviews", label: "Avis étudiants", icon: "star", perm: "content.manage" },
   { href: "/admin/parrainage", label: "Parrainage", icon: "handshake", perm: "referrals.view", flag: REFERRAL_ENABLED },
   { href: "/admin/migration", label: "Validateur migration", icon: "shield", perm: "migration.view" },
   { href: "/admin/health", label: "Santé plateforme", icon: "clock", perm: "migration.view" },

@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 import { getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
 import Icon, { type IconName } from "@/components/ui/Icon";
 import Link from "next/link";
+import ProgramReviews from "@/components/reviews/ProgramReviews";
 
 export default function CourseDetailPage() {
   const { slug } = useParams();
@@ -310,6 +311,8 @@ export default function CourseDetailPage() {
             </div>
           </div>
         </div>
+
+        <ProgramReviews slug={course.slug} />
       </div>
     </div>
   );
