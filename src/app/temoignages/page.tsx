@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { TESTIMONIALS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
 
@@ -16,11 +17,22 @@ export default function TemoignagesPage() {
           </h2>
         </div>
         {TESTIMONIALS.length === 0 ? (
-          <div className="max-w-[620px] mx-auto text-center bg-white rounded-[24px] p-10 border border-gold/15">
-            <div className="text-4xl mb-4">💬</div>
-            <p className="text-[15px] text-body leading-[1.75]">
+          <div className="max-w-[640px] mx-auto text-center bg-white rounded-[24px] p-10 sm:p-12 border border-gold/15 shadow-[0_8px_40px_rgba(13,27,46,0.06)]">
+            <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-gold/12 border border-gold/25 flex items-center justify-center text-3xl" aria-hidden="true">💬</div>
+            <h3 className="font-[family-name:var(--font-heading)] text-2xl text-navy mb-3">
+              {t(UI["testi.empty.title"], lang)}
+            </h3>
+            <p className="text-[15px] text-body leading-[1.75] mb-7">
               {t(UI["testi.empty"], lang)}
             </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href="/contact" className="bg-navy text-gold font-bold text-[14.5px] px-7 py-3 rounded-xl transition-all hover:bg-navy-mid hover:-translate-y-0.5">
+                {t(UI["testi.share"], lang)}
+              </Link>
+              <Link href="/formations" className="bg-transparent text-navy font-semibold text-[14.5px] px-7 py-3 rounded-xl border-[1.5px] border-navy/20 transition-all hover:border-gold hover:text-gold">
+                {t(UI["cta.see_formations"], lang)}
+              </Link>
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
