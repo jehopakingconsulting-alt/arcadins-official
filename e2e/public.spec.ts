@@ -14,13 +14,13 @@ test.describe("Accueil", () => {
     expect(errors, `console errors: ${errors.join(" | ")}`).toHaveLength(0);
   });
 
-  test("vidéos YouTube autorisées par la CSP", async ({ page }) => {
+  test("vidéos YouTube : CSP autorise YouTube + façade clic-pour-charger (0 iframe au 1er rendu)", async ({ page }) => {
     const resp = await page.goto("/");
     const csp = resp?.headers()["content-security-policy"] || "";
     expect(csp).toContain("youtube.com");
-    // 3 iframes YouTube présentes
-    const count = await page.locator('iframe[src*="youtube.com/embed"]').count();
-    expect(count).toBeGreaterThanOrEqual(1);
+    // Façade : aucune iframe YouTube au premier rendu (perf), boutons de lecture présents.
+    expect(await page.locator('iframe[src*="youtube.com/embed"]').count()).toBe(0);
+    expect(await page.getByRole("button", { name: /lire la vidéo/i }).count()).toBeGreaterThanOrEqual(1);
   });
 
   test("en-têtes de sécurité présents", async ({ page }) => {
