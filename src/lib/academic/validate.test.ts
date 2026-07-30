@@ -245,10 +245,59 @@ test("Module 6 est authored, couvre les semaines 16-18 et compte 12 leçons", ()
   assert.equal(m6.lessons.length, 12);
 });
 
-test("Module 6 : exactement 20 questions et banque cumulée = 120", () => {
+test("Module 6 : exactement 20 questions", () => {
   const m6Questions = marketingDigitalV2Bank.filter((q) => q.module === 6);
   assert.equal(m6Questions.length, 20);
-  assert.equal(marketingDigitalV2Bank.length, 120);
+});
+
+// ─────────────────────────── MODULE 7 ───────────────────────────
+
+test("Module 7 est authored, couvre les semaines 19-21 et compte 12 leçons", () => {
+  const m7 = marketingDigitalV2.modules.find((m) => m.index === 7)!;
+  assert.deepEqual(m7.weeks, [19, 20, 21]);
+  assert.ok(m7.lessons.every((l) => l.authored));
+  assert.equal(m7.lessons.length, 12);
+});
+
+test("Module 7 : exactement 20 questions et banque cumulée = 140", () => {
+  const m7Questions = marketingDigitalV2Bank.filter((q) => q.module === 7);
+  assert.equal(m7Questions.length, 20);
+  assert.equal(marketingDigitalV2Bank.length, 140);
+});
+
+test("Module 7 : rubrique 100 pts, projet présent, formules complètes", () => {
+  const m7 = marketingDigitalV2.modules.find((m) => m.index === 7)!;
+  const sum = m7.rubric!.criteria.reduce((acc, c) => acc + c.points, 0);
+  assert.equal(sum, 100);
+  assert.ok(m7.assessments.some((a) => a.kind === "practical"));
+  const formulas = m7.lessons.flatMap((l) => l.formulas ?? []);
+  assert.ok(formulas.length >= 4, `attendu >= 4 formules, trouvé ${formulas.length}`);
+  for (const f of formulas) assert.ok(f.name.trim() && f.expression.trim() && f.example.trim());
+});
+
+test("Module 7 : 3 quiz hebdomadaires valides + études de cas fictives marquées", () => {
+  const m7 = marketingDigitalV2.modules.find((m) => m.index === 7)!;
+  const bankIds = new Set(marketingDigitalV2Bank.map((q) => q.id));
+  assert.equal(m7.weeklyQuizzes?.length, 3);
+  for (const wq of m7.weeklyQuizzes ?? []) {
+    assert.ok(wq.questionIds.length >= 8);
+    for (const qid of wq.questionIds) assert.ok(bankIds.has(qid), `${wq.id} référence ${qid} absent`);
+  }
+  for (const l of m7.lessons) {
+    assert.ok(l.caseStudy?.isFictional, `${l.id} : étude de cas non fictive`);
+    assert.ok((l.interactiveActivities?.length ?? 0) > 0, `${l.id} sans activité interactive`);
+    assert.ok((l.successCriteria?.length ?? 0) > 0, `${l.id} sans critères`);
+    assert.ok((l.feedbackRules?.length ?? 0) > 0, `${l.id} sans rétroaction`);
+  }
+});
+
+test("les 7 modules authored : continuité M1-M7 sans erreur, ids uniques", () => {
+  const report = validateCurriculum(marketingDigitalV2, marketingDigitalV2Bank);
+  assert.deepEqual(report.errors, [], JSON.stringify(report.errors));
+  const lessonIds = marketingDigitalV2.modules.flatMap((m) => m.lessons.map((l) => l.id));
+  assert.equal(new Set(lessonIds).size, lessonIds.length);
+  const qIds = marketingDigitalV2Bank.map((q) => q.id);
+  assert.equal(new Set(qIds).size, qIds.length);
 });
 
 test("Module 6 : rubrique 100 pts, projet présent, formules complètes", () => {

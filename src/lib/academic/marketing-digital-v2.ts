@@ -4,6 +4,7 @@ import { marketingDigitalV2Module3 } from "./modules/marketing-digital-v2-m3.ts"
 import { marketingDigitalV2Module4 } from "./modules/marketing-digital-v2-m4.ts";
 import { marketingDigitalV2Module5 } from "./modules/marketing-digital-v2-m5.ts";
 import { marketingDigitalV2Module6 } from "./modules/marketing-digital-v2-m6.ts";
+import { marketingDigitalV2Module7 } from "./modules/marketing-digital-v2-m7.ts";
 
 /**
  * Cursus Marketing Digital et E-commerce — version académique v2 (24 semaines).
@@ -216,19 +217,8 @@ export const marketingDigitalV2: ProgramCurriculumV2 = {
     marketingDigitalV2Module5,
     // Module 6 authored en profondeur (semaines 16–18).
     marketingDigitalV2Module6,
-    {
-      index: 7,
-      title: "Publicité, courriel et automatisation",
-      weeks: [19, 20, 21],
-      summary: "Google/Meta Ads, budget et ROAS, email marketing et automatisation (approfondit L3 v1).",
-      competencies: ["C20", "C21", "C22"],
-      lessons: makeLessonStubs(7, [
-        "Publicité payante (Google & Meta Ads)",
-        "Budget, enchères et ROAS",
-        "Email marketing et automatisation",
-      ]),
-      assessments: makeModuleAssessments(7, "Publicité & automatisation"),
-    },
+    // Module 7 authored en profondeur (semaines 19–21).
+    marketingDigitalV2Module7,
     {
       index: 8,
       title: "Analytique, projet intégrateur et examen final",

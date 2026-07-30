@@ -193,6 +193,7 @@ export function validateCurriculum(
     { index: 4, weeks: [10, 11, 12] },
     { index: 5, weeks: [13, 14, 15] },
     { index: 6, weeks: [16, 17, 18] },
+    { index: 7, weeks: [19, 20, 21] },
   ];
   for (const spec of deepSpecs) {
     const mod = curriculum.modules.find((m) => m.index === spec.index);
@@ -235,8 +236,8 @@ export function validateCurriculum(
     }
   }
 
-  // 16) Continuité inter-modules : liens pédagogiques cohérents M1 → … → M6.
-  for (const idx of [2, 3, 4, 5, 6]) {
+  // 16) Continuité inter-modules : liens pédagogiques cohérents M1 → … → M7.
+  for (const idx of [2, 3, 4, 5, 6, 7]) {
     const mod = curriculum.modules.find((m) => m.index === idx);
     if (mod && mod.lessons.every((l) => l.authored)) {
       if (!mod.links || mod.links.deliverablesForNextModule.length === 0)
