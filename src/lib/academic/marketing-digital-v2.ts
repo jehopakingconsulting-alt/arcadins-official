@@ -3,6 +3,7 @@ import { marketingDigitalV2Module2 } from "./modules/marketing-digital-v2-m2.ts"
 import { marketingDigitalV2Module3 } from "./modules/marketing-digital-v2-m3.ts";
 import { marketingDigitalV2Module4 } from "./modules/marketing-digital-v2-m4.ts";
 import { marketingDigitalV2Module5 } from "./modules/marketing-digital-v2-m5.ts";
+import { marketingDigitalV2Module6 } from "./modules/marketing-digital-v2-m6.ts";
 
 /**
  * Cursus Marketing Digital et E-commerce — version académique v2 (24 semaines).
@@ -213,19 +214,8 @@ export const marketingDigitalV2: ProgramCurriculumV2 = {
     marketingDigitalV2Module4,
     // Module 5 authored en profondeur (semaines 13–15).
     marketingDigitalV2Module5,
-    {
-      index: 6,
-      title: "E-commerce et optimisation de la conversion",
-      weeks: [16, 17, 18],
-      summary: "Création de boutique, tunnel d'achat, optimisation du taux de conversion (approfondit L5 v1).",
-      competencies: ["C17", "C18", "C19"],
-      lessons: makeLessonStubs(6, [
-        "Créer une boutique en ligne",
-        "Tunnel d'achat et paiement",
-        "Optimisation de la conversion (CRO)",
-      ]),
-      assessments: makeModuleAssessments(6, "E-commerce & conversion"),
-    },
+    // Module 6 authored en profondeur (semaines 16–18).
+    marketingDigitalV2Module6,
     {
       index: 7,
       title: "Publicité, courriel et automatisation",
