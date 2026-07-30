@@ -113,7 +113,11 @@ export function validateCurriculum(
   const forbiddenComingSoon = /(à venir|a venir|coming soon|bientôt disponible)/i;
   // Signaux de fausse reconnaissance officielle / gouvernementale à ne jamais laisser passer.
   const forbiddenRecognition = /(reconnu par le gouvernement|diplôme d'état|accréditation officielle|certifié par le ministère|agréé par l'état)/i;
+  // Promesses trompeuses interdites (revenu / emploi garanti, enrichissement).
+  const forbiddenPromise = /(emploi garanti|revenu garanti|devenez riche|gains? garantis?|résultats? garantis?|salaire garanti)/i;
   for (const m of curriculum.modules) {
+    // Un module « profond » (toutes leçons authored, ≥ 12 leçons) exige étude de cas + activité interactive par leçon.
+    const deepModule = m.lessons.length >= 12 && m.lessons.every((l) => l.authored);
     for (const l of m.lessons) {
       if (!l.authored) continue;
       const hasBody = (l.content && l.content.length > 0) || (l.sections && l.sections.length > 0);
@@ -130,11 +134,29 @@ export function validateCurriculum(
       const hasFeedback =
         (l.feedbackRules?.length ?? 0) > 0 || (l.interactiveActivities?.some((a) => !!a.feedback) ?? false);
       if (!hasFeedback) err("LESSON_NO_FEEDBACK", `${l.id} : aucune rétroaction définie.`);
-      // Aucun contenu « À venir » dans une leçon authored.
-      const blob = [...(l.content ?? []), ...((l.sections ?? []).flatMap((s) => s.body)), l.introduction ?? "", l.summary ?? ""].join(" ");
+      // Module profond : étude de cas + activité interactive obligatoires.
+      if (deepModule) {
+        if (!l.caseStudy) err("LESSON_NO_CASE", `${l.id} : étude de cas manquante (module profond).`);
+        if ((l.interactiveActivities?.length ?? 0) === 0)
+          err("LESSON_NO_IA", `${l.id} : activité interactive manquante (module profond).`);
+      }
+      // Étude de cas fictive : doit être explicitement identifiée.
+      if (l.caseStudy && !l.caseStudy.isFictional)
+        err("CASE_NOT_FLAGGED", `${l.id} : étude de cas non identifiée comme fictive (ou témoignage non consenti).`);
+      // Aucun contenu « À venir » / fausse reconnaissance / promesse trompeuse dans une leçon authored.
+      const blob = [
+        ...(l.content ?? []),
+        ...((l.sections ?? []).flatMap((s) => s.body)),
+        ...(l.caseStudy?.body ?? []),
+        l.introduction ?? "",
+        l.summary ?? "",
+      ].join(" ");
       if (forbiddenComingSoon.test(blob)) err("LESSON_COMING_SOON", `${l.id} : contient un marqueur « À venir » interdit.`);
       if (forbiddenRecognition.test(blob))
         err("LESSON_FAKE_RECOGNITION", `${l.id} : revendication de reconnaissance officielle interdite.`);
+      // Une promesse trompeuse n'est admise que comme contre-exemple explicitement étiqueté « à éviter/interdit/trompeus ».
+      if (forbiddenPromise.test(blob) && !/(à éviter|interdit|trompeus|surpromess|non conforme|ne (jamais|pas))/i.test(blob))
+        err("LESSON_MISLEADING_PROMISE", `${l.id} : promesse trompeuse non encadrée détectée.`);
     }
     // Activités interactives : présence d'une clé de correction et d'un critère de réussite.
     for (const l of m.lessons) {
@@ -164,19 +186,58 @@ export function validateCurriculum(
     }
   }
 
-  // 14) Module 2 : exactement 20 questions dans la banque + continuité avec le Module 1.
-  const m2 = curriculum.modules.find((m) => m.index === 2);
-  if (m2) {
-    const m2Count = bank.filter((q) => q.module === 2).length;
-    if (m2Count !== 20) err("M2_QUESTION_COUNT", `Module 2 : ${m2Count} questions, attendu exactement 20.`);
-    const m2AllAuthored = m2.lessons.length > 0 && m2.lessons.every((l) => l.authored);
-    if (m2AllAuthored) {
-      for (const wk of [4, 5, 6]) {
-        if (!m2.weeks.includes(wk)) err("M2_WEEKS", `Module 2 : semaine ${wk} manquante.`);
+  // 14) Modules profonds « authored » (M2, M3…) : 20 questions, 12 leçons, semaines, continuité, projet, i18n.
+  const deepSpecs: { index: number; weeks: number[] }[] = [
+    { index: 2, weeks: [4, 5, 6] },
+    { index: 3, weeks: [7, 8, 9] },
+  ];
+  for (const spec of deepSpecs) {
+    const mod = curriculum.modules.find((m) => m.index === spec.index);
+    if (!mod) continue;
+    const count = bank.filter((q) => q.module === spec.index).length;
+    if (count !== 20) err(`M${spec.index}_QUESTION_COUNT`, `Module ${spec.index} : ${count} questions, attendu exactement 20.`);
+    const allAuthored = mod.lessons.length > 0 && mod.lessons.every((l) => l.authored);
+    if (allAuthored) {
+      if (mod.lessons.length !== 12)
+        err(`M${spec.index}_LESSON_COUNT`, `Module ${spec.index} : ${mod.lessons.length} leçons, attendu exactement 12.`);
+      for (const wk of spec.weeks) {
+        if (!mod.weeks.includes(wk)) err(`M${spec.index}_WEEKS`, `Module ${spec.index} : semaine ${wk} manquante.`);
       }
-      if (!m2.links || m2.links.prerequisitesFromPrevious.length === 0)
-        err("M2_CONTINUITY", "Module 2 : liens pédagogiques avec le Module 1 manquants.");
+      if (!mod.links || mod.links.prerequisitesFromPrevious.length === 0)
+        err(`M${spec.index}_CONTINUITY`, `Module ${spec.index} : liens pédagogiques avec le module précédent manquants.`);
+      // Projet pratique présent.
+      if (!mod.assessments.some((a) => a.kind === "practical"))
+        err(`M${spec.index}_NO_PROJECT`, `Module ${spec.index} : travail pratique / projet manquant.`);
+      // Rubrique à 100 points.
+      if (!mod.rubric || mod.rubric.totalPoints !== 100)
+        err(`M${spec.index}_RUBRIC_100`, `Module ${spec.index} : rubrique absente ou ≠ 100 points.`);
     }
+  }
+
+  // 15) Banque cumulée = 20 × (nombre de modules entièrement authored).
+  const authoredModuleCount = curriculum.modules.filter(
+    (m) => m.lessons.length > 0 && m.lessons.every((l) => l.authored),
+  ).length;
+  const expectedBank = authoredModuleCount * 20;
+  if (bank.length !== expectedBank)
+    err("BANK_TOTAL", `Banque = ${bank.length}, attendu ${expectedBank} (20 × ${authoredModuleCount} modules authored).`);
+
+  // 16) Continuité inter-modules : liens pédagogiques cohérents M1 → M2 → M3.
+  for (const idx of [2, 3]) {
+    const mod = curriculum.modules.find((m) => m.index === idx);
+    if (mod && mod.lessons.every((l) => l.authored)) {
+      if (!mod.links || mod.links.deliverablesForNextModule.length === 0)
+        warn("LINK_NEXT", `Module ${idx} : livrables pour le module suivant non déclarés.`);
+    }
+  }
+
+  // 17) Métadonnées i18n / gouvernance (français canonique, pas de traduction « validée » sans relecteur).
+  for (const m of curriculum.modules) {
+    const cm = m.contentMeta;
+    if (!cm) continue;
+    if (cm.sourceLang !== "fr") err("META_LANG", `Module ${m.index} : langue source ≠ fr.`);
+    if (cm.translationStatus === "validated" && !cm.reviewer)
+      err("META_TRANSLATION", `Module ${m.index} : traduction « validated » sans relecteur.`);
   }
 
   const lessons = lessonIds.length;

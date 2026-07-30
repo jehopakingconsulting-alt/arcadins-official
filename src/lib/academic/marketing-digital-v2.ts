@@ -1,5 +1,6 @@
 import type { ProgramCurriculumV2 } from "@/lib/academic/types";
 import { marketingDigitalV2Module2 } from "./modules/marketing-digital-v2-m2.ts";
+import { marketingDigitalV2Module3 } from "./modules/marketing-digital-v2-m3.ts";
 
 /**
  * Cursus Marketing Digital et E-commerce — version académique v2 (24 semaines).
@@ -204,19 +205,8 @@ export const marketingDigitalV2: ProgramCurriculumV2 = {
     // ───────────────── MODULES 2–8 — STRUCTURE (authoring à venir) ─────────────────
     // Module 2 authored en profondeur (semaines 4–6).
     marketingDigitalV2Module2,
-    {
-      index: 3,
-      title: "Stratégie de marque et de contenu",
-      weeks: [7, 8, 9],
-      summary: "Identité de marque, ligne éditoriale, copywriting et calendrier de contenu (enrichit L7 v1).",
-      competencies: ["C8", "C9", "C10"],
-      lessons: makeLessonStubs(3, [
-        "Identité et plateforme de marque",
-        "Copywriting et messages clés",
-        "Calendrier et piliers de contenu",
-      ]),
-      assessments: makeModuleAssessments(3, "Marque & contenu"),
-    },
+    // Module 3 authored en profondeur (semaines 7–9).
+    marketingDigitalV2Module3,
     {
       index: 4,
       title: "Réseaux sociaux et community management",

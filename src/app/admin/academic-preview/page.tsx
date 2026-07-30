@@ -60,6 +60,7 @@ export default function AcademicPreviewPage() {
               {m.lessons.length} leçons · {m.weeklyQuizzes?.length ?? 0} quiz hebdo ·{" "}
               {m.assessments.length} évaluations
               {m.rubric ? ` · rubrique ${m.rubric.totalPoints} pts` : ""}
+              {m.contentMeta ? ` · v${m.contentMeta.version} (${m.contentMeta.sourceLang}, ${m.contentMeta.translationStatus})` : ""}
             </p>
             <ul className="mt-2 space-y-1 text-sm">
               {m.lessons.map((l) => (

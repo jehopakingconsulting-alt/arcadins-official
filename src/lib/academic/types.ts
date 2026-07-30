@@ -14,10 +14,11 @@ export type QuestionType =
   | "multi" // choix multiple
   | "truefalse" // vrai ou faux raisonné
   | "ranking" // classement / ordonnancement
+  | "association" // appariement
   | "scenario" // décision appliquée
   | "calc" // calcul simple
   | "interpret" // interprétation de données
-  | "analysis"; // analyse de campagne
+  | "analysis"; // analyse de campagne (identification d'erreur, meilleur message…)
 
 export type EditorialStatus = "draft" | "review" | "approved";
 
@@ -131,6 +132,8 @@ export interface LessonV2 {
   /** Exercice pratique noté (distinct des activités interactives). */
   exercise?: Activity;
   interactiveActivities?: InteractiveActivity[];
+  /** Encadré « Point de vigilance » (éthique, conformité, pièges). */
+  vigilancePoint?: CommonError;
   successCriteria?: string[];
   resources?: string[];
   glossary?: GlossaryTerm[];
@@ -166,6 +169,20 @@ export interface Rubric {
   criteria: RubricCriterion[];
 }
 
+/**
+ * Métadonnées de contenu pour l'internationalisation et la gouvernance éditoriale.
+ * Le français est la langue canonique ; aucune traduction n'est « validée » sans relecture.
+ */
+export interface ContentMeta {
+  sourceLang: "fr";
+  /** Statut de traduction de ce contenu (source = original FR). */
+  translationStatus: "source" | "pending" | "in_review" | "validated";
+  version: string; // ex: "1.0.0"
+  revisionDate: string; // ISO ex: "2026-07-30"
+  reviewer: string | null; // null tant qu'aucune relecture n'a eu lieu
+  editorialStatus: EditorialStatus;
+}
+
 /** Liens pédagogiques explicites entre modules (continuité du cursus). */
 export interface PedagogicalLinks {
   prerequisitesFromPrevious: string[];
@@ -190,6 +207,8 @@ export interface ModuleV2 {
   /** Rubrique du travail pratique / projet du module. */
   rubric?: Rubric;
   links?: PedagogicalLinks;
+  /** Métadonnées i18n / gouvernance éditoriale. */
+  contentMeta?: ContentMeta;
 }
 
 /** Pondération globale (doit sommer à 100). */

@@ -116,6 +116,62 @@ test("aucune leçon authored ne contient de marqueur « À venir »", () => {
   assert.ok(!report.errors.some((e) => e.code === "LESSON_FAKE_RECOGNITION"));
 });
 
+// ─────────────────────────── MODULE 3 ───────────────────────────
+
+test("Module 3 est authored, couvre les semaines 7-9 et compte 12 leçons", () => {
+  const m3 = marketingDigitalV2.modules.find((m) => m.index === 3)!;
+  assert.deepEqual(m3.weeks, [7, 8, 9]);
+  assert.ok(m3.lessons.every((l) => l.authored), "toutes les leçons de M3 doivent être authored");
+  assert.equal(m3.lessons.length, 12);
+});
+
+test("Module 3 : exactement 20 questions et banque cumulée = 60", () => {
+  const m3Questions = marketingDigitalV2Bank.filter((q) => q.module === 3);
+  assert.equal(m3Questions.length, 20);
+  assert.equal(marketingDigitalV2Bank.length, 60);
+});
+
+test("Module 3 : chaque leçon a étude de cas fictive, activité interactive, critères et rétroactions", () => {
+  const m3 = marketingDigitalV2.modules.find((m) => m.index === 3)!;
+  for (const l of m3.lessons) {
+    assert.ok(l.caseStudy, `${l.id} sans étude de cas`);
+    assert.equal(l.caseStudy!.isFictional, true, `${l.id} : étude de cas non identifiée fictive`);
+    assert.ok((l.interactiveActivities?.length ?? 0) > 0, `${l.id} sans activité interactive`);
+    assert.ok((l.successCriteria?.length ?? 0) > 0, `${l.id} sans critères de réussite`);
+    assert.ok((l.feedbackRules?.length ?? 0) > 0, `${l.id} sans rétroaction`);
+  }
+});
+
+test("Module 3 : la rubrique du projet totalise 100 points", () => {
+  const m3 = marketingDigitalV2.modules.find((m) => m.index === 3)!;
+  const sum = m3.rubric!.criteria.reduce((acc, c) => acc + c.points, 0);
+  assert.equal(sum, 100);
+  assert.equal(m3.rubric!.totalPoints, 100);
+});
+
+test("Module 3 : 3 quiz hebdomadaires valides + projet pratique présent", () => {
+  const m3 = marketingDigitalV2.modules.find((m) => m.index === 3)!;
+  const bankIds = new Set(marketingDigitalV2Bank.map((q) => q.id));
+  assert.equal(m3.weeklyQuizzes?.length, 3);
+  for (const wq of m3.weeklyQuizzes ?? []) {
+    assert.ok(wq.questionIds.length >= 8);
+    for (const qid of wq.questionIds) assert.ok(bankIds.has(qid), `${wq.id} référence ${qid} absent`);
+  }
+  assert.ok(m3.assessments.some((a) => a.kind === "practical"));
+});
+
+test("Module 3 : métadonnées i18n en français source, sans relecteur validé", () => {
+  const m3 = marketingDigitalV2.modules.find((m) => m.index === 3)!;
+  assert.equal(m3.contentMeta?.sourceLang, "fr");
+  assert.equal(m3.contentMeta?.translationStatus, "source");
+});
+
+test("aucune promesse trompeuse non encadrée ni faux témoignage dans les modules authored", () => {
+  const report = validateCurriculum(marketingDigitalV2, marketingDigitalV2Bank);
+  assert.ok(!report.errors.some((e) => e.code === "LESSON_MISLEADING_PROMISE"), JSON.stringify(report.errors.filter((e) => e.code === "LESSON_MISLEADING_PROMISE")));
+  assert.ok(!report.errors.some((e) => e.code === "CASE_NOT_FLAGGED"));
+});
+
 test("la validation détecte un trou de semaine", () => {
   const broken = {
     ...marketingDigitalV2,
