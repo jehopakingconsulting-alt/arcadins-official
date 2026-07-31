@@ -158,6 +158,11 @@ export interface AssessmentResultViewModel {
   toReview: string[];
   recommendations: RecommendationViewModel[];
   nextStepKey: string | null;
+  // Champs PUBLICS additifs (Sprint K3A) — jamais de bonne réponse ni de barème.
+  correctCount?: number; // nombre de réponses correctes (agrégat public)
+  totalQuestions?: number; // nombre total de questions
+  competencies?: string[]; // compétences évaluées (identifiants)
+  retryAvailable?: boolean; // une reprise est-elle disponible selon la politique
 }
 
 export interface ProgressViewModel {
