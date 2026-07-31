@@ -28,7 +28,7 @@ async function startDet(page: Page) {
 }
 
 /** Répond à toutes les questions déterministes en choisissant la Nième option (0 = bonne réponse). */
-async function answerAllDet(page: Page, root: ReturnType<Page["locator"]>, optionIndex: number, count = 3) {
+async function answerAllDet(_page: Page, root: ReturnType<Page["locator"]>, optionIndex: number, count = 3) {
   for (let i = 0; i < count; i++) {
     const radios = root.getByRole("radio");
     await radios.nth(optionIndex).check();
