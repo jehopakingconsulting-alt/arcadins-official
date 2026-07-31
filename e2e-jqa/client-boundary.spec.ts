@@ -17,9 +17,19 @@ const PRIVATE_NEEDLES = [
   "3 → observation (mesurer le comportement réel).",
   "PRIVATE_ANSWER_KEY_SENTINEL_K3S",
   "PRIVATE_CORRECT_OPTION_SENTINEL_K3S",
+  // Sentinelles K3C (n'existent que côté test ; ne doivent jamais apparaître dans une surface publique).
+  "PRIVATE_REVIEWER_NOTE_K3C",
+  "PRIVATE_DECISION_REASON_K3C",
+  "PRIVATE_SCORE_BREAKDOWN_K3C",
+  "PRIVATE_INTEGRITY_SIGNAL_K3C",
+  "PRIVATE_GRADING_RULE_K3C",
+  // Codes internes d'orchestration K3C (audit) : ne doivent jamais être publiés côté client.
+  "FINAL_PASS",
+  "EXAM_BELOW_THRESHOLD",
+  "MANDATORY_QUIZ_NOT_PASSED",
 ];
 
-const ROUTES = ["/learn-preview/runtime", "/learn-preview/quiz", "/learn-preview/exam"];
+const ROUTES = ["/learn-preview/runtime", "/learn-preview/quiz", "/learn-preview/exam", "/learn-preview/results"];
 
 function scan(text: string): string[] {
   return PRIVATE_NEEDLES.filter((n) => text.includes(n));
