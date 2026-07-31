@@ -7,5 +7,7 @@ export * from "./types.ts";
 export * from "./view-models.ts";
 export * from "./validation.ts";
 export * from "./mappers.ts";
+export * from "./content-mappers.ts";
+export * from "./academic-preview.ts";
 export * from "./providers.ts";
 export * from "./demo-data.ts";

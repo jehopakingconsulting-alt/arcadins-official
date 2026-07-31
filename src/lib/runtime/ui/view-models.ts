@@ -219,3 +219,18 @@ export interface NotificationViewModel {
   at: string;
   read: boolean;
 }
+
+/** Regroupement des view models consommés par la coquille étudiante (preview / rendu complet). */
+export interface StudentPreviewBundle {
+  dashboard: StudentDashboardViewModel;
+  calendar: CalendarViewModel;
+  journey: JourneyViewModel;
+  lesson: LessonPlayerViewModel;
+  notes: NoteViewModel[];
+  bookmarks: BookmarkViewModel[];
+  assessment: AssessmentViewModel;
+  assessmentResult: AssessmentResultViewModel;
+  progress: ProgressViewModel;
+  credentials: CredentialViewModel[];
+  badges: BadgeViewModel[];
+}

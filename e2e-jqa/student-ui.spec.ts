@@ -58,11 +58,14 @@ test.describe("Parcours", () => {
 });
 
 test.describe("Lecteur de leçon", () => {
-  test("rendu du contenu, bloc inconnu en fallback, « terminer » désactivé (serveur autoritaire)", async ({ page }) => {
+  test("rendu du CONTENU RÉEL, objectifs, « terminer » désactivé (serveur autoritaire)", async ({ page }) => {
     const shell = await openPreview(page);
     await switchView(shell, "Leçon");
-    await expect(shell.getByRole("heading", { name: /Introduction \(démo\)/ })).toBeVisible();
-    await expect(shell.getByText(/Bloc inconnu — fallback sûr attendu/)).toBeVisible();
+    // Le lecteur affiche le contenu académique réel (titre de leçon + objectifs + paragraphe rédigé substantiel).
+    await expect(shell.getByRole("heading", { name: "Objectifs" })).toBeVisible();
+    const article = shell.locator("article");
+    const longParagraph = await article.locator("p").evaluateAll((ps) => ps.some((p) => (p.textContent || "").length > 80));
+    expect(longParagraph, "au moins un paragraphe de contenu rédigé (réel)").toBe(true);
     await expect(shell.getByRole("button", { name: "Marquer comme terminé" })).toBeDisabled();
   });
 

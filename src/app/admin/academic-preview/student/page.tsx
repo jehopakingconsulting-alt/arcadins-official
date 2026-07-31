@@ -1,11 +1,9 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ACADEMIC_PREVIEW_ENABLED } from "@/lib/academic/preview-config";
-import { StudentLearningShell, type StudentPreviewBundle } from "@/components/learn/StudentLearningShell";
-import {
-  demoAssessment, demoAssessmentResult, demoBadges, demoBookmarks, demoCalendar, demoCredentials,
-  demoDashboard, demoJourney, demoLesson, demoNotes, demoProgress,
-} from "@/lib/runtime/ui/demo-data";
+import { marketingDigitalV2 } from "@/lib/academic/marketing-digital-v2";
+import { StudentLearningShell } from "@/components/learn/StudentLearningShell";
+import { buildAcademicStudentBundle } from "@/lib/runtime/ui/academic-preview";
 
 export const metadata: Metadata = {
   title: "Aperçu expérience étudiante (interne) — ARCADINS",
@@ -13,27 +11,14 @@ export const metadata: Metadata = {
 };
 
 /**
- * Aperçu INTERNE et NON PUBLIC de l'expérience étudiante (Sprint J).
+ * Aperçu INTERNE et NON PUBLIC de l'expérience étudiante (Sprint J + K1).
  * Double garde : flag `ACADEMIC_PREVIEW_ENABLED` + zone `/admin` (RBAC appliqué par le layout admin).
- * Données ENTIÈREMENT FICTIVES (démonstration). Aucune donnée réelle, aucune écriture, aucune API académique
- * réelle, aucun certificat réel. `noindex, nofollow, nocache`.
+ * Le PARCOURS, le LECTEUR et la PROGRESSION proviennent du CONTENU ACADÉMIQUE RÉEL (Marketing Digital v2) ;
+ * les parties non encore branchées (évaluation/badges/certificats/notifications) restent en démonstration fictive.
+ * Aucune donnée étudiante réelle, aucune écriture, aucune API réelle. `noindex, nofollow, nocache`.
  */
 export default function StudentExperiencePreviewPage() {
   if (!ACADEMIC_PREVIEW_ENABLED) notFound();
-
-  const bundle: StudentPreviewBundle = {
-    dashboard: demoDashboard(),
-    calendar: demoCalendar(),
-    journey: demoJourney(),
-    lesson: demoLesson(),
-    notes: demoNotes(),
-    bookmarks: demoBookmarks(),
-    assessment: demoAssessment(),
-    assessmentResult: demoAssessmentResult(),
-    progress: demoProgress(),
-    credentials: demoCredentials(),
-    badges: demoBadges(),
-  };
-
+  const bundle = buildAcademicStudentBundle(marketingDigitalV2);
   return <StudentLearningShell bundle={bundle} />;
 }

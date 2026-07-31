@@ -1,10 +1,6 @@
 "use client";
 import { useState } from "react";
-import type {
-  AssessmentResultViewModel, AssessmentViewModel, BadgeViewModel, BookmarkViewModel, CalendarViewModel,
-  CredentialViewModel, JourneyViewModel, LessonPlayerViewModel, NoteViewModel, ProgressViewModel,
-  StudentDashboardViewModel,
-} from "@/lib/runtime/ui/view-models";
+import type { StudentPreviewBundle } from "@/lib/runtime/ui/view-models";
 import { DEMO_DATA_LABEL } from "@/lib/runtime/ui/config";
 import { StudentDashboard } from "./dashboard/StudentDashboard";
 import { LearningJourney } from "./journey/LearningJourney";
@@ -13,19 +9,7 @@ import { AssessmentPlayer } from "./assessment/AssessmentPlayer";
 import { ProgressDashboard } from "./progress/ProgressDashboard";
 import { CredentialsPanel } from "./certification/CredentialsPanel";
 
-export interface StudentPreviewBundle {
-  dashboard: StudentDashboardViewModel;
-  calendar: CalendarViewModel;
-  journey: JourneyViewModel;
-  lesson: LessonPlayerViewModel;
-  notes: NoteViewModel[];
-  bookmarks: BookmarkViewModel[];
-  assessment: AssessmentViewModel;
-  assessmentResult: AssessmentResultViewModel;
-  progress: ProgressViewModel;
-  credentials: CredentialViewModel[];
-  badges: BadgeViewModel[];
-}
+export type { StudentPreviewBundle };
 
 type View = "dashboard" | "journey" | "lesson" | "assessment" | "progress" | "certificates";
 const NAV: { id: View; label: string }[] = [

@@ -1,10 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { StudentLearningShell, type StudentPreviewBundle } from "@/components/learn/StudentLearningShell";
-import {
-  demoAssessment, demoAssessmentResult, demoBadges, demoBookmarks, demoCalendar, demoCredentials,
-  demoDashboard, demoJourney, demoLesson, demoNotes, demoProgress,
-} from "@/lib/runtime/ui/demo-data";
+import { marketingDigitalV2 } from "@/lib/academic/marketing-digital-v2";
+import { StudentLearningShell } from "@/components/learn/StudentLearningShell";
+import { buildAcademicStudentBundle } from "@/lib/runtime/ui/academic-preview";
 
 export const dynamic = "force-dynamic";
 
@@ -25,20 +23,6 @@ export const metadata: Metadata = {
 export default function LocalLearnPreviewPage() {
   const localEnabled = process.env.LEARN_UI_PREVIEW_LOCAL === "1" && process.env.NODE_ENV !== "production";
   if (!localEnabled) notFound();
-
-  const bundle: StudentPreviewBundle = {
-    dashboard: demoDashboard(),
-    calendar: demoCalendar(),
-    journey: demoJourney(),
-    lesson: demoLesson(),
-    notes: demoNotes(),
-    bookmarks: demoBookmarks(),
-    assessment: demoAssessment(),
-    assessmentResult: demoAssessmentResult(),
-    progress: demoProgress(),
-    credentials: demoCredentials(),
-    badges: demoBadges(),
-  };
-
+  const bundle = buildAcademicStudentBundle(marketingDigitalV2);
   return <StudentLearningShell bundle={bundle} />;
 }
