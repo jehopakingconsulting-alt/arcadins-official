@@ -7,10 +7,8 @@
  */
 import { useCallback, useMemo, useSyncExternalStore } from "react";
 import {
-  buildDemoExamDefinition,
   buildDeterministicExamBank,
   buildDeterministicExamDefinition,
-  buildExamBank,
   demoEligibilityContext,
 } from "@/lib/runtime/ui/exam/exam-config";
 import type { ExamControllerOptions } from "@/lib/runtime/ui/exam/exam-controller";
@@ -21,19 +19,20 @@ import { FinalExamShell } from "./FinalExamShell";
 export type ExamPreviewVariant = "real" | "det" | "blocked" | "timeout";
 
 /**
- * Ne reçoit que le SLUG du programme (chaîne), jamais le curriculum complet : cela évite que le contenu
- * académique privé (ex. `answerKey` des activités) soit sérialisé comme prop de composant client dans le HTML.
+ * FRONTIÈRE CLIENT SÛRE (K3-S) : ne reçoit que le SLUG public (chaîne) et n'importe AUCUNE banque privée.
+ * L'interactivité utilise un contrôleur DÉTERMINISTE synthétique dont les réponses restent dans la clôture
+ * (jamais DOM/props/session/__NEXT_DATA__/bundle). La banque réelle et sa correction relèvent du serveur
+ * (`exam-bank.server.ts`, Sprint L). Le curriculum académique privé ne traverse jamais la frontière client.
  */
 export function FinalExamPreview({ programSlug, variant = "real" }: { programSlug: string; variant?: ExamPreviewVariant }) {
   const store = useMemo(() => createExamRuntimeStore(), []);
 
   const makeOptions = useCallback((): ExamControllerOptions => {
-    const useDet = variant === "det" || variant === "timeout";
-    const baseDef = useDet ? buildDeterministicExamDefinition({ programSlug }) : buildDemoExamDefinition({ programSlug });
+    const baseDef = buildDeterministicExamDefinition({ programSlug });
     const definition = variant === "timeout" ? { ...baseDef, durationLimitSeconds: 2 } : baseDef;
     return {
       definition,
-      bank: useDet ? buildDeterministicExamBank() : buildExamBank(),
+      bank: buildDeterministicExamBank(),
       learnerRef: "demo-learner", // SERVEUR-AUTORITAIRE en réel (Sprint L) ; fixe en démo.
       attemptNumber: 1,
       eligibilityContext: variant === "blocked" ? demoEligibilityContext({ enrollmentActive: false }) : demoEligibilityContext(),

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { marketingDigitalV2 } from "@/lib/academic/marketing-digital-v2";
+import { toPublicCurriculum } from "@/lib/runtime/ui/security/public-curriculum";
 import { RuntimeProgressPreview } from "@/components/learn/progress/RuntimeProgressPreview";
 
 export const dynamic = "force-dynamic";
@@ -18,5 +19,6 @@ export const metadata: Metadata = {
 export default function LocalRuntimeProgressPreviewPage() {
   const localEnabled = process.env.LEARN_UI_PREVIEW_LOCAL === "1" && process.env.NODE_ENV !== "production";
   if (!localEnabled) notFound();
-  return <RuntimeProgressPreview curriculum={marketingDigitalV2} />;
+  // K3-S : seule la projection PUBLIQUE structurelle traverse la frontière client (jamais le curriculum privé).
+  return <RuntimeProgressPreview curriculum={toPublicCurriculum(marketingDigitalV2)} />;
 }

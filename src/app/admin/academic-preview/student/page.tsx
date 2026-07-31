@@ -4,6 +4,7 @@ import { ACADEMIC_PREVIEW_ENABLED } from "@/lib/academic/preview-config";
 import { marketingDigitalV2 } from "@/lib/academic/marketing-digital-v2";
 import { StudentLearningShell } from "@/components/learn/StudentLearningShell";
 import { buildAcademicStudentBundle } from "@/lib/runtime/ui/academic-preview";
+import { ensureClientSafePayload } from "@/lib/runtime/ui/security/ensure-client-safe";
 
 export const metadata: Metadata = {
   title: "Aperçu expérience étudiante (interne) — ARCADINS",
@@ -19,6 +20,8 @@ export const metadata: Metadata = {
  */
 export default function StudentExperiencePreviewPage() {
   if (!ACADEMIC_PREVIEW_ENABLED) notFound();
-  const bundle = buildAcademicStudentBundle(marketingDigitalV2);
+  // K3-S : garde de frontière — le bundle (view models K1) ne doit contenir aucune clé privée avant d'atteindre
+  // le composant client (défense en profondeur ; le bundle est déjà nettoyé à la construction).
+  const bundle = ensureClientSafePayload(buildAcademicStudentBundle(marketingDigitalV2), "student-bundle");
   return <StudentLearningShell bundle={bundle} />;
 }

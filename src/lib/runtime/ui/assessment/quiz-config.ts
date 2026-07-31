@@ -6,13 +6,14 @@
  * QUIZ FORMATIF ; il n'active ni l'examen final (Sprint G), ni les certificats/badges (Sprint H).
  */
 import type { AssessmentDefinition, AssessmentPolicy, FeedbackPolicy } from "@/lib/runtime/assessment/types";
-import { InMemoryQuestionBank, fromBankQuestions } from "@/lib/runtime/assessment/question-bank";
 import { DEFAULT_ASSESSMENT_POLICY } from "@/lib/runtime/assessment/config";
-import { marketingDigitalV2Bank } from "@/lib/academic/question-bank/marketing-digital-v2";
 
 /**
  * FLAG dédié au quiz runtime. RESTE `false`. Le quiz n'est rendu que dans une route de preview LOCALE ou
  * administrative gardée ; il n'est jamais visible sur la plateforme publique.
+ *
+ * K3-S : ce module est SÛR CÔTÉ CLIENT (aucun import de banque privée). La construction de la banque RÉELLE
+ * est isolée dans `quiz-bank.server.ts` (jamais importée par un composant client).
  */
 export const QUIZ_RUNTIME_ENABLED = false as const;
 
@@ -32,14 +33,6 @@ export function makeFormativeQuizPolicy(overrides: Partial<AssessmentPolicy> = {
     timing: { ...DEFAULT_ASSESSMENT_POLICY.timing, ...(overrides.timing ?? {}) },
     navigation: { ...DEFAULT_ASSESSMENT_POLICY.navigation, ...(overrides.navigation ?? {}) },
   };
-}
-
-/**
- * Construit la banque de questions RÉELLE du programme pilote (Marketing Digital v2). Les questions privées
- * (barème/bonnes réponses) restent dans le moteur ; seules des questions PUBLIQUES nettoyées atteindront l'UI.
- */
-export function buildQuizBank(): InMemoryQuestionBank {
-  return new InMemoryQuestionBank(fromBankQuestions(marketingDigitalV2Bank));
 }
 
 /** Nombre de questions par quiz de module par défaut (déterministe, borné à la banque réelle du module). */

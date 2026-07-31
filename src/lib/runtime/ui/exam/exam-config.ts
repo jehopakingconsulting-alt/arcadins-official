@@ -18,13 +18,15 @@ import {
   DEFAULT_EXAM_NAVIGATION_POLICY,
   DEFAULT_EXAM_RETAKE_POLICY,
 } from "@/lib/runtime/exam/config";
-import { InMemoryQuestionBank, fromBankQuestions } from "@/lib/runtime/assessment/question-bank";
+import { InMemoryQuestionBank } from "@/lib/runtime/assessment/question-bank";
 import type { PrivateQuestion } from "@/lib/runtime/assessment/types";
-import { marketingDigitalV2Bank } from "@/lib/academic/question-bank/marketing-digital-v2";
 
 /**
  * FLAG dédié au Runtime d'examen final. RESTE `false`. L'examen n'est rendu que dans une route de preview
  * LOCALE ou administrative doublement gardée ; jamais sur la plateforme publique.
+ *
+ * K3-S : ce module est SÛR CÔTÉ CLIENT (aucun import de banque privée). La construction de la banque RÉELLE
+ * est isolée dans `exam-bank.server.ts` (jamais importée par un composant client).
  */
 export const FINAL_EXAM_RUNTIME_ENABLED = false as const;
 
@@ -79,12 +81,7 @@ export function demoEligibilityContext(overrides: Partial<ExamEligibilityContext
   };
 }
 
-/** Banque de questions RÉELLE du programme pilote (les bonnes réponses restent privées, côté moteur). */
-export function buildExamBank(): InMemoryQuestionBank {
-  return new InMemoryQuestionBank(fromBankQuestions(marketingDigitalV2Bank));
-}
-
-/** Définition d'examen final de démonstration bâtie sur la banque réelle (2 sections, modules "1" et "2"). */
+/** Définition d'examen final de démonstration (structure ; la banque réelle est fournie côté serveur). */
 export function buildDemoExamDefinition(opts: { programSlug: string }): FinalExamDefinition {
   const sections: FinalExamSection[] = [
     { id: "1", titleKey: "exam.section.fundamentals", selection: { count: 3, moduleId: "1" }, weight: 1 },
