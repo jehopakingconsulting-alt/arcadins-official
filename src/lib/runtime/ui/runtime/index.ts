@@ -10,4 +10,6 @@ export * from "./academic-repository.ts";
 export * from "./runtime-engine.ts";
 export * from "./progress-cache.ts";
 export * from "./student-runtime.ts";
+export * from "./navigation-engine.ts";
+export * from "./learning-navigator.ts";
 export { RuntimeProvider, useRuntimeContext, type RuntimeContextValue } from "./RuntimeProvider.tsx";
