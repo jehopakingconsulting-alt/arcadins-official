@@ -14,7 +14,7 @@ export function LearningCalendar({ model }: { model: CalendarViewModel }) {
         <div role="group" aria-label="Vue du calendrier" className="flex gap-1">
           {(["week", "month"] as const).map((v) => (
             <button key={v} type="button" onClick={() => setView(v)} aria-pressed={view === v}
-              className={`min-h-9 rounded px-3 py-1 text-xs font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-gold)] ${view === v ? "bg-[color:var(--color-navy)] text-[color:var(--color-off-white)]" : "text-[color:var(--color-muted)]"}`}>
+              className={`min-h-9 rounded px-3 py-1 text-xs font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-gold)] ${view === v ? "bg-[color:var(--color-navy)] text-[color:var(--color-off-white)]" : "text-[#5a6a82]"}`}>
               {v === "week" ? "Semaine" : "Mois"}
             </button>
           ))}
@@ -24,7 +24,7 @@ export function LearningCalendar({ model }: { model: CalendarViewModel }) {
         {events.map((e) => (
           <li key={e.id} className="flex items-center justify-between rounded-lg border border-[color:var(--border-gold)] px-3 py-2 text-sm">
             <span className="text-[color:var(--color-body)]">{e.labelKey}</span>
-            <time dateTime={e.at} className="text-xs text-[color:var(--color-muted)]">{e.at.slice(0, 10)}</time>
+            <time dateTime={e.at} className="text-xs text-[#5a6a82]">{e.at.slice(0, 10)}</time>
           </li>
         ))}
       </ul>

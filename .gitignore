@@ -161,3 +161,7 @@ ACADEMIC_RUNTIME_MIGRATION_PLAN.md
 V1_TO_V2_ACADEMIC_DATA_MAPPING.md
 RLS_ACADEMIC_SECURITY_MATRIX_0011.md
 SPRINT_J_STUDENT_UI_REPORT.md
+
+# Sprint J-QA artefacts (locaux : screenshots, lighthouse, axe)
+/jqa-artifacts
+SPRINT_J_QA_REPORT.md

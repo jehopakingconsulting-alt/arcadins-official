@@ -13,7 +13,7 @@ export function NotificationsPanel({ items }: { items: NotificationViewModel[] }
           {items.map((n) => (
             <li key={n.id} className="flex items-center gap-2 text-sm">
               <span aria-hidden="true" className={`h-2 w-2 rounded-full ${n.read ? "bg-[color:var(--color-muted)]" : "bg-[color:var(--color-gold)]"}`} />
-              <span className={n.read ? "text-[color:var(--color-muted)]" : "text-[color:var(--color-body)]"}>{n.labelKey}</span>
+              <span className={n.read ? "text-[#5a6a82]" : "text-[color:var(--color-body)]"}>{n.labelKey}</span>
               {!n.read && <span className="sr-only">(non lue)</span>}
             </li>
           ))}

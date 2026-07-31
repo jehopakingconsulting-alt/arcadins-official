@@ -13,7 +13,7 @@ export function RecommendationsPanel({ items }: { items: RecommendationViewModel
           {items.map((r) => (
             <li key={r.id} className="rounded-lg border border-[color:var(--border-gold)] p-3">
               <p className="text-sm font-medium text-[color:var(--color-navy)]">{r.labelKey}</p>
-              <p className="mt-1 text-xs text-[color:var(--color-muted)]">Pourquoi : {r.reasonKey}</p>
+              <p className="mt-1 text-xs text-[#5a6a82]">Pourquoi : {r.reasonKey}</p>
             </li>
           ))}
         </ul>

@@ -8,7 +8,7 @@ export function ModuleProgress({ modules }: { modules: ProgressViewModel["module
       <ul className="mt-3 space-y-2">
         {modules.map((m) => (
           <li key={m.moduleId}>
-            <div className="flex justify-between text-xs text-[color:var(--color-muted)]"><span>{m.titleKey}</span><span>{m.percent}%{m.completed ? " ✓" : ""}</span></div>
+            <div className="flex justify-between text-xs text-[#5a6a82]"><span>{m.titleKey}</span><span>{m.percent}%{m.completed ? " ✓" : ""}</span></div>
             <div role="progressbar" aria-label={`${m.titleKey} : ${m.percent}%`} aria-valuenow={m.percent} aria-valuemin={0} aria-valuemax={100} className="mt-1 h-2 w-full overflow-hidden rounded-full bg-[color:var(--color-navy-light)]/15">
               <div className="h-full rounded-full bg-[color:var(--color-gold)]" style={{ width: `${m.percent}%` }} />
             </div>

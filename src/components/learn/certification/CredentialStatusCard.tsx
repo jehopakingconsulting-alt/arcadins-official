@@ -6,9 +6,9 @@ const STATUS_LABEL: Record<CredentialViewModel["status"], { label: string; tone:
   active: { label: "Actif", tone: "text-green-700" },
   suspended: { label: "Suspendu", tone: "text-amber-700" },
   revoked: { label: "Révoqué", tone: "text-red-700" },
-  replaced: { label: "Remplacé", tone: "text-[color:var(--color-muted)]" },
+  replaced: { label: "Remplacé", tone: "text-[#5a6a82]" },
   expired: { label: "Expiré", tone: "text-amber-700" },
-  not_issued: { label: "Non encore émis", tone: "text-[color:var(--color-muted)]" },
+  not_issued: { label: "Non encore émis", tone: "text-[#5a6a82]" },
 };
 
 /**
@@ -22,9 +22,9 @@ export function CredentialStatusCard({ credential, onVerify }: { credential: Cre
     <article className="rounded-xl border border-[color:var(--border-gold)] bg-white p-5">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-gold)]">{credential.documentTitle}</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-[#6f5714]">{credential.documentTitle}</p>
           <p className="mt-1 text-sm text-[color:var(--color-body)]">Réf. publique : <span className="font-mono">{credential.publicVerificationIdMasked}</span></p>
-          <p className="mt-1 text-xs text-[color:var(--color-muted)]">Version {credential.version}{credential.replacementReference ? ` · remplace/remplacé` : ""}</p>
+          <p className="mt-1 text-xs text-[#5a6a82]">Version {credential.version}{credential.replacementReference ? ` · remplace/remplacé` : ""}</p>
         </div>
         <span className={`text-xs font-semibold ${s.tone}`}>{s.label}</span>
       </div>

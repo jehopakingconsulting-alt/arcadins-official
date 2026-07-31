@@ -45,8 +45,8 @@ export function StudentLearningShell({ bundle }: { bundle: StudentPreviewBundle 
   const [view, setView] = useState<View>("dashboard");
 
   return (
-    <div className="min-h-screen bg-[color:var(--color-off-white)] text-[color:var(--color-body)]">
-      <a href="#learn-main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:bg-[color:var(--color-navy)] focus:px-3 focus:py-2 focus:text-[color:var(--color-off-white)]">
+    <div id="student-experience" className="relative z-[1000] min-h-screen bg-[color:var(--color-off-white)] text-[color:var(--color-body)]">
+      <a href="#learn-main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-[1001] focus:rounded focus:bg-[color:var(--color-navy)] focus:px-3 focus:py-2 focus:text-[color:var(--color-off-white)]">
         Aller au contenu principal
       </a>
 

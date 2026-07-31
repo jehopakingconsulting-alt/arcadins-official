@@ -18,11 +18,11 @@ export function AssessmentResult({ model }: { model: AssessmentResultViewModel }
       )}
       <div className="mt-4 grid gap-4 text-left sm:grid-cols-2">
         <div>
-          <h2 className="text-xs font-semibold uppercase text-[color:var(--color-muted)]">Points forts</h2>
+          <h2 className="text-xs font-semibold uppercase text-[#5a6a82]">Points forts</h2>
           <ul className="mt-1 text-sm text-[color:var(--color-body)]">{model.strengths.map((s, i) => <li key={i}>{s}</li>)}</ul>
         </div>
         <div>
-          <h2 className="text-xs font-semibold uppercase text-[color:var(--color-muted)]">À revoir</h2>
+          <h2 className="text-xs font-semibold uppercase text-[#5a6a82]">À revoir</h2>
           <ul className="mt-1 text-sm text-[color:var(--color-body)]">{model.toReview.map((s, i) => <li key={i}>{s}</li>)}</ul>
         </div>
       </div>

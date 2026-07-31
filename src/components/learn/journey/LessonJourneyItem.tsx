@@ -29,10 +29,10 @@ export function LessonJourneyItem({ lesson, onOpen }: { lesson: LessonJourneyIte
         className="flex w-full items-center justify-between gap-3 rounded-lg border border-[color:var(--border-gold)] bg-white px-3 py-2 text-left text-sm disabled:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-gold)]"
       >
         <span className="flex items-center gap-2">
-          <span aria-hidden="true" className="text-[color:var(--color-gold)]">{s.icon}</span>
+          <span aria-hidden="true" className="text-[#6f5714]">{s.icon}</span>
           <span className="text-[color:var(--color-body)]">{lesson.titleKey}</span>
         </span>
-        <span className="text-xs text-[color:var(--color-muted)]">{s.label}</span>
+        <span className="text-xs text-[#5a6a82]">{s.label}</span>
       </button>
       {locked && <div className="mt-1"><LockedReason reasonCode={lesson.lockedReasonCode} /></div>}
     </li>

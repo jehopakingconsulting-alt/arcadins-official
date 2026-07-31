@@ -21,7 +21,7 @@ export function LessonSidebar({ model, notes, bookmarks, onOpenLesson }: { model
       <div role="tablist" aria-label="Panneaux de la leçon" className="flex flex-wrap gap-1">
         {tabs.map((t) => (
           <button key={t.id} role="tab" id={`tab-${t.id}`} aria-selected={tab === t.id} aria-controls={`panel-${t.id}`} type="button" onClick={() => setTab(t.id)}
-            className={`min-h-9 rounded px-3 py-1 text-xs font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-gold)] ${tab === t.id ? "bg-[color:var(--color-navy)] text-[color:var(--color-off-white)]" : "text-[color:var(--color-muted)]"}`}>
+            className={`min-h-9 rounded px-3 py-1 text-xs font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-gold)] ${tab === t.id ? "bg-[color:var(--color-navy)] text-[color:var(--color-off-white)]" : "text-[#5a6a82]"}`}>
             {t.label}
           </button>
         ))}

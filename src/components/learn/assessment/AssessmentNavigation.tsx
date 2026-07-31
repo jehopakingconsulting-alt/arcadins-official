@@ -12,7 +12,7 @@ export function AssessmentNavigation({ index, total, answered, onPrev, onNext, o
       </div>
       <div className="flex items-center justify-between">
         <button type="button" onClick={onPrev} disabled={index === 0} className={`${btn} border border-[color:var(--border-gold)] text-[color:var(--color-navy)]`}>← Précédent</button>
-        <span className="text-xs text-[color:var(--color-muted)]" aria-live="polite">Question {index + 1} / {total}</span>
+        <span className="text-xs text-[#5a6a82]" aria-live="polite">Question {index + 1} / {total}</span>
         {index < total - 1 ? (
           <button type="button" onClick={onNext} className={`${btn} bg-[color:var(--color-navy)] text-[color:var(--color-off-white)]`}>Suivant →</button>
         ) : (

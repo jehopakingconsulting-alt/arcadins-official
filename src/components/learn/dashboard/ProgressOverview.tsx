@@ -3,7 +3,7 @@ function Bar({ label, percent }: { label: string; percent: number }) {
   const clamped = Math.max(0, Math.min(100, percent));
   return (
     <div>
-      <div className="flex items-center justify-between text-xs text-[color:var(--color-muted)]">
+      <div className="flex items-center justify-between text-xs text-[#5a6a82]">
         <span>{label}</span>
         <span aria-hidden="true">{clamped}%</span>
       </div>

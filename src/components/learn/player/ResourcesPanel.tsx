@@ -15,7 +15,7 @@ export function ResourcesPanel({ resources }: { resources: ResourceViewModel[] }
               <button type="button" aria-label={`${r.labelKey} (aperçu de démonstration, aucun téléchargement)`} className="flex w-full items-center gap-2 rounded-lg border border-[color:var(--border-gold)] px-3 py-2 text-left text-sm text-[color:var(--color-body)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-gold)]">
                 <span aria-hidden="true">📄</span>
                 <span>{r.labelKey}</span>
-                <span className="ml-auto text-xs text-[color:var(--color-muted)]">{r.kind} · démo</span>
+                <span className="ml-auto text-xs text-[#5a6a82]">{r.kind} · démo</span>
               </button>
             </li>
           ))}

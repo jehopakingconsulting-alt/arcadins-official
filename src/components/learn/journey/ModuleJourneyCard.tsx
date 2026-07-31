@@ -18,7 +18,7 @@ export function ModuleJourneyCard({ module, defaultOpen = false, onOpenLesson }:
           className="flex w-full items-center justify-between gap-3 rounded-xl px-4 py-3 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-gold)]"
         >
           <span className="font-semibold text-[color:var(--color-navy)]">Module {module.index} — {module.titleKey}</span>
-          <span className="flex items-center gap-2 text-xs text-[color:var(--color-muted)]">
+          <span className="flex items-center gap-2 text-xs text-[#5a6a82]">
             <span>{module.percent}%</span>
             <span aria-hidden="true">{open ? "▲" : "▼"}</span>
           </span>

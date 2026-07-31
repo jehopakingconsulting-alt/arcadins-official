@@ -12,7 +12,7 @@ const REASON_LABELS: Record<string, string> = {
 export function LockedState({ reasonCode }: { reasonCode: string | null }) {
   const label = (reasonCode && REASON_LABELS[reasonCode]) ?? "Ce contenu est verrouillé.";
   return (
-    <div role="status" className="flex items-center gap-2 rounded-lg border border-[color:var(--border-gold)] bg-[color:var(--color-off-white)] px-3 py-2 text-xs text-[color:var(--color-muted)]">
+    <div role="status" className="flex items-center gap-2 rounded-lg border border-[color:var(--border-gold)] bg-[color:var(--color-off-white)] px-3 py-2 text-xs text-[#5a6a82]">
       <span aria-hidden="true">🔒</span>
       <span>{label}</span>
     </div>

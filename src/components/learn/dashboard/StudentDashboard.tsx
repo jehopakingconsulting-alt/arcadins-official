@@ -23,7 +23,7 @@ export function StudentDashboard({ model, calendar, onResume }: { model: Student
   return (
     <div className="space-y-6">
       <header className="rounded-xl border border-[color:var(--border-gold)] bg-[color:var(--color-off-white)] p-5">
-        <p className="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-gold)]">{model.program?.programTitle ?? "Formation"}</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-[#6f5714]">{model.program?.programTitle ?? "Formation"}</p>
         <h1 className="mt-1 text-xl font-bold text-[color:var(--color-navy)]">Bonjour, {model.identity.displayName}</h1>
         {expired && <p role="alert" className="mt-2 rounded bg-amber-100 px-2 py-1 text-xs font-medium text-amber-800">Votre accès a expiré.</p>}
         {suspended && <p role="alert" className="mt-2 rounded bg-red-100 px-2 py-1 text-xs font-medium text-red-800">Votre inscription est suspendue.</p>}

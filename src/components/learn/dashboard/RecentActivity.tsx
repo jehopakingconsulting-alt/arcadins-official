@@ -13,7 +13,7 @@ export function RecentActivity({ items }: { items: ActivityViewModel[] }) {
           {items.map((a) => (
             <li key={a.id} className="flex items-center justify-between text-sm">
               <span className="text-[color:var(--color-body)]">{a.labelKey}</span>
-              <time dateTime={a.at} className="text-xs text-[color:var(--color-muted)]">{a.at.slice(0, 10)}</time>
+              <time dateTime={a.at} className="text-xs text-[#5a6a82]">{a.at.slice(0, 10)}</time>
             </li>
           ))}
         </ul>

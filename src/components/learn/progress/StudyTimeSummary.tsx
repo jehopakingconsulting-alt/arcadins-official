@@ -13,7 +13,7 @@ export function StudyTimeSummary({ minutes, streakDays, lessonsCompleted, quizze
       <dl className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4">
         {stats.map((s) => (
           <div key={s.label}>
-            <dt className="text-xs text-[color:var(--color-muted)]">{s.label}</dt>
+            <dt className="text-xs text-[#5a6a82]">{s.label}</dt>
             <dd className="text-lg font-semibold text-[color:var(--color-navy)]">{s.value}</dd>
           </div>
         ))}

@@ -14,7 +14,7 @@ export function CompetencyProgress({ competencies }: { competencies: CompetencyV
       <ul className="mt-3 space-y-3">
         {competencies.map((c) => (
           <li key={c.code}>
-            <div className="flex justify-between text-xs text-[color:var(--color-muted)]"><span>{c.labelKey}</span><span>{LEVEL_LABEL[c.level]} · {c.percent}%</span></div>
+            <div className="flex justify-between text-xs text-[#5a6a82]"><span>{c.labelKey}</span><span>{LEVEL_LABEL[c.level]} · {c.percent}%</span></div>
             <div role="progressbar" aria-label={`${c.labelKey} : ${c.percent}%`} aria-valuenow={c.percent} aria-valuemin={0} aria-valuemax={100} className="mt-1 h-2 w-full overflow-hidden rounded-full bg-[color:var(--color-navy-light)]/15">
               <div className="h-full rounded-full bg-[color:var(--color-gold)]" style={{ width: `${c.percent}%` }} />
             </div>

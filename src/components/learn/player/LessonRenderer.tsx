@@ -7,7 +7,7 @@ import type { ContentBlock } from "@/lib/runtime/ui/types";
  */
 function Placeholder({ kind, minutes }: { kind: string; minutes?: number }) {
   return (
-    <div role="img" aria-label={`Média ${kind} (aperçu indisponible en démonstration)`} className="flex h-40 items-center justify-center rounded-lg border border-dashed border-[color:var(--border-gold)] bg-[color:var(--color-off-white)] text-xs text-[color:var(--color-muted)]">
+    <div role="img" aria-label={`Média ${kind} (aperçu indisponible en démonstration)`} className="flex h-40 items-center justify-center rounded-lg border border-dashed border-[color:var(--border-gold)] bg-[color:var(--color-off-white)] text-xs text-[#5a6a82]">
       {kind.toUpperCase()} — aperçu {minutes ? `(${minutes} min)` : ""} · démonstration
     </div>
   );
@@ -48,7 +48,7 @@ function Block({ block }: { block: ContentBlock }) {
     case "caseStudy":
       return (
         <section className="rounded-lg border border-[color:var(--border-gold)] p-4">
-          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-[color:var(--color-gold)]">Étude de cas</p>
+          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-[#6f5714]">Étude de cas</p>
           {block.heading && <p className="font-semibold text-[color:var(--color-navy)]">{block.heading}</p>}
           <p className="mt-1 text-sm text-[color:var(--color-body)]">{block.text}</p>
         </section>
@@ -87,7 +87,7 @@ function Block({ block }: { block: ContentBlock }) {
       );
     default:
       // Fallback SÛR pour tout type inconnu : jamais de rendu non maîtrisé.
-      return <p className="rounded bg-[color:var(--color-off-white)] p-2 text-xs text-[color:var(--color-muted)]">{block.text ?? "Contenu non pris en charge."}</p>;
+      return <p className="rounded bg-[color:var(--color-off-white)] p-2 text-xs text-[#5a6a82]">{block.text ?? "Contenu non pris en charge."}</p>;
   }
 }
 
