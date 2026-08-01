@@ -31,7 +31,7 @@ export default async function CertificatePage({
         <div className="text-center mb-6 print:hidden">
           <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Vérification de certificat</p>
           <h1 className="font-[family-name:var(--font-heading)] text-3xl text-navy mb-2">Certificat authentique ✓</h1>
-          <p className="text-muted text-sm">Ce certificat a été vérifié dans la base de données officielle ARCADINS.</p>
+          <p className="text-muted text-sm">Cette attestation a été vérifiée dans la base de données ARCADINS.</p>
         </div>
 
         {/* Certificate */}
