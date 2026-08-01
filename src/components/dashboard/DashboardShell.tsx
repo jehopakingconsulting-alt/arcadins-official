@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { Card, Badge, ProgressBar, Button, EmptyState } from "@/components/ui/ds";
+import RecommendationList from "@/components/learn/recommendations/RecommendationList";
 import { DASHBOARD_SECTIONS, findSection } from "@/lib/dashboard-shell/nav";
-import type { Locale } from "@/lib/program-presentation/types";
+import type { Locale, Localized } from "@/lib/program-presentation/types";
 import { tr } from "@/lib/program-presentation/types";
+import type { RecommendationViewModel } from "@/lib/runtime/ui/view-models";
 
 /**
  * DashboardShell — espace apprenant CANONIQUE & GÉNÉRIQUE (12 sections). Réutilisé
@@ -26,6 +28,18 @@ export interface DashboardDemo {
   studyMinutes: number;
   competencies: { code: string; label: string; percent: number }[];
 }
+
+// Démo de recommandations (view-model canonique ; en prod = RecommendationEngine via le mapper pur).
+const DEMO_RECOS: RecommendationViewModel[] = [
+  { id: "rc1", kind: "continue_lesson", labelKey: "", reasonKey: "r.continue", targetId: "l-4-2" },
+  { id: "rc2", kind: "review_competency", labelKey: "", reasonKey: "r.weak_ee", targetId: "EE" },
+  { id: "rc3", kind: "retry_quiz", labelKey: "", reasonKey: "r.mock", targetId: "mock-1" },
+];
+const DEMO_REASONS: Record<string, Localized> = {
+  "r.continue": { fr: "Vous étiez à 62% du Module 4", en: "You were at 62% of Module 4", es: "Estaba al 62% del Módulo 4" },
+  "r.weak_ee": { fr: "Compétence la plus faible : Expression écrite", en: "Weakest competency: Writing", es: "Competencia más débil: Expresión escrita" },
+  "r.mock": { fr: "Prêt pour un examen blanc", en: "Ready for a mock exam", es: "Listo para un examen simulado" },
+};
 
 const DEMO: DashboardDemo = {
   displayName: "Jean Herbith",
@@ -137,7 +151,7 @@ export default function DashboardShell({ data = DEMO }: { data?: DashboardDemo }
                 <Card className="p-5"><div className="text-[12.5px] text-muted mb-1">{t("studyTime")}</div><div className="font-[family-name:var(--font-heading)] text-[28px] text-navy">{Math.round(data.studyMinutes / 60)}{t("hours")}</div></Card>
               </div>
 
-              <Card className="p-6">
+              <Card className="p-6 mb-6">
                 <h2 className="font-[family-name:var(--font-heading)] text-[18px] text-navy mb-4">{t("competencies")}</h2>
                 <div className="flex flex-col gap-4">
                   {data.competencies.map((c) => (
@@ -145,6 +159,8 @@ export default function DashboardShell({ data = DEMO }: { data?: DashboardDemo }
                   ))}
                 </div>
               </Card>
+
+              <RecommendationList recommendations={DEMO_RECOS} reasons={DEMO_REASONS} />
             </div>
           ) : (
             <Card className="p-4 ds-animate-fade-up">

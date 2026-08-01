@@ -1,4 +1,5 @@
 import type { ContentBlock } from "@/lib/lesson-runtime/types";
+import MediaPlayer from "@/components/learn/media/MediaPlayer";
 
 /**
  * LessonBlock — rendu d'un bloc de contenu PILOTÉ PAR MÉTADONNÉES (générique).
@@ -87,11 +88,11 @@ export default function LessonBlock({ block }: { block: ContentBlock }) {
     case "image":
       return <MediaCard icon="🖼️" kind="Image" block={block} />;
     case "video":
-      return <MediaCard icon="🎬" kind="Vidéo" block={block} />;
+      return <MediaPlayer block={block} kind="video" />;
     case "audio":
-      return <MediaCard icon="🎧" kind="Audio" block={block} />;
+      return <MediaPlayer block={block} kind="audio" />;
     case "pdf":
-      return <MediaCard icon="📄" kind="PDF" block={block} />;
+      return <MediaPlayer block={block} kind="pdf" />;
     case "code":
       return <pre className="my-5 rounded-[12px] bg-navy text-gold-pale p-4 overflow-x-auto text-[13px] font-[family-name:var(--font-mono)]"><code>{block.text}</code></pre>;
     case "formula":
