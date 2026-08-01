@@ -284,16 +284,16 @@ export default function CourseDetailPage() {
                     Réservez votre place
                   </h3>
                   <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
-                    Commencez par les frais d&apos;inscription de {REGISTRATION_FEE}$. Vous aurez ensuite 30 jours pour effectuer votre premier versement ({fullTotal.toLocaleString()}$ total) — en un seul paiement ou en 3 versements mensuels.
+                    Les inscriptions se font avec notre équipe. Demandez votre inscription : nous vous accompagnons pour confirmer votre place et votre plan de paiement ({fullTotal.toLocaleString()}$ total — en un seul versement ou en 3 fois).
                   </p>
-                  <a
-                    href={`/api/checkout?course=${course.slug}&price=${course.price}&step=fee`}
+                  <Link
+                    href={`/contact?formation=${course.slug}`}
                     className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid hover:-translate-y-0.5"
                   >
-                    Payer les frais d&apos;inscription — {REGISTRATION_FEE}$ →
-                  </a>
+                    Demander mon inscription →
+                  </Link>
                   <p className="text-xs text-muted mt-3">
-                    Paiement sécurisé par Stripe · Frais non remboursables
+                    Notre équipe vous recontacte sous 24–48h ouvrables.
                   </p>
                 </>
               )}

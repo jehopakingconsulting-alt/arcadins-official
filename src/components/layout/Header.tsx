@@ -7,6 +7,7 @@ import { useLang, t, UI } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
 import LanguageSelector from "./LanguageSelector";
 import Icon, { type IconName } from "@/components/ui/Icon";
+import { MULTILANG_SWITCHER_ENABLED } from "@/lib/config/launch-flags";
 
 const NAV_KEYS: { href: string; key: string; icon: IconName }[] = [
   { href: "/", key: "nav.home", icon: "home" },
@@ -81,7 +82,7 @@ export default function Header() {
             <span className="opacity-40 text-[10px] hidden sm:inline">|</span>
             <span className="hidden sm:inline">7 langues</span>
           </div>
-          <LanguageSelector />
+          {MULTILANG_SWITCHER_ENABLED && <LanguageSelector />}
         </div>
 
         {/* Nav bar */}
