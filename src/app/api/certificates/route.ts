@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { getLessonsForCourse } from "@/lib/lessons";
+import { evaluateLegacyEmission } from "@/lib/runtime/certification-authority/legacy-emission-gate";
 
 function generateCertificateNumber() {
   const year = new Date().getFullYear();
@@ -9,6 +10,14 @@ function generateCertificateNumber() {
 }
 
 export async function POST(request: Request) {
+  // K4A — NEUTRALISATION DE LA VOIE LEGACY : l'émission autonome de certificat est retirée à cette route.
+  // Tant que `LEGACY_CERTIFICATE_EMISSION_ENABLED=false` (défaut), on renvoie un statut contrôlé, NON émetteur,
+  // AVANT toute écriture Supabase. L'autorité unique de certification (K4B+) prendra le relais. Fail-closed.
+  const gate = evaluateLegacyEmission();
+  if (!gate.allowed) {
+    return NextResponse.json(gate.body, { status: gate.httpStatus });
+  }
+
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
