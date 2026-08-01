@@ -34,7 +34,6 @@ export default function LangProvider({ children, initialLang = "fr" }: { childre
     // URL sans préfixe : on respecte la préférence client (langues non routées incluses).
     const saved = localStorage.getItem("arcadins-lang");
     if (saved && LANGS.includes(saved as Lang) && saved !== lang) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLangState(saved as Lang);
       document.documentElement.lang = saved;
     }
