@@ -1,43 +1,87 @@
 /**
- * ARCADINS — Sélection de tarif PURE (générique). Horloge injectée (déterministe).
- * Choisit le prix applicable pour une devise à un instant donné (promo datée gérée).
- * PUR / node-testable. Imports RELATIFS uniquement.
+ * ARCADINS — Moteur de tarification PUR (le cœur commercial). Déterministe, horloge
+ * injectée, AUCUN appel Stripe/réseau. Calcule un devis complet à partir d'une offre
+ * vendable + contexte acheteur (devise, pays, coupon, bourse, campagne, taxe).
+ * Empilement déterministe : bourse → coupon → campagne, chaque ligne sur le sous-total
+ * courant, borné à 0. Taxe sur le sous-total remisé. Imports RELATIFS uniquement.
  */
-import type { ProductPrice } from "./types.ts";
+import type { DiscountScopeCtx } from "./discounts.ts";
+import type { Offer, Package, PriceQuote, QuoteContext, DiscountLine } from "./types.ts";
+import { composeEntitlements } from "./entitlement.ts";
+import { discountAmount, isDiscountApplicable, scholarshipAmount, validateCoupon } from "./discounts.ts";
 
-/** Une promo est active si active + fenêtre [starts, ends] contient `now` (bornes optionnelles). */
-export function isPromoActive(price: ProductPrice, now: Date): boolean {
-  if (price.promoStarts && now < new Date(price.promoStarts)) return false;
-  if (price.promoEnds && now > new Date(price.promoEnds)) return false;
-  return Boolean(price.promoLabel);
+function offerSellable(offer: Offer, currency: string, country: string | null | undefined, now: Date): string | null {
+  if (!offer.active) return "offer_inactive";
+  if (offer.currency.toUpperCase() !== currency.toUpperCase()) return "currency_mismatch";
+  if (offer.activeFrom && now < new Date(offer.activeFrom)) return "offer_not_started";
+  if (offer.activeTo && now > new Date(offer.activeTo)) return "offer_ended";
+  if (offer.countryScope.length && country && !offer.countryScope.map((c) => c.toUpperCase()).includes(country.toUpperCase())) return "country_out_of_scope";
+  return null;
 }
 
 /**
- * Prix applicable pour une devise à `now` : filtre actif + devise, écarte les promos hors fenêtre,
- * puis renvoie le montant le plus bas actuellement valide (promo en cours prioritaire à montant égal).
- * Renvoie null si aucun prix valide pour la devise.
+ * Devis complet. `pkg` doit être le package référencé par `offer.packageId`.
+ * L'offre peut surcharger le modèle d'accès (limited/lifetime + weeks) des grants.
  */
-export function selectActivePrice(
-  prices: readonly ProductPrice[],
-  currency: string,
-  now: Date,
-): ProductPrice | null {
-  const eligible = prices.filter((p) => {
-    if (!p.active) return false;
-    if (p.currency.toUpperCase() !== currency.toUpperCase()) return false;
-    // Un prix promotionnel hors fenêtre n'est pas éligible ; un prix non promo l'est toujours.
-    if (p.promoLabel) return isPromoActive(p, now);
-    return true;
-  });
-  if (eligible.length === 0) return null;
-  return [...eligible].sort((a, b) => {
-    if (a.amountCents !== b.amountCents) return a.amountCents - b.amountCents;
-    // à montant égal, préférer une promo active (mise en avant)
-    return (b.promoLabel ? 1 : 0) - (a.promoLabel ? 1 : 0);
-  })[0];
-}
+export function quoteOffer(offer: Offer, pkg: Package, ctx: QuoteContext, productSlug?: string | null): PriceQuote {
+  const errors: string[] = [];
+  const base: PriceQuote = {
+    ok: false, errors, currency: offer.currency, billing: offer.billing,
+    baseCents: offer.amountCents, discountLines: [], discountedCents: offer.amountCents,
+    taxCents: 0, totalCents: offer.amountCents,
+    entitlement: composeEntitlements(pkg.grants),
+  };
 
-/** Devises distinctes disponibles pour un ensemble de prix actifs. */
-export function availableCurrencies(prices: readonly ProductPrice[]): string[] {
-  return [...new Set(prices.filter((p) => p.active).map((p) => p.currency.toUpperCase()))].sort();
+  const sellErr = offerSellable(offer, ctx.currency, ctx.country, ctx.now);
+  if (sellErr) { errors.push(sellErr); return base; }
+
+  // Surcharge du modèle d'accès par l'offre (source de vérité commerciale).
+  const ent = composeEntitlements(pkg.grants);
+  ent.accessModel = offer.accessModel;
+  ent.accessWeeks = offer.accessModel === "lifetime" ? null : (offer.accessWeeks ?? ent.accessWeeks);
+  base.entitlement = ent;
+
+  const scopeCtx: DiscountScopeCtx = { productSlug, packageSlug: pkg.slug, currency: ctx.currency };
+  const lines: DiscountLine[] = [];
+  let running = offer.amountCents;
+
+  // 1) Bourse (prioritaire — peut annuler tout le prix).
+  if (ctx.scholarship) {
+    const amt = scholarshipAmount(ctx.scholarship, running, ctx.now);
+    if (amt > 0) { lines.push({ source: "scholarship", label: ctx.scholarship.kind === "full" ? "Bourse (100%)" : "Bourse", amountCents: amt }); running -= amt; }
+  }
+
+  // 2) Coupon (validé ; sinon erreur non bloquante signalée).
+  if (running > 0 && ctx.coupon) {
+    const chk = validateCoupon(ctx.coupon.coupon, ctx.coupon.discount, scopeCtx, ctx.now, ctx.coupon.userRedemptions);
+    if (chk.valid) {
+      const amt = discountAmount(ctx.coupon.discount, running);
+      if (amt > 0) { lines.push({ source: "coupon", label: ctx.coupon.coupon.code, amountCents: amt }); running -= amt; }
+    } else {
+      errors.push(`coupon:${chk.reason}`);
+    }
+  }
+
+  // 3) Campagne automatique (si applicable).
+  if (running > 0 && ctx.campaignDiscount && isDiscountApplicable(ctx.campaignDiscount, scopeCtx, ctx.now)) {
+    const amt = discountAmount(ctx.campaignDiscount, running);
+    if (amt > 0) { lines.push({ source: "campaign", label: ctx.campaignDiscount.name, amountCents: amt }); running -= amt; }
+  }
+
+  const discounted = Math.max(0, running);
+  const taxBps = ctx.taxBps ?? 0;
+  const tax = Math.round((discounted * taxBps) / 10_000);
+
+  return {
+    ok: errors.length === 0,
+    errors,
+    currency: offer.currency,
+    billing: offer.billing,
+    baseCents: offer.amountCents,
+    discountLines: lines,
+    discountedCents: discounted,
+    taxCents: tax,
+    totalCents: discounted + tax,
+    entitlement: ent,
+  };
 }
