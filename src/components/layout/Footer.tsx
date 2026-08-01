@@ -5,14 +5,16 @@ import { PrivacyLink, TermsLink, LegalLink } from "./FooterModals";
 import { useLang, t, UI } from "@/lib/i18n";
 import Icon from "@/components/ui/Icon";
 
-// Uniquement des destinations réelles et des formations ACTIVES : les entrées
-// vers des formations archivées (EPE, PAB, Famille Sans Dette) ou inexistantes
-// (Leadership) ont été retirées — cohérence avec le catalogue public (Phase 5/19).
-const FOOTER_FORMATIONS = [
-  { key: "nav.tef", label: "TEF / TCF Canada", href: "/tef" },
+// Deux départements strictement séparés (règle d'architecture permanente).
+// Département A — Programmes officiels de langue (entrée V1 = /tef).
+const FOOTER_PROGRAMS: { key?: string; label?: string; href: string }[] = [
+  { label: "TEF / TCF Canada", href: "/tef" },
+  { label: "TCF Canada", href: "/tcf" },
   { key: "tut.title", href: "/tutorat" },
-  { key: "fl.informatique", href: "/formations" },
-  { key: "footer.formations", href: "/formations" },
+];
+// Département B — Formations professionnelles (les 9).
+const FOOTER_TRAININGS: { key?: string; label?: string; href: string }[] = [
+  { key: "nav.formations", href: "/formations" },
 ];
 
 const FOOTER_SERVICES = [
@@ -26,7 +28,6 @@ const FOOTER_SERVICES = [
 
 // Pages de contenu migrées depuis V1 — libellés en clair (pas de clés i18n dédiées).
 const FOOTER_RESOURCES = [
-  { label: "TCF Canada", href: "/tcf" },
   { label: "À propos", href: "/a-propos" },
   { label: "Guide d'utilisation", href: "/guide" },
   { label: "FAQ", href: "/faq" },
@@ -59,18 +60,30 @@ export default function Footer() {
               URLs réelles des comptes ARCADINS. */}
         </div>
 
-        {/* Formations */}
+        {/* Départements : A (Programmes officiels) puis B (Formations professionnelles) */}
         <div>
           <h2 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mb-4">
-            {t(UI["footer.formations"], lang)}
+            {t(UI["nav.programs"], lang)}
           </h2>
-          {FOOTER_FORMATIONS.map((item) => (
+          {FOOTER_PROGRAMS.map((item) => (
             <Link
-              key={item.key}
+              key={item.href + (item.key ?? item.label ?? "")}
               href={item.href}
               className="block text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold"
             >
-              {item.key === "nav.tef" ? "TEF / TCF Canada" : t(UI[item.key], lang)}
+              {item.label ?? t(UI[item.key as string], lang)}
+            </Link>
+          ))}
+          <h2 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mt-6 mb-4">
+            {t(UI["nav.formations"], lang)}
+          </h2>
+          {FOOTER_TRAININGS.map((item) => (
+            <Link
+              key={item.href + (item.key ?? item.label ?? "")}
+              href={item.href}
+              className="block text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold"
+            >
+              {item.label ?? t(UI[item.key as string], lang)}
             </Link>
           ))}
         </div>

@@ -73,7 +73,7 @@ export default function HeroSlider() {
 <Icon name="cap" size={18} /> {t(UI["hero.cta1"], lang)}
           </Link>
           <Link
-            href="/formations"
+            href="/tef"
             className="bg-transparent text-white font-semibold text-[15px] px-7 py-3 rounded-[10px] border-[1.5px] border-white/28 transition-all inline-flex items-center gap-2 hover:border-gold hover:text-gold"
           >
             {t(UI["hero.cta2"], lang)}

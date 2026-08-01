@@ -10,7 +10,9 @@ import Icon, { type IconName } from "@/components/ui/Icon";
 
 const NAV_KEYS: { href: string; key: string; icon: IconName }[] = [
   { href: "/", key: "nav.home", icon: "home" },
-  { href: "/tef", key: "nav.tef", icon: "clipboard" },
+  // Département A (Programmes officiels de langue) — entrée V1 = /tef.
+  { href: "/tef", key: "nav.programs", icon: "clipboard" },
+  // Département B (Formations professionnelles) — catalogue /formations.
   { href: "/formations", key: "nav.formations", icon: "cap" },
   { href: "/examens", key: "nav.examens", icon: "laptop" },
   { href: "/immigration", key: "nav.immigration", icon: "globe" },
