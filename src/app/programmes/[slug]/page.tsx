@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import { LEARNING_EXPERIENCE_ENABLED } from "@/lib/config/experience-flags";
 import { PROGRAM_PRESENTATIONS } from "@/lib/program-presentation/tef";
 import ProgramLanding from "@/components/program/ProgramLanding";
+import { localeAlternates, isRoutedLocale, DEFAULT_LOCALE, type RoutedLocale } from "@/lib/i18n/locale-routing";
 
 /**
  * Vitrine GÉNÉRIQUE d'un programme : /programmes/[slug]. Server Component (RSC) pour
@@ -18,13 +20,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const p = PROGRAM_PRESENTATIONS[slug];
   if (!p) return {};
   const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://arcadins-official.vercel.app").trim();
-  const url = `${base}/programmes/${p.slug}`;
+  const h = await headers();
+  const hl = h.get("x-arcadins-locale");
+  const locale: RoutedLocale = isRoutedLocale(hl) ? hl : DEFAULT_LOCALE;
+  const alt = localeAlternates(base, `/programmes/${p.slug}`, locale);
   return {
-    title: p.seo.title.fr,
-    description: p.seo.description.fr,
-    alternates: { canonical: url, languages: { fr: url, en: url, es: url } },
-    openGraph: { title: p.seo.title.fr, description: p.seo.description.fr, url, type: "website", siteName: "ARCADINS Training Center" },
-    twitter: { card: "summary_large_image", title: p.seo.title.fr, description: p.seo.description.fr },
+    title: p.seo.title[locale] ?? p.seo.title.fr,
+    description: p.seo.description[locale] ?? p.seo.description.fr,
+    alternates: { canonical: alt.canonical, languages: alt.languages },
+    openGraph: { title: p.seo.title[locale] ?? p.seo.title.fr, description: p.seo.description[locale] ?? p.seo.description.fr, url: alt.canonical, type: "website", siteName: "ARCADINS Training Center" },
+    twitter: { card: "summary_large_image", title: p.seo.title[locale] ?? p.seo.title.fr, description: p.seo.description[locale] ?? p.seo.description.fr },
   };
 }
 
