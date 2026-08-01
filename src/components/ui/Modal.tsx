@@ -59,7 +59,7 @@ export function CertificatePreview() {
         <div className="text-white/60 text-sm mt-3">Formation : Leadership &amp; Gestion d&apos;Équipe<br />Score : 91/100</div>
         <div className="text-white/40 text-xs mt-3">Délivré le 28 mai 2025 · Ottawa, ON</div>
         <div className="w-16 h-16 bg-white rounded-md mx-auto mt-4 mb-1.5 flex items-center justify-center text-3xl">◦</div>
-        <div className="text-white/30 text-[11px]">QR Code de vérification officielle</div>
+        <div className="text-white/30 text-[11px]">QR Code de vérification</div>
       </div>
       <p className="mt-4 text-[13.5px] text-muted leading-[1.7]">
         Chaque certificat ARCADINS est horodaté, signé numériquement et vérifiable via QR code.

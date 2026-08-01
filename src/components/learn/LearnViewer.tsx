@@ -121,7 +121,7 @@ export default function LearnViewer({ courseSlug, courseName, courseIcon, lesson
                 Félicitations ! Formation complétée à 100%
               </div>
               <div className="text-navy/70 text-[13.5px]">
-                {issuingCert ? "Émission de votre certificat en cours..." : "Votre certificat officiel est prêt."}
+                {issuingCert ? "Émission de votre attestation en cours..." : "Votre attestation de complétion est prête."}
               </div>
             </div>
             {certificateId && (
