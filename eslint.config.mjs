@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Legacy V1 reference archive + migration scripts: preserved as-is (CommonJS),
+    // not part of the V2 app and intentionally exempt from V2 lint rules.
+    "archive/**",
+    "scripts/migration/**",
   ]),
 ]);
 
