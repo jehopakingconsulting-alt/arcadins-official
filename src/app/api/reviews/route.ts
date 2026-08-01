@@ -3,6 +3,7 @@ import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { PROGRAMS } from "@/lib/data/programs";
+import { enforceRateLimit } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
@@ -41,6 +42,10 @@ export async function POST(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "Non authentifié" }, { status: 401 });
+
+  // Anti-spam : plafonne les soumissions d'avis par utilisateur (comme /api/contact).
+  const rl = await enforceRateLimit(`review:${user.id}`, 5, 60_000);
+  if (!rl.allowed) return NextResponse.json({ error: "Trop de soumissions. Réessayez plus tard." }, { status: 429 });
 
   const parsed = BodySchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: "Données invalides" }, { status: 422 });
