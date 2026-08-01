@@ -36,6 +36,14 @@ export interface CredentialRecord {
   createdAt: string;
   updatedAt: string;
   revision: number;
+  // ── Champs de SIGNATURE additifs (Sprint K4C-B) — publics/références ; jamais de matière privée. ──
+  integrityDigest?: string;
+  signatureStatus?: "unsigned" | "signed" | "verification_failed";
+  signedAt?: string | null;
+  signingPolicyVersion?: number | null;
+  cryptographicAlgorithm?: string | null;
+  publicKeyFingerprint?: string | null;
+  canonicalizationVersion?: number | null;
 }
 
 /** Champs INTERDITS (défense en profondeur : ne doivent jamais apparaître dans un record). */
