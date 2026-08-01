@@ -8,7 +8,7 @@ import { AcademicConflictError } from "../integration/errors.ts";
 import type { AcademicAuditEvent, IdempotencyRecord, VersionedEntity } from "../integration/types.ts";
 import type {
   AcademicRepositories,
-  BadgeRow, BookmarkRow, CredentialRow, CredentialVerificationRow, CredentialVersionRow,
+  BadgeRow, BookmarkRow, CredentialRow, CredentialVerificationRow, CredentialVersionRow, DownloadRow,
   EnrollmentRow, ExamSessionRow, ExamSubmissionRow, FinalProjectRow, LearnerNoteRow, LearningEventRow,
   LessonProgressRow, LessonRow, ModuleProgressRow, ModuleRow, ProgramRow, ProgramVersionRow,
   AssessmentAttemptRow, AssessmentSubmissionRow, RubricRow, StudySessionRow,
@@ -87,6 +87,7 @@ export function createInMemoryRepositories(): InMemoryRepositories {
   const finalProjects = new VersionedStore<FinalProjectRow>();
   const studySessions = new VersionedStore<StudySessionRow>();
   const bookmarks = new VersionedStore<BookmarkRow>();
+  const downloads = new VersionedStore<DownloadRow>();
   const notes = new VersionedStore<LearnerNoteRow>();
   const badges = new VersionedStore<BadgeRow>();
   const credentials = new VersionedStore<CredentialRow>();
@@ -145,6 +146,7 @@ export function createInMemoryRepositories(): InMemoryRepositories {
     studySessions: { save: (row, ev) => studySessions.save(row, ev), listByLearner: async (l) => studySessions.filter((s) => s.ownerLearnerId === l) },
     bookmarks: { save: (row, ev) => bookmarks.save(row, ev), listByLearner: async (l) => bookmarks.filter((b) => b.ownerLearnerId === l), remove: async (id, learnerId) => { const b = bookmarks.items.get(id); if (b && b.ownerLearnerId === learnerId) bookmarks.remove(id); } },
     notes: { save: (row, ev) => notes.save(row, ev), listByLearner: async (l) => notes.filter((n) => n.ownerLearnerId === l), remove: async (id, learnerId) => { const n = notes.items.get(id); if (n && n.ownerLearnerId === learnerId) notes.remove(id); } },
+    downloads: { save: (row, ev) => downloads.save(row, ev), listByLearner: async (l) => downloads.filter((d) => d.ownerLearnerId === l), remove: async (id, learnerId) => { const d = downloads.items.get(id); if (d && d.ownerLearnerId === learnerId) downloads.remove(id); } },
     badges: { save: (row, ev) => badges.save(row, ev), listByLearner: async (l) => badges.filter((b) => b.ownerLearnerId === l), findByPublicId: async (pid) => badges.first((b) => b.publicVerificationId === pid) },
     credentials: {
       get: (id) => credentials.get(id),

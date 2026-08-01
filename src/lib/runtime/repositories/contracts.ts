@@ -31,6 +31,9 @@ export interface RubricRow { id: string; version: number }
 export interface StudySessionRow extends OwnedEntity, VersionedEntity { startedAt: string; endedAt: string | null; seconds: number }
 export interface BookmarkRow extends OwnedEntity, VersionedEntity { lessonId: string }
 export interface LearnerNoteRow extends OwnedEntity, VersionedEntity { noteId: string; lessonId: string; body: string }
+// Ressource téléchargée par un apprenant (persistance des téléchargements — S6 scope).
+// Reprend la forme de DownloadItem (player) + contexte leçon. Métadonnées non sensibles.
+export interface DownloadRow extends OwnedEntity, VersionedEntity { downloadId: string; label: string; src: string; mime: string | null; bytes: number | null; lessonId: string | null }
 export interface BadgeRow extends OwnedEntity, VersionedEntity { publicVerificationId: string; status: string }
 export interface CredentialRow extends VersionedEntity { id: string; ownerLearnerId: string; programId: string; publicVerificationId: string; documentNumber: string; status: string; issuanceKey: string; recordJson: string }
 export interface CredentialVersionRow { credentialId: string; version: number; snapshotJson: string; integrityJson: string }
@@ -65,6 +68,7 @@ export type RubricRepository = ReadRepository<RubricRow>;
 export interface StudySessionRepository extends WriteRepository<StudySessionRow>, OwnedRepository<StudySessionRow> {}
 export interface BookmarkRepository extends WriteRepository<BookmarkRow>, OwnedRepository<BookmarkRow> { remove(id: string, learnerId: string): Promise<void> }
 export interface LearnerNoteRepository extends WriteRepository<LearnerNoteRow>, OwnedRepository<LearnerNoteRow> { remove(id: string, learnerId: string): Promise<void> }
+export interface DownloadRepository extends WriteRepository<DownloadRow>, OwnedRepository<DownloadRow> { remove(id: string, learnerId: string): Promise<void> }
 export interface BadgeRepository extends WriteRepository<BadgeRow>, OwnedRepository<BadgeRow> { findByPublicId(publicVerificationId: string): Promise<BadgeRow | null> }
 export interface CredentialRepository extends ReadRepository<CredentialRow>, WriteRepository<CredentialRow>, OwnedRepository<CredentialRow> {
   findByPublicId(publicVerificationId: string): Promise<CredentialRow | null>;
@@ -102,6 +106,9 @@ export interface AcademicRepositories {
   studySessions: StudySessionRepository;
   bookmarks: BookmarkRepository;
   notes: LearnerNoteRepository;
+  /** Optionnel : adaptateur Supabase ajouté quand la table `downloads` existe (staging).
+   *  Fourni dès aujourd'hui par l'adaptateur mémoire / WebStorage (offline/mobile). */
+  downloads?: DownloadRepository;
   badges: BadgeRepository;
   credentials: CredentialRepository;
   credentialVersions: CredentialVersionRepository;
