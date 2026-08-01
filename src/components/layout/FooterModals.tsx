@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Modal, { PrivacyPolicy, TermsOfUse } from "@/components/ui/Modal";
+import Modal, { PrivacyPolicy, TermsOfUse, LegalNotice } from "@/components/ui/Modal";
 import { useLang, t, UI } from "@/lib/i18n";
 
 export function PrivacyLink() {
@@ -35,6 +35,23 @@ export function TermsLink() {
       </button>
       <Modal open={open} onClose={() => setOpen(false)}>
         <TermsOfUse />
+      </Modal>
+    </>
+  );
+}
+
+export function LegalLink() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        className="block text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold text-left"
+      >
+        Mentions légales
+      </button>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <LegalNotice />
       </Modal>
     </>
   );

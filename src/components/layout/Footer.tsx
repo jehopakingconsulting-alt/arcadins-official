@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { PrivacyLink, TermsLink } from "./FooterModals";
+import { PrivacyLink, TermsLink, LegalLink } from "./FooterModals";
 import { useLang, t, UI } from "@/lib/i18n";
 import Icon from "@/components/ui/Icon";
 
@@ -17,13 +17,20 @@ const FOOTER_FORMATIONS = [
 
 const FOOTER_SERVICES = [
   { key: "fl.examens", href: "/examens" },
-  { key: "fl.certificats", href: "/examens" },
   { key: "fl.ircc", href: "/immigration" },
-  { key: "fl.emploi", href: "/immigration" },
   { key: "tut.cta.becometutor", href: "/devenir-tuteur" },
   { key: "fl.tarifs", href: "/tarifs" },
   { key: "acc.nav", href: "/accreditations" },
   { key: "fl.contacter", href: "/contact" },
+];
+
+// Pages de contenu migrées depuis V1 — libellés en clair (pas de clés i18n dédiées).
+const FOOTER_RESOURCES = [
+  { label: "TCF Canada", href: "/tcf" },
+  { label: "À propos", href: "/a-propos" },
+  { label: "Guide d'utilisation", href: "/guide" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export default function Footer() {
@@ -82,6 +89,18 @@ export default function Footer() {
               {t(UI[item.key], lang)}
             </Link>
           ))}
+          <h2 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mt-6 mb-4">
+            {t(UI["footer.resources"], lang)}
+          </h2>
+          {FOOTER_RESOURCES.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="block text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold"
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
 
         {/* Contact */}
@@ -103,6 +122,7 @@ export default function Footer() {
           </a>
           <PrivacyLink />
           <TermsLink />
+          <LegalLink />
         </div>
       </div>
 

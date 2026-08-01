@@ -90,9 +90,39 @@ export function TermsOfUse() {
       <div className="text-[14.5px] text-muted leading-[1.8]">
         <strong>1. Accès</strong><br />Accès strictement personnel et nominatif. Partage d&apos;identifiants interdit.<br /><br />
         <strong>2. Propriété intellectuelle</strong><br />Tous les contenus sont la propriété exclusive d&apos;ARCADINS Training Center.<br /><br />
-        <strong>3. Certificats</strong><br />Délivrés après validation du module. Nominatifs et non transférables.<br /><br />
+        <strong>3. Attestations</strong><br />Délivrées après validation du module. Nominatives et non transférables.<br /><br />
         <strong>4. Remboursement</strong><br />Intégral dans les 7 jours suivant l&apos;inscription, avant accès aux modules.<br /><br />
         <strong>5. Résiliation</strong><br />Depuis votre espace personnel, à tout moment.
+      </div>
+    </>
+  );
+}
+
+// Mentions légales — contenu migré depuis la plateforme V1 (pages/mentions-legales.html).
+export function LegalNotice() {
+  return (
+    <>
+      <h3 className="font-[family-name:var(--font-heading)] text-[26px] text-navy mb-1">Mentions légales</h3>
+      <p className="text-xs text-muted mb-4">Dernière mise à jour : juin 2024</p>
+      <div className="text-[14.5px] text-muted leading-[1.8]">
+        <strong>Éditeur du site</strong><br />
+        ARCADINS Training Center — Plateforme de programme de tutorat linguistique en ligne.<br />
+        116 Albert Street, Suite 300, Ottawa (Ontario) Canada<br />
+        +1 514-451-3436 · <a href="mailto:info@arcadins-training.com" className="text-gold hover:underline">info@arcadins-training.com</a><br /><br />
+        <strong>Nature de l&apos;activité</strong><br />
+        ARCADINS Training Center est une plateforme privée de formation et de préparation linguistique
+        spécialisée dans les tests TEF &amp; TCF Canada.<br /><br />
+        <strong>⚠️ Avertissement légal important</strong><br />
+        ARCADINS Training Center n&apos;est pas un organisme gouvernemental et n&apos;est affiliée ni à IRCC,
+        ni au MIFI (Québec), ni à la CCIP (organisateur du TEF), ni à France Éducation international
+        (organisateur du TCF). Elle ne garantit pas l&apos;obtention d&apos;un visa, d&apos;une résidence
+        permanente ou d&apos;un résultat officiel au TEF &amp; TCF Canada.<br /><br />
+        <strong>Propriété intellectuelle</strong><br />
+        L&apos;ensemble des contenus présents sur ce site est la propriété exclusive d&apos;ARCADINS Training
+        Center et est protégé par les lois relatives à la propriété intellectuelle.<br /><br />
+        <strong>Liens externes</strong><br />
+        Ce site peut contenir des liens vers des sites externes. ARCADINS Training Center n&apos;est pas
+        responsable du contenu de ces sites tiers.
       </div>
     </>
   );
