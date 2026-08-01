@@ -19,6 +19,37 @@
 begin;
 create extension if not exists pgcrypto with schema extensions;
 
+-- ── Tenancy SEAM (S5.5) : frontière multi-tenant, RÉTRO-COMPATIBLE ────────────
+-- Prépare white-label / entreprise / université / gouvernement / marketplace SANS
+-- changer le comportement actuel. Un tenant « root » unique = comportement mono-tenant
+-- d'aujourd'hui. AUCUNE logique métier tenant ici — uniquement la frontière + le résolveur.
+create table if not exists public.tenants (
+  id             uuid primary key default gen_random_uuid(),
+  slug           text unique not null,
+  name           text not null,
+  kind           text not null default 'root' check (kind in ('root','white_label','enterprise','university','government','partner')),
+  primary_domain text unique,
+  branding       jsonb not null default '{}'::jsonb,   -- logo/couleurs/nom affiché (futur)
+  status         text not null default 'active' check (status in ('active','suspended','archived')),
+  created_at     timestamptz not null default now()
+);
+
+-- Tenant ROOT déterministe : toutes les données existantes/nouvelles y appartiennent par défaut.
+insert into public.tenants (id, slug, name, kind)
+values ('00000000-0000-0000-0000-000000000001', 'root', 'ARCADINS', 'root')
+on conflict (slug) do nothing;
+
+-- Résolveur de tenant courant. Par défaut = ROOT (mono-tenant, comportement identique).
+-- À l'ère multi-tenant, une middleware posera `set_config('app.tenant_id', <uuid>, true)` par requête ;
+-- ce résolveur le lira alors. Aujourd'hui : toujours ROOT. PUR / stable.
+create or replace function public.current_tenant()
+returns uuid language sql stable as $$
+  select coalesce(
+    nullif(current_setting('app.tenant_id', true), '')::uuid,
+    '00000000-0000-0000-0000-000000000001'::uuid
+  );
+$$;
+
 -- ─────────────────────────── Référentiels ──────────────────────────────────
 
 -- Pays : devise par défaut + fiscalité (config Back Office).
@@ -272,6 +303,28 @@ create policy license_seats_self_read on public.license_seats for select using (
 -- discounts/coupons/scholarships/organizations/licenses/progress_projection :
 -- aucune policy de lecture publique → service role uniquement (Back Office / serveur).
 
+-- ── Tenancy SEAM : colonne `tenant_id` sur les entités scopables ──────────────
+-- NOT NULL + DEFAULT root → toutes les lignes appartiennent au tenant root : comportement
+-- MONO-TENANT IDENTIQUE à aujourd'hui. Additif, idempotent. Les RLS actuelles ne sont PAS
+-- modifiées (isolation par tenant = évolution ultérieure, via `current_tenant()` en gabarit).
+do $$
+declare t text;
+begin
+  foreach t in array array[
+    'programs','products','packages','offers','discounts','coupons',
+    'scholarships','organizations','licenses','enrollments'
+  ] loop
+    execute format(
+      'alter table public.%I add column if not exists tenant_id uuid not null '
+      || 'default ''00000000-0000-0000-0000-000000000001'' references public.tenants(id);', t);
+    execute format('create index if not exists %I_tenant_idx on public.%I(tenant_id);', t, t);
+  end loop;
+end $$;
+
+-- GABARIT RLS multi-tenant (NON appliqué — documentation) : à l'activation white-label,
+-- ajouter à chaque policy publique le prédicat `and tenant_id = public.current_tenant()`.
+-- Exemple : products_public_read → using (status='active' and tenant_id = public.current_tenant()).
+
 commit;
 
 -- ============================================================================
@@ -283,4 +336,8 @@ commit;
 --     public.products, public.countries cascade;
 --   alter table public.program_versions drop column if exists program_id;
 --   drop table if exists public.programs cascade;
+--   -- Tenancy seam :
+--   drop function if exists public.current_tenant();
+--   -- (les colonnes tenant_id tombent avec les tables ci-dessus via cascade)
+--   drop table if exists public.tenants cascade;
 -- ============================================================================
