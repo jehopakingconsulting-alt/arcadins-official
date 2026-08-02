@@ -15,6 +15,7 @@
  */
 
 import type { EntitlementGrant } from "../catalog/types.ts";
+export type { EntitlementGrant } from "../catalog/types.ts";
 
 export type ProgramCode = "tef-canada" | "tcf-canada";
 export type PackageKey = "starter" | "essential" | "premium" | "vip";
