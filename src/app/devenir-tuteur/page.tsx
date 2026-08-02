@@ -41,7 +41,7 @@ export default function DevenirTuteurPage() {
   return (
     <div className="bg-off-white min-h-screen pt-32 pb-20">
       <div className="max-w-[820px] mx-auto px-7">
-        <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">{t(UI["tapp.label"], lang)}</p>
+        <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">{t(UI["tapp.label"], lang)}</p>
         <h1 className="font-[family-name:var(--font-heading)] text-[38px] text-navy mb-3">{t(UI["tapp.title"], lang)}</h1>
         <p className="text-[16px] text-muted leading-[1.75] mb-8 max-w-[640px]">{t(UI["tapp.desc"], lang)}</p>
 

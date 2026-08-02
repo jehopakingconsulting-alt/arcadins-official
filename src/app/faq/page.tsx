@@ -111,7 +111,7 @@ export default function FaqPage() {
     <div className="bg-off-white min-h-screen pt-32 pb-20">
       <div className="max-w-[820px] mx-auto px-7">
         <div className="mb-12">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Aide &amp; Réponses</p>
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">Aide &amp; Réponses</p>
           <h1 className="font-[family-name:var(--font-heading)] text-4xl text-navy mb-4">Questions fréquentes</h1>
           <p className="text-[17px] text-muted max-w-[640px] leading-[1.75]">
             Toutes les réponses sur nos programmes de tutorat TEF &amp; TCF Canada et l&apos;espace membre.

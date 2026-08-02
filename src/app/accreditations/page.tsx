@@ -12,7 +12,7 @@ export default function AccreditationsPage() {
     <div className="bg-off-white min-h-screen pt-32 pb-20">
       <div className="max-w-[1000px] mx-auto px-7">
         <div className="mb-12">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">
             {t(UI["acc.label"], lang)}
           </p>
           <h1 className="font-[family-name:var(--font-heading)] text-4xl text-navy mb-4">

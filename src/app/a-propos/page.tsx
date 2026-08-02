@@ -44,7 +44,7 @@ export default function AProposPage() {
       <div className="max-w-[1000px] mx-auto px-7">
         {/* Hero */}
         <div className="mb-12">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Notre histoire</p>
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">Notre histoire</p>
           <h1 className="font-[family-name:var(--font-heading)] text-4xl text-navy mb-4">À propos d&apos;ARCADINS Training Center</h1>
           <p className="text-[17px] text-muted max-w-[680px] leading-[1.75]">
             Une plateforme créée pour accompagner les candidats à l&apos;immigration vers leur réussite linguistique.
@@ -64,7 +64,7 @@ export default function AProposPage() {
 
         {/* Mission */}
         <div className="mb-16">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Notre mission</p>
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">Notre mission</p>
           <h2 className="font-[family-name:var(--font-heading)] text-[28px] text-navy mb-4">Votre réussite linguistique, notre priorité</h2>
           <p className="text-[15px] text-body leading-[1.85] mb-4">
             ARCADINS Training Center est né d&apos;un constat simple : de nombreux candidats à l&apos;immigration au
@@ -90,7 +90,7 @@ export default function AProposPage() {
 
         {/* Transparence */}
         <div className="mb-8">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Transparence</p>
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">Transparence</p>
           <h2 className="font-[family-name:var(--font-heading)] text-[28px] text-navy mb-6">Ce que nous sommes — et ce que nous ne sommes pas</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="bg-white rounded-[20px] p-7 border border-emerald-500/25">

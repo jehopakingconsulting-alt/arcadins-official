@@ -7,8 +7,14 @@
   --color-gold: #C9A84C;
   --color-gold-light: #E8C97A;
   --color-gold-pale: #F5E9C4;
+  /* Or « encre » : variante foncée du doré pour le PETIT texte sur fond clair
+     (kickers, labels de catégorie, micro-titres) — atteint WCAG AA ≥4.5:1 sur
+     blanc/off-white. Le doré de marque (--color-gold) reste inchangé sur fond navy. */
+  --color-gold-ink: #7E6328;
   --color-off-white: #F8F6F1;
-  --color-muted: #8A9BB5;
+  /* Slate assombri : texte secondaire lisible (≥4.5:1) sur blanc/off-white.
+     Même famille bleu-gris que l'ancien #8A9BB5, mais conforme WCAG AA. */
+  --color-muted: #5A6A84;
   --color-body: #2C3E5A;
   --font-heading: "Playfair Display", Georgia, serif;
   --font-body: "DM Sans", sans-serif;

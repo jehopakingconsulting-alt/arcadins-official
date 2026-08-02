@@ -18,9 +18,9 @@ export default function FormationsPage() {
     <div className="bg-off-white min-h-screen pt-32 pb-20">
       <div className="max-w-[1200px] mx-auto px-7">
         <div className="mb-13">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">{t(UI["form.label"], lang)}</p>
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">{t(UI["form.label"], lang)}</p>
           <h2 className="font-[family-name:var(--font-heading)] text-4xl text-navy">
-            {t(UI["form.title1"], lang)} <em className="text-gold italic">{t(UI["form.title2"], lang)}</em> {t(UI["form.title3"], lang)}
+            {t(UI["form.title1"], lang)} <em className="text-gold-ink italic">{t(UI["form.title2"], lang)}</em> {t(UI["form.title3"], lang)}
           </h2>
         </div>
 
@@ -51,7 +51,7 @@ export default function FormationsPage() {
                 )}
                 <div className="p-6 pb-4">
                   <div className="text-[32px] mb-3">{p.icon}</div>
-                  <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold mb-1.5">{p.categoryLabel}</div>
+                  <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold-ink mb-1.5">{p.categoryLabel}</div>
                   <div className="font-[family-name:var(--font-heading)] text-lg font-bold text-navy mb-2 leading-[1.3]">{name}</div>
                   <div className="text-[13px] text-muted leading-[1.65]">{desc}</div>
                 </div>
@@ -61,7 +61,7 @@ export default function FormationsPage() {
                     {p.comingSoon ? (
                       <span className="text-xs font-semibold text-navy/40">{t(UI["cd.coming"], lang)}</span>
                     ) : (
-                      <span className="text-xs font-semibold text-gold">{p.price.toLocaleString()} CAD</span>
+                      <span className="text-xs font-semibold text-gold-ink">{p.price.toLocaleString()} CAD</span>
                     )}
                   </div>
                   {!p.comingSoon && (

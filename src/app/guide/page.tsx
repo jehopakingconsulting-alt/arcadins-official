@@ -71,7 +71,7 @@ export default function GuidePage() {
       <div className="max-w-[860px] mx-auto px-7">
         {/* Hero */}
         <div className="mb-12">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">📚 Guide complet</p>
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">📚 Guide complet</p>
           <h1 className="font-[family-name:var(--font-heading)] text-4xl text-navy mb-4">Comment utiliser la plateforme ARCADINS ?</h1>
           <p className="text-[17px] text-muted max-w-[640px] leading-[1.75]">
             Suivez ces 8 étapes simples pour passer de l&apos;inscription à votre attestation. Tout est expliqué,
@@ -99,7 +99,7 @@ export default function GuidePage() {
 
         {/* Fonctionnalités */}
         <div className="mb-14">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Fonctionnalités</p>
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">Fonctionnalités</p>
           <h2 className="font-[family-name:var(--font-heading)] text-[28px] text-navy mb-6">Ce que vous trouverez sur la plateforme</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {FEATURES.map((f) => (

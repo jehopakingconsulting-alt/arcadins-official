@@ -18,9 +18,9 @@ export default function WhyChoose() {
     <section className="bg-off-white py-[72px] px-7">
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-11">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Pourquoi ARCADINS</p>
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">Pourquoi ARCADINS</p>
           <h2 className="font-[family-name:var(--font-heading)] text-[34px] md:text-[40px] text-navy">
-            Pourquoi choisir <em className="text-gold italic">ARCADINS ?</em>
+            Pourquoi choisir <em className="text-gold-ink italic">ARCADINS ?</em>
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

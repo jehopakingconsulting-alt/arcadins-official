@@ -47,7 +47,7 @@ export default function DemandeTutoratPage() {
         <Link href="/tutorat" className="inline-flex items-center gap-2 text-[13px] text-muted hover:text-gold transition-all mb-6">
           ← {t(UI["tut.back"], lang)}
         </Link>
-        <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">{t(UI["treq.label"], lang)}</p>
+        <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">{t(UI["treq.label"], lang)}</p>
         <h1 className="font-[family-name:var(--font-heading)] text-[36px] text-navy mb-3">{t(UI["treq.title"], lang)}</h1>
         <p className="text-[16px] text-muted leading-[1.75] mb-8 max-w-[600px]">{t(UI["treq.desc"], lang)}</p>
 

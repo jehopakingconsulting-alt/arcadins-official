@@ -33,7 +33,7 @@ export default function ProgramLanding({ program }: { program: ProgramPresentati
         <Container>
           <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
             <div className="ds-animate-fade-up">
-              <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-3">{tr(p.hero.eyebrow, l)}</p>
+              <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-3">{tr(p.hero.eyebrow, l)}</p>
               <h1 className="font-[family-name:var(--font-heading)] text-[clamp(2.1rem,5.4vw,3.4rem)] leading-[1.08] text-white">
                 {tr(p.hero.title, l)}{" "}
                 {p.hero.highlight && <em className="text-gold italic">{tr(p.hero.highlight, l)}</em>}

@@ -29,7 +29,7 @@ export default async function CertificatePage({
     <div className="min-h-screen bg-off-white pt-32 pb-20 px-7">
       <div className="max-w-[800px] mx-auto">
         <div className="text-center mb-6 print:hidden">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Vérification de certificat</p>
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">Vérification de certificat</p>
           <h1 className="font-[family-name:var(--font-heading)] text-3xl text-navy mb-2">Certificat authentique ✓</h1>
           <p className="text-muted text-sm">Cette attestation a été vérifiée dans la base de données ARCADINS.</p>
         </div>
@@ -44,7 +44,7 @@ export default async function CertificatePage({
             <div className="text-white/40 text-[11px] tracking-[2px] uppercase mb-8">Formation Professionnelle Certifiée</div>
 
             <div className="font-[family-name:var(--font-heading)] text-xl text-white/70 mb-3">Certificat de réussite décerné à</div>
-            <div className="font-[family-name:var(--font-heading)] text-4xl text-gold italic mb-8">{cert.student_name}</div>
+            <div className="font-[family-name:var(--font-heading)] text-4xl text-gold-ink italic mb-8">{cert.student_name}</div>
 
             <div className="text-white/80 text-base mb-1">pour avoir complété avec succès la formation</div>
             <div className="font-[family-name:var(--font-heading)] text-2xl text-white mb-8">{courseName}</div>

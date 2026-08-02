@@ -15,9 +15,9 @@ export default function TemoignagesPage() {
     <div className="bg-off-white min-h-screen pt-32 pb-20">
       <div className="max-w-[1200px] mx-auto px-7">
         <div className="text-center mb-13">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">{t(UI["testi.label"], lang)}</p>
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">{t(UI["testi.label"], lang)}</p>
           <h2 className="font-[family-name:var(--font-heading)] text-4xl text-navy">
-            {t(UI["testi.title1"], lang)} <em className="text-gold italic">{t(UI["testi.title2"], lang)}</em>
+            {t(UI["testi.title1"], lang)} <em className="text-gold-ink italic">{t(UI["testi.title2"], lang)}</em>
           </h2>
         </div>
 
@@ -65,7 +65,7 @@ export default function TemoignagesPage() {
 
         {/* Notre engagement (messages éditoriaux ARCADINS) */}
         <div className="max-w-[1000px] mx-auto mt-16">
-          <p className="text-center text-[11px] font-bold tracking-[4px] uppercase text-gold mb-7">{t(UI["testi.motiv.label"], lang)}</p>
+          <p className="text-center text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-7">{t(UI["testi.motiv.label"], lang)}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {([["🎯", "testi.motiv.a"], ["📚", "testi.motiv.b"], ["🤝", "testi.motiv.c"]] as const).map(([icon, key]) => (
               <div key={key} className="bg-white rounded-[20px] p-7 border border-gold/11 flex flex-col">

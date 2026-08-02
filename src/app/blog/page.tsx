@@ -132,7 +132,7 @@ export default function BlogPage() {
       <div className="max-w-[860px] mx-auto px-7">
         {/* Hero */}
         <div className="mb-10">
-          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">📚 Ressources &amp; Conseils</p>
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">📚 Ressources &amp; Conseils</p>
           <h1 className="font-[family-name:var(--font-heading)] text-4xl text-navy mb-4">Blog ARCADINS — Immigration Canada</h1>
           <p className="text-[17px] text-muted max-w-[640px] leading-[1.75]">
             Guides pratiques, astuces TEF/TCF, actualités IRCC et stratégies pour réussir votre projet d&apos;immigration.
@@ -153,7 +153,7 @@ export default function BlogPage() {
             return (
               <article key={a.id} id={a.id} className="bg-white rounded-[20px] border border-gold/15 overflow-hidden scroll-mt-28">
                 <button onClick={() => setOpen(isOpen ? null : a.id)} aria-expanded={isOpen} className="w-full text-left px-7 py-6 transition-colors hover:bg-gold/5">
-                  <div className="text-[11px] font-bold tracking-[2px] uppercase text-gold mb-1">{a.cat}</div>
+                  <div className="text-[11px] font-bold tracking-[2px] uppercase text-gold-ink mb-1">{a.cat}</div>
                   <h2 className="font-[family-name:var(--font-heading)] text-[21px] text-navy leading-[1.3] mb-1">{a.title}</h2>
                   <div className="text-[12px] text-muted">{a.meta}</div>
                 </button>
