@@ -46,11 +46,11 @@ function LoginForm() {
           {error && <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm mb-6">{error}</div>}
           <div className="mb-4">
             <label className="block text-[12.5px] font-semibold text-body mb-1.5">{t(UI["contact.form.email"], lang)}</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="votre@email.com" required className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" />
+            <input type="email" aria-label={t(UI["contact.form.email"], lang)} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="votre@email.com" required className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" />
           </div>
           <div className="mb-6">
             <label className="block text-[12.5px] font-semibold text-body mb-1.5">{t(UI["auth.password"], lang)}</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" />
+            <input type="password" aria-label={t(UI["auth.password"], lang)} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" />
           </div>
           <button type="submit" disabled={loading} className="w-full py-3.5 bg-navy text-gold font-bold text-[15px] rounded-xl transition-all hover:bg-navy-mid hover:-translate-y-0.5 disabled:opacity-50">
             {loading ? "..." : t(UI["auth.login.btn"], lang)}
