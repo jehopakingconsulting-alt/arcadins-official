@@ -13,6 +13,7 @@ import {
   TEF_ADMISSION_HREF,
   TEF_PRICING_HREF,
 } from "@/lib/data/tef-program";
+import { PROGRAM_CHECKOUT_UI_ENABLED } from "@/lib/config/launch-flags";
 
 // Programme TEF Canada — Département A (Programmes officiels de langue). Page vitrine
 // complète orientée conversion. Curriculum réel = plateforme de tutorat (/tutorat).
@@ -36,6 +37,11 @@ export default function TefPage() {
     t(UI["tef.ck4"], lang), t(UI["tef.ck5"], lang), t(UI["tef.ck6"], lang), t(UI["tef.ck7"], lang),
   ];
 
+  // CTA primaire : commerce self-service si activé (UI), sinon demande d'admission.
+  const primaryCta = PROGRAM_CHECKOUT_UI_ENABLED
+    ? { href: "/inscription?program=tef-canada", label: "Choisir mon forfait" }
+    : { href: TEF_ADMISSION_HREF, label: "Demander mon admission" };
+
   return (
     <div className="bg-navy min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSONLD) }} />
@@ -50,8 +56,8 @@ export default function TefPage() {
           </h1>
           <p className="text-[17px] text-white/55 max-w-[640px] leading-[1.75] mb-7">{t(UI["tef.desc"], lang)}</p>
           <div className="flex flex-wrap gap-3">
-            <Link href={TEF_ADMISSION_HREF} className="bg-gold text-navy font-bold text-[15px] px-8 py-3.5 rounded-[10px] inline-flex items-center gap-2 transition-all hover:bg-gold-light hover:-translate-y-0.5">
-              Demander mon admission <span aria-hidden>→</span>
+            <Link href={primaryCta.href} className="bg-gold text-navy font-bold text-[15px] px-8 py-3.5 rounded-[10px] inline-flex items-center gap-2 transition-all hover:bg-gold-light hover:-translate-y-0.5">
+              {primaryCta.label} <span aria-hidden>→</span>
             </Link>
             <Link href="/tutorat" className="bg-transparent text-white font-semibold text-[15px] px-7 py-3.5 rounded-[10px] border-[1.5px] border-white/28 inline-flex items-center gap-2 transition-all hover:border-gold hover:text-gold">
               Découvrir la méthode de tutorat
@@ -249,7 +255,7 @@ export default function TefPage() {
           <h2 className="font-[family-name:var(--font-heading)] text-[28px] md:text-[34px] text-white mb-3">Prêt à préparer votre TEF Canada ?</h2>
           <p className="text-white/55 text-[15px] mb-7 max-w-[560px] mx-auto">Faites votre demande d&apos;admission : un conseiller évalue votre profil et vous propose un plan de préparation adapté à votre objectif d&apos;immigration.</p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Link href={TEF_ADMISSION_HREF} className="bg-gold text-navy font-bold text-[15px] px-8 py-3.5 rounded-[10px] transition-all hover:bg-gold-light hover:-translate-y-0.5">Demander mon admission →</Link>
+            <Link href={primaryCta.href} className="bg-gold text-navy font-bold text-[15px] px-8 py-3.5 rounded-[10px] transition-all hover:bg-gold-light hover:-translate-y-0.5">{primaryCta.label} →</Link>
             <Link href="/tutorat" className="bg-transparent text-white font-semibold text-[15px] px-7 py-3.5 rounded-[10px] border-[1.5px] border-white/28 transition-all hover:border-gold hover:text-gold">Découvrir le tutorat</Link>
           </div>
         </div>

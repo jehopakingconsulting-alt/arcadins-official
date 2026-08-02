@@ -23,3 +23,11 @@ export const MULTILANG_SWITCHER_ENABLED =
  */
 export const PROGRAM_CHECKOUT_ENABLED =
   process.env.PROGRAM_CHECKOUT_ENABLED === "true";
+
+/**
+ * Miroir CÔTÉ CLIENT du commerce self-service, pour l'affichage des CTA (UI seulement).
+ * La sécurité reste gérée par le flag serveur PROGRAM_CHECKOUT_ENABLED (routes/webhook).
+ * DÉSACTIVÉ par défaut : tant qu'il est OFF, les pages /tef /tcf gardent leurs CTA actuels.
+ */
+export const PROGRAM_CHECKOUT_UI_ENABLED =
+  process.env.NEXT_PUBLIC_PROGRAM_CHECKOUT_ENABLED === "true";

@@ -1,6 +1,9 @@
 import { createClient } from "@/lib/supabase/server";
 import { PROGRAMS } from "@/lib/constants";
 import { canAccessAdmin } from "@/lib/rbac";
+import { PROGRAM_CHECKOUT_ENABLED } from "@/lib/config/launch-flags";
+import { PROGRAM_NAMES, isProgramCode } from "@/lib/commerce/program-commerce";
+import { resolveFirstLesson } from "@/lib/commerce/access";
 import Icon from "@/components/ui/Icon";
 import Link from "next/link";
 
@@ -39,6 +42,16 @@ export default async function DashboardPage() {
     ? await supabase.from("profiles").select("role").eq("id", user.id).maybeSingle()
     : { data: null };
   const isAdmin = canAccessAdmin(profile?.role as string | undefined);
+
+  // Programmes officiels (TEF/TCF) achetés en self-service — lecture UNIQUEMENT si le
+  // flag est ON (sinon la table n'est pas garantie présente : production inchangée).
+  const { data: programEnrollments } = (PROGRAM_CHECKOUT_ENABLED && user)
+    ? await supabase
+        .from("program_enrollments")
+        .select("id, program_code, package_key, status, access_expires_at, created_at")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false })
+    : { data: [] as { id: string; program_code: string; package_key: string; status: string; access_expires_at: string | null; created_at: string }[] };
 
   const activeCount = (enrollments || []).filter((e) => e.status === "active").length;
   const certCount = (certificates || []).length;
@@ -89,6 +102,37 @@ export default async function DashboardPage() {
             </div>
           ))}
         </div>
+
+        {/* Programmes officiels (TEF/TCF) — accès self-service, séparés par programme */}
+        {programEnrollments && programEnrollments.length > 0 && (
+          <div className="space-y-4 mb-8">
+            <h3 className="font-[family-name:var(--font-heading)] text-lg text-navy">Mes programmes officiels</h3>
+            {programEnrollments.map((pe) => {
+              const prog = isProgramCode(pe.program_code) ? pe.program_code : null;
+              const target = prog ? resolveFirstLesson(prog) : null;
+              const active = pe.status === "active";
+              const pending = pe.status === "pending";
+              return (
+                <div key={pe.id} className="bg-white border border-gold/16 rounded-[20px] p-6 flex items-center gap-5 flex-wrap">
+                  <div className="text-3xl">{prog === "tcf-canada" ? "🍁" : "📋"}</div>
+                  <div className="flex-1 min-w-[200px]">
+                    <div className="font-[family-name:var(--font-heading)] text-lg text-navy">{prog ? PROGRAM_NAMES[prog] : pe.program_code}</div>
+                    <div className="text-[12.5px] text-muted mt-0.5">Forfait {pe.package_key}{pe.access_expires_at ? ` · accès jusqu'au ${new Date(pe.access_expires_at).toLocaleDateString("fr-CA")}` : ""}</div>
+                    <span className={`inline-block text-[11px] font-bold px-3 py-1 rounded-full mt-1.5 ${active ? "bg-gold/20 text-gold" : pending ? "bg-amber-400/20 text-amber-600" : "bg-gray-200 text-gray-500"}`}>
+                      {active ? "✓ Accès actif" : pending ? "⏳ Activation en cours" : pe.status}
+                    </span>
+                  </div>
+                  <Link
+                    href={active ? (target?.firstLesson || "/tutorat") : (target?.marketing || "/tef")}
+                    className="bg-navy text-gold font-bold text-sm px-5 py-2.5 rounded-lg shrink-0"
+                  >
+                    {active ? "Continuer ma formation →" : "Voir le programme →"}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        )}
 
         {/* Enrollments list */}
         {enrollments && enrollments.length > 0 ? (

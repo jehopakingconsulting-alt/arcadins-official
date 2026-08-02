@@ -3,9 +3,10 @@ import { stripe } from "@/lib/stripe";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { PAYMENT_DEADLINE_DAYS } from "@/lib/pricing";
 import { PROGRAM_CHECKOUT_ENABLED } from "@/lib/config/launch-flags";
-import { getProgramGrants, getProgramOffer, isProgramCode } from "@/lib/commerce/program-commerce";
+import { getProgramGrants, getProgramOffer, isProgramCode, PROGRAM_NAMES } from "@/lib/commerce/program-commerce";
 import { composeEntitlements, accessExpiry } from "@/lib/catalog/entitlement";
 import { buildAuditRecord } from "@/lib/audit/record";
+import { sendEnrollmentEmail } from "@/lib/commerce/emails";
 import Stripe from "stripe";
 
 export async function POST(request: Request) {
@@ -112,9 +113,26 @@ export async function POST(request: Request) {
           console.error("program-purchase: audit non enregistré (non bloquant):", err);
         }
 
-        // Email de confirmation : branché sur le moteur de notifications (Resend) une fois
-        // RESEND_API_KEY configuré. L'échec d'envoi ne DOIT PAS annuler l'inscription payée.
-        // (Point d'intégration : dispatch d'un événement "enrollment.confirmed" ici.)
+        // Emails de confirmation (best-effort). L'échec d'envoi ne DOIT PAS annuler
+        // l'inscription payée : sendEnrollmentEmail capture toute erreur et journalise.
+        const recipient = session.customer_details?.email || session.customer_email || undefined;
+        if (recipient) {
+          const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "").trim() || "https://arcadins-official.vercel.app";
+          const emailCtx = {
+            to: recipient,
+            programName: PROGRAM_NAMES[program],
+            packageName: packageKey,
+            dashboardUrl: `${siteUrl}/dashboard`,
+            accessExpiresLabel: accessExpiresAt ? new Date(accessExpiresAt).toLocaleDateString("fr-CA") : null,
+            orderReference: metadata.orderReference || undefined,
+          };
+          try {
+            await sendEnrollmentEmail("payment_confirmation", emailCtx);
+            await sendEnrollmentEmail("enrollment_confirmation", emailCtx);
+          } catch (err) {
+            console.error("program-purchase: email non envoyé (non bloquant):", err);
+          }
+        }
         break;
       }
 

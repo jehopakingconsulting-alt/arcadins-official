@@ -68,7 +68,7 @@ export async function POST(request: Request) {
   }
 
   const orderReference = `ORD-${program.toUpperCase().replace("-CANADA", "")}-${crypto.randomUUID().slice(0, 8)}`;
-  const successPath = program === "tcf-canada" ? "/tcf" : "/tef";
+  const cancelUrl = `${siteUrl}/inscription/annulation?program=${program}${sessionRef ? `&session=${encodeURIComponent(sessionRef)}` : ""}`;
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -84,7 +84,7 @@ export async function POST(request: Request) {
         quantity: 1,
       })),
       success_url: `${siteUrl}/inscription/succes?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${siteUrl}${successPath}?checkout=cancelled`,
+      cancel_url: cancelUrl,
       metadata: {
         type: "program-purchase",
         program: plan.metadata.program,
