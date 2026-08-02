@@ -5,33 +5,30 @@ import { PrivacyLink, TermsLink, LegalLink } from "./FooterModals";
 import { useLang, t, UI } from "@/lib/i18n";
 import Icon from "@/components/ui/Icon";
 
-// Deux départements strictement séparés (règle d'architecture permanente).
-// Département A — Programmes officiels de langue (entrée V1 = /tef).
+// Pied de page réorganisé en catégories cohérentes (plus de colonne « Services »
+// fourre-tout). Deux départements strictement séparés + une colonne Ressources dédiée.
+// Département A — Programmes officiels de langue (+ examens et immigration rattachés).
 const FOOTER_PROGRAMS: { key?: string; label?: string; href: string }[] = [
   { label: "TEF / TCF Canada", href: "/tef" },
   { label: "TCF Canada", href: "/tcf" },
   { key: "tut.title", href: "/tutorat" },
-];
-// Département B — Formations professionnelles (les 9).
-const FOOTER_TRAININGS: { key?: string; label?: string; href: string }[] = [
-  { key: "nav.formations", href: "/formations" },
-];
-
-const FOOTER_SERVICES = [
   { key: "fl.examens", href: "/examens" },
   { key: "fl.ircc", href: "/immigration" },
+];
+// Département B — Formations professionnelles (+ devenir tuteur).
+const FOOTER_TRAININGS: { key?: string; label?: string; href: string }[] = [
+  { key: "nav.formations", href: "/formations" },
   { key: "tut.cta.becometutor", href: "/devenir-tuteur" },
-  { key: "fl.tarifs", href: "/tarifs" },
-  { key: "acc.nav", href: "/accreditations" },
-  { key: "fl.contacter", href: "/contact" },
 ];
 
-// Pages de contenu migrées depuis V1 — libellés en clair (pas de clés i18n dédiées).
-const FOOTER_RESOURCES = [
+// Ressources & aide — colonne dédiée (contenu + confiance + tarifs).
+const FOOTER_RESOURCES: { key?: string; label?: string; href: string }[] = [
   { label: "À propos", href: "/a-propos" },
-  { label: "Guide d'utilisation", href: "/guide" },
   { label: "FAQ", href: "/faq" },
+  { label: "Guide d'utilisation", href: "/guide" },
   { label: "Blog", href: "/blog" },
+  { key: "acc.nav", href: "/accreditations" },
+  { key: "fl.tarifs", href: "/tarifs" },
 ];
 
 export default function Footer() {
@@ -88,30 +85,18 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Services */}
+        {/* Ressources — colonne dédiée */}
         <div>
           <h2 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mb-4">
-            {t(UI["footer.services"], lang)}
-          </h2>
-          {FOOTER_SERVICES.map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              className="block text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold"
-            >
-              {t(UI[item.key], lang)}
-            </Link>
-          ))}
-          <h2 className="text-[11px] font-bold tracking-[3px] uppercase text-gold mt-6 mb-4">
             {t(UI["footer.resources"], lang)}
           </h2>
           {FOOTER_RESOURCES.map((item) => (
             <Link
-              key={item.href}
+              key={item.href + (item.key ?? item.label ?? "")}
               href={item.href}
               className="block text-white/46 text-[13.5px] py-[5px] transition-all hover:text-gold"
             >
-              {item.label}
+              {item.label ?? t(UI[item.key as string], lang)}
             </Link>
           ))}
         </div>
