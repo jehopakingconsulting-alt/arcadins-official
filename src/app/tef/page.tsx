@@ -57,6 +57,10 @@ export default function TefPage() {
               Découvrir la méthode de tutorat
             </Link>
           </div>
+          <p className="text-[13px] text-white/45 mt-4">
+            Vous préparez plutôt le TCF Canada ?{" "}
+            <Link href="/tcf" className="text-gold font-semibold hover:underline">Découvrir le programme TCF Canada →</Link>
+          </p>
         </div>
 
         {/* 2 — QU'EST-CE QUE LE TEF CANADA + POUR QUI */}

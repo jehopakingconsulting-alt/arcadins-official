@@ -9,7 +9,7 @@ import Icon from "@/components/ui/Icon";
 // fourre-tout). Deux départements strictement séparés + une colonne Ressources dédiée.
 // Département A — Programmes officiels de langue (+ examens et immigration rattachés).
 const FOOTER_PROGRAMS: { key?: string; label?: string; href: string }[] = [
-  { label: "TEF / TCF Canada", href: "/tef" },
+  { label: "TEF Canada", href: "/tef" },
   { label: "TCF Canada", href: "/tcf" },
   { key: "tut.title", href: "/tutorat" },
   { key: "fl.examens", href: "/examens" },
