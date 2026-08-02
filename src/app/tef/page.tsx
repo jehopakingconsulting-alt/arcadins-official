@@ -4,6 +4,8 @@ import { useLang, t, UI } from "@/lib/i18n";
 import Link from "next/link";
 import {
   TEF_COMPETENCIES,
+  TEF_PREP_MODULES,
+  TEF_NCLC_TABLE,
   TEF_AUDIENCE,
   TEF_STAGES,
   TEF_ADMISSION_STEPS,
@@ -100,12 +102,58 @@ export default function TefPage() {
                 <div className="text-[30px] mb-3">{c.icon}</div>
                 <div className="text-[10px] font-bold tracking-[2px] uppercase text-gold mb-1.5">{c.abbr}</div>
                 <div className="font-[family-name:var(--font-heading)] text-[18px] text-white mb-2 leading-tight">{c.name}</div>
-                <div className="text-[12px] text-gold/85 font-semibold mb-2.5">{c.format}</div>
+                <div className="text-[12px] text-gold/85 font-semibold">{c.format}</div>
+                <div className="text-[11px] text-white/40 mb-2.5">{c.nclc}</div>
                 <p className="text-[13px] text-white/55 leading-[1.6] flex-1">{c.focus}</p>
                 <span className="text-[13px] font-semibold text-white/70 mt-4 group-hover:text-gold transition-all">Travailler cette compétence →</span>
               </Link>
             ))}
           </div>
+
+          {/* Modules de préparation complémentaires */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+            {TEF_PREP_MODULES.map((m) => (
+              <div key={m.title} className="bg-white/[0.044] border border-gold/17 rounded-[22px] p-6 flex items-start gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-gold/12 border border-gold/25 flex items-center justify-center text-2xl shrink-0" aria-hidden>{m.icon}</div>
+                <div>
+                  <div className="font-[family-name:var(--font-heading)] text-[17px] text-white mb-1.5 leading-tight">{m.title}</div>
+                  <p className="text-[13px] text-white/55 leading-[1.6]">{m.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 3b — BARÈME NCLC pour Entrée express */}
+        <div className="mt-16">
+          <div className="text-center mb-8">
+            <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Barème NCLC</p>
+            <h2 className="font-[family-name:var(--font-heading)] text-[30px] text-white mb-2">Comprendre les niveaux NCLC pour Entrée express</h2>
+            <p className="text-[15px] text-white/50 max-w-[560px] mx-auto">Chaque compétence du TEF Canada est convertie en niveau NCLC — voici les seuils clés pour l&apos;immigration.</p>
+          </div>
+          <div className="overflow-x-auto rounded-[20px] border border-gold/17">
+            <table className="w-full text-left border-collapse min-w-[520px]">
+              <thead>
+                <tr className="bg-white/[0.05]">
+                  {TEF_NCLC_TABLE.headers.map((h) => (
+                    <th key={h} className="text-[12.5px] font-bold text-gold px-5 py-3.5 tracking-[0.5px]">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {TEF_NCLC_TABLE.rows.map((r, i) => (
+                  <tr key={r.level} className={i % 2 ? "bg-white/[0.015]" : ""}>
+                    <td className="text-[13.5px] font-semibold text-white px-5 py-3.5 border-t border-white/[0.06]">{r.level}</td>
+                    <td className="text-[13.5px] text-white/70 px-5 py-3.5 border-t border-white/[0.06]">{r.co}</td>
+                    <td className="text-[13.5px] text-white/70 px-5 py-3.5 border-t border-white/[0.06]">{r.ce}</td>
+                    <td className="text-[13.5px] text-white/70 px-5 py-3.5 border-t border-white/[0.06]">{r.eo}</td>
+                    <td className="text-[13.5px] text-white/70 px-5 py-3.5 border-t border-white/[0.06]">{r.ee}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-[12px] text-white/40 mt-3">* {TEF_NCLC_TABLE.note}</p>
         </div>
 
         {/* 4 — MÉTHODE (panneau réutilisé) + 5 PARCOURS */}

@@ -19,6 +19,8 @@ export interface TefCompetency {
   icon: string;
   /** Structure officielle de l'épreuve (fait public TEF Canada). */
   format: string;
+  /** Plage de niveaux NCLC évalués par l'épreuve. */
+  nclc: string;
   /** Ce que l'on travaille (résumé pédagogique). */
   focus: string;
   /** Niveau d'entrée recommandé dans le tutorat. */
@@ -26,11 +28,36 @@ export interface TefCompetency {
 }
 
 export const TEF_COMPETENCIES: TefCompetency[] = [
-  { skill: "comprehension-orale", name: "Compréhension orale", abbr: "CO", icon: "🎧", format: "≈ 60 questions · 40 minutes", focus: "Comprendre annonces, dialogues, messages et documents sonores authentiques.", entryLevel: "fondation" },
-  { skill: "comprehension-ecrite", name: "Compréhension écrite", abbr: "CE", icon: "📖", format: "≈ 50 questions · 60 minutes", focus: "Lire et interpréter courriels, articles, consignes et textes argumentatifs.", entryLevel: "fondation" },
-  { skill: "expression-ecrite", name: "Expression écrite", abbr: "EE", icon: "✍️", format: "2 tâches · 60 minutes", focus: "Rédiger des messages et des textes structurés, corrigés et expliqués.", entryLevel: "fondation" },
-  { skill: "expression-orale", name: "Expression orale", abbr: "EO", icon: "🗣️", format: "≈ 5 tâches · 12–15 minutes", focus: "Interagir, décrire et argumenter à l'oral, avec coaching et feedback.", entryLevel: "fondation" },
+  { skill: "comprehension-orale", name: "Compréhension orale", abbr: "CO", icon: "🎧", format: "≈ 60 questions · 40 minutes", nclc: "NCLC 4–10", focus: "Comprendre annonces, dialogues, messages et documents sonores authentiques.", entryLevel: "fondation" },
+  { skill: "comprehension-ecrite", name: "Compréhension écrite", abbr: "CE", icon: "📖", format: "≈ 50 questions · 60 minutes", nclc: "NCLC 4–10", focus: "Lire et interpréter courriels, articles, consignes et textes argumentatifs.", entryLevel: "fondation" },
+  { skill: "expression-ecrite", name: "Expression écrite", abbr: "EE", icon: "✍️", format: "2 tâches · 60 minutes", nclc: "NCLC 4–10", focus: "Rédiger des messages et des textes structurés, corrigés et expliqués.", entryLevel: "fondation" },
+  { skill: "expression-orale", name: "Expression orale", abbr: "EO", icon: "🗣️", format: "≈ 5 tâches · 12–15 minutes", nclc: "NCLC 4–10", focus: "Interagir, décrire et argumenter à l'oral, avec coaching et feedback.", entryLevel: "fondation" },
 ];
+
+/** Modules de préparation complémentaires (au-delà des 4 compétences). */
+export const TEF_PREP_MODULES: { icon: string; title: string; desc: string }[] = [
+  { icon: "🏆", title: "Stratégies NCLC 7, 8, 9+", desc: "Ciblage précis des niveaux exigés par Entrée express. Plans de travail personnalisés selon votre objectif NCLC." },
+  { icon: "⏱️", title: "Simulations chronométrées", desc: "Reproduisez les conditions du TEF Canada avec des simulations complètes et un chronomètre intégré." },
+];
+
+/**
+ * Barème NCLC indicatif — points TEF Canada par compétence et par niveau NCLC.
+ * Données PUBLIQUES et INDICATIVES (à vérifier sur le site officiel du TEF Canada).
+ */
+export const TEF_NCLC_TABLE: {
+  headers: string[];
+  rows: { level: string; co: string; ce: string; eo: string; ee: string }[];
+  note: string;
+} = {
+  headers: ["Niveau NCLC", "CO (points)", "CE (points)", "EO (points)", "EE (points)"],
+  rows: [
+    { level: "NCLC 5", co: "145–180", ce: "121–150", eo: "181–225", ee: "181–225" },
+    { level: "NCLC 7", co: "217–248", ce: "181–206", eo: "271–309", ee: "271–309" },
+    { level: "NCLC 8", co: "249–279", ce: "207–232", eo: "310–348", ee: "310–348" },
+    { level: "NCLC 9+", co: "280–360", ce: "233–300", eo: "349–450", ee: "349–450" },
+  ],
+  note: "Barèmes indicatifs — consultez le site officiel du TEF Canada pour les données actualisées.",
+};
 
 /** À qui s'adresse le programme (profils réels de candidats). */
 export const TEF_AUDIENCE: string[] = [
