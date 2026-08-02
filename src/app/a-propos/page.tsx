@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 
-// Contenu migré depuis la plateforme V1 (pages/about.html) — porté fidèlement.
+// Faits VÉRIFIABLES sur la plateforme uniquement (aucune statistique non prouvée
+// comme un nombre d'étudiants ou un taux de satisfaction). Cohérent avec l'accueil.
 const STATS = [
-  { n: "2 400+", label: "Étudiants formés" },
-  { n: "94%", label: "Taux de satisfaction" },
-  { n: "40+", label: "Pays représentés" },
   { n: "9", label: "Programmes complets" },
+  { n: "72", label: "Modules structurés" },
+  { n: "7", label: "Langues d'assistance" },
+  { n: "4", label: "Compétences ciblées" },
 ];
 
 const VALUES = [

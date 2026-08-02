@@ -157,7 +157,7 @@ export const UI: Translations = {
 
   // CTA
   "cta.start_tef": { fr: "Commencer le TEF / TCF", en: "Start TEF / TCF", es: "Iniciar TEF / TCF", it: "Inizia TEF / TCF", pt: "Começar TEF / TCF", de: "TEF / TCF starten", ht: "Kòmanse TEF / TCF" },
-  "cta.see_formations": { fr: "Voir les formations →", en: "See programs →", es: "Ver programas →", it: "Vedi programmi →", pt: "Ver programas →", de: "Programme sehen →", ht: "Wè pwogram yo →" },
+  "cta.see_formations": { fr: "Découvrir les formations →", en: "Discover the trainings →", es: "Descubrir las formaciones →", it: "Scopri i corsi →", pt: "Descobrir as formações →", de: "Weiterbildungen entdecken →", ht: "Dekouvri fòmasyon yo →" },
   "cta.ready": { fr: "Prêt à commencer votre parcours vers", en: "Ready to start your journey to", es: "Listo para comenzar tu camino hacia", it: "Pronto a iniziare il tuo percorso verso", pt: "Pronto para começar sua jornada para", de: "Bereit, Ihre Reise nach", ht: "Pare pou kòmanse vwayaj ou nan" },
   "cta.canada": { fr: "le Canada", en: "Canada", es: "Canadá", it: "il Canada", pt: "o Canadá", de: "Kanada zu beginnen", ht: "Kanada" },
   "cta.join": { fr: "Rejoignez une communauté d'apprenants qui préparent leur avenir au Canada avec ARCADINS.", en: "Join a community of learners preparing their future in Canada with ARCADINS.", es: "Únase a una comunidad de estudiantes que preparan su futuro en Canadá con ARCADINS.", it: "Unisciti a una comunità di studenti che preparano il loro futuro in Canada con ARCADINS.", pt: "Junte-se a uma comunidade de alunos que preparam o seu futuro no Canadá com a ARCADINS.", de: "Werden Sie Teil einer Gemeinschaft von Lernenden, die ihre Zukunft in Kanada mit ARCADINS vorbereiten.", ht: "Rejwenn yon kominote apranti k ap prepare avni yo nan Kanada ak ARCADINS." },
@@ -248,7 +248,7 @@ export const UI: Translations = {
   "form.title2": { fr: "professionnelles", en: "professional", es: "profesionales", it: "professionali", pt: "profissionais", de: "beruflich", ht: "pwofesyonèl" },
   "form.title3": { fr: "adaptées au marché canadien, en 7 langues", en: "tailored to the Canadian market, in 7 languages", es: "adaptadas al mercado canadiense, en 7 idiomas", it: "su misura per il mercato canadese, in 7 lingue", pt: "adaptadas ao mercado canadiano, em 7 línguas", de: "auf den kanadischen Markt zugeschnitten, in 7 Sprachen", ht: "adapte pou mache kanadyen an, nan 7 lang" },
   "form.all": { fr: "Tous", en: "All", es: "Todos", it: "Tutti", pt: "Todos", de: "Alle", ht: "Tout" },
-  "form.see": { fr: "Voir →", en: "View →", es: "Ver →", it: "Vedi →", pt: "Ver →", de: "Ansehen →", ht: "Wè →" },
+  "form.see": { fr: "Découvrir le programme →", en: "Discover the program →", es: "Descubrir el programa →", it: "Scopri il programma →", pt: "Descobrir o programa →", de: "Programm entdecken →", ht: "Dekouvri pwogram nan →" },
 
   // ═══ EXAMENS PAGE ═══
   "exam.label": { fr: "Plateforme LMS Propriétaire", en: "Proprietary LMS Platform", es: "Plataforma LMS Propietaria", it: "Piattaforma LMS Proprietaria", pt: "Plataforma LMS Proprietária", de: "Eigene LMS-Plattform", ht: "Platfòm LMS Pwopriyetè" },

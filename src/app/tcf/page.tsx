@@ -44,8 +44,8 @@ export default function TcfPage() {
             de l&apos;Expérience Québécoise (PEQ) et les études en milieu francophone.
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
-            <Link href="/auth/register" className="bg-gold text-navy font-bold text-[15px] px-7 py-3.5 rounded-[10px] transition-all hover:bg-gold-light hover:-translate-y-0.5">
-              ✏️ Je commence ma préparation TCF
+            <Link href="/contact" className="bg-gold text-navy font-bold text-[15px] px-7 py-3.5 rounded-[10px] transition-all hover:bg-gold-light hover:-translate-y-0.5">
+              ✏️ Demander mon admission TCF
             </Link>
             <Link href="/examens" className="border border-gold/40 text-gold font-bold text-[15px] px-7 py-3.5 rounded-[10px] transition-all hover:bg-gold/10">
               🎯 Test d&apos;essai libre
@@ -120,8 +120,8 @@ export default function TcfPage() {
           <h2 className="font-[family-name:var(--font-heading)] text-2xl text-white mb-3">Prêt à réussir votre TCF Canada ?</h2>
           <p className="text-white/55 text-[15px] mb-6">Rejoignez ARCADINS Training Center et démarrez dès aujourd&apos;hui.</p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/auth/register" className="bg-gold text-navy font-bold text-[15px] px-7 py-3.5 rounded-[10px] transition-all hover:bg-gold-light hover:-translate-y-0.5">✏️ Je m&apos;inscris maintenant</Link>
-            <Link href="/tarifs" className="border border-gold/40 text-gold font-bold text-[15px] px-7 py-3.5 rounded-[10px] transition-all hover:bg-gold/10">💰 Voir les tarifs</Link>
+            <Link href="/contact" className="bg-gold text-navy font-bold text-[15px] px-7 py-3.5 rounded-[10px] transition-all hover:bg-gold-light hover:-translate-y-0.5">✏️ Demander mon admission</Link>
+            <Link href="/tutorat" className="border border-gold/40 text-gold font-bold text-[15px] px-7 py-3.5 rounded-[10px] transition-all hover:bg-gold/10">🎓 Découvrir le tutorat</Link>
           </div>
         </div>
 

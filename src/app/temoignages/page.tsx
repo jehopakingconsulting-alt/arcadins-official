@@ -1,17 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { TESTIMONIALS, ILLUSTRATIVE_TESTIMONIALS } from "@/lib/constants";
+import { TESTIMONIALS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
 
 export default function TemoignagesPage() {
   const { lang } = useLang();
 
-  // Témoignages VÉRIFIÉS (réels, consentis) — alimentés depuis l'administration.
+  // UNIQUEMENT des témoignages VÉRIFIÉS (réels, consentis) — alimentés depuis
+  // l'administration. Aucun exemple « illustratif » : l'authenticité prime.
   const verified = TESTIMONIALS;
-  // Exemples ILLUSTRATIFS temporaires : on complète jusqu'à 3 cartes. Chaque
-  // témoignage vérifié ajouté « remplace » automatiquement une carte illustrative.
-  const illustrative = ILLUSTRATIVE_TESTIMONIALS.slice(0, Math.max(0, 3 - verified.length));
 
   return (
     <div className="bg-off-white min-h-screen pt-32 pb-20">
@@ -23,42 +21,34 @@ export default function TemoignagesPage() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {/* Témoignages VÉRIFIÉS (avec note + nom consentis) */}
-          {verified.map((te, i) => (
-            <div key={`v-${i}`} className="bg-white rounded-[20px] p-7 border border-gold/11 transition-all hover:border-gold/38 hover:shadow-[0_8px_30px_rgba(201,168,76,0.1)]">
-              <div className="text-gold text-[15px] tracking-[2px] mb-3">{"★".repeat(te.stars)}</div>
-              <p className="text-[14.5px] leading-[1.75] text-body mb-5 italic">{te.text}</p>
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-navy text-gold flex items-center justify-center font-[family-name:var(--font-heading)] text-base font-bold shrink-0">{te.initials}</div>
-                <div><div className="text-sm font-semibold text-navy">{te.name}</div><div className="text-xs text-muted">{te.from}</div></div>
-              </div>
-            </div>
-          ))}
-
-          {/* Exemples ILLUSTRATIFS : badge visible, profil générique, AUCUN nom /
-              photo / ville / note en étoiles. Ne doivent pas passer pour vérifiés. */}
-          {illustrative.map((it, i) => (
-            <div key={`i-${i}`} className="bg-white rounded-[20px] p-7 border border-dashed border-gold/30 flex flex-col relative">
-              <span className="absolute top-3.5 right-3.5 bg-navy/90 text-gold text-[9.5px] font-bold px-2.5 py-1 rounded-full tracking-[1px] uppercase">
-                {t(UI["testi.ill.badge"], lang)}
-              </span>
-              <div className="text-2xl text-gold/70 mb-2 leading-none" aria-hidden="true">“</div>
-              <p className="text-[14.5px] leading-[1.75] text-body mb-5 italic flex-1">{t(UI[it.textKey], lang)}</p>
-              <div className="flex items-center gap-3 pt-3 border-t border-off-white">
-                <div className="w-9 h-9 rounded-lg bg-gold/12 border border-gold/25 flex items-center justify-center text-navy/50" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5Z"/></svg>
+        {verified.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {/* Témoignages VÉRIFIÉS uniquement (note + nom consentis) */}
+            {verified.map((te, i) => (
+              <div key={`v-${i}`} className="bg-white rounded-[20px] p-7 border border-gold/11 transition-all hover:border-gold/38 hover:shadow-[0_8px_30px_rgba(201,168,76,0.1)]">
+                <div className="text-gold text-[15px] tracking-[2px] mb-3">{"★".repeat(te.stars)}</div>
+                <p className="text-[14.5px] leading-[1.75] text-body mb-5 italic">{te.text}</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-full bg-navy text-gold flex items-center justify-center font-[family-name:var(--font-heading)] text-base font-bold shrink-0">{te.initials}</div>
+                  <div><div className="text-sm font-semibold text-navy">{te.name}</div><div className="text-xs text-muted">{te.from}</div></div>
                 </div>
-                <div className="text-[12.5px] font-semibold text-navy/70">{t(UI[it.profileKey], lang)}</div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {illustrative.length > 0 && (
-          <p className="text-center text-[12.5px] text-muted mt-6 max-w-[720px] mx-auto">
-            {t(UI["testi.ill.notice"], lang)}
-          </p>
+            ))}
+          </div>
+        ) : (
+          // Aucun témoignage vérifié : état vide honnête (pas de faux avis).
+          <div className="max-w-[680px] mx-auto bg-white rounded-[24px] p-10 border border-gold/15 text-center">
+            <div className="w-14 h-14 rounded-2xl bg-gold/12 border border-gold/25 flex items-center justify-center text-2xl mx-auto mb-4" aria-hidden="true">⭐</div>
+            <h3 className="font-[family-name:var(--font-heading)] text-2xl text-navy mb-3">Vos réussites, bientôt ici</h3>
+            <p className="text-[14.5px] text-body leading-[1.75] mb-7 max-w-[520px] mx-auto">
+              ARCADINS Training Center accueille ses premiers étudiants. Les témoignages publiés ici seront
+              tous réels et vérifiés, avec l&apos;accord de leurs auteurs. Soyez parmi les premiers à bâtir
+              votre réussite avec nous.
+            </p>
+            <Link href="/contact" className="inline-block bg-navy text-gold font-bold text-[14.5px] px-7 py-3 rounded-xl transition-all hover:bg-navy-mid hover:-translate-y-0.5">
+              Commencer mon parcours →
+            </Link>
+          </div>
         )}
 
         {/* CTA */}

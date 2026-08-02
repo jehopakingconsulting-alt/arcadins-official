@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
 import HeroSlider from "@/components/home/HeroSlider";
+import WhyChoose from "@/components/home/WhyChoose";
+import HowItWorks from "@/components/home/HowItWorks";
 
 // Code-splitting : les sections sous la ligne de flottaison sont chargées en
 // chunks séparés (réduit le JS initial / TBT). SSR conservé (contenu dans le HTML).
@@ -42,6 +44,8 @@ export default function HomePage() {
       {/* Séparation permanente des deux départements, présentée dès l'accueil. */}
       <DepartmentsSplit />
       <StatsBar />
+      <WhyChoose />
+      <HowItWorks />
       <VideoSection />
       <ServicesGrid />
     </div>
