@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { PAYMENT_DEADLINE_DAYS } from "@/lib/pricing";
+import { PROGRAM_CHECKOUT_ENABLED } from "@/lib/config/launch-flags";
+import { getProgramGrants, getProgramOffer, isProgramCode } from "@/lib/commerce/program-commerce";
+import { composeEntitlements, accessExpiry } from "@/lib/catalog/entitlement";
+import { buildAuditRecord } from "@/lib/audit/record";
 import Stripe from "stripe";
 
 export async function POST(request: Request) {
@@ -33,6 +37,84 @@ export async function POST(request: Request) {
 
       if (!metadata?.userId) {
         console.error("Checkout completed without userId in metadata:", session.id);
+        break;
+      }
+
+      // ── Programmes officiels (TEF/TCF) : inscription + entitlement AUTOMATIQUES ──
+      // Prix/forfaits = program-commerce (autorité serveur). Idempotent, séparé par
+      // programme (un achat TEF ne débloque que TEF). Gardé par le flag de lancement.
+      if (PROGRAM_CHECKOUT_ENABLED && metadata.type === "program-purchase") {
+        const program = String(metadata.program || "");
+        const packageKey = String(metadata.packageKey || "");
+        const grants = getProgramGrants(program, packageKey);
+        const offer = getProgramOffer(program, packageKey);
+        if (!isProgramCode(program) || !grants || !offer) {
+          console.error("program-purchase: programme/forfait inconnu", metadata);
+          break;
+        }
+
+        // Idempotence : un événement Stripe n'est traité qu'une seule fois.
+        const { data: seen } = await supabase
+          .from("program_purchase_events")
+          .select("stripe_event_id")
+          .eq("stripe_event_id", event.id)
+          .maybeSingle();
+        if (seen) break;
+        await supabase.from("program_purchase_events").insert({ stripe_event_id: event.id, event_type: event.type });
+
+        // Frais d'inscription GLOBAL (une seule fois par étudiant, jamais deux fois).
+        if (metadata.registrationFeeIncluded === "true") {
+          await supabase
+            .from("registration_fee_payments")
+            .upsert(
+              { user_id: metadata.userId, amount_cents: 10000, currency: "usd", stripe_session_id: session.id },
+              { onConflict: "user_id", ignoreDuplicates: true },
+            );
+        }
+
+        // Entitlement figé (composition pure) + fenêtre d'accès.
+        const now = new Date();
+        const entitlement = composeEntitlements(grants);
+        const accessExpiresAt = accessExpiry(entitlement, now);
+
+        // UNE inscription par (user, program) : jamais de doublon (webhook rejoué inclus).
+        await supabase
+          .from("program_enrollments")
+          .upsert(
+            {
+              user_id: metadata.userId,
+              program_code: program,
+              package_key: packageKey,
+              offer_amount_cents: offer.amountCents,
+              currency: "usd",
+              entitlement,
+              status: "active",
+              access_starts_at: now.toISOString(),
+              access_expires_at: accessExpiresAt,
+              stripe_session_id: session.id,
+              order_reference: metadata.orderReference || null,
+            },
+            { onConflict: "user_id,program_code", ignoreDuplicates: true },
+          );
+
+        // Audit (best-effort — n'invalide jamais une inscription payée valide).
+        try {
+          await supabase.from("audit_log").insert(
+            buildAuditRecord({
+              action: "enrollment.grant",
+              actor: { id: metadata.userId },
+              targetType: "program",
+              targetId: program,
+              metadata: { packageKey, orderReference: metadata.orderReference, source: "stripe-webhook", sessionId: session.id },
+            }),
+          );
+        } catch (err) {
+          console.error("program-purchase: audit non enregistré (non bloquant):", err);
+        }
+
+        // Email de confirmation : branché sur le moteur de notifications (Resend) une fois
+        // RESEND_API_KEY configuré. L'échec d'envoi ne DOIT PAS annuler l'inscription payée.
+        // (Point d'intégration : dispatch d'un événement "enrollment.confirmed" ici.)
         break;
       }
 
