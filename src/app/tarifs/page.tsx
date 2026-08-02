@@ -3,6 +3,7 @@
 import { PROGRAMS, PAYMENT_METHODS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
 import { getInstallmentPlan, REGISTRATION_FEE } from "@/lib/pricing";
+import { PROGRAM_PLANS, PROGRAM_PLANS_NOTE } from "@/lib/data/program-plans";
 import Link from "next/link";
 
 export default function TarifsPage() {
@@ -18,6 +19,56 @@ export default function TarifsPage() {
             {t(UI["tarifs.title1"], lang)}<br />{t(UI["tarifs.title2"], lang)} <em className="text-gold italic">{t(UI["tarifs.title3"], lang)}</em>
           </h2>
           <p className="text-[17px] text-white/50 max-w-[500px] mx-auto">{t(UI["tarifs.desc"], lang)}</p>
+        </div>
+
+        {/* ══ DÉPARTEMENT A — Programmes officiels de langue (Tutorat TEF & TCF) ══ */}
+        <div className="text-center mb-8">
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Programmes officiels de langue</p>
+          <h3 className="font-[family-name:var(--font-heading)] text-3xl text-white mb-2">Tutorat TEF &amp; TCF Canada</h3>
+          <p className="text-[15px] text-white/50 max-w-[560px] mx-auto">Choisissez votre plan de préparation en ligne — du niveau débutant au supérieur, par compétence.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {PROGRAM_PLANS.map((plan) => (
+            <div
+              key={plan.key}
+              className={`relative bg-white/[0.044] rounded-[24px] p-7 flex flex-col transition-all hover:-translate-y-1 border ${plan.popular ? "border-gold" : "border-gold/17 hover:border-gold/44"}`}
+            >
+              {plan.popular && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-navy text-[10px] font-bold px-3 py-1 rounded-full tracking-[1px] uppercase whitespace-nowrap">★ Plus populaire</span>
+              )}
+              <div className="text-[11px] font-bold tracking-[2px] uppercase text-gold mb-3">{plan.name}</div>
+              <div className="flex items-baseline gap-1 mb-1">
+                <span className="font-[family-name:var(--font-heading)] text-[40px] font-bold text-gold leading-none">${plan.price}</span>
+                <span className="text-white/50 text-sm">{plan.currency}</span>
+              </div>
+              <div className="text-[12px] text-white/45 mb-3">⏱ Accès {plan.accessWeeks} semaines</div>
+              <p className="text-[13px] text-white/55 leading-[1.55] mb-5 min-h-[42px]">{plan.tagline}</p>
+              <ul className="space-y-1.5 mb-6 flex-1">
+                {plan.features.map((f) => (
+                  <li key={f.text} className={`flex items-start gap-2 text-[12.5px] leading-[1.5] ${f.included ? "text-white/75" : "text-white/30"}`}>
+                    <span className={`shrink-0 mt-[1px] ${f.included ? "text-gold" : "text-white/25"}`}>{f.included ? "✓" : "✕"}</span>{f.text}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={`/contact?programme=tef&plan=${plan.key}`}
+                className={`block w-full py-3 rounded-[9px] font-bold text-[14px] text-center transition-all ${plan.popular ? "bg-gold text-navy hover:bg-gold-light hover:-translate-y-0.5" : "bg-transparent text-gold border-[1.5px] border-gold/43 hover:bg-gold/10 hover:border-gold"}`}
+              >
+                Choisir {plan.name} →
+              </Link>
+            </div>
+          ))}
+        </div>
+        <p className="text-center text-[12.5px] text-white/40 mt-5 max-w-[760px] mx-auto">{PROGRAM_PLANS_NOTE}</p>
+
+        {/* Séparateur — deux départements de tarification distincts */}
+        <div className="border-t border-white/10 my-14" />
+
+        {/* ══ DÉPARTEMENT B — Formations professionnelles ══ */}
+        <div className="text-center mb-8">
+          <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Formations professionnelles</p>
+          <h3 className="font-[family-name:var(--font-heading)] text-3xl text-white mb-2">Développement professionnel</h3>
+          <p className="text-[15px] text-white/50 max-w-[560px] mx-auto">9 formations de 24 semaines avec attestation de complétion — tarification distincte des programmes de langue.</p>
         </div>
 
         {/* Courses pricing grid */}

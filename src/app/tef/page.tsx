@@ -81,7 +81,7 @@ export default function TefPage() {
                 </div>
               ))}
             </div>
-            <Link href="/contact" className="block mt-6 w-full bg-gold text-navy font-bold text-[15px] py-3.5 rounded-[10px] text-center transition-all hover:bg-gold-light hover:-translate-y-0.5">
+            <Link href="/tarifs" className="block mt-6 w-full bg-gold text-navy font-bold text-[15px] py-3.5 rounded-[10px] text-center transition-all hover:bg-gold-light hover:-translate-y-0.5">
               {t(UI["tef.panel.cta"], lang)}
             </Link>
           </div>
