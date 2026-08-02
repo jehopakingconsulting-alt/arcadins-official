@@ -51,7 +51,7 @@ export default function TarifsPage() {
                 ))}
               </ul>
               <Link
-                href={`/contact?programme=tef&plan=${plan.key}`}
+                href={`/contact?programme=tef-canada&plan=${plan.key}`}
                 className={`block w-full py-3 rounded-[9px] font-bold text-[14px] text-center transition-all ${plan.popular ? "bg-gold text-navy hover:bg-gold-light hover:-translate-y-0.5" : "bg-transparent text-gold border-[1.5px] border-gold/43 hover:bg-gold/10 hover:border-gold"}`}
               >
                 Choisir {plan.name} →
