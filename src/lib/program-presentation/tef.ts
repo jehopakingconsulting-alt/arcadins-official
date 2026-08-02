@@ -17,12 +17,13 @@ export const tefPresentation: ProgramPresentation = {
       en: "A structured, adaptive, tracked preparation to reach your target NCLC score for immigration to Canada and Québec.",
       es: "Una preparación estructurada, adaptativa y con seguimiento para alcanzar su puntuación NCLC objetivo para la inmigración a Canadá y Quebec.",
     },
-    primaryCta: { label: { fr: "Commencer ma préparation", en: "Start preparing", es: "Empezar mi preparación" }, href: "/auth/register", variant: "primary" },
+    primaryCta: { label: { fr: "Demander mon admission", en: "Request admission", es: "Solicitar admisión" }, href: "/contact?programme=tef-canada", variant: "primary" },
     secondaryCta: { label: { fr: "Voir les forfaits", en: "See plans", es: "Ver planes" }, href: "#tarifs", variant: "outline" },
+    // Faits VÉRIFIABLES uniquement (aucune statistique d'étudiants/satisfaction non prouvée).
     stats: [
-      { value: "2 400+", label: { fr: "Étudiants formés", en: "Students trained", es: "Estudiantes formados" } },
-      { value: "94%", label: { fr: "Satisfaction", en: "Satisfaction", es: "Satisfacción" } },
-      { value: "40+", label: { fr: "Pays", en: "Countries", es: "Países" } },
+      { value: "4", label: { fr: "Compétences évaluées", en: "Skills assessed", es: "Competencias evaluadas" } },
+      { value: "NCLC 1–12", label: { fr: "Niveaux couverts", en: "Levels covered", es: "Niveles cubiertos" } },
+      { value: "100%", label: { fr: "En ligne", en: "Online", es: "En línea" } },
       { value: "NCLC 7–9", label: { fr: "Objectif visé", en: "Target level", es: "Nivel objetivo" } },
     ],
   },
