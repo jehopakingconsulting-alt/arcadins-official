@@ -77,7 +77,7 @@ export function PrivacyPolicy() {
         <strong>2. Utilisation</strong><br />Vos données personnalisent votre expérience et permettent l&apos;émission de vos certificats.<br /><br />
         <strong>3. Conservation</strong><br />Données supprimées sur demande sous 30 jours après résiliation.<br /><br />
         <strong>4. Droits</strong><br />Conformément à la Loi 25 du Québec et au RGPD : accès, rectification et suppression.<br /><br />
-        <strong>5. Contact</strong><br /><a href="mailto:privacy@arcadins-training.com" className="text-gold hover:underline">privacy@arcadins-training.com</a>
+        <strong>5. Contact</strong><br /><a href="mailto:privacy@arcadins-training.com" className="text-gold-ink hover:underline">privacy@arcadins-training.com</a>
       </div>
     </>
   );
@@ -108,7 +108,7 @@ export function LegalNotice() {
         <strong>Éditeur du site</strong><br />
         ARCADINS Training Center — Plateforme de programme de tutorat linguistique en ligne.<br />
         116 Albert Street, Suite 300, Ottawa (Ontario) Canada<br />
-        +1 514-451-3436 · <a href="mailto:info@arcadins-training.com" className="text-gold hover:underline">info@arcadins-training.com</a><br /><br />
+        +1 514-451-3436 · <a href="mailto:info@arcadins-training.com" className="text-gold-ink hover:underline">info@arcadins-training.com</a><br /><br />
         <strong>Nature de l&apos;activité</strong><br />
         ARCADINS Training Center est une plateforme privée de formation et de préparation linguistique
         spécialisée dans les tests TEF &amp; TCF Canada.<br /><br />

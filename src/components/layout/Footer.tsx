@@ -46,7 +46,7 @@ export default function Footer() {
             <span className="text-2xl font-bold font-[family-name:var(--font-heading)] bg-gradient-to-r from-gold-light via-gold to-gold-pale bg-clip-text text-transparent tracking-wide">
               ARCADINS
             </span>
-            <div className="text-[10.5px] font-semibold tracking-[4.5px] text-[#5A6E8A]">
+            <div className="text-[10.5px] font-semibold tracking-[4.5px] text-[#8A9BB5]">
               TRAINING CENTER
             </div>
           </div>
