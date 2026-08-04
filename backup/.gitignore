@@ -1,0 +1,8 @@
+# NEVER commit real data/exports. They contain personal data and secrets, and are large.
+# Keep exports OFFLINE and ENCRYPTED. Only the scripts + docs in backup/ are versioned.
+exports/
+*.dump
+*.sql.gz
+*.csv
+*.tar.gz
+*.zip
