@@ -6,6 +6,7 @@ import { PROGRAMS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
 import { getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
+import { FORMATION_DETAILS } from "@/lib/data/formation-details";
 import Icon, { type IconName } from "@/components/ui/Icon";
 import Link from "next/link";
 import ProgramReviews from "@/components/reviews/ProgramReviews";
@@ -16,6 +17,7 @@ export default function CourseDetailPage() {
   const course = PROGRAMS.find((p) => p.slug === slug);
   const cName = course && UI[`c.${course.slug}`] ? t(UI[`c.${course.slug}`], lang) : course?.name || "";
   const cDesc = course && UI[`cd.${course.slug}`] ? t(UI[`cd.${course.slug}`], lang) : course?.description || "";
+  const detail = course ? FORMATION_DETAILS[course.slug] : undefined;
   const [enrollmentStatus, setEnrollmentStatus] = useState<string | null>(null);
   const fullTotal = course ? getFullPaymentTotal(course.price) : 0;
 
@@ -176,15 +178,35 @@ export default function CourseDetailPage() {
             <h2 className="font-[family-name:var(--font-heading)] text-2xl text-navy mb-4">
               À propos de cette formation
             </h2>
+            {detail?.tagline && (
+              <p className="text-[15.5px] text-navy font-medium leading-[1.7] mb-4">{detail.tagline}</p>
+            )}
             <p className="text-[15px] text-muted leading-[1.85] mb-8">
               {course.longDescription}
             </p>
+
+            {/* Objectifs d'apprentissage */}
+            {detail?.objectives?.length ? (
+              <div className="mb-9">
+                <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-4">
+                  Ce que vous saurez faire
+                </h3>
+                <ul className="space-y-2.5">
+                  {detail.objectives.map((o) => (
+                    <li key={o} className="flex items-start gap-3 text-[14.5px] text-body leading-[1.6]">
+                      <span className="w-5 h-5 rounded-full bg-gold/15 text-gold flex items-center justify-center shrink-0 text-[11px] font-bold mt-0.5"><Icon name="check" size={12} /></span>
+                      {o}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
             <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-4">
               Programme des modules
             </h3>
             <div className="space-y-0">
-              {course.modules.map((mod, i) => (
+              {(detail?.modules?.length ? detail.modules : course.modules.map((title) => ({ title, description: "" }))).map((mod, i) => (
                 <div
                   key={i}
                   className="flex items-start gap-4 py-3.5 border-b border-gold/10 last:border-b-0"
@@ -192,12 +214,28 @@ export default function CourseDetailPage() {
                   <div className="w-8 h-8 rounded-full bg-navy text-gold font-[family-name:var(--font-heading)] text-sm font-bold flex items-center justify-center shrink-0">
                     {i + 1}
                   </div>
-                  <span className="text-[14.5px] text-body leading-[1.6] pt-1">
-                    {mod}
-                  </span>
+                  <div className="pt-0.5">
+                    <div className="text-[14.5px] text-navy font-semibold leading-[1.5]">{mod.title}</div>
+                    {mod.description && <div className="text-[13.5px] text-muted leading-[1.6] mt-0.5">{mod.description}</div>}
+                  </div>
                 </div>
               ))}
             </div>
+
+            {/* Débouchés / métiers visés */}
+            {detail?.careers?.length ? (
+              <div className="mt-9 pt-8 border-t border-gold/10">
+                <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">
+                  Métiers visés
+                </h3>
+                <p className="text-[13px] text-muted mb-4">Débouchés possibles après la formation (présentés à titre indicatif, sans garantie d&apos;emploi).</p>
+                <div className="flex flex-wrap gap-2">
+                  {detail.careers.map((c) => (
+                    <span key={c} className="text-[13px] font-medium text-navy bg-gold/10 border border-gold/20 rounded-full px-3.5 py-1.5">{c}</span>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
 
           {/* Sidebar */}
@@ -298,6 +336,38 @@ export default function CourseDetailPage() {
                 </>
               )}
             </div>
+
+            {/* À qui s'adresse */}
+            {detail?.audience?.length ? (
+              <div className="bg-white rounded-[28px] p-8 border border-gold/11">
+                <h4 className="font-[family-name:var(--font-heading)] text-base text-navy mb-4 inline-flex items-center gap-2">
+                  <Icon name="cap" size={17} className="text-gold" /> À qui s&apos;adresse cette formation
+                </h4>
+                <ul className="space-y-2.5">
+                  {detail.audience.map((a) => (
+                    <li key={a} className="flex items-start gap-2.5 text-[13.5px] text-body leading-[1.55]">
+                      <span className="text-gold shrink-0 mt-0.5">•</span>{a}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {/* Prérequis */}
+            {detail?.prerequisites?.length ? (
+              <div className="bg-white rounded-[28px] p-8 border border-gold/11">
+                <h4 className="font-[family-name:var(--font-heading)] text-base text-navy mb-4 inline-flex items-center gap-2">
+                  <Icon name="clipboard" size={17} className="text-gold" /> Prérequis
+                </h4>
+                <ul className="space-y-2.5">
+                  {detail.prerequisites.map((p) => (
+                    <li key={p} className="flex items-start gap-2.5 text-[13.5px] text-body leading-[1.55]">
+                      <span className="text-gold shrink-0 mt-0.5">✓</span>{p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
             {/* Guarantee */}
             <div className="bg-white rounded-[28px] p-8 border border-gold/11 text-center">
