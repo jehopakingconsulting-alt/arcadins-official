@@ -19,9 +19,9 @@ export default function FormationsPage() {
       <div className="max-w-[1200px] mx-auto px-7">
         <div className="mb-13">
           <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">{t(UI["form.label"], lang)}</p>
-          <h2 className="font-[family-name:var(--font-heading)] text-4xl text-navy">
+          <h1 className="font-[family-name:var(--font-heading)] text-4xl text-navy">
             {t(UI["form.title1"], lang)} <em className="text-gold-ink italic">{t(UI["form.title2"], lang)}</em> {t(UI["form.title3"], lang)}
-          </h2>
+          </h1>
         </div>
 
         <div className="flex gap-2 flex-wrap mb-9">

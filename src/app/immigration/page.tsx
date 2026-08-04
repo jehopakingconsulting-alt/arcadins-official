@@ -19,9 +19,9 @@ export default function ImmigrationPage() {
       <div className="max-w-[1200px] mx-auto px-7">
         <div className="mb-13">
           <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">{t(UI["imm.label"], lang)}</p>
-          <h2 className="font-[family-name:var(--font-heading)] text-4xl text-navy mb-4">
+          <h1 className="font-[family-name:var(--font-heading)] text-4xl text-navy mb-4">
             {t(UI["imm.title1"], lang)} <em className="text-gold italic">{t(UI["imm.title2"], lang)}</em><br />{t(UI["imm.title3"], lang)}
-          </h2>
+          </h1>
           <p className="text-[17px] text-muted max-w-[600px] leading-[1.75]">{t(UI["imm.desc"], lang)}</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">

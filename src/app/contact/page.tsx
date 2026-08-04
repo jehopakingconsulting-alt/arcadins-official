@@ -34,9 +34,9 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-14 items-start">
           <div>
             <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold-ink mb-2.5">{t(UI["contact.label"], lang)}</p>
-            <h2 className="font-[family-name:var(--font-heading)] text-[38px] text-navy mb-3.5">
+            <h1 className="font-[family-name:var(--font-heading)] text-[38px] text-navy mb-3.5">
               {t(UI["contact.title1"], lang)}<br />{t(UI["contact.title2"], lang)} <em className="text-gold-ink italic">{t(UI["contact.title3"], lang)}</em>
-            </h2>
+            </h1>
             <p className="text-base text-muted leading-[1.75] mb-7">{t(UI["contact.desc"], lang)}</p>
             <div className="flex flex-col gap-4">
               {[

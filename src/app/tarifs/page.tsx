@@ -15,9 +15,9 @@ export default function TarifsPage() {
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-12">
           <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">{t(UI["tarifs.label"], lang)}</p>
-          <h2 className="font-[family-name:var(--font-heading)] text-4xl text-white mb-4">
+          <h1 className="font-[family-name:var(--font-heading)] text-4xl text-white mb-4">
             {t(UI["tarifs.title1"], lang)}<br />{t(UI["tarifs.title2"], lang)} <em className="text-gold italic">{t(UI["tarifs.title3"], lang)}</em>
-          </h2>
+          </h1>
           <p className="text-[17px] text-white/50 max-w-[500px] mx-auto">{t(UI["tarifs.desc"], lang)}</p>
         </div>
 
