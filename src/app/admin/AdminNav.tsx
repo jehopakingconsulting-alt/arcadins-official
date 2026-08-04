@@ -8,6 +8,8 @@ import Icon, { type IconName } from "@/components/ui/Icon";
 
 const LINKS: { href: string; label: string; icon: IconName; perm?: Permission; flag?: boolean }[] = [
   { href: "/admin", label: "Vue d'ensemble", icon: "chart" },
+  { href: "/admin/analytics", label: "Analytique", icon: "chart", perm: "migration.view" },
+  { href: "/admin/commerce", label: "Commerce & inscriptions", icon: "coin", perm: "migration.view" },
   { href: "/admin/tutorat", label: "Demandes de tutorat", icon: "target", perm: "tutoring_requests.view" },
   { href: "/admin/tuteurs", label: "Candidatures tuteur", icon: "teacher", perm: "tutor_applications.view" },
   { href: "/admin/contacts", label: "Contacts", icon: "inbox", perm: "contacts.view" },
