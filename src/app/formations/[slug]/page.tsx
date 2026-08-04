@@ -7,6 +7,7 @@ import { useLang, t, UI } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
 import { getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
 import { FORMATION_DETAILS } from "@/lib/data/formation-details";
+import { PROGRAM_CHECKOUT_UI_ENABLED } from "@/lib/config/launch-flags";
 import Icon, { type IconName } from "@/components/ui/Icon";
 import Link from "next/link";
 import ProgramReviews from "@/components/reviews/ProgramReviews";
@@ -45,6 +46,22 @@ export default function CourseDetailPage() {
   const enrolled = enrollmentStatus === "active";
   const pendingPayment = enrollmentStatus === "pending_payment";
   const suspended = enrollmentStatus === "suspended";
+
+  // Parcours AUTONOME (paiement = inscription) quand le flag UI est ON.
+  const [checkingOut, setCheckingOut] = useState(false);
+  async function startFormationCheckout() {
+    if (!course) return;
+    setCheckingOut(true);
+    try {
+      const res = await fetch("/api/checkout/formation", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ slug: course.slug }),
+      });
+      if (res.status === 401) { const d = await res.json(); window.location.assign(d.redirect || "/auth/login"); return; }
+      if (!res.ok) { setCheckingOut(false); return; }
+      const { url } = await res.json();
+      if (url) window.location.assign(url); else setCheckingOut(false);
+    } catch { setCheckingOut(false); }
+  }
 
   // Formation inexistante OU archivée (comingSoon) → introuvable côté public.
   // Les programmes « À venir » restent dans PROGRAMS mais ne sont pas exposés
@@ -314,6 +331,26 @@ export default function CourseDetailPage() {
                   <Link href="/contact" className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid">
                     Nous contacter →
                   </Link>
+                </>
+              ) : PROGRAM_CHECKOUT_UI_ENABLED ? (
+                <>
+                  <div className="flex justify-center text-gold mb-3"><Icon name="rocket" size={30} /></div>
+                  <h3 className="font-[family-name:var(--font-heading)] text-xl text-navy mb-2">
+                    Commencez maintenant
+                  </h3>
+                  <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
+                    Inscription 100 % en ligne : payez ({fullTotal.toLocaleString()}$ CAD) et accédez <strong>immédiatement</strong> à votre formation. Aucune attente, aucune validation manuelle.
+                  </p>
+                  <button
+                    onClick={startFormationCheckout}
+                    disabled={checkingOut}
+                    className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid hover:-translate-y-0.5 disabled:opacity-60"
+                  >
+                    {checkingOut ? "Redirection…" : "S'inscrire au programme →"}
+                  </button>
+                  <p className="text-xs text-muted mt-3">
+                    Paiement sécurisé Stripe · Accès immédiat · Satisfait ou remboursé sous 7 jours.
+                  </p>
                 </>
               ) : (
                 <>

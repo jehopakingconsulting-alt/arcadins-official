@@ -4,6 +4,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { PAYMENT_DEADLINE_DAYS } from "@/lib/pricing";
 import { PROGRAM_CHECKOUT_ENABLED } from "@/lib/config/launch-flags";
 import { getProgramGrants, getProgramOffer, isProgramCode, PROGRAM_NAMES } from "@/lib/commerce/program-commerce";
+import { getFormationOffer } from "@/lib/commerce/formation-commerce";
 import { composeEntitlements, accessExpiry } from "@/lib/catalog/entitlement";
 import { buildAuditRecord } from "@/lib/audit/record";
 import { sendEnrollmentEmail } from "@/lib/commerce/emails";
@@ -132,6 +133,66 @@ export async function POST(request: Request) {
           } catch (err) {
             console.error("program-purchase: email non envoyé (non bloquant):", err);
           }
+        }
+        break;
+      }
+
+      // ── Formation professionnelle : inscription AUTOMATIQUE (Département B) ──
+      // Réutilise la table `enrollments` (System 1) → /formations/[slug]/learn débloque.
+      if (PROGRAM_CHECKOUT_ENABLED && metadata.type === "formation-purchase" && metadata.slug) {
+        const offer = getFormationOffer(metadata.slug);
+        if (!offer) { console.error("formation-purchase: formation inconnue", metadata.slug); break; }
+
+        // Idempotence : événement Stripe traité une seule fois.
+        const { data: seen } = await supabase
+          .from("program_purchase_events").select("stripe_event_id").eq("stripe_event_id", event.id).maybeSingle();
+        if (seen) break;
+        await supabase.from("program_purchase_events").insert({ stripe_event_id: event.id, event_type: event.type });
+
+        // Frais d'inscription GLOBAL (une seule fois par étudiant).
+        if (metadata.registrationFeeIncluded === "true") {
+          await supabase.from("registration_fee_payments").upsert(
+            { user_id: metadata.userId, amount_cents: 10000, currency: "cad", stripe_session_id: session.id },
+            { onConflict: "user_id", ignoreDuplicates: true },
+          );
+        }
+
+        const { data: program } = await supabase.from("programs").select("id").eq("slug", metadata.slug).single();
+        if (!program) { console.error("formation-purchase: programme absent en base", metadata.slug); break; }
+
+        // Une inscription active par (user, programme) : pas de doublon.
+        const { data: existing } = await supabase
+          .from("enrollments").select("id")
+          .eq("user_id", metadata.userId).eq("program_id", program.id).eq("status", "active").maybeSingle();
+        if (!existing) {
+          await supabase.from("enrollments").insert({
+            user_id: metadata.userId,
+            program_id: program.id,
+            plan: "course",
+            status: "active",
+            installments_paid: 3,
+            payment_deadline: null,
+            stripe_subscription_id: session.id,
+          });
+        }
+
+        try {
+          await supabase.from("audit_log").insert(buildAuditRecord({
+            action: "enrollment.grant", actor: { id: metadata.userId },
+            targetType: "formation", targetId: metadata.slug,
+            metadata: { orderReference: metadata.orderReference, source: "stripe-webhook", sessionId: session.id },
+          }));
+        } catch (err) { console.error("formation-purchase: audit non enregistré:", err); }
+
+        const recipient = session.customer_details?.email || session.customer_email || undefined;
+        if (recipient) {
+          const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "").trim() || "https://arcadins-official.vercel.app";
+          try {
+            await sendEnrollmentEmail("enrollment_confirmation", {
+              to: recipient, programName: offer.name, dashboardUrl: `${siteUrl}/formations/${metadata.slug}/learn`,
+              orderReference: metadata.orderReference || undefined,
+            });
+          } catch (err) { console.error("formation-purchase: email non envoyé:", err); }
         }
         break;
       }
