@@ -47,22 +47,6 @@ export default function CourseDetailPage() {
   const pendingPayment = enrollmentStatus === "pending_payment";
   const suspended = enrollmentStatus === "suspended";
 
-  // Parcours AUTONOME (paiement = inscription) quand le flag UI est ON.
-  const [checkingOut, setCheckingOut] = useState(false);
-  async function startFormationCheckout() {
-    if (!course) return;
-    setCheckingOut(true);
-    try {
-      const res = await fetch("/api/checkout/formation", {
-        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ slug: course.slug }),
-      });
-      if (res.status === 401) { const d = await res.json(); window.location.assign(d.redirect || "/auth/login"); return; }
-      if (!res.ok) { setCheckingOut(false); return; }
-      const { url } = await res.json();
-      if (url) window.location.assign(url); else setCheckingOut(false);
-    } catch { setCheckingOut(false); }
-  }
-
   // Formation inexistante OU archivée (comingSoon) → introuvable côté public.
   // Les programmes « À venir » restent dans PROGRAMS mais ne sont pas exposés
   // publiquement, même par URL directe. Voir ARCHIVED_TRAININGS_REPORT.md.
@@ -339,15 +323,14 @@ export default function CourseDetailPage() {
                     Commencez maintenant
                   </h3>
                   <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
-                    Inscription 100 % en ligne : payez ({fullTotal.toLocaleString()}$ CAD) et accédez <strong>immédiatement</strong> à votre formation. Aucune attente, aucune validation manuelle.
+                    Inscription 100 % en ligne : {fullTotal.toLocaleString()}$ CAD, en <strong>1, 3 ou 6 versements</strong> ou via financement (Klarna, Affirm, Afterpay). Accès <strong>immédiat</strong>, sans validation manuelle.
                   </p>
-                  <button
-                    onClick={startFormationCheckout}
-                    disabled={checkingOut}
-                    className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid hover:-translate-y-0.5 disabled:opacity-60"
+                  <Link
+                    href={`/inscription/formation?slug=${course.slug}`}
+                    className="block w-full bg-navy text-gold font-bold text-[15px] py-4 rounded-[10px] transition-all hover:bg-navy-mid hover:-translate-y-0.5"
                   >
-                    {checkingOut ? "Redirection…" : "S'inscrire au programme →"}
-                  </button>
+                    S&apos;inscrire au programme →
+                  </Link>
                   <p className="text-xs text-muted mt-3">
                     Paiement sécurisé Stripe · Accès immédiat · Satisfait ou remboursé sous 7 jours.
                   </p>

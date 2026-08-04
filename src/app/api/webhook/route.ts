@@ -160,6 +160,11 @@ export async function POST(request: Request) {
         const { data: program } = await supabase.from("programs").select("id").eq("slug", metadata.slug).single();
         if (!program) { console.error("formation-purchase: programme absent en base", metadata.slug); break; }
 
+        // Mode : paiement complet (BNPL inclus) OU abonnement échelonné (3×/6×).
+        const isSubscription = session.mode === "subscription";
+        const cycles = parseInt(metadata.cycles || "1", 10) || 1;
+        const subId = isSubscription ? (session.subscription as string) : session.id;
+
         // Une inscription active par (user, programme) : pas de doublon.
         const { data: existing } = await supabase
           .from("enrollments").select("id")
@@ -169,11 +174,22 @@ export async function POST(request: Request) {
             user_id: metadata.userId,
             program_id: program.id,
             plan: "course",
-            status: "active",
-            installments_paid: 3,
+            status: "active", // accès immédiat après le 1er paiement
+            installments_paid: isSubscription ? 1 : cycles,
             payment_deadline: null,
-            stripe_subscription_id: session.id,
+            stripe_subscription_id: subId,
           });
+        }
+
+        // Échelonné : borne l'abonnement à N cycles (auto-cancel après le dernier versement).
+        // Les handlers invoice.payment_failed / _succeeded existants gèrent la suspension.
+        if (isSubscription && session.subscription) {
+          const cancelDate = new Date();
+          cancelDate.setMonth(cancelDate.getMonth() + (cycles - 1));
+          cancelDate.setDate(cancelDate.getDate() + 5);
+          try {
+            await stripe.subscriptions.update(session.subscription as string, { cancel_at: Math.floor(cancelDate.getTime() / 1000) });
+          } catch (err) { console.error("formation installments cancel_at:", err); }
         }
 
         try {
