@@ -120,7 +120,7 @@ export default function TarifsPage() {
                 href={`/formations/${course.slug}`}
                 className="block w-full py-3.5 rounded-[9px] font-bold text-[14.5px] text-center transition-all bg-transparent text-gold border-[1.5px] border-gold/43 hover:bg-gold/10 hover:border-gold"
               >
-                {t(UI["form.see"], lang).replace("→", "programme →")}
+                {t(UI["form.see"], lang)}
               </Link>
             </div>
           );
