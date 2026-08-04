@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useLang, t, UI } from "@/lib/i18n";
 
 export default function ContactPage() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const { lang } = useLang();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -20,10 +20,12 @@ export default function ContactPage() {
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
     };
     try {
-      await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      // Ne JAMAIS afficher « Envoyé » si le serveur a rejeté la demande (perte de lead).
+      if (!res.ok) throw new Error("submit_failed");
       setStatus("sent");
       setTimeout(() => setStatus("idle"), 4000);
-    } catch { setStatus("idle"); }
+    } catch { setStatus("error"); }
   }
 
   return (
@@ -68,6 +70,9 @@ export default function ContactPage() {
               </select>
             </div>
             <div className="mb-3.5"><label className="block text-[12.5px] font-semibold text-body mb-1.5">{t(UI["contact.form.message"], lang)}</label><textarea name="message" aria-label={t(UI["contact.form.message"], lang)} className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white transition-all resize-y min-h-[108px]" /></div>
+            {status === "error" && (
+              <p className="text-[13px] text-red-600 mb-3 text-center">L&apos;envoi a échoué. Vérifiez votre connexion et réessayez, ou écrivez-nous à info@arcadins-training.com.</p>
+            )}
             <button type="submit" disabled={status === "sending"} className={`w-full py-3.5 font-bold text-[15px] rounded-xl transition-all ${status === "sent" ? "bg-gold text-navy" : "bg-navy text-gold hover:bg-navy-mid hover:-translate-y-0.5"}`}>
               {status === "sent" ? t(UI["contact.form.sent"], lang) : status === "sending" ? t(UI["contact.form.sending"], lang) : t(UI["contact.form.submit"], lang)}
             </button>
