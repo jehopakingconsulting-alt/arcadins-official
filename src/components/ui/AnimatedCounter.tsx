@@ -1,3 +1,5 @@
+import { formatPrice } from "@/lib/pricing";
+
 interface Props {
   target: number;
   suffix?: string;
@@ -13,7 +15,7 @@ interface Props {
 export default function AnimatedCounter({ target, suffix = "" }: Props) {
   return (
     <span>
-      {target.toLocaleString()}{suffix}
+      {formatPrice(target)}{suffix}
     </span>
   );
 }

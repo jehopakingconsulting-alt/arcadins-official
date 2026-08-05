@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PROGRAMS } from "@/lib/constants";
-import { getInstallmentPlan, getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
+import { getInstallmentPlan, getFullPaymentTotal, REGISTRATION_FEE, formatPrice } from "@/lib/pricing";
 import { createClient } from "@/lib/supabase/client";
 import Icon from "@/components/ui/Icon";
 import Link from "next/link";
@@ -148,7 +148,7 @@ export default function InscriptionPage() {
                 <span className="text-sm font-bold text-navy">Paiement complet</span>
                 {paymentChoice === "full" && <span className="text-gold">✓</span>}
               </div>
-              <div className="text-[13px] text-muted">{fullTotal.toLocaleString()} CAD en un seul versement</div>
+              <div className="text-[13px] text-muted">{formatPrice(fullTotal)} CAD en un seul versement</div>
             </button>
 
             <button

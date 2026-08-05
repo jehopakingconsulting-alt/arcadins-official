@@ -2,7 +2,7 @@
 
 import { PROGRAMS, PAYMENT_METHODS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
-import { getInstallmentPlan, REGISTRATION_FEE } from "@/lib/pricing";
+import { getInstallmentPlan, REGISTRATION_FEE, formatPrice } from "@/lib/pricing";
 import { PROGRAM_PLANS, PROGRAM_PLANS_NOTE } from "@/lib/data/program-plans";
 import Link from "next/link";
 
@@ -95,7 +95,7 @@ export default function TarifsPage() {
               <div className="flex items-baseline gap-1 mb-1">
                 <span className="text-[15px] text-white/50">CAD</span>
                 <span className="font-[family-name:var(--font-heading)] text-[40px] font-bold text-gold leading-none">
-                  {course.price.toLocaleString()}
+                  {formatPrice(course.price)}
                 </span>
               </div>
               <div className="text-[11.5px] text-white/40 mb-5">

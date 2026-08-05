@@ -24,3 +24,14 @@ export function getInstallmentPlan(price: number): InstallmentPlan {
 export function getFullPaymentTotal(price: number): number {
   return price;
 }
+
+/**
+ * Formate un entier avec séparateur de milliers DÉTERMINISTE (espace insécable),
+ * identique côté serveur et côté client. Contrairement à `Number.toLocaleString()`
+ * sans locale — dont le résultat dépend de la locale ICU du runtime (Node vs
+ * navigateur) et provoque un mismatch d'hydratation (React #418) — cette fonction
+ * n'utilise aucune donnée de locale. Ex. : 1500 → "1 500".
+ */
+export function formatPrice(n: number): string {
+  return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}

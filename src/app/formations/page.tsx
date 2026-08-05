@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { PROGRAMS, PROGRAM_CATEGORIES } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
+import { formatPrice } from "@/lib/pricing";
 import Link from "next/link";
 
 export default function FormationsPage() {
@@ -61,7 +62,7 @@ export default function FormationsPage() {
                     {p.comingSoon ? (
                       <span className="text-xs font-semibold text-navy/40">{t(UI["cd.coming"], lang)}</span>
                     ) : (
-                      <span className="text-xs font-semibold text-gold-ink">{p.price.toLocaleString()} CAD</span>
+                      <span className="text-xs font-semibold text-gold-ink">{formatPrice(p.price)} CAD</span>
                     )}
                   </div>
                   {!p.comingSoon && (

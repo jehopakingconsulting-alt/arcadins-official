@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { PROGRAMS } from "@/lib/constants";
 import { useLang, t, UI } from "@/lib/i18n";
 import { createClient } from "@/lib/supabase/client";
-import { getFullPaymentTotal, REGISTRATION_FEE } from "@/lib/pricing";
+import { getFullPaymentTotal, REGISTRATION_FEE, formatPrice } from "@/lib/pricing";
 import { FORMATION_DETAILS } from "@/lib/data/formation-details";
 import { PROGRAM_CHECKOUT_UI_ENABLED } from "@/lib/config/launch-flags";
 import Icon, { type IconName } from "@/components/ui/Icon";
@@ -158,7 +158,7 @@ export default function CourseDetailPage() {
                 <div className="flex items-baseline gap-2">
                   <span className="text-white/50 text-lg">CAD</span>
                   <span className="font-[family-name:var(--font-heading)] text-[56px] font-bold text-gold leading-none">
-                    {course.price.toLocaleString()}
+                    {formatPrice(course.price)}
                   </span>
                   <span className="text-white/40 text-sm">/ 24 semaines + {REGISTRATION_FEE}$ inscription</span>
                 </div>
@@ -250,7 +250,7 @@ export default function CourseDetailPage() {
                 {([
                   { icon: "clock", label: "Durée", value: course.duration },
                   { icon: "award", label: "Certification", value: course.certification },
-                  { icon: "coin", label: "Prix", value: `${course.price.toLocaleString()} CAD + ${REGISTRATION_FEE}$ inscription` },
+                  { icon: "coin", label: "Prix", value: `${formatPrice(course.price)} CAD + ${REGISTRATION_FEE}$ inscription` },
                   { icon: "card", label: "Paiement", value: "Complet ou 3 versements" },
                   { icon: "clipboard", label: "Modules", value: `${course.modules.length} modules` },
                   { icon: "globe", label: "Format", value: "100% en ligne" },
@@ -323,7 +323,7 @@ export default function CourseDetailPage() {
                     Commencez maintenant
                   </h3>
                   <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
-                    Inscription 100 % en ligne : {fullTotal.toLocaleString()}$ CAD, en <strong>1, 3 ou 6 versements</strong> ou via financement (Klarna, Affirm, Afterpay). Accès <strong>immédiat</strong>, sans validation manuelle.
+                    Inscription 100 % en ligne : {formatPrice(fullTotal)}$ CAD, en <strong>1, 3 ou 6 versements</strong> ou via financement (Klarna, Affirm, Afterpay). Accès <strong>immédiat</strong>, sans validation manuelle.
                   </p>
                   <Link
                     href={`/inscription/formation?slug=${course.slug}`}
@@ -342,7 +342,7 @@ export default function CourseDetailPage() {
                     Réservez votre place
                   </h3>
                   <p className="text-[13.5px] text-muted mb-5 leading-[1.65]">
-                    Les inscriptions se font avec notre équipe. Demandez votre inscription : nous vous accompagnons pour confirmer votre place et votre plan de paiement ({fullTotal.toLocaleString()}$ total — en un seul versement ou en 3 fois).
+                    Les inscriptions se font avec notre équipe. Demandez votre inscription : nous vous accompagnons pour confirmer votre place et votre plan de paiement ({formatPrice(fullTotal)}$ total — en un seul versement ou en 3 fois).
                   </p>
                   <Link
                     href={`/contact?formation=${course.slug}`}
