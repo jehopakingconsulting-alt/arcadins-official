@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with: { node-version: 24, cache: npm }
       - name: Install (clean)
@@ -43,7 +43,7 @@ jobs:
     timeout-minutes: 15
     permissions: { contents: read, id-token: write } # id-token = cosign keyless
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with: { fetch-depth: 0 }
       - uses: actions/setup-node@v4
         with: { node-version: 24, cache: npm }
@@ -80,7 +80,7 @@ jobs:
     timeout-minutes: 20
     permissions: { security-events: write, actions: read, contents: read }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: github/codeql-action/init@v3
         with: { languages: javascript-typescript }
       - uses: github/codeql-action/analyze@v3
