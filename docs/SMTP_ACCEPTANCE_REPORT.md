@@ -1,54 +1,105 @@
 # ARCADINS — SMTP Acceptance Report
-**Date :** 2026-08-05 · **Périmètre :** infrastructure e-mail transactionnelle (Phase 1, frontend gelé)
+**Date :** 2026-08-06 · **Périmètre :** infrastructure e-mail transactionnelle (frontend gelé)
+**Fournisseur :** Resend (API HTTP) · **Environnement :** Production (`arcadins-official.vercel.app`)
 
-> **Règle d'honnêteté :** ce rapport distingue ce qui est **CONSTRUIT & vérifié par tests** (que je peux
-> certifier) de ce qui est **OWNER-GATED** (secrets, domaine, DNS, boîte mail réelle — que je **ne peux pas**
-> exécuter ni certifier). Aucun « envoyé/reçu/ouvert » n'est déclaré tant qu'il n'a pas été réellement produit.
+> **Règle appliquée :** aucun « envoyé / reçu / ouvert » n'est déclaré sans preuve réelle observée.
+> Ce qui n'a pas été testé de bout en bout est marqué **NON VALIDÉ**, jamais supposé réussi.
 
 ---
 
-## A. CONSTRUIT & VÉRIFIÉ PAR TESTS ✅ (certifiable)
+## 1. RÉSULTAT DU TEST DE BOUT EN BOUT — ✅ **RÉUSSI**
+
+**Test exécuté le 2026-08-05 à 23h57** (heure locale) — repère `OK-2357`.
+
+| Critère de la mission | Statut | Preuve observée |
+|---|---|---|
+| **Envoyé** | ✅ | Réponse Resend `{"status":"sent","id":"e0d08e29-8c0b-4e9d-9a06-58cd57e2fdaa","attempts":1}` |
+| **Reçu** | ✅ | **3 e-mails** dans Gmail à 23h57, onglet **Principale** (pas en spam) |
+| **Ouvert** | ✅ | E-mail « Nous avons bien reçu votre message » ouvert et affiché |
+| **Liens vérifiés** | ✅ | `/formations` → **200** · `/admin` → **307** (redirection login, correct) · `/` → **200** |
+| **Rendu HTML** | ✅ | Bandeau navy « ARCADINS TRAINING CENTER », titre serif, **bouton doré**, pied de page (adresse Ottawa + lien) |
+| **Fallback texte** | ✅ | Envoyé conjointement (`text` + `html` dans chaque message) |
+| **Identité expéditeur** | ✅ | Affichée « ARCADINS Training Center » |
+
+### Les 3 e-mails reçus
+| # | Sujet | Origine | Prouve |
+|---|---|---|---|
+| 1 | **Nous avons bien reçu votre message — ARCADINS** | `/api/contact` | Accusé visiteur + **exécution différée `after()` fonctionnelle sur Vercel** |
+| 2 | **[Contact] Marie OK-2357** | `/api/contact` | Notification interne (routée via `CONTACT_NOTIFY_TO`) |
+| 3 | **Diagnostic ARCADINS — test d'envoi** | `/api/diag/email` | Envoi synchrone direct |
+
+---
+
+## 2. CAUSE RACINE IDENTIFIÉE ET RÉSOLUE
+
+Les premiers tests renvoyaient `HTTP 200` (insertion base OK) **mais aucun e-mail n'apparaissait**. L'endpoint de diagnostic a livré l'erreur brute :
+
+```
+HTTP 403: The arcadins-training.com domain is not verified.
+Please, add and verify your domain on https://resend.com/domains
+```
+
+**Diagnostic :** Resend **rejetait** chaque requête (403) car le domaine expéditeur n'était pas vérifié → **aucun enregistrement n'était créé**, d'où l'absence totale de trace dans le dashboard. Résolu en basculant temporairement sur l'expéditeur de test vérifié `onboarding@resend.dev`.
+
+**Fausses pistes écartées en cours de route (par preuve, pas par supposition) :** `SUPABASE_SERVICE_ROLE_KEY` manquante (elle était présente) · `EMAIL_PROVIDER` incorrect (il valait bien `resend` après correction) · `after()` non fonctionnel (prouvé fonctionnel par les e-mails 1 et 2).
+
+---
+
+## 3. COMPOSANTS VALIDÉS
+
 | Exigence | Statut | Preuve |
 |---|---|---|
-| Abstraction fournisseur (console / **Resend** / **SMTP**) | ✅ | `src/lib/notifications/provider.ts` |
-| **Transport SMTP littéral** (nodemailer, import dynamique) | ✅ | `SmtpProvider` (host/port/secure/user/pass via env) |
-| **HTML responsive + fallback texte** | ✅ | `email-template.ts` (CSS inline, préheader, CTA, pied légal) |
-| **Échappement anti-injection** du contenu dynamique | ✅ | test « échappe le contenu dynamique » |
-| **Retry** avec back-off exponentiel | ✅ | `withRetry` + 3 tests (succès 2e essai / abandon N / succès immédiat) |
-| **Rate-limiting** anti-spam contact | ✅ | `/api/contact` : 5/min/IP (`enforceRateLimit`) |
-| **E-mails de contact** (accusé utilisateur + notif admin) | ✅ | `contact-emails.ts` + 2 tests ; câblés dans la route |
-| Envoi **non-bloquant** après réponse + **logging** des échecs | ✅ | `after()` + `console.error` dans `/api/contact` |
-| **Script de test E2E** exécutable par l'owner | ✅ | `npm run email:test -- --to=…` (`scripts/email/smtp-verify.ts`) |
-| Chaîne complète vérifiée (provider→template→envoi) | ✅ | fumée `EMAIL_PROVIDER=console` → `{"status":"sent"}` |
-| Variables d'env documentées | ✅ | `.env.example` + `docs/SMTP_SETUP.md` |
-| **Gates** | ✅ | typecheck · lint · **751 tests** (11 nouveaux) · build |
+| E-mails du formulaire de **contact** (accusé + admin) | ✅ **VALIDÉ E2E** | reçus, ouverts, liens OK |
+| **Templates HTML responsives** | ✅ | rendu Gmail conforme au design |
+| **Fallback texte brut** | ✅ | `text` systématiquement joint |
+| **Retry** avec back-off | ✅ **prouvé en conditions réelles** | `attempts: 3` observé lors des 403 |
+| **Rate limiting** | ✅ | 5/min/IP sur `/api/contact` (+ 8/min sur le diagnostic) |
+| **Error logging** | ✅ | `console.error` + erreur brute renvoyée par le diagnostic |
+| **Envoi non-bloquant** (`after()`) | ✅ **prouvé** | réponse < 1,3 s, e-mails délivrés ensuite |
+| **Identité expéditeur (nom affiché)** | ✅ | « ARCADINS Training Center » |
+| Sécurité du diagnostic | ✅ | aucun secret exposé, destinataire verrouillé, rate-limité |
+| Gates qualité | ✅ | typecheck · lint · **751 tests** · build |
 
-## B. OWNER-GATED — EN ATTENTE ⏳ (non certifiable par l'IA)
-| Exigence | Statut | Pourquoi / Action requise |
+---
+
+## 4. CE QUI RESTE — ⏳ **NON VALIDÉ**
+
+| Exigence | Statut | Action requise (propriétaire) |
 |---|---|---|
-| Compte fournisseur + **clé API / secrets** | ⏳ | à créer par l'owner (jamais manipulé par l'IA) |
-| **Identité expéditeur** (domaine vérifié) | ⏳ | vérifier `arcadins-training.com` dans le fournisseur |
-| **SPF / DKIM / DMARC** | ⏳ | enregistrements DNS chez le registraire (§3 du runbook) |
-| **Confirmation d'inscription / Reset / Vérification e-mail** | ⏳ | **envoyés par Supabase Auth** → config dashboard (SMTP custom + templates + Redirect URL `/auth/update-password` + « Confirm email ») |
-| **Test boîte RÉELLE** (envoyé → reçu → ouvert → liens) | ⏳ | exige secrets + inbox : à exécuter par l'owner (§6 du runbook) |
-| Vérification **délivrabilité** (`dkim=pass spf=pass dmarc=pass`) | ⏳ | lire les en-têtes d'un mail réellement reçu |
-
-## C. NON APPLICABLE / LIMITÉ ⚠️
-| Élément | Note |
-|---|---|
-| **Newsletter** | Capacité d'e-mail présente, mais **aucun point de capture actif** (pas de formulaire newsletter ; frontend gelé). Seule une case opt-in existe dans le flux d'inscription flag-gated (OFF). → **pas de déclencheur** tant que le frontend est gelé. |
-| **Bounce handling** | Nécessite un webhook fournisseur (Resend/SES) → non implémenté (peut être ajouté en Phase 2 si requis). |
+| **Identité expéditeur de PRODUCTION** | ⏳ | `onboarding@resend.dev` est **temporaire** : il n'envoie **qu'à l'adresse du compte** → **un vrai visiteur ne recevrait rien**. Vérifier `arcadins-training.com` dans Resend → Domains, puis remettre `EMAIL_FROM = ARCADINS Training Center <no-reply@arcadins-training.com>` |
+| **SPF / DKIM / DMARC** | ⏳ | Enregistrements DNS à poser chez le registraire (fournis par Resend lors de la vérification du domaine) |
+| **Confirmation d'inscription** | ⏳ | Envoyée par **Supabase Auth**, pas par ce code → configurer *Custom SMTP* + activer « Confirm email » dans le dashboard Supabase |
+| **Réinitialisation de mot de passe** | ⏳ | Idem Supabase Auth + *Redirect URL* `…/auth/update-password` |
+| **Vérification d'e-mail** | ⏳ | Idem (option « Confirm email ») |
+| **Newsletter** | ⚪ **N/A** | Capacité d'envoi présente, mais **aucun point de capture** (pas de formulaire ; frontend gelé) → pas de déclencheur |
+| **Bounce handling** | ⚪ Non implémenté | Nécessiterait un webhook Resend (Phase 2 si requis) |
 
 ---
 
 ## VERDICT
 
-# ⏳ SMTP — CODE PRODUCTION-READY, LIVRAISON NON ENCORE CERTIFIÉE
+# ⏳ SMTP — CANAL APPLICATIF VALIDÉ · **PAS ENCORE PRODUCTION READY**
 
-- **Le code** de la couche SMTP est **prêt pour la production** et **couvert par tests** (751 verts).
-- **La livraison réelle** ne peut **pas** être déclarée « Production Ready » tant que l'owner n'a pas exécuté §2→§6 du runbook **et** qu'un e-mail n'a pas été **réellement reçu, ouvert et ses liens vérifiés** dans une boîte réelle.
+**Ce qui est acquis (prouvé) :** toute la **couche applicative d'e-mail est validée de bout en bout** — templates HTML+texte, envoi, réception, ouverture, liens, retry, rate-limit, logging, exécution différée. Le canal **Contact** fonctionne réellement.
 
-**Ce qui reste, strictement (owner) :** créer le compte fournisseur → vérifier le domaine → poser SPF/DKIM/DMARC → renseigner les env Vercel → configurer Supabase Auth → lancer `npm run email:test` → valider la réception. **Dès ces étapes faites et prouvées**, le verdict passe à **🟢 SMTP PRODUCTION READY**, et l'on pourra démarrer Stripe.
+**Ce qui bloque le statut « Production Ready » :**
+1. **L'expéditeur est un domaine de test** → les e-mails **n'atteindraient aucun vrai client**. C'est le blocage n°1.
+2. **SPF/DKIM/DMARC** non configurés (dépend du point 1).
+3. **Les e-mails d'authentification** (confirmation, réinitialisation, vérification) passent par **Supabase Auth** et ne sont **pas encore configurés ni testés**.
 
-> Je ne peux pas franchir la ligne d'arrivée à ta place (secrets/DNS/inbox) — mais tout ce qui pouvait
-> être construit et testé **sans** tes secrets l'est, et le chemin restant est réduit à une checklist DNS/dashboard.
+### Chemin pour atteindre 🟢 (estimation : 30-45 min + propagation DNS)
+1. Resend → **Domains** → ajouter `arcadins-training.com` → poser les **DNS (SPF + DKIM)** → attendre « Verified ».
+2. Vercel → `EMAIL_FROM` = `ARCADINS Training Center <no-reply@arcadins-training.com>` → redéployer.
+3. Relancer le test de contact → vérifier réception + en-têtes `dkim=pass spf=pass dmarc=pass`.
+4. Supabase → **Auth → SMTP Settings** (Resend) + **Confirm email** + *Redirect URL* `/auth/update-password` + templates.
+5. Tester **inscription** et **réinitialisation** sur boîte réelle.
+6. **Supprimer l'endpoint temporaire** `/api/diag/email`.
+
+> Une fois ces étapes prouvées, le verdict passe à **🟢 SMTP PRODUCTION READY**, et la phase **Stripe** peut démarrer (ses secrets sont déjà en place : `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`).
+
+---
+
+### Reproductibilité
+`GET /api/diag/email` (config, sans secret) · `GET /api/diag/email?send=1` (envoi synchrone + erreur brute) · `POST /api/contact` (chaîne complète) · `npm run email:test -- --to=…` (script owner). Runbook complet : `docs/SMTP_SETUP.md`.
+
+*Émis pour JeHoPa KING Consulting — validation SMTP, ARCADINS Training Center V2.*
