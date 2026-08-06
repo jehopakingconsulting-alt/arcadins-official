@@ -40,22 +40,31 @@ jobs:
         run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      # VERCEL_FORCE_NO_BUILD_CACHE=1 : indispensable. Sans lui, `vercel build`
+      # réutilise le cache de build distant et republie l'ancien output compilé
+      # (les hash de chunks ne changeaient jamais → correctifs invisibles en prod).
       - name: Build
         run: vercel build --prod --token=$VERCEL_TOKEN
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      - name: Deploy (prebuilt, non promu)
+          VERCEL_FORCE_NO_BUILD_CACHE: "1"
+      - name: Deploy (prebuilt) — auto-promu en production par --prod
         id: deploy
         run: |
           URL=$(vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN)
           echo "url=$URL" >> "$GITHUB_OUTPUT"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_FORCE_NO_BUILD_CACHE: "1"
 
-      # 2) Promotion en production (alias). L'URL de preview étant protégée, on
-      #    NE la health-check pas ici — la vérif se fait sur l'alias public juste après.
-      - name: Promote to production
-        run: vercel promote "${{ steps.deploy.outputs.url }}" --token=$VERCEL_TOKEN --yes
+      # 2) Promotion explicite — TOLÈRE le 409 (`deploy --prod` a déjà promu).
+      #    L'URL de preview étant protégée (302 SSO), aucune vérif ici : elle se
+      #    fait sur l'alias PUBLIC juste après.
+      - name: Promote to production (tolère 409 déjà-promu)
+        run: |
+          out=$(vercel promote "${{ steps.deploy.outputs.url }}" --token=$VERCEL_TOKEN --yes 2>&1) || true
+          echo "$out"
+          echo "$out" | grep -qi "already the current production" && echo "Déjà promu par deploy --prod ✓" || true
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
