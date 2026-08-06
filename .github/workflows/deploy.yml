@@ -1,9 +1,13 @@
 name: Deploy (production)
 
-# Déploiement progressif Vercel avec HEALTH-GATE + ROLLBACK AUTOMATIQUE.
-# Stratégie : Vercel promeut un déploiement atomique (immutable). On déploie en
-# "preview" (staging), on vérifie la santé (readiness), puis on PROMEUT en prod ;
-# si le health-check post-promotion échoue, on rollback (alias) automatiquement.
+# Déploiement Vercel avec PROMOTION FIABLE + SMOKE PUBLIC + ROLLBACK AUTOMATIQUE.
+#
+# IMPORTANT — pourquoi on ne health-check PAS l'URL de preview avant la promotion :
+# les URLs de déploiement Vercel sont couvertes par la Deployment Protection et
+# répondent 302 (redirection SSO) à un curl anonyme. Un readiness-gate qui exige
+# 200 sur l'URL de preview échoue donc TOUJOURS, ce qui empêchait la promotion et
+# figeait la production sur un ancien déploiement. On promeut d'abord, puis on
+# vérifie l'ALIAS PUBLIC de production (non protégé) ; en cas d'échec → rollback.
 #
 # Secrets requis (GitHub → Settings → Secrets) :
 #   VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID, PROD_URL
@@ -31,7 +35,7 @@ jobs:
       - name: Install Vercel CLI
         run: npm i -g vercel@latest
 
-      # 1) Build + déploiement "preview" (non promu) = staging éphémère
+      # 1) Build + déploiement prebuilt (non promu)
       - name: Vercel pull env
         run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
         env:
@@ -48,33 +52,28 @@ jobs:
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
-      # 2) Health-gate sur le déploiement fraîchement créé
-      - name: Readiness gate
-        run: |
-          for i in $(seq 1 10); do
-            code=$(curl -s -o /dev/null -w "%{http_code}" "${{ steps.deploy.outputs.url }}/api/ready" || true)
-            echo "try $i -> $code"
-            [ "$code" = "200" ] && exit 0
-            sleep 6
-          done
-          echo "Readiness KO"; exit 1
-
-      # 3) Promotion en production (alias)
+      # 2) Promotion en production (alias). L'URL de preview étant protégée, on
+      #    NE la health-check pas ici — la vérif se fait sur l'alias public juste après.
       - name: Promote to production
         run: vercel promote "${{ steps.deploy.outputs.url }}" --token=$VERCEL_TOKEN --yes
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
-      # 4) Smoke post-promotion + ROLLBACK auto si échec
+      # 3) Smoke post-promotion sur l'ALIAS PUBLIC (non protégé) + ROLLBACK auto
       - name: Post-promotion smoke + auto-rollback
         run: |
-          sleep 8
-          code=$(curl -s -o /dev/null -w "%{http_code}" "${{ secrets.PROD_URL }}/api/health" || true)
-          echo "prod /api/health -> $code"
-          if [ "$code" != "200" ]; then
+          ok=""
+          for i in $(seq 1 12); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "${{ secrets.PROD_URL }}/api/health" || true)
+            echo "prod /api/health try $i -> $code"
+            if [ "$code" = "200" ]; then ok="1"; break; fi
+            sleep 6
+          done
+          if [ -z "$ok" ]; then
             echo "Smoke KO → rollback"
             vercel rollback --token=$VERCEL_TOKEN --yes || true
             exit 1
           fi
+          echo "Production OK (alias public 200)"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
