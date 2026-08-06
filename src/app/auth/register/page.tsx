@@ -5,6 +5,8 @@ import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLang, t, UI } from "@/lib/i18n";
+import PasswordField from "@/components/ui/PasswordField";
+import { COUNTRIES } from "@/lib/data/countries";
 
 export default function RegisterPage() {
   const [firstName, setFirstName] = useState("");
@@ -49,8 +51,32 @@ export default function RegisterPage() {
             <div><label className="block text-[12.5px] font-semibold text-body mb-1.5">{t(UI["contact.form.last"], lang)}</label><input type="text" aria-label={t(UI["contact.form.last"], lang)} value={lastName} onChange={(e) => setLastName(e.target.value)} required className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" /></div>
           </div>
           <div className="mb-4"><label className="block text-[12.5px] font-semibold text-body mb-1.5">{t(UI["contact.form.email"], lang)}</label><input type="email" aria-label={t(UI["contact.form.email"], lang)} value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" /></div>
-          <div className="mb-4"><label className="block text-[12.5px] font-semibold text-body mb-1.5">{t(UI["contact.form.country"], lang)}</label><input type="text" aria-label={t(UI["contact.form.country"], lang)} value={country} onChange={(e) => setCountry(e.target.value)} className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" /></div>
-          <div className="mb-6"><label className="block text-[12.5px] font-semibold text-body mb-1.5">{t(UI["auth.password"], lang)}</label><input type="password" aria-label={t(UI["auth.password"], lang)} value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" /></div>
+          <div className="mb-4">
+            <label htmlFor="reg-country" className="block text-[12.5px] font-semibold text-body mb-1.5">{t(UI["contact.form.country"], lang)}</label>
+            <select
+              id="reg-country"
+              aria-label={t(UI["contact.form.country"], lang)}
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              autoComplete="country-name"
+              className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white"
+            >
+              <option value="">{t(UI["form.country.select"], lang)}</option>
+              {COUNTRIES.map((c) => (
+                <option key={c.code} value={c.name}>{c.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className="mb-6">
+            <PasswordField
+              label={t(UI["auth.password"], lang)}
+              value={password}
+              onChange={setPassword}
+              required
+              minLength={6}
+              autoComplete="new-password"
+            />
+          </div>
           <button type="submit" disabled={loading} className="w-full py-3.5 bg-gold text-navy font-bold text-[15px] rounded-xl transition-all hover:bg-gold-light hover:-translate-y-0.5 disabled:opacity-50">
             {loading ? "..." : t(UI["auth.register.btn"], lang)}
           </button>

@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useLang, t, UI } from "@/lib/i18n";
+import PasswordField from "@/components/ui/PasswordField";
 
 export default function LoginPage() {
   return (<Suspense><LoginForm /></Suspense>);
@@ -49,11 +50,16 @@ function LoginForm() {
             <input type="email" aria-label={t(UI["contact.form.email"], lang)} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="votre@email.com" required className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" />
           </div>
           <div className="mb-2">
-            <label className="block text-[12.5px] font-semibold text-body mb-1.5">{t(UI["auth.password"], lang)}</label>
-            <input type="password" aria-label={t(UI["auth.password"], lang)} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" />
+            <PasswordField
+              label={t(UI["auth.password"], lang)}
+              value={password}
+              onChange={setPassword}
+              required
+              autoComplete="current-password"
+            />
           </div>
           <div className="mb-6 text-right">
-            <Link href="/auth/reset-password" className="text-[12.5px] text-gold font-semibold hover:underline">Mot de passe oublié ?</Link>
+            <Link href="/auth/reset-password" className="text-[12.5px] text-gold font-semibold hover:underline">{t(UI["auth.forgot"], lang)}</Link>
           </div>
           <button type="submit" disabled={loading} className="w-full py-3.5 bg-navy text-gold font-bold text-[15px] rounded-xl transition-all hover:bg-navy-mid hover:-translate-y-0.5 disabled:opacity-50">
             {loading ? "..." : t(UI["auth.login.btn"], lang)}

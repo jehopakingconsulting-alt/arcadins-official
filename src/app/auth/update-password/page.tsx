@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
+import PasswordField from "@/components/ui/PasswordField";
 
 // Définition d'un nouveau mot de passe après clic sur le lien de récupération.
 // Supabase établit une session « recovery » via le lien ; on met à jour le mot de passe.
@@ -69,12 +70,10 @@ export default function UpdatePasswordPage() {
           <form onSubmit={handleSubmit} className="bg-white rounded-[28px] p-10 shadow-[0_8px_40px_rgba(13,27,46,0.07)] border border-gold/17">
             {error && <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm mb-6">{error}</div>}
             <div className="mb-4">
-              <label htmlFor="new-pw" className="block text-[12.5px] font-semibold text-body mb-1.5">Nouveau mot de passe</label>
-              <input id="new-pw" type="password" required minLength={8} aria-label="Nouveau mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" />
+              <PasswordField label="Nouveau mot de passe" value={password} onChange={setPassword} required minLength={8} autoComplete="new-password" />
             </div>
             <div className="mb-6">
-              <label htmlFor="confirm-pw" className="block text-[12.5px] font-semibold text-body mb-1.5">Confirmer le mot de passe</label>
-              <input id="confirm-pw" type="password" required minLength={8} aria-label="Confirmer le mot de passe" value={confirm} onChange={(e) => setConfirm(e.target.value)} placeholder="••••••••" className="w-full px-4 py-3 border-[1.5px] border-gold/20 rounded-xl text-sm text-body bg-off-white outline-none focus:border-gold focus:bg-white" />
+              <PasswordField label="Confirmer le mot de passe" value={confirm} onChange={setConfirm} required minLength={8} autoComplete="new-password" />
             </div>
             <button type="submit" disabled={status === "saving"} className="w-full py-3.5 bg-navy text-gold font-bold text-[15px] rounded-xl transition-all hover:bg-navy-mid hover:-translate-y-0.5 disabled:opacity-50">
               {status === "saving" ? "Enregistrement…" : "Mettre à jour mon mot de passe"}
