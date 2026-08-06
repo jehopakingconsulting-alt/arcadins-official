@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingButtons from "@/components/layout/FloatingButtons";
 import BackToTop from "@/components/layout/BackToTop";
+import WelcomeMount from "@/components/welcome/WelcomeMount";
 import LangProvider from "@/components/providers/LangProvider";
 import { localeAlternates, DEFAULT_LOCALE, isRoutedLocale, type RoutedLocale } from "@/lib/i18n/locale-routing";
 import "./globals.css";
@@ -62,6 +63,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           <FloatingButtons />
           <BackToTop />
           <Footer />
+          <WelcomeMount />
         </LangProvider>
       </body>
     </html>
