@@ -21,11 +21,19 @@ export default function TarifsPage() {
           <p className="text-[17px] text-white/50 max-w-[500px] mx-auto">{t(UI["tarifs.desc"], lang)}</p>
         </div>
 
+        {/* Bande de réassurance — éléments honnêtes et vérifiables (aucune fausse promesse). */}
+        <div className="max-w-[860px] mx-auto -mt-4 mb-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-white/55">
+          <span className="inline-flex items-center gap-1.5"><span className="text-gold">✓</span> Satisfait ou remboursé sous 7 jours</span>
+          <span className="inline-flex items-center gap-1.5"><span className="text-gold">✓</span> Accompagnement humain à chaque étape</span>
+          <span className="inline-flex items-center gap-1.5"><span className="text-gold">✓</span> Réponse sous 24–48 h</span>
+          <span className="inline-flex items-center gap-1.5"><span className="text-gold">✓</span> 100 % en ligne, à votre rythme</span>
+        </div>
+
         {/* ══ DÉPARTEMENT A — Programmes officiels de langue (Tutorat TEF & TCF) ══ */}
         <div className="text-center mb-8">
           <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Programmes officiels de langue</p>
           <h3 className="font-[family-name:var(--font-heading)] text-3xl text-white mb-2">Tutorat TEF &amp; TCF Canada</h3>
-          <p className="text-[15px] text-white/50 max-w-[560px] mx-auto">Choisissez votre plan de préparation en ligne — du niveau débutant au supérieur, par compétence.</p>
+          <p className="text-[15px] text-white/50 max-w-[560px] mx-auto">Choisissez votre plan de préparation en ligne — du niveau débutant au supérieur, par compétence. Tarifs en dollars US (USD) · accès de 6 à 12 semaines selon le forfait.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {PROGRAM_PLANS.map((plan) => (
@@ -54,7 +62,7 @@ export default function TarifsPage() {
                 href={`/contact?programme=tef-canada&plan=${plan.key}`}
                 className={`block w-full py-3 rounded-[9px] font-bold text-[14px] text-center transition-all ${plan.popular ? "bg-gold text-navy hover:bg-gold-light hover:-translate-y-0.5" : "bg-transparent text-gold border-[1.5px] border-gold/43 hover:bg-gold/10 hover:border-gold"}`}
               >
-                Choisir {plan.name} →
+                Demander ce forfait →
               </Link>
             </div>
           ))}
@@ -68,7 +76,7 @@ export default function TarifsPage() {
         <div className="text-center mb-8">
           <p className="text-[11px] font-bold tracking-[4px] uppercase text-gold mb-2.5">Formations professionnelles</p>
           <h3 className="font-[family-name:var(--font-heading)] text-3xl text-white mb-2">Développement professionnel</h3>
-          <p className="text-[15px] text-white/50 max-w-[560px] mx-auto">9 formations de 24 semaines avec attestation de complétion — tarification distincte des programmes de langue.</p>
+          <p className="text-[15px] text-white/50 max-w-[560px] mx-auto">9 formations de 24 semaines avec attestation de complétion — tarifs en dollars canadiens (CAD), distincts des programmes de langue.</p>
         </div>
 
         {/* Courses pricing grid */}
@@ -99,7 +107,7 @@ export default function TarifsPage() {
                 </span>
               </div>
               <div className="text-[11.5px] text-white/40 mb-5">
-                + {REGISTRATION_FEE}$ inscription (séparés) · puis complet ou 3× ({getInstallmentPlan(course.price).installments.map((v) => `${v}$`).join(", ")})
+                + {REGISTRATION_FEE}$ de frais d&apos;inscription uniques · règlement complet ou en 3× ({getInstallmentPlan(course.price).installments.map((v) => `${v}$`).join(", ")})
               </div>
 
               <ul className="mb-6 space-y-0">
