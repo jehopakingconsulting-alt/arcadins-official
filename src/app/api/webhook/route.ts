@@ -190,7 +190,12 @@ export async function POST(request: Request) {
             program_id: program.id,
             plan: "course",
             status: "active", // accès immédiat après le 1er paiement
-            installments_paid: isSubscription ? 1 : cycles,
+            // Paiement INTÉGRAL (1 versement, BNPL inclus) : plus aucune mensualité due.
+            // On sature le compteur au barème d'affichage (3) pour que l'espace étudiant
+            // n'annonce PAS à tort des versements restants (« Versement 1 / 3 reçu » alors
+            // que tout est réglé). Abonnement échelonné : on démarre bien à 1.
+            // Correctif durable : colonne `installments_total` sur `enrollments`.
+            installments_paid: isSubscription ? 1 : 3,
             payment_deadline: null,
             stripe_subscription_id: subId,
           });
