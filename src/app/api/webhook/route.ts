@@ -33,12 +33,27 @@ export async function POST(request: Request) {
   const supabase = createAdminClient();
 
   switch (event.type) {
-    case "checkout.session.completed": {
+    // `completed` couvre les paiements immédiats (carte). Les moyens ASYNCHRONES
+    // (Affirm, Klarna, Afterpay, virements) émettent `completed` AVANT l'encaissement,
+    // puis `async_payment_succeeded` une fois les fonds confirmés : les deux doivent
+    // mener au même traitement, protégé par le contrôle de `payment_status` ci-dessous.
+    case "checkout.session.completed":
+    case "checkout.session.async_payment_succeeded": {
       const session = event.data.object as Stripe.Checkout.Session;
       const metadata = session.metadata;
 
       if (!metadata?.userId) {
         console.error("Checkout completed without userId in metadata:", session.id);
+        break;
+      }
+
+      // SÉCURITÉ : ne JAMAIS accorder d'accès tant que la session n'est pas réglée.
+      // Sans ce contrôle, un paiement asynchrone abandonné débloquerait l'accès.
+      if (session.payment_status !== "paid" && session.payment_status !== "no_payment_required") {
+        console.log(
+          `[webhook] ${event.type} ignoré — paiement non finalisé (payment_status=${session.payment_status}, session=${session.id}). ` +
+            `L'accès sera accordé à la réception de checkout.session.async_payment_succeeded.`
+        );
         break;
       }
 
@@ -318,6 +333,18 @@ export async function POST(request: Request) {
     }
 
     // ── A scheduled monthly installment failed → suspend access ──
+    // Paiement asynchrone REFUSÉ (Affirm/Klarna décline, virement non reçu…).
+    // Aucun accès n'a été accordé (le contrôle payment_status l'a empêché) :
+    // on journalise pour le suivi, sans action destructrice.
+    case "checkout.session.async_payment_failed": {
+      const session = event.data.object as Stripe.Checkout.Session;
+      console.error(
+        `[webhook] paiement asynchrone échoué — session=${session.id}, user=${session.metadata?.userId ?? "?"}, ` +
+          `type=${session.metadata?.type ?? "?"}. Aucun accès accordé.`
+      );
+      break;
+    }
+
     case "invoice.payment_failed": {
       const invoice = event.data.object as Stripe.Invoice;
       const subId = (invoice as unknown as { subscription?: string }).subscription;
