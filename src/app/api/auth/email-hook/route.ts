@@ -34,7 +34,22 @@ export async function POST(request: Request) {
   });
   if (!check.valid) {
     console.error(`[auth-hook] signature refusée : ${check.reason}`);
-    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+    // `reason` est un libellé technique sans donnée sensible ; `secretConfigured`
+    // est un simple booléen. Exposés pour rendre l'endpoint diagnosticable en prod
+    // (le secret lui-même n'est jamais renvoyé).
+    return NextResponse.json(
+      {
+        error: "unauthorized",
+        reason: check.reason,
+        secretConfigured: Boolean(process.env.SEND_EMAIL_HOOK_SECRET),
+        headersSeen: {
+          id: Boolean(request.headers.get("webhook-id")),
+          timestamp: Boolean(request.headers.get("webhook-timestamp")),
+          signature: Boolean(request.headers.get("webhook-signature")),
+        },
+      },
+      { status: 401 }
+    );
   }
 
   let payload: AuthHookPayload;
