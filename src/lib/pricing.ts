@@ -25,6 +25,7 @@ export function getFullPaymentTotal(price: number): number {
   return price;
 }
 
+// build-marker: 2026-08-05 — rebuild propre (invalidation cache Vercel) pour publier le correctif #418.
 /**
  * Formate un entier avec séparateur de milliers DÉTERMINISTE (espace insécable),
  * identique côté serveur et côté client. Contrairement à `Number.toLocaleString()`
