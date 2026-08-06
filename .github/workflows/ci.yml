@@ -72,7 +72,7 @@ jobs:
           # cosign moderne : --output-signature/--output-certificate dépréciés → --bundle
           ./cosign sign-blob --yes sbom.json --bundle sbom.json.bundle
       - name: Publier le SBOM signé
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with: { name: sbom-signed, path: "sbom.json*" }
 
   codeql:
