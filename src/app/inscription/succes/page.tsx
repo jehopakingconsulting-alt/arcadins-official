@@ -14,7 +14,16 @@ type State =
   | "loading" | "access_active" | "activation_pending" | "payment_pending"
   | "payment_failed" | "payment_cancelled" | "session_expired" | "account_mismatch" | "support_required";
 
-interface StatusResp { state: string; program?: string; packageKey?: string; accessExpiresAt?: string | null }
+interface StatusResp {
+  state: string;
+  program?: string;
+  packageKey?: string;
+  accessExpiresAt?: string | null;
+  /** « formation » pour une formation professionnelle (sinon programme officiel). */
+  type?: string;
+  /** Nom lisible renvoyé par le serveur pour les formations. */
+  programName?: string;
+}
 
 function SuccesInner() {
   const params = useSearchParams();
@@ -48,9 +57,17 @@ function SuccesInner() {
     return () => { cancelled = true; };
   }, [sessionId, refreshKey]);
 
+  // Deux familles d'achat : Programmes officiels (TEF/TCF, code connu) et
+  // Formations professionnelles (slug libre). On ne suppose plus que tout achat
+  // est un programme officiel — sinon le nom et le lien d'accès restaient vides.
+  const isFormation = info?.type === "formation";
   const program = info?.program && isProgramCode(info.program) ? info.program : null;
-  const programName = program ? PROGRAM_NAMES[program] : "votre programme";
-  const target = program ? resolveFirstLesson(program) : null;
+  const programName = info?.programName || (program ? PROGRAM_NAMES[program] : "votre programme");
+  const target = isFormation && info?.program
+    ? { firstLesson: `/formations/${info.program}/learn` }
+    : program
+      ? resolveFirstLesson(program)
+      : null;
 
   return (
     <div className="bg-navy min-h-screen pt-32 pb-20">
